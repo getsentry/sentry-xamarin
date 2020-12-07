@@ -1,0 +1,45 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.41">
+	<PropertyGroup>
+<!--!<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
+	<TargetFrameworks>monoandroid10.0;Xamarinios10;netstandard2.0</TargetFrameworks>
+		<NoWarn Condition="$(TargetFramework) == 'netstandard2.0'">$(NoWarn);RS0017</NoWarn>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Lucas Zimerman</Authors>
+		<Company>Lucas ZimermanLucas Zimerman</Company>
+		<Description>Enhances the support of Sentry.NET SDK with Xamarin Forms/Android/IOS Apps.</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="Internals\FormsEventProcessor.cs" />
+		<Compile Include="ContribSentryFormsIntegration.cs" />
+		<Compile Remove="Internals\NativeEventProcessor.ios.cs" />
+		<Compile Remove="Internals\NativeEventProcessor.droid.cs" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarinios')) ">
+		<Compile Include="Internals\NativeEventProcessor.ios.cs" />
+		<None Include="Internals\NativeEventProcessor.droid.cs" />
+		
+		<PackageReference Include="Sentry" Version="2.1.8" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+		<PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
+		<Compile Include="Internals\NativeEventProcessor.droid.cs" />
+		<None Include="Internals\NativeEventProcessor.ios.cs" />
+		
+		<PackageReference Include="Sentry" Version="2.1.8" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+		<PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+		<None Include="Internals\NativeEventProcessor.ios.cs" />
+		<None Include="Internals\NativeEventProcessor.droid.cs" />
+		
+		<PackageReference Include="Sentry" Version="2.1.8" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+		<PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
+	</ItemGroup>
+</Project>
