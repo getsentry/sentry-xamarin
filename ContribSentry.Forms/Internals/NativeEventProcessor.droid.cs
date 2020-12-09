@@ -79,7 +79,6 @@ namespace ContribSentry.Forms.Internals
             {
                 try
                 {
-                    Android.
                     var androidContext = _androidContext.Value;
                     @event.Contexts.Device.MemorySize = _androidContext.Value.MemorySize;
                     @event.Contexts.Device.StorageSize = _androidContext.Value.GetAvaliableRom();
