@@ -6,7 +6,7 @@ using System;
 
 namespace ContribSentry.Forms.Internals
 {
-    public class NativeEventProcessor : ISentryEventProcessor
+    public partial class NativeEventProcessor : ISentryEventProcessor
     {
         private Lazy<IosContext> _IosContext = new Lazy<IosContext>(() => new IosContext());
         private SentryOptions _options;

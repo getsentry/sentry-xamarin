@@ -1,4 +1,5 @@
-﻿using Sentry;
+﻿using ContribSentry.Forms.Extensions;
+using Sentry;
 using Sentry.Extensibility;
 using Sentry.Protocol;
 using System;
@@ -26,8 +27,8 @@ namespace ContribSentry.Forms.Internals
 
             public FormsContext()
             {
-                Manufacturer = DeviceInfo.Manufacturer.Replace("unknown", null);
-                Model = DeviceInfo.Model.Replace("unknown", null);
+                Manufacturer = DeviceInfo.Manufacturer.FilterUnknown();
+                Model = DeviceInfo.Model.FilterUnknown();
                 Platform = DeviceInfo.Platform.ToString().ToUpper();
                 PlatformVersion = DeviceInfo.VersionString;
                 IsEmulator = DeviceInfo.DeviceType != Xamarin.Essentials.DeviceType.Physical;

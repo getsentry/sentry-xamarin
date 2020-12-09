@@ -6,7 +6,7 @@ using ContribSentry.Forms.Internals;
 
 namespace ContribSentry.Forms
 {
-    public class ContribSentryFormsIntegration : ISdkIntegration
+    public partial class ContribSentryFormsIntegration : ISdkIntegration
     {
         internal static bool LogXamlErrors { get; set; } = true;
         internal static DelegateLogListener XamlLogger;
@@ -20,7 +20,10 @@ namespace ContribSentry.Forms
 #endif
             XamlLogger = new DelegateLogListener((arg1, arg2) =>
             {
-                SentrySdk.AddBreadcrumb(arg2, $"XamlLogger.{arg1}", level: BreadcrumbLevel.Warning);
+                if (LogXamlErrors)
+                {
+                    SentrySdk.AddBreadcrumb(arg2, $"XamlLogger.{arg1}", level: BreadcrumbLevel.Warning);
+                }
             });
 
             if (LogXamlErrors)

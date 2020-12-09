@@ -4,10 +4,11 @@ using Sentry.Protocol;
 using System;
 using System.Text.RegularExpressions;
 using Android.OS;
+using ContribSentry.Forms.Extensions;
 
 namespace ContribSentry.Forms.Internals
 {
-    public class NativeEventProcessor : ISentryEventProcessor
+    public partial class NativeEventProcessor : ISentryEventProcessor
     {
         private Lazy<AndroidContext> _androidContext = new Lazy<AndroidContext>(() => new AndroidContext());
         private SentryOptions _options;
@@ -68,7 +69,7 @@ namespace ContribSentry.Forms.Internals
             public AndroidContext()
             {
                 MemorySize = GetAvaliableMemory();
-                CpuModel = GetCpuModel();
+                CpuModel = GetCpuModel().FilterUnknown();
             }
         }
 
@@ -78,6 +79,7 @@ namespace ContribSentry.Forms.Internals
             {
                 try
                 {
+                    Android.
                     var androidContext = _androidContext.Value;
                     @event.Contexts.Device.MemorySize = _androidContext.Value.MemorySize;
                     @event.Contexts.Device.StorageSize = _androidContext.Value.GetAvaliableRom();
