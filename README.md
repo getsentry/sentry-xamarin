@@ -24,9 +24,17 @@ Additionaly, Android and IOS will include additional information:
 * Free Internal memory (Android/iOS).
 * Total RAM (Android/iOS).
 * CPU model (Android).
+<p align="center">
+  <b>BEFORE</b>
+  
+  <img src=".github/before_01.png"/>
+</p>
+<p align="center">
+  <b>AFTER</b>
+  
+  <img src=".github/after_01.png"/>
+</p>
 
-![Without Xamarin SDK on Android](.github/before_01.png)
-![With Xamarin SDK on Android](.github/after_01.png)
 
 ## Resources
 
