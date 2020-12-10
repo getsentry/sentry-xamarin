@@ -15,6 +15,7 @@ namespace ContribSentry.Forms.Internals
         private class IosContext
         {
             public long? MemorySize { get; }
+            public string Device { get; }
 
             public long GetStorageSize()
                 => (long)NSFileManager.DefaultManager.GetFileSystemAttributes(Environment.GetFolderPath(Environment.SpecialFolder.Personal)).FreeSize;
@@ -22,6 +23,8 @@ namespace ContribSentry.Forms.Internals
             public IosContext()
             {
                 MemorySize = (long)NSProcessInfo.ProcessInfo.PhysicalMemory;
+                var model = new DeviceModel();
+                Device = model.GetModel();
             }
         }
 
