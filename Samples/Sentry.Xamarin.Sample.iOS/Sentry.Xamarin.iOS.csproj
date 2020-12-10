@@ -9,9 +9,9 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Sentry.Xamarin.Sample.iOS</RootNamespace>
+    <RootNamespace>ContribSentry.Sample.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>Sentry.Xamarin.Sample.iOS</AssemblyName>
+    <AssemblyName>ContribSentry.Sample.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <ProvisioningType>automatic</ProvisioningType>
@@ -123,13 +123,20 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Sentry">
+      <Version>2.1.8</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Sentry.Xamarin.Sample\Sentry.Xamarin.Sample.csproj">
-      <Project>{5E8E026B-CC24-4E22-9D24-D0A2E8457C97}</Project>
+    <ProjectReference Include="..\..\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj">
+      <Project>{6a3a0d77-c494-4122-8bb5-74859563bc86}</Project>
+      <Name>Sentry.Xamarin.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContribSentry.Sample\Sentry.Xamarin.Sample.csproj">
+      <Project>{9F09FB9D-01D6-4D37-B1F9-194A34BF1A40}</Project>
       <Name>Sentry.Xamarin.Sample</Name>
     </ProjectReference>
   </ItemGroup>

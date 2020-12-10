@@ -2,7 +2,7 @@
 
 namespace Sentry
 {
-    public static partial class SentryOptionsExtensions
+    public static class SentryOptionsExtensions
     {
         public static void DisableBreadcrumbForXamlWarnings(SentryOptions option)
         {

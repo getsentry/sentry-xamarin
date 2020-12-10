@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Sentry.Xamarin.Forms
 {
-    public partial class ContribSentryFormsIntegration : ISdkIntegration
+    public class ContribSentryFormsIntegration : ISdkIntegration
     {
         private NativeExceptionHandler _nativeHandler;
         private string _previousPageName;

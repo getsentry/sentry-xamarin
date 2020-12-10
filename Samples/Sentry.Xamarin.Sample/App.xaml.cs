@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace Sentry.Xamarin.Sample
+namespace ContribSentry.Sample
 {
     public partial class App : Application
     {

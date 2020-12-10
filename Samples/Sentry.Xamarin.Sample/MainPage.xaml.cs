@@ -2,7 +2,7 @@
 using System;
 using Xamarin.Forms;
 
-namespace Sentry.Xamarin.Sample
+namespace ContribSentry.Sample
 {
     public partial class MainPage : ContentPage
     {

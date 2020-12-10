@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Sentry.Xamarin.Sample
+namespace ContribSentry.Sample
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Disco : ContentPage
