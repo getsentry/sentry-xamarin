@@ -6,7 +6,7 @@ namespace Sentry
     {
         public static void DisableBreadcrumbForXamlWarnings(SentryOptions option)
         {
-            ContribSentryFormsIntegration.LogXamlErrors = false;
+            SentryXamarinFormsIntegration.LogXamlErrors = false;
         }
     }
 }

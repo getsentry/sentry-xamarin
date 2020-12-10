@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Sentry.Xamarin.Forms
 {
-    public class ContribSentryFormsIntegration : ISdkIntegration
+    public class SentryXamarinFormsIntegration : ISdkIntegration
     {
         private NativeExceptionHandler _nativeHandler;
         private string _previousPageName;
@@ -17,7 +17,7 @@ namespace Sentry.Xamarin.Forms
 
         public void Register(IHub hub, SentryOptions options)
         {
-            options.AddEventProcessor(new FormsEventProcessor(options));
+            options.AddEventProcessor(new XamarinFormsEventProcessor(options));
 
             _nativeHandler = new NativeExceptionHandler();
 

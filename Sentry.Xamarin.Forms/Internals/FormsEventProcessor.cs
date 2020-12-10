@@ -6,7 +6,7 @@ using Xamarin.Essentials;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
-    public partial class FormsEventProcessor : ISentryEventProcessor
+    public partial class XamarinFormsEventProcessor : ISentryEventProcessor
     {
         private Lazy<FormsContext> _formsContext = new Lazy<FormsContext>(() => new FormsContext());
         private SentryOptions _options;
@@ -37,7 +37,7 @@ namespace Sentry.Xamarin.Forms.Internals
             }
         }
 
-        public FormsEventProcessor(SentryOptions options) => _options = options;
+        public XamarinFormsEventProcessor(SentryOptions options) => _options = options;
 
         public SentryEvent Process(SentryEvent @event)
         {
