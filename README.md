@@ -10,6 +10,24 @@ Sentry SDK for Xamarin
 
 This is a work in progress SDK for Xamarin.
 
+Includes for all Platforms supported by Xamarin Essentials:
+* Automatic Navigation breacrumbs.
+* Xaml warnings as breadcrumbs.
+* Simulator flag.
+* Device manufacturer.
+* Device model.
+* Operational system name and version.
+* Screen information (Pixel density and resolution).
+* Connectivity status.
+
+Additionaly, Android and IOS will include additional information:
+* Free Internal memory (Android/iOS).
+* Total RAM (Android/iOS).
+* CPU model (Android).
+
+![Without Xamarin SDK on Android](.github/before_01.png)
+![With Xamarin SDK on Android](.github/after_01.png)
+
 ## Resources
 
 * [![Documentation](https://img.shields.io/badge/documentation-sentry.io-green.svg)](https://docs.sentry.io/platforms/dotnet/)
