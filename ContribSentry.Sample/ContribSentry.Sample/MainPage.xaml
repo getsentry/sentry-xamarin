@@ -19,7 +19,7 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-        <Label Text="{Binding WrongBinding}"/>
+        <Button Text="Disco" Clicked="Disco_Clicked"/>
     </StackLayout>
 
 </ContentPage>
