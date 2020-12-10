@@ -13,16 +13,23 @@
 		<_WriteTelemetryProperties>false</_WriteTelemetryProperties>
 	</PropertyGroup>
 	<ItemGroup>
+		<Compile Include="SentryFormsIntegration.cs" />
+		<Compile Include="Extensions\SentryOptionsExtensions.cs" />
+		<Compile Include="Extensions\StringExtensions.cs" />
+		<Compile Include="Internals\FormsEventProcessor.cs" />
+		
 		<Compile Remove="Internals\*.netstandard.cs" />
 		<Compile Remove="Internals\*.ios.cs" />
 		<Compile Remove="Internals\*.droid.cs" />
+		
 		<None Include="Internals\*.netstandard.cs" />
 		<None Include="Internals\*.ios.cs" />
 		<None Include="Internals\*.droid.cs" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarinios')) ">
-		<Compile Include="Internals\*.ios.cs" />	
+		<Compile Include="Internals\*.ios.cs" />
+		
 		<PackageReference Include="Sentry" Version="2.1.8" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
 		<PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
@@ -30,6 +37,7 @@
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
 		<Compile Include="Internals\*.droid.cs" />
+		
 		<PackageReference Include="Sentry" Version="2.1.8" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
 		<PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
@@ -37,6 +45,7 @@
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
 		<Compile Include="Internals\*.netstandard.cs" />
+		
 		<PackageReference Include="Sentry" Version="2.1.8" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
 		<PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />

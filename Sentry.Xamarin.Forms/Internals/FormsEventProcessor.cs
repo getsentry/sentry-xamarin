@@ -1,5 +1,4 @@
 ﻿using Sentry.Xamarin.Forms.Extensions;
-using Sentry;
 using Sentry.Extensibility;
 using Sentry.Protocol;
 using System;
@@ -7,7 +6,7 @@ using Xamarin.Essentials;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
-    public class FormsEventProcessor : ISentryEventProcessor
+    public partial class FormsEventProcessor : ISentryEventProcessor
     {
         private Lazy<FormsContext> _formsContext = new Lazy<FormsContext>(() => new FormsContext());
         private SentryOptions _options;
@@ -21,7 +20,7 @@ namespace Sentry.Xamarin.Forms.Internals
             public string Platform { get; }
             public string PlatformVersion { get; }
             public bool IsEmulator { get; }
-            public string DeviceType { get; }
+            public string Type { get; }
             public float ScreenDensity { get; }
             public string ScreenResolution { get; }
 
@@ -31,8 +30,8 @@ namespace Sentry.Xamarin.Forms.Internals
                 Model = DeviceInfo.Model.FilterUnknown();
                 Platform = DeviceInfo.Platform.ToString().ToUpper();
                 PlatformVersion = DeviceInfo.VersionString;
-                IsEmulator = DeviceInfo.DeviceType != Xamarin.Essentials.DeviceType.Physical;
-                DeviceType = DeviceInfo.Idiom.ToString();
+                IsEmulator = DeviceInfo.DeviceType != DeviceType.Physical;
+                Type = DeviceInfo.Idiom.ToString();
                 ScreenDensity = (float)DeviceDisplay.MainDisplayInfo.Density;
                 ScreenResolution = $"{DeviceDisplay.MainDisplayInfo.Height}x{DeviceDisplay.MainDisplayInfo.Width}";
             }

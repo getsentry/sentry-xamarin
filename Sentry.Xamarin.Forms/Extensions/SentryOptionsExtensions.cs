@@ -2,11 +2,11 @@
 
 namespace Sentry
 {
-    public static class SentryOptionsExtensions
+    public static partial class SentryOptionsExtensions
     {
         public static void DisableBreadcrumbForXamlWarnings(SentryOptions option)
         {
-            SentryFormsIntegration.LogXamlErrors = false;
+            ContribSentryFormsIntegration.LogXamlErrors = false;
         }
     }
 }
