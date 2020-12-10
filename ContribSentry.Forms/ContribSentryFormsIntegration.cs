@@ -41,11 +41,15 @@ namespace ContribSentry.Forms
             //If initialized from the Android/IOS project, the current application is not going to be set in time, so wait a bit...
             Task.Run(async () =>
             {
-                for(int i=0; i < 10 && Application.Current is null; i++) 
+                for(int i=0; i < 5 && Application.Current is null; i++) 
                 {
-                    await Task.Delay(250);
+                    await Task.Delay(1000);
                 }
-                if(Application.Current != null)
+                if (Application.Current is null)
+                {
+                    options.DiagnosticLogger.Log(SentryLevel.Warning, "ContribSentry.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
+                }
+                else 
                 {
                     Application.Current.PageAppearing += Current_PageAppearing;
                     Application.Current.PageDisappearing += Current_PageDisappearing;
