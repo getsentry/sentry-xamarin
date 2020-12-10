@@ -35,6 +35,17 @@ Additionaly, Android and IOS will include additional information:
   <img src=".github/after_01.png"/>
 </p>
 
+## Setup
+All you need to do is to Add the Xamarin integration to SentryOptions and it's recommended to start the Sentry SDK as early as possible, for an example, the start of OnCreate on MainActivity for Android, and , the top of FinishedLaunching on AppDelegate for iOS)
+
+```C#
+SentrySdk.Init(o =>
+{
+    o.Dsn = new Dsn("yourdsn");
+    o.AddIntegration(new SentryXamarinFormsIntegration());
+});
+
+```
 
 ## Resources
 
