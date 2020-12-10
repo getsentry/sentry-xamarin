@@ -4,11 +4,48 @@
   </a>
   <br />
 </p>
-
+ 
 Sentry SDK for Xamarin
 ===========
 
 This is a work in progress SDK for Xamarin.
+
+Includes for all Platforms supported by Xamarin Essentials:
+* Automatic Navigation breacrumbs.
+* Xaml warnings as breadcrumbs.
+* Simulator flag.
+* Device manufacturer.
+* Device model.
+* Operational system name and version.
+* Screen information (Pixel density and resolution).
+* Connectivity status.
+
+Additionaly, Android and IOS will include additional information:
+* Free Internal memory (Android/iOS).
+* Total RAM (Android/iOS).
+* CPU model (Android).
+<p align="center">
+  <b>BEFORE</b>
+  
+  <img src=".github/before_01.png"/>
+</p>
+<p align="center">
+  <b>AFTER</b>
+  
+  <img src=".github/after_01.png"/>
+</p>
+
+## Setup
+All you need to do is to Add the Xamarin integration to SentryOptions and it's recommended to start the Sentry SDK as early as possible, for an example, the start of OnCreate on MainActivity for Android, and , the top of FinishedLaunching on AppDelegate for iOS)
+
+```C#
+SentrySdk.Init(o =>
+{
+    o.Dsn = new Dsn("yourdsn");
+    o.AddIntegration(new SentryXamarinFormsIntegration());
+});
+
+```
 
 ## Resources
 
