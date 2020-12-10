@@ -4,7 +4,7 @@
   </a>
   <br />
 </p>
-
+ 
 Sentry SDK for Xamarin
 ===========
 
