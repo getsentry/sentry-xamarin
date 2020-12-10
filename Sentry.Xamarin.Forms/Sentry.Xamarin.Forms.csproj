@@ -12,12 +12,7 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<_WriteTelemetryProperties>false</_WriteTelemetryProperties>
 	</PropertyGroup>
-	<ItemGroup>
-		<Compile Include="SentryFormsIntegration.cs" />
-		<Compile Include="Extensions\SentryOptionsExtensions.cs" />
-		<Compile Include="Extensions\StringExtensions.cs" />
-		<Compile Include="Internals\FormsEventProcessor.cs" />
-		
+	<ItemGroup>		
 		<Compile Remove="Internals\*.netstandard.cs" />
 		<Compile Remove="Internals\*.ios.cs" />
 		<Compile Remove="Internals\*.droid.cs" />

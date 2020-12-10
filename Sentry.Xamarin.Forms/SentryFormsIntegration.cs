@@ -1,5 +1,4 @@
-﻿using Sentry;
-using Sentry.Integrations;
+﻿using Sentry.Integrations;
 using Sentry.Protocol;
 using Xamarin.Forms.Internals;
 using Sentry.Xamarin.Forms.Internals;

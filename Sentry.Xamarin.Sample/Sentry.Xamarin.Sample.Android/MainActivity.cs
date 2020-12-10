@@ -1,12 +1,7 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Sentry;
 using Sentry.Xamarin.Forms;
 
 namespace Sentry.Xamarin.Sample.Droid
@@ -19,7 +14,7 @@ namespace Sentry.Xamarin.Sample.Droid
             SentrySdk.Init(o =>
             {
                 o.Dsn = new Dsn("https://80aed643f81249d4bed3e30687b310ab@o447951.ingest.sentry.io/5428537");
-                o.AddIntegration(new SentryFormsIntegration());
+                o.AddIntegration(new ContribSentryFormsIntegration());
             });
 
             TabLayoutResource = Resource.Layout.Tabbar;
