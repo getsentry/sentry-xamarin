@@ -97,8 +97,8 @@
       <Project>{6a3a0d77-c494-4122-8bb5-74859563bc86}</Project>
       <Name>Sentry.Xamarin.Forms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ContribSentry.Sample\Sentry.Xamarin.Sample.csproj">
-      <Project>{9F09FB9D-01D6-4D37-B1F9-194A34BF1A40}</Project>
+    <ProjectReference Include="..\Sentry.Xamarin.Sample\Sentry.Xamarin.Sample.csproj">
+      <Project>{02726caa-72f3-4e3c-b06d-51c77a4b82bd}</Project>
       <Name>Sentry.Xamarin.Sample</Name>
     </ProjectReference>
   </ItemGroup>
