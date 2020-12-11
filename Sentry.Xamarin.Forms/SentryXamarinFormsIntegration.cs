@@ -5,6 +5,7 @@ using Sentry.Xamarin.Forms.Internals;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Sentry.Xamarin.Forms.Extensions;
 
 namespace Sentry.Xamarin.Forms
 {
@@ -64,12 +65,12 @@ namespace Sentry.Xamarin.Forms
 
         private void Current_PageDisappearing(object sender, Page e)
         {
-            var pageName = e.Title ?? e.GetType().ToString();
-            if (pageName.StartsWith("Rg.Plugin") &&
-                e?.Parent is NavigationPage navigationPage)
+            var baseType = e?.GetType().BaseType.ToString();
+            if (baseType.StartsWith("Rg.Plugin") &&
+                e?.GetPreviousPage() is Page page)
             {
-                var lastPage = navigationPage.CurrentPage;
-                var lastpageName = lastPage.Title ?? lastPage.GetType().ToString();
+                var lastpageName = page.Title ?? page.GetType().ToString();
+                var pageName = e.Title ?? e.GetType().ToString();   
                 SentrySdk.AddBreadcrumb(null,
                     "navigation",
                     "navigation",
@@ -81,7 +82,7 @@ namespace Sentry.Xamarin.Forms
         private void Current_PageAppearing(object sender, Page e)
         {
             var pageName = e.Title ?? e.GetType().ToString();
-            if (_previousPageName != null)
+            if (_previousPageName != null && _previousPageName != pageName)
             {
                 if(pageName is "Xamarin.Forms.NavigationPage")
                 {

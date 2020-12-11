@@ -1,7 +1,9 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Sentry;
+using Sentry.Xamarin.Sample.Views;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ContribSentry.Sample
@@ -20,7 +22,7 @@ namespace ContribSentry.Sample
 
         private void Popup_Clicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PushAsync(new PopupPage());
+            PopupNavigation.Instance.PushAsync(new AboutPopupPage());
         }
     }
 }

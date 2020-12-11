@@ -1,5 +1,4 @@
 ﻿using Android.Runtime;
-using Sentry;
 using Sentry.Protocol;
 using System;
 using System.Linq;

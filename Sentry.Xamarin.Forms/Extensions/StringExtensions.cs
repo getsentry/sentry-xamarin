@@ -2,7 +2,7 @@
 {
     internal static class StringExtensions
     {
-        internal static string FilterUnknown(this string @string)
-            => @string.Replace("unknown", null);
+        internal static string FilterUnknownOrEmpty(this string @string)
+            => string.IsNullOrEmpty(@string) ? null : @string.Replace("unknown", null);
     }
 }
