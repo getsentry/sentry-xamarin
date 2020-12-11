@@ -37,6 +37,6 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
-		<Compile Include="**\*.netstandard.cs" />
+		<Compile Include="Internals\*.netstandard.cs" />
 	</ItemGroup>
 </Project>

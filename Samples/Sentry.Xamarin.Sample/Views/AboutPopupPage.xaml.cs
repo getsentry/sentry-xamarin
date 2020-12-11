@@ -16,6 +16,5 @@ namespace Sentry.Xamarin.Sample.Views
         {
             PopupNavigation.Instance.PushAsync(new About2PopupPage());
         }
-
     }
 }
