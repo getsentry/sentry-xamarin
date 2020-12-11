@@ -95,7 +95,6 @@ namespace Sentry.Xamarin.Forms
                         "navigation",
                         "navigation",
                         new Dictionary<string, string>() { { "from", $"/{_previousPageName}" }, { "to", $"/{pageType.Name}" } });
-
                 }
             }
             _previousPageName = pageType.Name;
