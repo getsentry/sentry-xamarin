@@ -40,7 +40,7 @@ namespace Sentry.Xamarin.Forms
             //If initialized from the Android/IOS project, the current application is not going to be set in time, so wait a bit...
             Task.Run(async () =>
             {
-                for(int i=0; i < 5 && Application.Current is null; i++) 
+                for (int i = 0; i < 5 && Application.Current is null; i++)
                 {
                     await Task.Delay(1000);
                 }
@@ -48,7 +48,7 @@ namespace Sentry.Xamarin.Forms
                 {
                     options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
                 }
-                else 
+                else
                 {
                     Application.Current.PageAppearing += Current_PageAppearing;
                     Application.Current.PageDisappearing += Current_PageDisappearing;
@@ -64,6 +64,18 @@ namespace Sentry.Xamarin.Forms
 
         private void Current_PageDisappearing(object sender, Page e)
         {
+            var pageName = e.Title ?? e.GetType().ToString();
+            if (pageName.StartsWith("Rg.Plugin") &&
+                e?.Parent is NavigationPage navigationPage)
+            {
+                var lastPage = navigationPage.CurrentPage;
+                var lastpageName = lastPage.Title ?? lastPage.GetType().ToString();
+                SentrySdk.AddBreadcrumb(null,
+                    "navigation",
+                    "navigation",
+                    new Dictionary<string, string>() { { "from", $"/{pageName}" }, { "to", $"/{lastpageName}" } });
+                _previousPageName = lastpageName;
+            }
         }
 
         private void Current_PageAppearing(object sender, Page e)
@@ -71,9 +83,8 @@ namespace Sentry.Xamarin.Forms
             var pageName = e.Title ?? e.GetType().ToString();
             if (_previousPageName != null)
             {
-                if (pageName.StartsWith("Rg.Plugin"))
+                if(pageName is "Xamarin.Forms.NavigationPage")
                 {
-                    //Ignore popup navigation for now.
                     return;
                 }
                 SentrySdk.AddBreadcrumb(null,
