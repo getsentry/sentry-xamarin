@@ -59,11 +59,6 @@ namespace Sentry.Xamarin.Forms
             });
         }
 
-        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
-        {
-           // throw new System.NotImplementedException();
-        }
-
         private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
         {
             SentrySdk.AddBreadcrumb(e.RequestedTheme.ToString(), "AppTheme.Change", level: BreadcrumbLevel.Info);
