@@ -1,6 +1,4 @@
-﻿using Rg.Plugins.Popup.Services;
-using System;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms.Xaml;
 
 namespace Sentry.Xamarin.Sample.Views
 {

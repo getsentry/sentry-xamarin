@@ -12,7 +12,7 @@ namespace ContribSentry.Sample.iOS
         {
             SentrySdk.Init(o =>
             {
-                o.Dsn = new Dsn("https://80aed643f81249d4bed3e30687b310ab@o447951.ingest.sentry.io/5428537");
+                o.Dsn = "https://80aed643f81249d4bed3e30687b310ab@o447951.ingest.sentry.io/5428537";
                 o.AddIntegration(new SentryXamarinFormsIntegration());
             });
             Rg.Plugins.Popup.Popup.Init();

@@ -17,7 +17,7 @@
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
     <StackLayout Background="White" Margin="50">
-        <Label Text="Popup sample 2!"
+        <Label Text="Last popup page, press back or outside the popup to go back."
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand" />
     </StackLayout>

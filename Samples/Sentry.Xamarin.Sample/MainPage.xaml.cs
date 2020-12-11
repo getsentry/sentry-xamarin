@@ -24,5 +24,9 @@ namespace ContribSentry.Sample
         {
             PopupNavigation.Instance.PushAsync(new AboutPopupPage());
         }
+        private void Xaml_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new XamlPageWithIssue());
+        }
     }
 }
