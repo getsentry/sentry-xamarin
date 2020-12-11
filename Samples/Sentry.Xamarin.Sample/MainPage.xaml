@@ -20,6 +20,8 @@
             </Label.FormattedText>
         </Label>
         <Button Text="Disco" Clicked="Disco_Clicked"/>
+        <Button Text="Popup" Clicked="Popup_Clicked"/>
+        <Button Text="Xaml Broken" Clicked="Xaml_Clicked"/>
     </StackLayout>
 
 </ContentPage>

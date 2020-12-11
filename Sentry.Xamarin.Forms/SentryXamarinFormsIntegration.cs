@@ -5,6 +5,8 @@ using Sentry.Xamarin.Forms.Internals;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Sentry.Xamarin.Forms.Extensions;
+using System.Linq;
 
 namespace Sentry.Xamarin.Forms
 {
@@ -40,7 +42,7 @@ namespace Sentry.Xamarin.Forms
             //If initialized from the Android/IOS project, the current application is not going to be set in time, so wait a bit...
             Task.Run(async () =>
             {
-                for(int i=0; i < 5 && Application.Current is null; i++) 
+                for (int i = 0; i < 5 && Application.Current is null; i++)
                 {
                     await Task.Delay(1000);
                 }
@@ -48,7 +50,7 @@ namespace Sentry.Xamarin.Forms
                 {
                     options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
                 }
-                else 
+                else
                 {
                     Application.Current.PageAppearing += Current_PageAppearing;
                     Application.Current.PageDisappearing += Current_PageDisappearing;
@@ -64,19 +66,38 @@ namespace Sentry.Xamarin.Forms
 
         private void Current_PageDisappearing(object sender, Page e)
         {
-            _previousPageName = e?.Title ?? e?.GetType().ToString();
+            var type = e.GetType();
+            if (type.BaseType.Name.StartsWith("PopupPage"))
+            {
+                SentrySdk.AddBreadcrumb($"{type.Name} Disappearing.",
+                    "Xamarin.Popup", level: BreadcrumbLevel.Info);
+            }
         }
 
         private void Current_PageAppearing(object sender, Page e)
         {
-            if (_previousPageName != null)
+            var pageType = e.GetType();
+            if (_previousPageName != null && _previousPageName != pageType.Name)
             {
-                var name = e.Title ?? e.GetType().ToString();
-                SentrySdk.AddBreadcrumb(null,
-                    "navigation",
-                    "navigation",
-                    new Dictionary<string, string>() { { "from", $"/{_previousPageName}" }, { "to", $"/{name}" } });
+                if (pageType.Name is "NavigationPage")
+                {
+                    return;
+                }
+                if (pageType.BaseType.Name is "PopupPage")
+                {
+                    SentrySdk.AddBreadcrumb($"{pageType.Name} Appearing.",
+                        "Xamarin.Popup", level: BreadcrumbLevel.Info);
+                    return;
+                }
+                else
+                {
+                    SentrySdk.AddBreadcrumb(null,
+                        "navigation",
+                        "navigation",
+                        new Dictionary<string, string>() { { "from", $"/{_previousPageName}" }, { "to", $"/{pageType.Name}" } });
+                }
             }
+            _previousPageName = pageType.Name;
         }
     }
 }

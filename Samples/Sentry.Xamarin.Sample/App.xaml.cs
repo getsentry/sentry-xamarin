@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Sentry;
+using Xamarin.Forms;
 
 namespace ContribSentry.Sample
 {
@@ -13,14 +14,18 @@ namespace ContribSentry.Sample
 
         protected override void OnStart()
         {
+            SentrySdk.AddBreadcrumb("OnStart", "app.lifecycle", "event");
+            base.OnStart();
         }
-
         protected override void OnSleep()
         {
+            SentrySdk.AddBreadcrumb("OnSleep", "app.lifecycle", "event");
+            base.OnSleep();
         }
-
         protected override void OnResume()
         {
+            SentrySdk.AddBreadcrumb("OnResume", "app.lifecycle", "event");
+            base.OnResume();
         }
     }
 }

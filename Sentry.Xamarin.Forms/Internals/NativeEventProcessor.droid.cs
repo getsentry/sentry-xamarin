@@ -1,5 +1,4 @@
-﻿using Sentry;
-using Sentry.Extensibility;
+﻿using Sentry.Extensibility;
 using Sentry.Protocol;
 using System;
 using System.Text.RegularExpressions;
@@ -69,7 +68,7 @@ namespace Sentry.Xamarin.Forms.Internals
             public AndroidContext()
             {
                 MemorySize = GetAvaliableMemory();
-                CpuModel = GetCpuModel().FilterUnknown();
+                CpuModel = GetCpuModel().FilterUnknownOrEmpty();
             }
         }
 
@@ -82,9 +81,9 @@ namespace Sentry.Xamarin.Forms.Internals
                     var androidContext = _androidContext.Value;
                     @event.Contexts.Device.MemorySize = _androidContext.Value.MemorySize;
                     @event.Contexts.Device.StorageSize = _androidContext.Value.GetAvaliableRom();
-                    if(_androidContext.Value.CpuModel is string cpuModel)
+                    if(_androidContext.Value.CpuModel != null)
                     {
-                        @event.SetTag("cpu.model", cpuModel);
+                        @event.SetTag("cpu.model", _androidContext.Value.CpuModel);
                     }
                 }
                 catch (Exception ex)
