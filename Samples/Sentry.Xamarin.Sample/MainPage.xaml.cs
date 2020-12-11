@@ -1,4 +1,6 @@
-﻿using Sentry;
+﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
+using Sentry;
 using System;
 using Xamarin.Forms;
 
@@ -16,5 +18,9 @@ namespace ContribSentry.Sample
             Navigation.PushAsync(new Disco());
         }
 
+        private void Popup_Clicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new PopupPage());
+        }
     }
 }

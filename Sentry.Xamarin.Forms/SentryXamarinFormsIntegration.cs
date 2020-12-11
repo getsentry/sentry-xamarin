@@ -64,19 +64,24 @@ namespace Sentry.Xamarin.Forms
 
         private void Current_PageDisappearing(object sender, Page e)
         {
-            _previousPageName = e?.Title ?? e?.GetType().ToString();
         }
 
         private void Current_PageAppearing(object sender, Page e)
         {
+            var pageName = e.Title ?? e.GetType().ToString();
             if (_previousPageName != null)
             {
-                var name = e.Title ?? e.GetType().ToString();
+                if (pageName.StartsWith("Rg.Plugin"))
+                {
+                    //Ignore popup navigation for now.
+                    return;
+                }
                 SentrySdk.AddBreadcrumb(null,
                     "navigation",
                     "navigation",
-                    new Dictionary<string, string>() { { "from", $"/{_previousPageName}" }, { "to", $"/{name}" } });
+                    new Dictionary<string, string>() { { "from", $"/{_previousPageName}" }, { "to", $"/{pageName}" } });
             }
+            _previousPageName = pageName;
         }
     }
 }
