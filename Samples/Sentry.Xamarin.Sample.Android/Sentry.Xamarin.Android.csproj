@@ -96,9 +96,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj">
       <Project>{6a3a0d77-c494-4122-8bb5-74859563bc86}</Project>
@@ -108,6 +106,12 @@
       <Project>{02726caa-72f3-4e3c-b06d-51c77a4b82bd}</Project>
       <Name>Sentry.Xamarin.Sample</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\login_background_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\login_background_top.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

@@ -1,4 +1,5 @@
 ﻿using Sentry;
+using Sentry.Xamarin.Sample.Views;
 using Xamarin.Forms;
 
 namespace ContribSentry.Sample
@@ -9,7 +10,7 @@ namespace ContribSentry.Sample
         {
 
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

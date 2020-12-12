@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
+             x:Class="Sentry.Xamarin.Sample.Views.LoginPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xamanimation:TranslateToAnimation
+                x:Key="TranslateBackground"
+                Easing="CubicOut"
+                TranslateY="0"
+                Delay="400"
+                Duration="1000"/>
+            <xamanimation:FadeToAnimation                
+                x:Key="LogoAppearaing"
+                Easing="SinIn"
+                Delay="1000"
+                Opacity="1"
+                Duration="400"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid
+            RowDefinitions="Auto, *">
+            <Image Source="login_background_top"
+                   Grid.Row="0"
+                   TranslationY="-255">
+                <Image.Behaviors>
+                    <xamanimation:BeginAnimationBehavior
+                        Animation="{StaticResource TranslateBackground}"/>
+                </Image.Behaviors>
+            </Image>
+            <Image Source="login_background_logo"
+                   Grid.Row="0"
+                   Opacity="0">
+                <Image.Behaviors>   
+                <xamanimation:BeginAnimationBehavior                        
+                        Animation="{StaticResource LogoAppearaing}"/>
+                </Image.Behaviors>
+            </Image>
+            <Grid Grid.Row="1"
+                 Margin="30"
+                 VerticalOptions="Center"
+                 RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                <Entry x:Name="LoginEntry"
+                       Placeholder="Login"
+                       Grid.Row="0"
+                       ReturnType="Next"/>
+                <Entry x:Name="PasswordEntry"
+                       Placeholder="Password"
+                       IsPassword="True"
+                       Grid.Row="1"/>
+                <Button Text="Login"
+                        Margin="0,10,0,0"                        
+                        Clicked="Login_Clicked"
+                        Grid.Row="2"/>
+                <Label Text="Tip: Login and password are 1234"
+                       Grid.Row="3"/>
+                <StackLayout Orientation="Horizontal"
+                             Grid.Row="4"
+                             HorizontalOptions="End">
+                    <Switch Toggled="DarkModeSwitch_Toggled"/>
+                    <Label Text="Force Dark mode"
+                           VerticalOptions="Center"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
