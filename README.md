@@ -47,6 +47,10 @@ SentrySdk.Init(o =>
 
 ```
 
+## Limitations
+
+There are no line numbers on stack traces in release builds, and, mono symbolication is not yet supported.
+
 ## Resources
 
 * [![Documentation](https://img.shields.io/badge/documentation-sentry.io-green.svg)](https://docs.sentry.io/platforms/dotnet/)
