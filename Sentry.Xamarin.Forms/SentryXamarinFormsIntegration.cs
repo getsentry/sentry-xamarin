@@ -5,31 +5,39 @@ using Sentry.Xamarin.Forms.Internals;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System;
 
 namespace Sentry.Xamarin.Forms
 {
     public class SentryXamarinFormsIntegration : ISdkIntegration
     {
-        #region Internal Options
-        internal static bool LogXamlErrors { get; set; } = true;
-        #endregion
-
+        internal static Lazy<SentryXamarinOptions> Options = new Lazy<SentryXamarinOptions>();
         internal static SentryXamarinFormsIntegration Instance;
-        internal NativeIntegration Nativeintegration;
+        internal static DelegateLogListener XamarinLogger;
+
+        /// <summary>
+        /// current page name.
+        /// </summary>
         internal static string CurrentPage;
-        internal static DelegateLogListener XamlLogger;
+
+        internal NativeIntegration Nativeintegration;
 
         public void Register(IHub hub, SentryOptions options)
         {
+            //Only one integration can be active
+            if (Instance != null) 
+            { 
+                return; 
+            }
             Instance = this;
             options.AddEventProcessor(new XamarinFormsEventProcessor(options));
 
 #if !NETSTANDARD
             options.AddEventProcessor(new NativeEventProcessor(options));
 #endif
-            XamlLogger = new DelegateLogListener((arg1, arg2) =>
+            XamarinLogger = new DelegateLogListener((arg1, arg2) =>
             {
-                if (LogXamlErrors)
+                if (Options.Value.XamarinLoggerEnabled)
                 {
                     SentrySdk.AddBreadcrumb(null,
                         "xamarin",
@@ -42,39 +50,51 @@ namespace Sentry.Xamarin.Forms
                 }
             });
 
-            if (LogXamlErrors)
+            if (Options.Value.XamarinLoggerEnabled)
             {
-                Log.Listeners.Add(XamlLogger);
+                Log.Listeners.Add(XamarinLogger);
             }
 
-            //If initialized from the Android/IOS project, the current application is not going to be set in time, so wait a bit...
+            if (Options.Value.NativeIntegrationEnabled)
+            {
+                if (new NativeIntegration(Options.Value) is NativeIntegration nativeIntegration &&
+                    nativeIntegration.Implemented)
+                {
+                    nativeIntegration.Register(hub, options);
+                    Nativeintegration = nativeIntegration;
+                }
+            }
+
+            //Don't lock the main Thread while you wait for the current application to be created.
             Task.Run(async () =>
             {
-                for (int i = 0; i < 5 && Application.Current is null; i++)
-                {
-                    await Task.Delay(1000);
-                }
-                if (Application.Current is null)
+                var application = await GetCurrentApplication();
+                if (application is null)
                 {
                     options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
                 }
                 else
                 {
-                    Application.Current.PageAppearing += Current_PageAppearing;
-                    Application.Current.PageDisappearing += Current_PageDisappearing;
-                    Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
-                }
-
-                Nativeintegration = new NativeIntegration();
-                if (Nativeintegration.Implemented)
-                {
-                    Nativeintegration.Register(hub, options);
-                }
-                else
-                {
-                    Nativeintegration = null;
+                    application.PageAppearing += Current_PageAppearing;
+                    application.PageDisappearing += Current_PageDisappearing;
+                    application.RequestedThemeChanged += Current_RequestedThemeChanged;
                 }
             });
+        }
+
+        /// <summary>
+        /// Gets the current Application.
+        /// If SentrySDK was initialized from the Native project (Android/IOS) the Application might not have been created in time.
+        /// So we wait for max 5 seconds to see check if it was created or not
+        /// </summary>
+        /// <returns></returns>
+        private async Task<Application> GetCurrentApplication()
+        {
+            for (int i = 0; i < 10 && Application.Current is null; i++)
+            {
+                await Task.Delay(300);
+            }
+            return Application.Current;
         }
 
         private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)

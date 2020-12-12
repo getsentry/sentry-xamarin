@@ -11,6 +11,10 @@ namespace Sentry.Xamarin.Forms.Internals
     {
         internal bool Implemented => true;
         private List<NSObject> _observerTokens;
+        private SentryXamarinOptions _xamarinOptions;
+
+        internal NativeIntegration(SentryXamarinOptions options) => _xamarinOptions = options;
+
         public void Register(IHub hub, SentryOptions options)
         {
             _observerTokens = new List<NSObject>();
@@ -21,6 +25,7 @@ namespace Sentry.Xamarin.Forms.Internals
         internal void Unregister()
         {
             NSNotificationCenter.DefaultCenter.RemoveObservers(_observerTokens);
+            _xamarinOptions.NativeIntegrationEnabled = false;
         }
 
         internal Action<NSNotification> AppEnteredBackground = (_) =>

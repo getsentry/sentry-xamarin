@@ -8,6 +8,10 @@ namespace Sentry.Xamarin.Forms.Internals
     internal partial class NativeIntegration : ISdkIntegration
     {
         internal bool Implemented { get; private set; } = true;
+
+        private SentryXamarinOptions _xamarinOptions;
+
+        internal NativeIntegration(SentryXamarinOptions options) => _xamarinOptions = options;
         public void Register(IHub hub, SentryOptions options)
         {
             try
@@ -17,13 +21,13 @@ namespace Sentry.Xamarin.Forms.Internals
             catch (Exception ex)
             {
                 options.DiagnosticLogger.Log(SentryLevel.Error, "Sentry.Xamarin.Forms failed to attach AtivityStateChanged", ex);
-                Implemented = false;
+                _xamarinOptions.NativeIntegrationEnabled = false;
             }
         }
 
         internal void Unregister()
         {
-            if (Implemented)
+            if (_xamarinOptions.NativeIntegrationEnabled)
             {
                 Platform.ActivityStateChanged -= Platform_ActivityStateChanged;
             }

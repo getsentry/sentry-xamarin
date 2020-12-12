@@ -5,12 +5,12 @@ namespace Sentry
 {
     public static class SentryOptionsExtensions
     {
-        public static void DisableBreadcrumbForXamlWarnings(this SentryOptions option)
+        public static void DisableBreadcrumbForXamlWarnings(this SentryOptions _)
         {
-            SentryXamarinFormsIntegration.LogXamlErrors = false;
+            SentryXamarinFormsIntegration.Options.Value.XamarinLoggerEnabled = false;
         }
 
-        public static void DisableNativeIntegration(this SentryOptions options)
+        public static void DisableNativeIntegration(this SentryOptions _)
         {
             SentryXamarinFormsIntegration.Instance.UnregisterNativeIntegration();
         }

@@ -4,7 +4,8 @@
     {
         internal static void UnregisterNativeIntegration(this SentryXamarinFormsIntegration integration)
         {
-            integration.Nativeintegration?.Unregister();
+            integration?.Nativeintegration?.Unregister();
+            SentryXamarinFormsIntegration.Options.Value.NativeIntegrationEnabled = false;
         }
     }
 }
