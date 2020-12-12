@@ -15,7 +15,6 @@ namespace Sentry.Xamarin.Forms
         #endregion
 
         internal static SentryXamarinFormsIntegration Instance;
-        private NativeExceptionHandler _nativeHandler;
         internal NativeIntegration Nativeintegration;
         internal static string CurrentPage;
         internal static DelegateLogListener XamlLogger;
@@ -24,8 +23,6 @@ namespace Sentry.Xamarin.Forms
         {
             Instance = this;
             options.AddEventProcessor(new XamarinFormsEventProcessor(options));
-
-            _nativeHandler = new NativeExceptionHandler();
 
 #if !NETSTANDARD
             options.AddEventProcessor(new NativeEventProcessor(options));
