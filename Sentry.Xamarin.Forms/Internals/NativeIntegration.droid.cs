@@ -12,6 +12,7 @@ namespace Sentry.Xamarin.Forms.Internals
         private SentryXamarinOptions _xamarinOptions;
 
         internal NativeIntegration(SentryXamarinOptions options) => _xamarinOptions = options;
+
         public void Register(IHub hub, SentryOptions options)
         {
             try

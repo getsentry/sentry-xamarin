@@ -87,7 +87,7 @@ namespace Sentry.Xamarin.Forms
         /// If SentrySDK was initialized from the Native project (Android/IOS) the Application might not have been created in time.
         /// So we wait for max 5 seconds to see check if it was created or not
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Current application.</returns>
         private async Task<Application> GetCurrentApplication()
         {
             for (int i = 0; i < 10 && Application.Current is null; i++)
