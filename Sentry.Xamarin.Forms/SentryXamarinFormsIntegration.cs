@@ -5,20 +5,24 @@ using Sentry.Xamarin.Forms.Internals;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Sentry.Xamarin.Forms.Extensions;
-using System.Linq;
 
 namespace Sentry.Xamarin.Forms
 {
     public class SentryXamarinFormsIntegration : ISdkIntegration
     {
-        private NativeExceptionHandler _nativeHandler;
-        private string _previousPageName;
+        #region Internal Options
         internal static bool LogXamlErrors { get; set; } = true;
+        #endregion
+
+        internal static SentryXamarinFormsIntegration Instance;
+        private NativeExceptionHandler _nativeHandler;
+        internal NativeIntegration Nativeintegration;
+        internal static string CurrentPage;
         internal static DelegateLogListener XamlLogger;
 
         public void Register(IHub hub, SentryOptions options)
         {
+            Instance = this;
             options.AddEventProcessor(new XamarinFormsEventProcessor(options));
 
             _nativeHandler = new NativeExceptionHandler();
@@ -30,7 +34,14 @@ namespace Sentry.Xamarin.Forms
             {
                 if (LogXamlErrors)
                 {
-                    SentrySdk.AddBreadcrumb(arg2, $"XamlLogger.{arg1}", level: BreadcrumbLevel.Warning);
+                    SentrySdk.AddBreadcrumb(null,
+                        "xamarin",
+                        "info",
+                        new Dictionary<string, string>
+                        {
+                            ["logger"] = arg1,
+                            ["issue"] = arg2
+                        }, level: BreadcrumbLevel.Warning);
                 }
             });
 
@@ -56,6 +67,16 @@ namespace Sentry.Xamarin.Forms
                     Application.Current.PageDisappearing += Current_PageDisappearing;
                     Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
                 }
+
+                Nativeintegration = new NativeIntegration();
+                if (Nativeintegration.Implemented)
+                {
+                    Nativeintegration.Register(hub, options);
+                }
+                else
+                {
+                    Nativeintegration = null;
+                }
             });
         }
 
@@ -69,15 +90,21 @@ namespace Sentry.Xamarin.Forms
             var type = e.GetType();
             if (type.BaseType.Name.StartsWith("PopupPage"))
             {
-                SentrySdk.AddBreadcrumb($"{type.Name} Disappearing.",
-                    "Xamarin.Popup", level: BreadcrumbLevel.Info);
+                SentrySdk.AddBreadcrumb(null,
+                    "ui.lifecycle",
+                    "navigation",
+                    new Dictionary<string, string>
+                    {
+                        ["popup"] = type.Name,
+                        ["state"] = "disappearing"
+                    }, level: BreadcrumbLevel.Info);
             }
         }
 
         private void Current_PageAppearing(object sender, Page e)
         {
             var pageType = e.GetType();
-            if (_previousPageName != null && _previousPageName != pageType.Name)
+            if (CurrentPage != null && CurrentPage != pageType.Name)
             {
                 if (pageType.Name is "NavigationPage")
                 {
@@ -85,8 +112,14 @@ namespace Sentry.Xamarin.Forms
                 }
                 if (pageType.BaseType.Name is "PopupPage")
                 {
-                    SentrySdk.AddBreadcrumb($"{pageType.Name} Appearing.",
-                        "Xamarin.Popup", level: BreadcrumbLevel.Info);
+                    SentrySdk.AddBreadcrumb(null,
+                        "ui.lifecycle",
+                        "navigation",
+                        new Dictionary<string, string>
+                        {
+                            ["popup"] = pageType.Name,
+                            ["state"] = "appearing"
+                        }, level: BreadcrumbLevel.Info);
                     return;
                 }
                 else
@@ -94,10 +127,10 @@ namespace Sentry.Xamarin.Forms
                     SentrySdk.AddBreadcrumb(null,
                         "navigation",
                         "navigation",
-                        new Dictionary<string, string>() { { "from", $"/{_previousPageName}" }, { "to", $"/{pageType.Name}" } });
+                        new Dictionary<string, string>() { { "from", $"/{CurrentPage}" }, { "to", $"/{pageType.Name}" } });
                 }
             }
-            _previousPageName = pageType.Name;
+            CurrentPage = pageType.Name;
         }
     }
 }

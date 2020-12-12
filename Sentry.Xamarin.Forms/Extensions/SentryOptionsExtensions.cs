@@ -1,4 +1,5 @@
 ﻿using Sentry.Xamarin.Forms;
+using Sentry.Xamarin.Forms.Extensions;
 
 namespace Sentry
 {
@@ -6,7 +7,7 @@ namespace Sentry
     {
         public static void DisableBreadcrumbForXamlWarnings(SentryOptions option)
         {
-            SentryXamarinFormsIntegration.LogXamlErrors = false;
+            SentryXamarinFormsIntegration.Instance.UnregisterNativeIntegration();
         }
     }
 }
