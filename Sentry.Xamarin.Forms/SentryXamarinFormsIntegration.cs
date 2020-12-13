@@ -26,9 +26,9 @@ namespace Sentry.Xamarin.Forms
         public void Register(IHub hub, SentryOptions options)
         {
             //Only one integration can be active
-            if (Instance != null) 
-            { 
-                return; 
+            if (Instance != null)
+            {
+                return;
             }
             Instance = this;
             _hub = hub;
@@ -59,16 +59,16 @@ namespace Sentry.Xamarin.Forms
 
             if (Options.Value.NativeIntegrationEnabled)
             {
-                if (new NativeIntegration(Options.Value) is NativeIntegration nativeIntegration &&
-                    nativeIntegration.Implemented)
+                var nativeIntegration = new NativeIntegration(Options.Value);
+                if (nativeIntegration.Implemented)
                 {
                     nativeIntegration.Register(hub, options);
                     Nativeintegration = nativeIntegration;
                 }
             }
 
-            //Don't lock the main Thread while you wait for the current application to be created.
-            Task.Run(async () =>
+        //Don't lock the main Thread while you wait for the current application to be created.
+        Task.Run(async () =>
             {
                 var application = await GetCurrentApplication();
                 if (application is null)
@@ -91,65 +91,65 @@ namespace Sentry.Xamarin.Forms
         /// </summary>
         /// <returns>Current application.</returns>
         private async Task<Application> GetCurrentApplication()
-        {
-            for (int i = 0; i < 10 && Application.Current is null; i++)
-            {
-                await Task.Delay(300);
-            }
-            return Application.Current;
-        }
+{
+    for (int i = 0; i < 10 && Application.Current is null; i++)
+    {
+        await Task.Delay(300);
+    }
+    return Application.Current;
+}
 
-        private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
-        {
-            _hub.AddBreadcrumb(e.RequestedTheme.ToString(), "AppTheme.Change", level: BreadcrumbLevel.Info);
-        }
+private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
+{
+    _hub.AddBreadcrumb(e.RequestedTheme.ToString(), "AppTheme.Change", level: BreadcrumbLevel.Info);
+}
 
-        private void Current_PageDisappearing(object sender, Page e)
-        {
-            var type = e.GetType();
-            if (type.BaseType.Name.StartsWith("PopupPage"))
+private void Current_PageDisappearing(object sender, Page e)
+{
+    var type = e.GetType();
+    if (type.BaseType.Name.StartsWith("PopupPage"))
+    {
+        _hub.AddBreadcrumb(null,
+            "ui.lifecycle",
+            "navigation",
+            new Dictionary<string, string>
             {
-                _hub.AddBreadcrumb(null,
-                    "ui.lifecycle",
-                    "navigation",
-                    new Dictionary<string, string>
-                    {
-                        ["popup"] = type.Name,
-                        ["state"] = "disappearing"
-                    }, level: BreadcrumbLevel.Info);
-            }
-        }
+                ["popup"] = type.Name,
+                ["state"] = "disappearing"
+            }, level: BreadcrumbLevel.Info);
+    }
+}
 
-        private void Current_PageAppearing(object sender, Page e)
+private void Current_PageAppearing(object sender, Page e)
+{
+    var pageType = e.GetType();
+    if (CurrentPage != null && CurrentPage != pageType.Name)
+    {
+        if (pageType.Name is "NavigationPage")
         {
-            var pageType = e.GetType();
-            if (CurrentPage != null && CurrentPage != pageType.Name)
-            {
-                if (pageType.Name is "NavigationPage")
-                {
-                    return;
-                }
-                if (pageType.BaseType.Name is "PopupPage")
-                {
-                    _hub.AddBreadcrumb(null,
-                        "ui.lifecycle",
-                        "navigation",
-                        new Dictionary<string, string>
-                        {
-                            ["popup"] = pageType.Name,
-                            ["state"] = "appearing"
-                        }, level: BreadcrumbLevel.Info);
-                    return;
-                }
-                else
-                {
-                    _hub.AddBreadcrumb(null,
-                        "navigation",
-                        "navigation",
-                        new Dictionary<string, string>() { { "from", $"/{CurrentPage}" }, { "to", $"/{pageType.Name}" } });
-                }
-            }
-            CurrentPage = pageType.Name;
+            return;
         }
+        if (pageType.BaseType.Name is "PopupPage")
+        {
+            _hub.AddBreadcrumb(null,
+                "ui.lifecycle",
+                "navigation",
+                new Dictionary<string, string>
+                {
+                    ["popup"] = pageType.Name,
+                    ["state"] = "appearing"
+                }, level: BreadcrumbLevel.Info);
+            return;
+        }
+        else
+        {
+            _hub.AddBreadcrumb(null,
+                "navigation",
+                "navigation",
+                new Dictionary<string, string>() { { "from", $"/{CurrentPage}" }, { "to", $"/{pageType.Name}" } });
+        }
+    }
+    CurrentPage = pageType.Name;
+}
     }
 }
