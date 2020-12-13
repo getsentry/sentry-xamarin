@@ -2,7 +2,7 @@
 using System;
 using Xamarin.Forms.Xaml;
 
-namespace Sentry.Xamarin.Sample.Views
+namespace Sentry.Xamarin.Sample.Views.Popups
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AboutPopupPage : Rg.Plugins.Popup.Pages.PopupPage
@@ -14,7 +14,7 @@ namespace Sentry.Xamarin.Sample.Views
 
         private void Popup_Clicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PushAsync(new About2PopupPage());
+            PopupNavigation.Instance.PushAsync(new PaymentPopupPage());
         }
     }
 }

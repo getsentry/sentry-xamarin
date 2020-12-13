@@ -19,10 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Popups\PaymentPopupPage.xaml.cs">
+      <DependentUpon>PaymentPopupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="XamlPageWithIssue.xaml.cs">
       <DependentUpon>XamlPageWithIssue.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\AboutPopupPage.xaml.cs">
+    <Compile Update="Views\Popups\AboutPopupPage.xaml.cs">
       <DependentUpon>AboutPopupPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -31,10 +34,28 @@
     <EmbeddedResource Update="Disco.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\About2PopupPage.xaml">
+    <EmbeddedResource Update="Resources\BrokenSvg.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AboutPopupPage.xaml">
+    <EmbeddedResource Update="Resources\BugSvg.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\DiscoSvg.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\FeedbackSvg.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PopupSvg.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\UnhandledSvg.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\PaymentPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\AboutPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">

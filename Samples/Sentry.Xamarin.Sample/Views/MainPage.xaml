@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
+             xmlns:resources="clr-namespace:Sentry.Xamarin.Sample.Resources"
+             xmlns:viewmodels="clr-namespace:Sentry.Xamarin.Sample.ViewModels"
+             x:Class="ContribSentry.Sample.Views.MainPage"
+             Title="Home">
+    <ContentPage.BindingContext>
+        <viewmodels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout Spacing="0">
+        <Frame BackgroundColor="#7114DA" Padding="16" CornerRadius="0">
+            <Label Text="Welcome to Xamarin.Forms with Sentry SDK!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <ScrollView>
+            <FlexLayout
+                Wrap="Wrap"
+                AlignItems="Start"
+                AlignContent="Start">
+                <FlexLayout.Behaviors>
+                    <xamanimation:EntranceTransition
+	                    Duration="300"/>
+                </FlexLayout.Behaviors>
+                <!-- https://www.svgrepo.com/svg/296150/disco-ball-club -->
+                <Frame BorderColor="#A8A2A2" 
+                       CornerRadius="8"
+                       Margin="5"
+                       HeightRequest="150"
+                       WidthRequest="150">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DiscoCmd}"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:DiscoSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Disco" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="150"
+                       WidthRequest="150">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PopupCmd}"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:PopupSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Pop-up" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+                <!-- https://www.svgrepo.com/svg/4371/broken-cellphone -->
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="150"
+                       WidthRequest="150">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BrokenViewCmd}"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:BrokenSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Broken" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="150"
+                       WidthRequest="150">
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:FeedbackSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Feedback" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="150"
+                       WidthRequest="150">
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:BugSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Handled Error" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="150"
+                       WidthRequest="150">
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:UnhandledSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Unhandled Error" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </FlexLayout>
+        </ScrollView>
+        <!--
+        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
+        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
+        <Label FontSize="16" Padding="30,24,30,0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Learn more at "/>
+                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        -->
+        <!--
+        <Button Text="Disco" Clicked="Disco_Clicked"/>
+        <Button Text="Popup" Clicked="Popup_Clicked"/>
+        <Button Text="Xaml Broken" Clicked="Xaml_Clicked"/>
+        -->
+    </StackLayout>
+
+</ContentPage>

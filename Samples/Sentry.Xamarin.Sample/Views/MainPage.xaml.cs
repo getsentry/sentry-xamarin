@@ -1,12 +1,10 @@
-﻿using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
-using Sentry;
+﻿using Rg.Plugins.Popup.Services;
 using Sentry.Xamarin.Sample.Views;
+using Sentry.Xamarin.Sample.Views.Popups;
 using System;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace ContribSentry.Sample
+namespace ContribSentry.Sample.Views
 {
     public partial class MainPage : ContentPage
     {

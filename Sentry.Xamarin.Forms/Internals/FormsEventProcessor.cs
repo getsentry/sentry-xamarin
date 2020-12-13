@@ -56,7 +56,6 @@ namespace Sentry.Xamarin.Forms.Internals
                     if (_ConnectivityStatusAllowed)
                     {
                         @event.Contexts.Device.IsOnline = Connectivity.NetworkAccess == NetworkAccess.Internet;
-                        Connectivity.ConnectionProfiles
                     }
                 }
                 catch(PermissionException pe)

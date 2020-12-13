@@ -16,6 +16,7 @@ namespace ContribSentry.Sample.iOS
                 o.AddIntegration(new SentryXamarinFormsIntegration());
             });
             Rg.Plugins.Popup.Popup.Init();
+            global::Xamarin.Forms.Forms.SetFlags("Shapes_Experimental");
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

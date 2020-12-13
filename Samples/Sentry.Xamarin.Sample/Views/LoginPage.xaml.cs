@@ -31,21 +31,5 @@ namespace Sentry.Xamarin.Sample.Views
                 Application.Current.UserAppTheme = OSAppTheme.Unspecified;
             }
         }
-
-        private void Login_Clicked(object sender, EventArgs e)
-        {
-            Console.WriteLine($"Lucas {LoginEntry.Text}");
-            Console.WriteLine($"Lucas {PasswordEntry.Text}");
-            SentrySdk.AddBreadcrumb("Login", "ui.click", level: BreadcrumbLevel.Info);
-            if(LoginEntry.Text == "1234" && PasswordEntry.Text == "1234")
-            {
-                Application.Current.MainPage = new NavigationPage(new MainPage());
-            }
-            else
-            {
-                SentrySdk.AddBreadcrumb("invalid login", "console", level: BreadcrumbLevel.Warning);
-                DisplayAlert("warning", "Wrong login or password.", "OK");
-            }
-        }
     }
 }

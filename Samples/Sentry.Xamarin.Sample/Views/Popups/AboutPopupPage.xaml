@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
+             xmlns:popups="clr-namespace:Sentry.Xamarin.Sample.ViewModels.Popups"
+             x:Class="Sentry.Xamarin.Sample.Views.Popups.AboutPopupPage">
+    <pages:PopupPage.BindingContext>
+        <popups:AboutPagePopupPageViewModel/>
+    </pages:PopupPage.BindingContext>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <Frame CornerRadius="20"
+           Margin="50">
+        <StackLayout Background="White">
+            <ScrollView>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="      🚧"
+                                  FontSize="64"/>
+                            <Span Text="&#x0a;&#x0a;"/>
+                            <Span Text="It seems like you would like to see some popups in action, well, today is your lucky day"/>
+                            <Span Text="&#x0a;&#x0a;"/>
+                            <Span Text="🚀" FontSize="32"/>
+                            <Span Text="Sentry SDK for Xamarin Forms automatically detects popup navigation from the "/>
+                            <Span Text="most popular popup framework." 
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <!-- https://github.com/xamarin/Xamarin.Forms/issues/10520 -->
+                                    <TapGestureRecognizer Command="{Binding PluginGithubCmd}"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="&#x0a;&#x0a;"/>
+                            <Span Text="Enjoy the next popup with a fictional payment popup."/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </ScrollView>
+            <Button Text="Buy"
+                    VerticalOptions="EndAndExpand"
+                    Command="{Binding BuyCmd}"/>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

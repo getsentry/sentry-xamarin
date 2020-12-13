@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
+             xmlns:viewmodels="clr-namespace:Sentry.Xamarin.Sample.ViewModels"
              x:Class="Sentry.Xamarin.Sample.Views.LoginPage">
+    <ContentPage.BindingContext>
+        <viewmodels:LoginPageViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <ResourceDictionary>
             <xamanimation:TranslateToAnimation
@@ -42,17 +46,17 @@
                  Margin="30"
                  VerticalOptions="Center"
                  RowDefinitions="Auto, Auto, Auto, Auto, Auto">
-                <Entry x:Name="LoginEntry"
-                       Placeholder="Login"
+                <Entry Placeholder="Login"                       
+                       Text="{Binding Login}"
                        Grid.Row="0"
                        ReturnType="Next"/>
-                <Entry x:Name="PasswordEntry"
-                       Placeholder="Password"
+                <Entry Placeholder="Password"
+                       Text="{Binding Password}"
                        IsPassword="True"
                        Grid.Row="1"/>
                 <Button Text="Login"
                         Margin="0,10,0,0"                        
-                        Clicked="Login_Clicked"
+                        Command="{Binding LoginCmd}"
                         Grid.Row="2"/>
                 <Label Text="Tip: Login and password are 1234"
                        Grid.Row="3"/>
