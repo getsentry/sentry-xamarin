@@ -5,7 +5,7 @@ namespace Sentry
 {
     public static class SentryOptionsExtensions
     {
-        public static void DisableBreadcrumbForXamlWarnings(this SentryOptions _)
+        public static void DisableBreadcrumbForXamlWarnings(this SentryOptions options)
         {
             SentryXamarinFormsIntegration.Options.Value.XamarinLoggerEnabled = false;
         }

@@ -14,6 +14,7 @@ namespace Sentry.Xamarin.Forms
         internal static Lazy<SentryXamarinOptions> Options = new Lazy<SentryXamarinOptions>();
         internal static SentryXamarinFormsIntegration Instance;
         internal static DelegateLogListener XamarinLogger;
+        private IHub _hub;
 
         /// <summary>
         /// current page name.
@@ -30,6 +31,7 @@ namespace Sentry.Xamarin.Forms
                 return; 
             }
             Instance = this;
+            _hub = hub;
             options.AddEventProcessor(new XamarinFormsEventProcessor(options));
 
 #if !NETSTANDARD
@@ -39,7 +41,7 @@ namespace Sentry.Xamarin.Forms
             {
                 if (Options.Value.XamarinLoggerEnabled)
                 {
-                    SentrySdk.AddBreadcrumb(null,
+                    _hub.AddBreadcrumb(null,
                         "xamarin",
                         "info",
                         new Dictionary<string, string>
@@ -99,7 +101,7 @@ namespace Sentry.Xamarin.Forms
 
         private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
         {
-            SentrySdk.AddBreadcrumb(e.RequestedTheme.ToString(), "AppTheme.Change", level: BreadcrumbLevel.Info);
+            _hub.AddBreadcrumb(e.RequestedTheme.ToString(), "AppTheme.Change", level: BreadcrumbLevel.Info);
         }
 
         private void Current_PageDisappearing(object sender, Page e)
@@ -107,7 +109,7 @@ namespace Sentry.Xamarin.Forms
             var type = e.GetType();
             if (type.BaseType.Name.StartsWith("PopupPage"))
             {
-                SentrySdk.AddBreadcrumb(null,
+                _hub.AddBreadcrumb(null,
                     "ui.lifecycle",
                     "navigation",
                     new Dictionary<string, string>
@@ -129,7 +131,7 @@ namespace Sentry.Xamarin.Forms
                 }
                 if (pageType.BaseType.Name is "PopupPage")
                 {
-                    SentrySdk.AddBreadcrumb(null,
+                    _hub.AddBreadcrumb(null,
                         "ui.lifecycle",
                         "navigation",
                         new Dictionary<string, string>
@@ -141,7 +143,7 @@ namespace Sentry.Xamarin.Forms
                 }
                 else
                 {
-                    SentrySdk.AddBreadcrumb(null,
+                    _hub.AddBreadcrumb(null,
                         "navigation",
                         "navigation",
                         new Dictionary<string, string>() { { "from", $"/{CurrentPage}" }, { "to", $"/{pageType.Name}" } });

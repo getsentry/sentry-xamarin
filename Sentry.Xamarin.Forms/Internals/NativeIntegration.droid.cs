@@ -10,6 +10,7 @@ namespace Sentry.Xamarin.Forms.Internals
         internal bool Implemented { get; private set; } = true;
 
         private SentryXamarinOptions _xamarinOptions;
+        private IHub _hub;
 
         internal NativeIntegration(SentryXamarinOptions options) => _xamarinOptions = options;
 
@@ -17,6 +18,7 @@ namespace Sentry.Xamarin.Forms.Internals
         {
             try
             {
+                _hub = hub;
                 Platform.ActivityStateChanged += Platform_ActivityStateChanged;
             }
             catch (Exception ex)
@@ -36,7 +38,7 @@ namespace Sentry.Xamarin.Forms.Internals
 
         private void Platform_ActivityStateChanged(object sender, ActivityStateChangedEventArgs e)
         {
-            SentrySdk.AddBreadcrumb(null,
+            _hub.AddBreadcrumb(null,
                 "ui.lifecycle",
                 "navigation", data: new Dictionary<string, string>
                 {
