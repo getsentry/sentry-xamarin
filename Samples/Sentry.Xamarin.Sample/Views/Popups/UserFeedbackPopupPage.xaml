@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="Sentry.Xamarin.Sample.Views.Popups.UserFeedbackPopupPage">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Content>
+        <Frame CornerRadius="20"
+               Margin="50"
+               Padding="0">
+            <Grid BackgroundColor="White"
+                  RowSpacing="0"
+                  ColumnSpacing="0"
+                  RowDefinitions="Auto, *, Auto">
+                <StackLayout BackgroundColor="#F0E313"
+                             Orientation="Horizontal"
+                             Padding="20"
+                             Grid.Row="0">
+                    <Label Text="User Feedback"
+                           FontSize="Title"
+                           HorizontalOptions="StartAndExpand"
+                           FontAttributes="Bold"/>
+                    <Label Text="🚨"
+                           FontSize="Title"/>
+                </StackLayout>
+                <ScrollView Grid.Row="1"
+                             Margin="10,10,10,0"
+                             MinimumHeightRequest="400">
+                    <StackLayout >
+                        <Label Text="Whoops, a buggy bug was spotted!"/>
+                        <Entry Placeholder="Name"/>
+                        <Entry Placeholder="Email" 
+                               x:Name="EmailEntry">
+                            <Entry.Triggers>
+                                <Trigger TargetType="Entry" Property="Text.Length" Value="0">
+                                    <Setter Property="PlaceholderColor" Value="Red"/>
+                                </Trigger>
+                                <Trigger TargetType="Entry" Property="IsFocused" Value="True">
+                                    <Setter Property="PlaceholderColor" Value="Black"/>
+                                </Trigger>
+                            </Entry.Triggers>
+                        </Entry>
+                            <Editor Placeholder="Tell me about what happend."
+                                AutoSize="TextChanges"/>
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout Orientation="Horizontal"
+                             Grid.Row="2"
+                             Margin="10,0,10,10">
+                    <Button Text="Cancel"
+                            HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Send"
+                            HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

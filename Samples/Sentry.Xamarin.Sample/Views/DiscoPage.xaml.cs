@@ -1,16 +1,22 @@
 ﻿using Sentry;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace ContribSentry.Sample
+namespace ContribSentry.Sample.Views
 {
-    public partial class Disco : ContentPage
+    public partial class DiscoPage : ContentPage
     {
-        public Disco()
+        public DiscoPage()
         {
             try
             {
                 InitializeComponent();
+
+                Task.Run(() =>
+                {
+                    (Application.Current.MainPage as NavigationPage).BarBackgroundColor = Color.Red;
+                });
             }
             catch (Exception ex)
             {

@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\DiscoPage.xaml.cs">
+      <DependentUpon>DiscoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Popups\PaymentPopupPage.xaml.cs">
       <DependentUpon>PaymentPopupPage.xaml</DependentUpon>
     </Compile>
@@ -31,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Disco.xaml">
+    <EmbeddedResource Update="Views\DiscoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\BrokenSvg.xaml">
@@ -59,6 +62,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\UserFeedbackPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -15,7 +15,7 @@ namespace ContribSentry.Sample.Views
 
         private void Disco_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Disco());
+            Navigation.PushAsync(new DiscoPage());
         }
 
         private void Popup_Clicked(object sender, EventArgs e)

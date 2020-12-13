@@ -1,4 +1,5 @@
 ﻿using ContribSentry.Sample;
+using ContribSentry.Sample.Views;
 using Sentry.Xamarin.Sample.Interfaces;
 using Sentry.Xamarin.Sample.Views;
 using Sentry.Xamarin.Sample.Views.Popups;
@@ -22,11 +23,12 @@ namespace Sentry.Xamarin.Sample.ViewModels
             DiscoCmd = new Command(GotoDisco);
             PopupCmd = new Command(ShowAboutPopup);
             BrokenViewCmd = new Command(GotoBrokenView);
+            FeedbackCmd = new Command(ShowFeedback);
         }
 
         private Action GotoDisco => () =>
         {
-            NavigateTo(new Disco());
+            NavigateTo(new DiscoPage());
         };
 
         private Action GotoBrokenView => () =>
@@ -38,5 +40,11 @@ namespace Sentry.Xamarin.Sample.ViewModels
         {
             await ShowPopup(new AboutPopupPage());
         };
+
+        private Action ShowFeedback => async () =>
+        {
+            await ShowPopup(new UserFeedbackPopupPage());
+        };
+
     }
 }

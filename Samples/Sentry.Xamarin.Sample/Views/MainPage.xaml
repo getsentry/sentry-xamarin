@@ -75,6 +75,9 @@
                        CornerRadius="8" 
                        HeightRequest="150"
                        WidthRequest="150">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FeedbackCmd}"/>
+                    </Frame.GestureRecognizers>
                     <StackLayout HorizontalOptions="Center">
                         <resources:FeedbackSvg HeightRequest="120" WidthRequest="120"/>
                         <Label Text="Feedback" 
