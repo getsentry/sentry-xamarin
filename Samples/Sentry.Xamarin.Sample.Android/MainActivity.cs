@@ -1,9 +1,12 @@
 ﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
 using Android.OS;
+using Android.Runtime;
 using Sentry;
 using Sentry.Xamarin.Forms;
+using System;
+using System.IO;
+using Environment = System.Environment;
 
 namespace ContribSentry.Sample.Droid
 {
@@ -12,8 +15,13 @@ namespace ContribSentry.Sample.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "sentry"))){
+                Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "sentry"));
+            }
             SentrySdk.Init(o =>
             {
+                o.Debug = true;
+                o.CacheDirectoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "sentry");
                 o.Dsn = "https://80aed643f81249d4bed3e30687b310ab@o447951.ingest.sentry.io/5428537";
                 o.AddIntegration(new SentryXamarinFormsIntegration());
             });
