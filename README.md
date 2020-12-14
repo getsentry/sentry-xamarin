@@ -8,6 +8,8 @@
 Sentry SDK for Xamarin
 ===========
 
+[![build](https://github.com/getsentry/sentry-dotnet-xamarin/workflows/build/badge.svg?branch=main)](https://github.com/getsentry/sentry-dotnet-xamarin/actions?query=branch%3Amain)
+
 This is a work in progress SDK for Xamarin.
 
 Includes for all Platforms supported by Xamarin Essentials:
