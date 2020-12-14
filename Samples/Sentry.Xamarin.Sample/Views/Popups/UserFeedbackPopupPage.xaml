@@ -4,8 +4,8 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
              xmlns:popups="clr-namespace:Sentry.Xamarin.Sample.ViewModels.Popups"
-             xmlns:Behaviors="clr-namespace:Sentry.Xamarin.Sample.Behaviors"
-             x:Class="Sentry.Xamarin.Sample.Views.Popups.UserFeedbackPopupPage">
+             xmlns:Behaviors="clr-namespace:Sentry.Xamarin.Sample.Behaviors" xmlns:customcontrols="clr-namespace:Sentry.Xamarin.Sample.CustomControls"
+                 x:Class="Sentry.Xamarin.Sample.Views.Popups.UserFeedbackPopupPage">
     <pages:PopupPage.BindingContext>
         <popups:UserFeedbackPopupPageViewModel/>
     </pages:PopupPage.BindingContext>
@@ -21,17 +21,6 @@
             EasingOut="SinIn"
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
-    <pages:PopupPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="EmailStyle"
-                   TargetType="Entry">
-                <Setter Property="Behaviors:LineColorBehavior.ApplyLineColor"
-                        Value="True"/>
-                <Setter Property="Behaviors:LineColorBehavior.LineColor"
-                        Value="Black"/>
-            </Style>
-        </ResourceDictionary>
-    </pages:PopupPage.Resources>
     <pages:PopupPage.Content>
         <Frame CornerRadius="20"
                Margin="50"
@@ -57,36 +46,14 @@
                     <StackLayout >
                         <Label Text="Whoops, a buggy bug was spotted!"/>
                         <Entry Placeholder="Name"/>
-                        <Entry Placeholder="Email" 
-                               Text="{Binding Email.Value, Mode=TwoWay}"
-                               x:Name="EmailEntry">
-                            <Entry.Behaviors>
-                                <Behaviors:EventToCommandBehavior EventName="TextChanged"
-                                                        Command="{Binding EmailChangedCmd}"/>
-                            </Entry.Behaviors>
-                            <Entry.Style>
-                                <OnPlatform x:TypeArguments="Style">
-                                    <On Platform="iOS, Android" Value="{StaticResource EmailStyle}"/>
-                                </OnPlatform>
-                            </Entry.Style>
-                            <Entry.Triggers>
-                                <DataTrigger TargetType="Entry"
-                                             Binding="{Binding Email.IsInvalid}"
-                                             Value="False">
-                                    <Setter Property="Behaviors:LineColorBehavior.LineColor"
-                                            Value="Red"/>
-                                </DataTrigger>
-                                             
-                            </Entry.Triggers>
-                        </Entry>
-                        <Editor Placeholder="Tell me about what happend."
+                        <customcontrols:EntryValidation Placeholder="Email" 
+                               Text="{Binding Email, Mode=TwoWay}"
+                               Invalid="{Binding EmailInvalid, Mode=TwoWay}"
+                               Textchanged="{Binding EmailChangedCmd}"/>
+                        <customcontrols:EditorValidation Placeholder="Tell me about what happend."
                                 Text="{Binding Description.Value, Mode=TwoWay}"
-                                AutoSize="TextChanges">
-                            <Editor.Behaviors>
-                                <Behaviors:EventToCommandBehavior EventName="TextChanged"
-                                                        Command="{Binding DescriptionChangedCmd}"/>
-                            </Editor.Behaviors>
-                        </Editor>
+                                Invalid="{Binding Description.IsValid, Mode=TwoWay}"
+                                Textchanged="{Binding DescriptionChangedCmd}"/>
                     </StackLayout>
                 </ScrollView>
                 <StackLayout Orientation="Horizontal"

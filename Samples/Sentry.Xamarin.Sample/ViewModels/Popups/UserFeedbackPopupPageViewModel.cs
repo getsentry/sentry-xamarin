@@ -13,13 +13,23 @@ namespace Sentry.Xamarin.Sample.ViewModels.Popups
         public string Username { get; set; }
 
         private ValidatableObject<string> _email;
-        public ValidatableObject<string> Email
+        public string Email
         {
-            get => _email;
-            set
-            {
-                _email = value;
+            get => _email.Value;
+            set 
+            { 
+                _email.Value = value;
                 RaisePropertyChanged(() => Email);
+            }
+        }
+
+        public bool EmailInvalid
+        {
+            get => _email.IsValid;
+            set 
+            { 
+                _email.IsValid = value;
+                RaisePropertyChanged(() => EmailInvalid);
             }
         }
         private ValidatableObject<string> _description;
@@ -76,11 +86,13 @@ namespace Sentry.Xamarin.Sample.ViewModels.Popups
             => ValidateEmail() && ValidateDescription();
 
         private bool ValidateEmail()
-            => _email.Validate();
+        {
+            EmailInvalid = !_email.Validate();
+            return EmailInvalid;
+        }
 
         private bool ValidateDescription()
-            => _description.Validate();
-
+        =>_description.Validate();
         #endregion
     }
 }

@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="CustomControls\EditorValidation.xaml.cs">
+      <DependentUpon>EditorValidation.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\DiscoPage.xaml.cs">
       <DependentUpon>DiscoPage.xaml</DependentUpon>
     </Compile>
@@ -34,6 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="CustomControls\EntryValidation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\DiscoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
