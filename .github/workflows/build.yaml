@@ -1,0 +1,25 @@
+name: build
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+    branches:
+      - main
+  pull_request:
+jobs:
+  build:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nuget/setup-nuget@v1
+      - run: nuget restore Sentry.Xamarin.sln
+      - uses: microsoft/setup-msbuild@v1.0.2
+      - name: Build with MSBuild
+        run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
