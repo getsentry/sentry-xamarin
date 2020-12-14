@@ -1,6 +1,7 @@
-﻿using Xamarin.Forms.Xaml;
+﻿using System.Collections.Generic;
+using Xamarin.Forms.Xaml;
 
-namespace Sentry.Xamarin.Sample.Views.Popups
+namespace Sample.Xamarin.Core.Views.Popups
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserFeedbackPopupPage : Rg.Plugins.Popup.Pages.PopupPage

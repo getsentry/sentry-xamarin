@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace ContribSentry.Sample.iOS
+namespace Sentry.Xamarin.Sample.iOS
 {
     public class Application
     {

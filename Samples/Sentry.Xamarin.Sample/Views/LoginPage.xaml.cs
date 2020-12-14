@@ -1,4 +1,4 @@
-﻿using ContribSentry.Sample;
+﻿using Sample.Xamarin.Core;
 using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Sentry.Xamarin.Sample.Views
+namespace Sample.Xamarin.Core.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage

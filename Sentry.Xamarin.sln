@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sentry.Xamarin.Forms", "Sen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{BAE2F4F8-5FBA-4AE1-97E2-D0A9CA68E41F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sentry.Xamarin.Sample", "Samples\Sentry.Xamarin.Sample\Sentry.Xamarin.Sample.csproj", "{02726CAA-72F3-4E3C-B06D-51C77A4B82BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Xamarin.Core", "Samples\Sentry.Xamarin.Sample\Sample.Xamarin.Core.csproj", "{02726CAA-72F3-4E3C-B06D-51C77A4B82BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentry.Xamarin.Android", "Samples\Sentry.Xamarin.Sample.Android\Sentry.Xamarin.Android.csproj", "{DF913F02-DF84-4B94-B67D-E8103999A914}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Xamarin.Droid", "Samples\Sentry.Xamarin.Sample.Android\Sample.Xamarin.Droid.csproj", "{DF913F02-DF84-4B94-B67D-E8103999A914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentry.Xamarin.iOS", "Samples\Sentry.Xamarin.Sample.iOS\Sentry.Xamarin.iOS.csproj", "{2863A4FF-3167-4085-AE99-ABC1AAFE99D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Xamarin.iOS", "Samples\Sentry.Xamarin.Sample.iOS\Sample.Xamarin.iOS.csproj", "{2863A4FF-3167-4085-AE99-ABC1AAFE99D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

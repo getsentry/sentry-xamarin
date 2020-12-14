@@ -1,10 +1,11 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using Sentry.Xamarin.Sample.Rules;
+using Sample.Xamarin.Core.Rules;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Sentry.Xamarin.Sample.Interfaces
+namespace Sample.Xamarin.Core.Interfaces
 {
     /// <summary>
     /// Hides the UI Tasks
@@ -26,5 +27,17 @@ namespace Sentry.Xamarin.Sample.Interfaces
 
         public static Task ShowPopup(PopupPage popup)
             => PopupNavigation.Instance.PushAsync(popup);
+
+        public static async Task ShowPopup(PopupPage popup, ApplicationBridge viewModel, Dictionary<string, object> parameters)
+        {
+            await PopupNavigation.Instance.PushAsync(popup);
+            popup.BindingContext = viewModel;
+            viewModel.Initialize(parameters);
+        }
+
+        public static Task ClosePopup()
+            => PopupNavigation.Instance.PopAsync();
+
+        public virtual void Initialize(Dictionary<string, object> parameters) { }
     }
 }

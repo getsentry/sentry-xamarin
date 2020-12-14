@@ -1,8 +1,8 @@
 ﻿using Sentry;
-using Sentry.Xamarin.Sample.Views;
+using Sample.Xamarin.Core.Views;
 using Xamarin.Forms;
 
-namespace ContribSentry.Sample
+namespace Sample.Xamarin.Core
 {
     public partial class App : Application
     {

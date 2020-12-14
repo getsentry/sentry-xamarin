@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace Sentry.Xamarin.Sample.Behaviors
+namespace Sample.Xamarin.Core.Behaviors
 {
     public class BehaviorBase<T> : Behavior<T> where T : BindableObject
     {

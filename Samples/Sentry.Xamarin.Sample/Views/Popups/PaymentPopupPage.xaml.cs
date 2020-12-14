@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 
-namespace Sentry.Xamarin.Sample.Views.Popups
+namespace Sample.Xamarin.Core.Views.Popups
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaymentPopupPage : Rg.Plugins.Popup.Pages.PopupPage

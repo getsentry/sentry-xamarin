@@ -2,7 +2,7 @@
 using System;
 using Xamarin.Forms.Xaml;
 
-namespace Sentry.Xamarin.Sample.Views.Popups
+namespace Sample.Xamarin.Core.Views.Popups
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AboutPopupPage : Rg.Plugins.Popup.Pages.PopupPage

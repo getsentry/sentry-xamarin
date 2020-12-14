@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
-             xmlns:viewmodels="clr-namespace:Sentry.Xamarin.Sample.ViewModels"
-             x:Class="Sentry.Xamarin.Sample.Views.LoginPage">
+             xmlns:viewmodels="clr-namespace:Sample.Xamarin.Core.ViewModels"
+             x:Class="Sample.Xamarin.Core.Views.LoginPage">
     <ContentPage.BindingContext>
         <viewmodels:LoginPageViewModel/>
     </ContentPage.BindingContext>
@@ -12,13 +12,13 @@
             <xamanimation:TranslateToAnimation
                 x:Key="TranslateBackground"
                 Easing="CubicOut"
-                TranslateY="0"
-                Delay="400"
+                TranslateY="-1"
+                Delay="800"
                 Duration="1000"/>
             <xamanimation:FadeToAnimation                
                 x:Key="LogoAppearaing"
                 Easing="SinIn"
-                Delay="1000"
+                Delay="1400"
                 Opacity="1"
                 Duration="400"/>
         </ResourceDictionary>
@@ -45,7 +45,7 @@
             <Grid Grid.Row="1"
                  Margin="30"
                  VerticalOptions="Center"
-                 RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                 RowDefinitions="Auto, Auto, Auto, Auto">
                 <Entry Placeholder="Login"                       
                        Text="{Binding Login}"
                        Grid.Row="0"
@@ -60,13 +60,6 @@
                         Grid.Row="2"/>
                 <Label Text="Tip: Login and password are 1234"
                        Grid.Row="3"/>
-                <StackLayout Orientation="Horizontal"
-                             Grid.Row="4"
-                             HorizontalOptions="End">
-                    <Switch Toggled="DarkModeSwitch_Toggled"/>
-                    <Label Text="Force Dark mode"
-                           VerticalOptions="Center"/>
-                </StackLayout>
             </Grid>
         </Grid>
     </ContentPage.Content>

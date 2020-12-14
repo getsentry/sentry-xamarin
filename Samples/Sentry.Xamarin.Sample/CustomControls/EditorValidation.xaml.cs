@@ -7,7 +7,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Sentry.Xamarin.Sample.CustomControls
+namespace Sample.Xamarin.Core.CustomControls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditorValidation : ContentView
@@ -20,12 +20,12 @@ namespace Sentry.Xamarin.Sample.CustomControls
 
         ~EditorValidation()
         {
-            Text = EntryInput.Text;
             EntryInput.TextChanged -= EntryInput_TextChanged;
         }
 
         private void EntryInput_TextChanged(object sender, TextChangedEventArgs e)
         {
+            Text = EntryInput.Text;
             Textchanged?.Execute(null);
         }
 
@@ -33,7 +33,7 @@ namespace Sentry.Xamarin.Sample.CustomControls
             "Invalid",
             typeof(bool),
             typeof(EditorValidation),
-            false,
+            true,
             BindingMode.TwoWay,
             propertyChanged: InvalidPropertyChanged
             );
@@ -54,6 +54,15 @@ namespace Sentry.Xamarin.Sample.CustomControls
               BindingMode.TwoWay,
               propertyChanged: PlaceholderPropertyChanged);
 
+
+        public static readonly BindableProperty ErrorMessageProperty = BindableProperty.Create(
+                "ErrorMessage",
+                typeof(string),
+                typeof(EditorValidation),
+                null,
+                BindingMode.TwoWay,
+                propertyChanged: ErrorMessagePropertyChanged);
+
         public static readonly BindableProperty TextchangedProperty = BindableProperty.Create(
             "Textchanged",
             typeof(ICommand),
@@ -65,6 +74,7 @@ namespace Sentry.Xamarin.Sample.CustomControls
         {
             var control = (EditorValidation)bindable;
             control.Invalid = (bool)newValue;
+            
             control.ErrorLabel.IsVisible = control.Invalid;
         }
 
@@ -80,6 +90,13 @@ namespace Sentry.Xamarin.Sample.CustomControls
             var control = (EditorValidation)bindable;
             control.Placeholder = (string)newValue;
             control.EntryInput.Placeholder = control.Placeholder;
+        }
+
+        private static void ErrorMessagePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var control = (EditorValidation)bindable;
+            control.ErrorMessage = (string)newValue;
+            control.ErrorLabel.Text = control.ErrorMessage;
         }
 
         public bool Invalid
@@ -101,6 +118,12 @@ namespace Sentry.Xamarin.Sample.CustomControls
         {
             get => (string)GetValue(PlaceholderProperty);
             set => SetValue(PlaceholderProperty, value);
+        }
+
+        public string ErrorMessage
+        {
+            get => (string)GetValue(ErrorMessageProperty);
+            set => SetValue(ErrorMessageProperty, value);
         }
 
         public ICommand Textchanged

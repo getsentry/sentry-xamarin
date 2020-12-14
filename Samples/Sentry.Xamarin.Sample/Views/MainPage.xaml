@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
-             xmlns:resources="clr-namespace:Sentry.Xamarin.Sample.Resources"
-             xmlns:viewmodels="clr-namespace:Sentry.Xamarin.Sample.ViewModels"
-             x:Class="ContribSentry.Sample.Views.MainPage"
+             xmlns:resources="clr-namespace:Sample.Xamarin.Core.Resources"
+             xmlns:viewmodels="clr-namespace:Sample.Xamarin.Core.ViewModels"
+             x:Class="Sample.Xamarin.Core.Views.MainPage"
              Title="Home">
     <ContentPage.BindingContext>
         <viewmodels:MainPageViewModel/>
@@ -78,18 +78,21 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding FeedbackCmd}"/>
                     </Frame.GestureRecognizers>
-                    <StackLayout HorizontalOptions="Center">
-                        <resources:FeedbackSvg HeightRequest="120" WidthRequest="120"/>
-                        <Label Text="Feedback" 
+                        <StackLayout HorizontalOptions="Center">
+                            <resources:FeedbackSvg HeightRequest="120" WidthRequest="120"/>
+                            <Label Text="Feedback" 
                                FontSize="Medium"
                                HorizontalOptions="Center"/>
-                    </StackLayout>
+                        </StackLayout>
                 </Frame>
                 <Frame BorderColor="#A8A2A2" 
                        Margin="5"
                        CornerRadius="8" 
                        HeightRequest="150"
                        WidthRequest="150">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HandledCmd}"/>
+                    </Frame.GestureRecognizers>
                     <StackLayout HorizontalOptions="Center">
                         <resources:BugSvg HeightRequest="120" WidthRequest="120"/>
                         <Label Text="Handled Error" 
@@ -102,6 +105,9 @@
                        CornerRadius="8" 
                        HeightRequest="150"
                        WidthRequest="150">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UnhandledCmd}"/>
+                    </Frame.GestureRecognizers>
                     <StackLayout HorizontalOptions="Center">
                         <resources:UnhandledSvg HeightRequest="120" WidthRequest="120"/>
                         <Label Text="Unhandled Error" 
@@ -111,25 +117,6 @@
                 </Frame>
             </FlexLayout>
         </ScrollView>
-        <!--
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-        -->
-        <!--
-        <Button Text="Disco" Clicked="Disco_Clicked"/>
-        <Button Text="Popup" Clicked="Popup_Clicked"/>
-        <Button Text="Xaml Broken" Clicked="Xaml_Clicked"/>
-        -->
     </StackLayout>
 
 </ContentPage>

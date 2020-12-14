@@ -1,4 +1,4 @@
-﻿namespace Sentry.Xamarin.Sample.Query
+﻿namespace Sample.Xamarin.Core.Query
 {
     public class ValidationRule
     {

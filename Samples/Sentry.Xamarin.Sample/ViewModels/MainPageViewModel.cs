@@ -1,12 +1,15 @@
-﻿using ContribSentry.Sample;
-using ContribSentry.Sample.Views;
-using Sentry.Xamarin.Sample.Interfaces;
-using Sentry.Xamarin.Sample.Views;
-using Sentry.Xamarin.Sample.Views.Popups;
+﻿using Sentry.Protocol;
+using Sample.Xamarin.Core.Interfaces;
+using Sample.Xamarin.Core.Services;
+using Sample.Xamarin.Core.ViewModels.Popups;
+using Sample.Xamarin.Core.Views;
+using Sample.Xamarin.Core.Views.Popups;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
+using Sentry;
 
-namespace Sentry.Xamarin.Sample.ViewModels
+namespace Sample.Xamarin.Core.ViewModels
 {
     public class MainPageViewModel : ApplicationBridge
     {
@@ -22,6 +25,8 @@ namespace Sentry.Xamarin.Sample.ViewModels
 
             DiscoCmd = new Command(GotoDisco);
             PopupCmd = new Command(ShowAboutPopup);
+            HandledCmd = new Command(DoLogin);
+            UnhandledCmd = new Command(Unhandle);
             BrokenViewCmd = new Command(GotoBrokenView);
             FeedbackCmd = new Command(ShowFeedback);
         }
@@ -43,7 +48,35 @@ namespace Sentry.Xamarin.Sample.ViewModels
 
         private Action ShowFeedback => async () =>
         {
-            await ShowPopup(new UserFeedbackPopupPage());
+            var lastEventId = SentrySdk.LastEventId;
+            if (!lastEventId.Equals(SentryId.Empty))
+            {
+                await ShowPopup(new UserFeedbackPopupPage(), new UserFeedbackPopupPageViewModel(), new Dictionary<string, object> { { "SentryId", lastEventId } });
+            }
+            else
+            {
+                _ = DisplayAlert("Well", "Nothing broke so there's no need to give feedbacks...", "OK");
+            }
+        };
+
+        private Action DoLogin => () =>
+        {
+            try
+            {
+                var authService = new AuthService();
+                authService.DoLogin("admin", "1234");
+            }
+            catch(Exception ex)
+            {
+                SentrySdk.CaptureException(ex);
+                DisplayAlert("Whoops", "A handled exception happened", "OK");
+            }
+        };
+
+        private Action Unhandle => () =>
+        {
+            var authService = new AuthService();
+            authService.DoLogin("admin", "1234");
         };
 
     }

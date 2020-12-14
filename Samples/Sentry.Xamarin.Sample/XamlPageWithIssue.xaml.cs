@@ -2,7 +2,7 @@
 using System;
 using Xamarin.Forms;
 
-namespace ContribSentry.Sample
+namespace Sample.Xamarin.Core
 {
     public partial class XamlPageWithIssue : ContentPage
     {

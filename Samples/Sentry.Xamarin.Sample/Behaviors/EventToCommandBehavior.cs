@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Sentry.Xamarin.Sample.Behaviors
+namespace Sample.Xamarin.Core.Behaviors
 {
     public class EventToCommandBehavior : BehaviorBase<VisualElement>
     {

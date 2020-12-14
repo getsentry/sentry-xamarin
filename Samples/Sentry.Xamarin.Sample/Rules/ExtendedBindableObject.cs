@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Xamarin.Forms;
 
-namespace Sentry.Xamarin.Sample.Rules
+namespace Sample.Xamarin.Core.Rules
 {
     public class ExtendedBindableObject : BindableObject
     {

@@ -1,20 +1,15 @@
 ﻿using Foundation;
-using Sentry;
-using Sentry.Xamarin.Forms;
+using Sentry.Xamarin.Sample.Helpers;
 using UIKit;
 
-namespace ContribSentry.Sample.iOS
+namespace Sentry.Xamarin.Sample.iOS
 {
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            SentrySdk.Init(o =>
-            {
-                o.Dsn = "https://80aed643f81249d4bed3e30687b310ab@o447951.ingest.sentry.io/5428537";
-                o.AddIntegration(new SentryXamarinFormsIntegration());
-            });
+            SentryInitializer.Init();
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.SetFlags("Shapes_Experimental");
             global::Xamarin.Forms.Forms.Init();

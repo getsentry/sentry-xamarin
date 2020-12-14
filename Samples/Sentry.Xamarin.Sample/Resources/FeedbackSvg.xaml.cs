@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Sentry.Xamarin.Sample.Resources
+namespace Sample.Xamarin.Core.Resources
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FeedbackSvg : ContentView

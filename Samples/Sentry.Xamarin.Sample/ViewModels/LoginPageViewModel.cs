@@ -1,12 +1,12 @@
-﻿using ContribSentry.Sample;
-using ContribSentry.Sample.Views;
-using Sentry.Protocol;
-using Sentry.Xamarin.Sample.Interfaces;
-using Sentry.Xamarin.Sample.Services;
+﻿using Sentry.Protocol;
+using Sample.Xamarin.Core.Interfaces;
+using Sample.Xamarin.Core.Services;
+using Sample.Xamarin.Core.Views;
 using System;
 using Xamarin.Forms;
+using Sentry;
 
-namespace Sentry.Xamarin.Sample.ViewModels
+namespace Sample.Xamarin.Core.ViewModels
 {
     public class LoginPageViewModel : ApplicationBridge
     {
@@ -28,7 +28,10 @@ namespace Sentry.Xamarin.Sample.ViewModels
             if (authenticate.Item1)
                 
             {
-                ReplacePage(new NavigationPage(new MainPage()));
+                ReplacePage(new NavigationPage(new MainPage())
+                {
+                    BarBackgroundColor = Color.FromRgb(46, 14, 51)
+                });
             }
             else
             {

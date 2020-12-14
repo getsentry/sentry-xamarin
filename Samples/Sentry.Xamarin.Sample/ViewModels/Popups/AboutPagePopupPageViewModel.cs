@@ -1,12 +1,13 @@
 ﻿using Sentry.Protocol;
-using Sentry.Xamarin.Sample.Interfaces;
-using Sentry.Xamarin.Sample.Views.Popups;
+using Sample.Xamarin.Core.Interfaces;
+using Sample.Xamarin.Core.Views.Popups;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Browser = Xamarin.Essentials.Browser;
+using Sentry;
 
-namespace Sentry.Xamarin.Sample.ViewModels.Popups
+namespace Sample.Xamarin.Core.ViewModels.Popups
 {
     public class AboutPagePopupPageViewModel : ApplicationBridge
     {

@@ -7,7 +7,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Sentry.Xamarin.Sample.CustomControls
+namespace Sample.Xamarin.Core.CustomControls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EntryValidation : ContentView
@@ -54,6 +54,14 @@ namespace Sentry.Xamarin.Sample.CustomControls
               BindingMode.TwoWay,
               propertyChanged: PlaceholderPropertyChanged);
 
+        public static readonly BindableProperty ErrorMessageProperty = BindableProperty.Create(
+                "ErrorMessage",
+                typeof(string),
+                typeof(EntryValidation),
+                null,
+                BindingMode.TwoWay,
+                propertyChanged: ErrorMessagePropertyChanged);
+
         public static readonly BindableProperty TextchangedProperty = BindableProperty.Create(
             "Textchanged",
             typeof(ICommand),
@@ -82,6 +90,13 @@ namespace Sentry.Xamarin.Sample.CustomControls
             control.EntryInput.Placeholder = control.Placeholder;
         }
 
+        private static void ErrorMessagePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var control = (EntryValidation)bindable;
+            control.ErrorMessage = (string)newValue;
+            control.ErrorLabel.Text = control.ErrorMessage;
+        }
+
         public bool Invalid
         {
             get => (bool)GetValue(InvalidProperty);
@@ -100,6 +115,12 @@ namespace Sentry.Xamarin.Sample.CustomControls
         {
             get => (string)GetValue(TextProperty);
             set => SetValue(TextProperty, value);
+        }
+
+        public string ErrorMessage
+        {
+            get => (string)GetValue(ErrorMessageProperty);
+            set => SetValue(ErrorMessageProperty, value);
         }
 
         public ICommand Textchanged

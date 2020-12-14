@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sentry.Xamarin.Sample.ViewModels
+namespace Sample.Xamarin.Core.ViewModels
 {
     class DiscoPageViewModel
     {

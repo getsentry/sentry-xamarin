@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Sentry.Xamarin.Sample.Query
+namespace Sample.Xamarin.Core.Query
 {
     public class SentryUserFeedback
     {
