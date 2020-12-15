@@ -143,4 +143,13 @@
       <Name>Sample.Xamarin.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\disco_light.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\login_background_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\login_background_top.png" />
+  </ItemGroup>
 </Project>
