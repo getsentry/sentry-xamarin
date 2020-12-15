@@ -22,7 +22,11 @@
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
-        <Frame CornerRadius="20">
+        <Frame CornerRadius="20"
+           WidthRequest="{OnIdiom Phone=0, Watch=0, Default=350}"
+           HeightRequest="{OnIdiom Phone=0, Watch=0, Default=500}"
+           HorizontalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}"
+           VerticalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}">
             <Grid Background="{AppThemeBinding Light=White, Dark='#222222'}"
                   WidthRequest="{OnIdiom Default=0, Desktop=300, Tablet=300}"
                   RowSpacing="0"
