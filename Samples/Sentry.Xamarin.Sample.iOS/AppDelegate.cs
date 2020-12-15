@@ -1,5 +1,6 @@
 ﻿using Foundation;
-using Sentry.Xamarin.Sample.Helpers;
+using Sample.Xamarin.Core;
+using Sample.Xamarin.Core.Helpers;
 using UIKit;
 
 namespace Sentry.Xamarin.Sample.iOS

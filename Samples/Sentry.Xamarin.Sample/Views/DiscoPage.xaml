@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <Grid
             RowDefinitions="*">
-            <Image Source="disco_light" 
+            <Image Source="disco_light.gif" 
                    IsAnimationPlaying="True" 
                    x:Name="DiscoGif"
                    Aspect="Fill"/>

@@ -26,15 +26,16 @@
     <ContentPage.Content>
         <Grid
             RowDefinitions="Auto, *">
-            <Image Source="login_background_top"
+            <Image Source="login_background_top.png"
                    Grid.Row="0"
+                   Aspect="AspectFill"
                    TranslationY="-255">
                 <Image.Behaviors>
                     <xamanimation:BeginAnimationBehavior
                         Animation="{StaticResource TranslateBackground}"/>
                 </Image.Behaviors>
             </Image>
-            <Image Source="login_background_logo"
+            <Image Source="login_background_logo.png"
                    Grid.Row="0"
                    Opacity="0">
                 <Image.Behaviors>   

@@ -4,7 +4,7 @@
              x:Class="Sample.Xamarin.Core.Resources.PopupSvg">
   <ContentView.Content>
     <Path                  
-            Fill="Black" 
+            Fill="{AppThemeBinding Dark=White, Light=Black}"
             Aspect="Fill"
             Data="M50.5,0h-6c-0.552,0-1,0.448-1,1h-30c0-0.552-0.448-1-1-1h-5h-5c-0.552,0-1,0.448-1,1v48.506C1.5,51.433,3.07,53,5,53
 			c0.98,0,1.864-0.407,2.5-1.056C8.136,52.593,9.02,53,10,53c1.93,0,3.5-1.567,3.5-3.494V46h30v3c0,2.206,1.794,4,4,4s4-1.794,4-4V1
