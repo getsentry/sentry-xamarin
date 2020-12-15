@@ -23,16 +23,16 @@
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
         <Frame CornerRadius="20"
-           WidthRequest="{OnIdiom Phone=0, Watch=0, Default=350}"
-           HeightRequest="{OnIdiom Phone=0, Watch=0, Default=500}"
+           WidthRequest="{OnIdiom Phone=-1, Watch=-1, Default=350}"
+           HeightRequest="{OnIdiom Phone=-1, Watch=-1, Default=500}"
            HorizontalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}"
-           VerticalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}">
+           VerticalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}"
+            Padding="0">
             <Grid Background="{AppThemeBinding Light=White, Dark='#222222'}"
-                  WidthRequest="{OnIdiom Default=0, Desktop=300, Tablet=300}"
                   RowSpacing="0"
                   ColumnSpacing="0"
                   RowDefinitions="Auto, *, Auto">
-                <StackLayout BackgroundColor="{AppThemeBinding Light='#F575204', Dark='#F0E313'}"
+                <StackLayout BackgroundColor="{AppThemeBinding Light='#F0E313', Dark='#575204'}"
                              Orientation="Horizontal"
                              Padding="20"
                              Grid.Row="0">

@@ -10,13 +10,19 @@
         <viewmodels:MainPageViewModel/>
     </ContentPage.BindingContext>
     <StackLayout Spacing="0">
-        <Frame BackgroundColor="#7114DA" Padding="16" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms with Sentry SDK!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        <Frame BackgroundColor="#7114DA" 
+               Padding="16" 
+               CornerRadius="0">
+            <Label Text="Welcome to Xamarin.Forms with Sentry SDK!" 
+                   HorizontalTextAlignment="Center" 
+                   TextColor="White" 
+                   FontSize="{OnIdiom Phone=36, Desktop=36, Tablet=36, TV=8, Default=36}"/>
         </Frame>
         <ScrollView>
             <FlexLayout
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
+                Margin="{OnIdiom Default='0', TV='30,0,0,0'}"
                 Wrap="Wrap"
                 AlignItems="Center"
                 AlignContent="SpaceBetween">
@@ -28,8 +34,8 @@
                 <Frame BorderColor="#A8A2A2" 
                        CornerRadius="8"
                        Margin="5"
-                       HeightRequest="150"
-                       WidthRequest="150">
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding DiscoCmd}"/>
                     </Frame.GestureRecognizers>
@@ -43,8 +49,8 @@
                 <Frame BorderColor="#A8A2A2" 
                        Margin="5"
                        CornerRadius="8" 
-                       HeightRequest="150"
-                       WidthRequest="150">
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PopupCmd}"/>
                     </Frame.GestureRecognizers>
@@ -59,8 +65,8 @@
                 <Frame BorderColor="#A8A2A2" 
                        Margin="5"
                        CornerRadius="8" 
-                       HeightRequest="150"
-                       WidthRequest="150">
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding BrokenViewCmd}"/>
                     </Frame.GestureRecognizers>
@@ -75,8 +81,8 @@
                 <Frame BorderColor="#A8A2A2" 
                        Margin="5"
                        CornerRadius="8" 
-                       HeightRequest="150"
-                       WidthRequest="150">
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding FeedbackCmd}"/>
                     </Frame.GestureRecognizers>
@@ -90,8 +96,8 @@
                 <Frame BorderColor="#A8A2A2" 
                        Margin="5"
                        CornerRadius="8" 
-                       HeightRequest="150"
-                       WidthRequest="150">
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding HandledCmd}"/>
                     </Frame.GestureRecognizers>
@@ -105,8 +111,8 @@
                 <Frame BorderColor="#A8A2A2" 
                        Margin="5"
                        CornerRadius="8" 
-                       HeightRequest="150"
-                       WidthRequest="150">
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding UnhandledCmd}"/>
                     </Frame.GestureRecognizers>

@@ -20,18 +20,18 @@
             EasingOut="SinIn"
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
-    <Frame WidthRequest="{OnIdiom Phone=0, Watch=0, Default=350}"
-           HeightRequest="{OnIdiom Phone=0, Watch=0, Default=500}"
+    <Frame WidthRequest="{OnIdiom Phone=-1, Watch=-1, Default=350}"
+           HeightRequest="{OnIdiom Phone=-1, Watch=-1, Default=500}"
            HorizontalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}"
            VerticalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}"
            CornerRadius="20"
-           Margin="50">
+           Margin="{OnIdiom Default=50, TV=15}">
         <StackLayout Background="{AppThemeBinding Light=White, Dark='#222222'}">
             <ScrollView>
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="      🚧"
+                            <Span Text="{OnIdiom Default='      🚧', TV='  🚧'}"
                                   FontSize="64"/>
                             <Span Text="&#x0a;&#x0a;"/>
                             <Span Text="It seems like you would like to see some popups in action, well, today is your lucky day"/>
