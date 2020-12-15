@@ -16,9 +16,8 @@
             EasingOut="SinIn"
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
-    <StackLayout Background="White" 
-                 VerticalOptions="End"
-                 >
+    <StackLayout Background="{AppThemeBinding Light=White, Dark='#222222'}"
+                 VerticalOptions="End">
         <Label FontSize="Title"
                FontAttributes="Bold"
                Margin="10, 50, 0, 100">

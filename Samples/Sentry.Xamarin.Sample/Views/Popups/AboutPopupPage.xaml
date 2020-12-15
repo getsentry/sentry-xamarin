@@ -20,9 +20,13 @@
             EasingOut="SinIn"
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
-    <Frame CornerRadius="20"
+    <Frame WidthRequest="{OnIdiom Phone=0, Watch=0, Default=350}"
+           HeightRequest="{OnIdiom Phone=0, Watch=0, Default=500}"
+           HorizontalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}"
+           VerticalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}"
+           CornerRadius="20"
            Margin="50">
-        <StackLayout Background="White">
+        <StackLayout Background="{AppThemeBinding Light=White, Dark='#222222'}">
             <ScrollView>
                 <Label>
                     <Label.FormattedText>

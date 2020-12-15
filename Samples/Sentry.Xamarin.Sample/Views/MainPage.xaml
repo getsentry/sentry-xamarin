@@ -15,9 +15,11 @@
         </Frame>
         <ScrollView>
             <FlexLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
                 Wrap="Wrap"
-                AlignItems="Start"
-                AlignContent="Start">
+                AlignItems="Center"
+                AlignContent="SpaceBetween">
                 <FlexLayout.Behaviors>
                     <xamanimation:EntranceTransition
 	                    Duration="300"/>

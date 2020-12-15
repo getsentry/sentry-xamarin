@@ -22,14 +22,13 @@
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
-        <Frame CornerRadius="20"
-               Margin="50"
-               Padding="0">
-            <Grid BackgroundColor="White"
+        <Frame CornerRadius="20">
+            <Grid Background="{AppThemeBinding Light=White, Dark='#222222'}"
+                  WidthRequest="{OnIdiom Default=0, Desktop=300, Tablet=300}"
                   RowSpacing="0"
                   ColumnSpacing="0"
                   RowDefinitions="Auto, *, Auto">
-                <StackLayout BackgroundColor="#F0E313"
+                <StackLayout BackgroundColor="{AppThemeBinding Light='#F575204', Dark='#F0E313'}"
                              Orientation="Horizontal"
                              Padding="20"
                              Grid.Row="0">
