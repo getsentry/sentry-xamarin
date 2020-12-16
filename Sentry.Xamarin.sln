@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Xamarin.Droid", "Sam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Xamarin.iOS", "Samples\Sample.Xamarin.iOS\Sample.Xamarin.iOS.csproj", "{2863A4FF-3167-4085-AE99-ABC1AAFE99D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Xamarin.uwp", "Samples\Sample.Xamarin.uwp\Sample.Xamarin.uwp.csproj", "{73EA9FB3-ECD7-4FA6-90C4-7A2C3A3AFC17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Xamarin.UWP", "Samples\Sample.Xamarin.UWP\Sample.Xamarin.UWP.csproj", "{73EA9FB3-ECD7-4FA6-90C4-7A2C3A3AFC17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
