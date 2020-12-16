@@ -17,8 +17,7 @@ namespace Sample.Xamarin.Core.Helpers
             SentrySdk.Init(o =>
             {
                 o.Debug = true;
-             //   o.CacheDirectoryPath = path;
-                o.Dsn = "https://80aed643f81249d4bed3e30687b310ab@o447951.ingest.sentry.io/5428537";
+                o.Dsn = "https://5a193123a9b841bc8d8e42531e7242a1@o447951.ingest.sentry.io/5560112";
                 o.AddIntegration(new SentryXamarinFormsIntegration());
             });
         }
