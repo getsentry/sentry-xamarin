@@ -15,6 +15,8 @@ namespace Sentry.Xamarin.Forms.Internals
         private Application _application;
         internal bool Implemented => true;
 
+        internal NativeIntegration(SentryXamarinOptions options) { }
+
         public void Register(IHub hub, SentryOptions options) 
         {
             _hub = hub;

@@ -3,6 +3,7 @@ using Sentry.Protocol;
 using Xamarin.Forms.Internals;
 using Sentry.Xamarin.Forms.Internals;
 using Xamarin.Forms;
+using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Sentry.Xamarin.Forms.Extensions;
