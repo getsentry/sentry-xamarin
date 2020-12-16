@@ -8,7 +8,8 @@ using Xamarin.Forms;
 namespace Sample.Xamarin.Core.Interfaces
 {
     /// <summary>
-    /// Hides the UI Tasks
+    /// Simple navigation service that hides the direct access to the MainPage for navigation, but also, 
+    /// simplifies passing argument to viewmodels.
     /// </summary>
     public class NavigationService : ExtendedBindableObject
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -100,10 +95,7 @@ namespace Sample.Xamarin.Core.CustomControls
         public bool Invalid
         {
             get => (bool)GetValue(InvalidProperty);
-            set
-            {
-                SetValue(InvalidProperty, value);
-            }
+            set => SetValue(InvalidProperty, value);
         }
         public string Placeholder
         {

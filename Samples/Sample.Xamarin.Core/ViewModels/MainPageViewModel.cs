@@ -22,7 +22,6 @@ namespace Sample.Xamarin.Core.ViewModels
 
         public MainPageViewModel()
         {
-
             DiscoCmd = new Command(GotoDisco);
             PopupCmd = new Command(ShowAboutPopup);
             HandledCmd = new Command(DoLogin);
@@ -78,6 +77,5 @@ namespace Sample.Xamarin.Core.ViewModels
             var authService = new AuthService();
             authService.DoLogin("admin", "1234");
         };
-
     }
 }

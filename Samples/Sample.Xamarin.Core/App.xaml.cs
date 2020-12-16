@@ -1,5 +1,4 @@
-﻿using Sentry;
-using Sample.Xamarin.Core.Views;
+﻿using Sample.Xamarin.Core.Views;
 using Xamarin.Forms;
 
 namespace Sample.Xamarin.Core
@@ -8,7 +7,6 @@ namespace Sample.Xamarin.Core
     {
         public App()
         {
-
             InitializeComponent();
             MainPage = new LoginPage();
         }

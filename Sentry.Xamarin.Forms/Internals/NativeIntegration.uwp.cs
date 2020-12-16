@@ -47,7 +47,6 @@ namespace Sentry.Xamarin.Forms.Internals
             Handle(exception);
         }
 
-
         [HandleProcessCorruptedStateExceptions, SecurityCritical]
         internal void Handle(Exception exception)
         {
@@ -61,7 +60,6 @@ namespace Sentry.Xamarin.Forms.Internals
                 (_hub as IDisposable)?.Dispose();
             }
         }
-
 
         private void OnResume(object sender, LeavingBackgroundEventArgs e)
             => SentrySdk.AddBreadcrumb("OnResume", "app.lifecycle", "event");

@@ -10,8 +10,6 @@ namespace Sample.Xamarin.Core.Views
     {
         private CancellationTokenSource _tokenSource = new CancellationTokenSource();
         private CancellationToken _token;
-
-
         private Color _originalBackgroundColor { get; set; }
         public DiscoPage()
         {
