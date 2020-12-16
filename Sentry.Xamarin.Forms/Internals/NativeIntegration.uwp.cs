@@ -52,10 +52,9 @@ namespace Sentry.Xamarin.Forms.Internals
         {
             if (exception != null)
             {
-                var st = exception.StackTrace.ToString();
                 exception.Data[Mechanism.HandledKey] = false;
                 exception.Data[Mechanism.MechanismKey] = "Application.UnhandledException";
-                var @eventId = SentrySdk.CaptureException(exception);
+                SentrySdk.CaptureException(exception);
                 SentrySdk.FlushAsync(TimeSpan.FromSeconds(10)).Wait();
                 (_hub as IDisposable)?.Dispose();
             }

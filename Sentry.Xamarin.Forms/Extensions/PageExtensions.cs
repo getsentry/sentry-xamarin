@@ -18,7 +18,7 @@ namespace Sentry.Xamarin.Forms.Extensions
             return new PageInfo()
             {
                 Name = type.Name,
-                BaseType = type.BaseType.Name
+                BaseType = type.BaseType?.Name
             };
         }
     }
