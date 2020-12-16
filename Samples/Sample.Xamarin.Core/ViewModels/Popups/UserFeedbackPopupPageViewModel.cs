@@ -9,7 +9,7 @@ using Sentry;
 
 namespace Sample.Xamarin.Core.ViewModels.Popups
 {
-    public partial class UserFeedbackPopupPageViewModel : ApplicationBridge
+    public partial class UserFeedbackPopupPageViewModel : NavigationService
     {
         private SentryId _id;
         private string _errorShortId;

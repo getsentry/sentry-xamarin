@@ -9,7 +9,7 @@ using Sentry;
 
 namespace Sample.Xamarin.Core.ViewModels.Popups
 {
-    public class AboutPagePopupPageViewModel : ApplicationBridge
+    public class AboutPagePopupPageViewModel : NavigationService
     {
         public Command PluginGithubCmd { get; }
         public Command BuyCmd { get; }

@@ -11,7 +11,7 @@ using Sentry;
 
 namespace Sample.Xamarin.Core.ViewModels
 {
-    public class MainPageViewModel : ApplicationBridge
+    public class MainPageViewModel : NavigationService
     {
         public Command FeedbackCmd {get;}
         public Command HandledCmd { get; }

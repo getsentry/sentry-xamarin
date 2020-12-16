@@ -8,7 +8,7 @@ using Sentry;
 
 namespace Sample.Xamarin.Core.ViewModels
 {
-    public class LoginPageViewModel : ApplicationBridge
+    public class LoginPageViewModel : NavigationService
     {
         private readonly AuthService _authService;
         public string Login { get; set; }

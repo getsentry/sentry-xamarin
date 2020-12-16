@@ -10,7 +10,7 @@ namespace Sample.Xamarin.Core.Interfaces
     /// <summary>
     /// Hides the UI Tasks
     /// </summary>
-    public class ApplicationBridge : ExtendedBindableObject
+    public class NavigationService : ExtendedBindableObject
     {
         public static Task DisplayAlert(string title, string message, string cancel)
             => Application.Current.MainPage.DisplayAlert(title, message, cancel);
@@ -28,7 +28,7 @@ namespace Sample.Xamarin.Core.Interfaces
         public static Task ShowPopup(PopupPage popup)
             => PopupNavigation.Instance.PushAsync(popup);
 
-        public static async Task ShowPopup(PopupPage popup, ApplicationBridge viewModel, Dictionary<string, object> parameters)
+        public static async Task ShowPopup(PopupPage popup, NavigationService viewModel, Dictionary<string, object> parameters)
         {
             await PopupNavigation.Instance.PushAsync(popup);
             popup.BindingContext = viewModel;
