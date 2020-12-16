@@ -32,7 +32,7 @@ namespace Sample.Xamarin.uwp
                 rootFrame.NavigationFailed += OnNavigationFailed;
                 Rg.Plugins.Popup.Popup.Init();
                 global::Xamarin.Forms.Forms.SetFlags("Shapes_Experimental");
-                global::Xamarin.Forms.Forms.Init(e);
+                global::Xamarin.Forms.Forms.Init(e, Rg.Plugins.Popup.Popup.GetExtraAssemblies());
 
                 Window.Current.Content = rootFrame;
             }

@@ -5,6 +5,7 @@ using Sentry.Xamarin.Forms.Internals;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Sentry.Xamarin.Forms.Extensions;
 
 namespace Sentry.Xamarin.Forms
 {
@@ -87,8 +88,8 @@ namespace Sentry.Xamarin.Forms
 
         private void Current_PageDisappearing(object sender, Page e)
         {
-            var type = e.GetType();
-            if (type.BaseType.Name.StartsWith("PopupPage"))
+            var type = e.GetPageType();
+            if (type.BaseType.StartsWith("PopupPage"))
             {
                 SentrySdk.AddBreadcrumb(null,
                     "ui.lifecycle",
@@ -103,14 +104,14 @@ namespace Sentry.Xamarin.Forms
 
         private void Current_PageAppearing(object sender, Page e)
         {
-            var pageType = e.GetType();
+            var pageType = e.GetPageType();
             if (CurrentPage != null && CurrentPage != pageType.Name)
             {
                 if (pageType.Name is "NavigationPage")
                 {
                     return;
                 }
-                if (pageType.BaseType.Name is "PopupPage")
+                if (pageType.BaseType is "PopupPage")
                 {
                     SentrySdk.AddBreadcrumb(null,
                         "ui.lifecycle",
