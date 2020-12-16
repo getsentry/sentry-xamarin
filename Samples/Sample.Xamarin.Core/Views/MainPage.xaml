@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
+             xmlns:resources="clr-namespace:Sample.Xamarin.Core.Resources"
+             xmlns:viewmodels="clr-namespace:Sample.Xamarin.Core.ViewModels"
+             x:Class="Sample.Xamarin.Core.Views.MainPage"
+             Title="Home">
+    <ContentPage.BindingContext>
+        <viewmodels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout Spacing="0">
+        <Frame BackgroundColor="#7114DA" 
+               Padding="16" 
+               CornerRadius="0">
+            <Label Text="Welcome to Xamarin.Forms with Sentry SDK!" 
+                   HorizontalTextAlignment="Center" 
+                   TextColor="White" 
+                   FontSize="{OnIdiom Phone=36, Desktop=36, Tablet=36, TV=8, Default=36}"/>
+        </Frame>
+        <ScrollView>
+            <FlexLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="{OnIdiom Default='0', TV='30,0,0,0'}"
+                Wrap="Wrap"
+                AlignItems="Center"
+                AlignContent="SpaceBetween">
+                <FlexLayout.Behaviors>
+                    <xamanimation:EntranceTransition
+	                    Duration="300"/>
+                </FlexLayout.Behaviors>
+                <!-- https://www.svgrepo.com/svg/296150/disco-ball-club -->
+                <Frame BorderColor="#A8A2A2" 
+                       CornerRadius="8"
+                       Margin="5"
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DiscoCmd}"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:DiscoSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Disco" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PopupCmd}"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:PopupSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Pop-up" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+                <!-- https://www.svgrepo.com/svg/4371/broken-cellphone -->
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BrokenViewCmd}"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:BrokenSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Broken" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FeedbackCmd}"/>
+                    </Frame.GestureRecognizers>
+                        <StackLayout HorizontalOptions="Center">
+                            <resources:FeedbackSvg HeightRequest="120" WidthRequest="120"/>
+                            <Label Text="Feedback" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                        </StackLayout>
+                </Frame>
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HandledCmd}"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:BugSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Handled Error" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UnhandledCmd}"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:UnhandledSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Unhandled Error" 
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </FlexLayout>
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sample.Xamarin.Core.Resources.BrokenSvg">
+  <ContentView.Content>
+        <!--https://www.svgrepo.com/svg/4371/broken-cellphone-->
+        <Path IsEnabled="False"
+            Fill="{AppThemeBinding Dark=White, Light=Black}" 
+            Aspect="Fill"
+            Data="M29.954,29.875l-1.242-1.802V6.336c0-1.3-1.063-2.364-2.363-2.364H12.115L9.38,0L9.175,0.142l1.323,1.92H9.472
+		c-1.3,0-2.364,1.064-2.364,2.365v30.272c0,1.3,1.064,2.363,2.364,2.363h15.604c1.3,0,2.364-1.062,2.364-2.363v-8.036l2.311,3.354
+		L29.954,29.875z M16.049,5.676h4.993c0.157,0,0.285,0.128,0.285,0.287c0,0.158-0.128,0.286-0.285,0.286h-4.993
+		c-0.158,0-0.286-0.128-0.286-0.286C15.763,5.804,15.892,5.676,16.049,5.676z M27.067,7.721v17.964L14.696,7.721H27.067z
+		 M17.272,35.882c-0.652,0-1.182-0.528-1.182-1.182s0.529-1.183,1.182-1.183s1.182,0.529,1.182,1.183S17.924,35.882,17.272,35.882z
+		 M25.794,32.688H8.751V5.812h4.328l12.714,18.463V32.688z"/>
+   </ContentView.Content>
+</ContentView>

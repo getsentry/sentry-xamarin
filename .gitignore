@@ -338,3 +338,6 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+#Sample Android Resource Designer.
+/Samples/Sample.Xamarin.Droid/Resources/Resource.designer.cs

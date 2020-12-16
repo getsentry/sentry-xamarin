@@ -3,9 +3,10 @@ using Sentry.Protocol;
 using Xamarin.Forms.Internals;
 using Sentry.Xamarin.Forms.Internals;
 using Xamarin.Forms;
+using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System;
+using Sentry.Xamarin.Forms.Extensions;
 
 namespace Sentry.Xamarin.Forms
 {
@@ -104,52 +105,52 @@ private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventAr
     _hub.AddBreadcrumb(e.RequestedTheme.ToString(), "AppTheme.Change", level: BreadcrumbLevel.Info);
 }
 
-private void Current_PageDisappearing(object sender, Page e)
-{
-    var type = e.GetType();
-    if (type.BaseType.Name.StartsWith("PopupPage"))
-    {
-        _hub.AddBreadcrumb(null,
-            "ui.lifecycle",
-            "navigation",
-            new Dictionary<string, string>
+        private void Current_PageDisappearing(object sender, Page e)
+        {
+            var type = e.GetPageType();
+            if (type.BaseType.StartsWith("PopupPage"))
             {
-                ["popup"] = type.Name,
-                ["state"] = "disappearing"
-            }, level: BreadcrumbLevel.Info);
-    }
-}
+                _hub.AddBreadcrumb(null,
+                    "ui.lifecycle",
+                    "navigation",
+                    new Dictionary<string, string>
+                    {
+                        ["popup"] = type.Name,
+                        ["state"] = "disappearing"
+                    }, level: BreadcrumbLevel.Info);
+            }
+        }
 
-private void Current_PageAppearing(object sender, Page e)
-{
-    var pageType = e.GetType();
-    if (CurrentPage != null && CurrentPage != pageType.Name)
-    {
-        if (pageType.Name is "NavigationPage")
+        private void Current_PageAppearing(object sender, Page e)
         {
-            return;
-        }
-        if (pageType.BaseType.Name is "PopupPage")
-        {
-            _hub.AddBreadcrumb(null,
-                "ui.lifecycle",
-                "navigation",
-                new Dictionary<string, string>
+            var pageType = e.GetPageType();
+            if (CurrentPage != null && CurrentPage != pageType.Name)
+            {
+                if (pageType.Name is "NavigationPage")
                 {
-                    ["popup"] = pageType.Name,
-                    ["state"] = "appearing"
-                }, level: BreadcrumbLevel.Info);
-            return;
+                    return;
+                }
+                if (pageType.BaseType is "PopupPage")
+                {
+                    _hub.AddBreadcrumb(null,
+                        "ui.lifecycle",
+                        "navigation",
+                        new Dictionary<string, string>
+                        {
+                            ["popup"] = pageType.Name,
+                            ["state"] = "appearing"
+                        }, level: BreadcrumbLevel.Info);
+                    return;
+                }
+                else
+                {
+                    _hub.AddBreadcrumb(null,
+                        "navigation",
+                        "navigation",
+                        new Dictionary<string, string>() { { "from", $"/{CurrentPage}" }, { "to", $"/{pageType.Name}" } });
+                }
+            }
+            CurrentPage = pageType.Name;
         }
-        else
-        {
-            _hub.AddBreadcrumb(null,
-                "navigation",
-                "navigation",
-                new Dictionary<string, string>() { { "from", $"/{CurrentPage}" }, { "to", $"/{pageType.Name}" } });
-        }
-    }
-    CurrentPage = pageType.Name;
-}
     }
 }

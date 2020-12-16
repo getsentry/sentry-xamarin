@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
+             xmlns:popups="clr-namespace:Sample.Xamarin.Core.ViewModels.Popups"
+             xmlns:Behaviors="clr-namespace:Sample.Xamarin.Core.Behaviors" xmlns:customcontrols="clr-namespace:Sample.Xamarin.Core.CustomControls"
+                 x:Class="Sample.Xamarin.Core.Views.Popups.UserFeedbackPopupPage">
+    <pages:PopupPage.BindingContext>
+        <popups:UserFeedbackPopupPageViewModel/>
+    </pages:PopupPage.BindingContext>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Content>
+        <Frame CornerRadius="20"
+           WidthRequest="{OnIdiom Phone=-1, Watch=-1, Default=350}"
+           HeightRequest="{OnIdiom Phone=-1, Watch=-1, Default=500}"
+           HorizontalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}"
+           VerticalOptions="{OnIdiom Phone=CenterAndExpand, Watch=CenterAndExpand, Default=Center}"
+            Padding="0">
+            <Grid Background="{AppThemeBinding Light=White, Dark='#222222'}"
+                  RowSpacing="0"
+                  ColumnSpacing="0"
+                  RowDefinitions="Auto, *, Auto">
+                <StackLayout BackgroundColor="{AppThemeBinding Light='#F0E313', Dark='#575204'}"
+                             Orientation="Horizontal"
+                             Padding="20"
+                             Grid.Row="0">
+                    <Label Text="User Feedback"
+                           FontSize="Title"
+                           HorizontalOptions="StartAndExpand"
+                           FontAttributes="Bold"/>
+                    <Label Text="🚨"
+                           FontSize="Title"/>
+                </StackLayout>
+                <ScrollView Grid.Row="1"
+                             Margin="10,10,10,0"
+                             MinimumHeightRequest="400">
+                    <StackLayout>
+                        <Label Text="Whoops, a buggy bug was spotted!"/>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Reference: "/>
+                                    <Span Text="{Binding ErrorShortId}" TextColor="#AAAAAA" FontSize="10"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Entry Placeholder="Name"
+                               Text="{Binding Username, Mode=TwoWay}"/>
+                        <customcontrols:EntryValidation Placeholder="Email" 
+                               Text="{Binding Email, Mode=TwoWay}"
+                               Invalid="{Binding EmailInvalid, Mode=TwoWay}"
+                               ErrorMessage="Invalid email."
+                               Textchanged="{Binding EmailChangedCmd}"/>
+                        <customcontrols:EditorValidation Placeholder="Tell me about what happend."
+                                Text="{Binding Description, Mode=TwoWay}"
+                                Invalid="{Binding DescriptionInvalid, Mode=TwoWay}"
+                                ErrorMessage="Description cannot be empty."
+                                Textchanged="{Binding DescriptionChangedCmd}"/>
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout Orientation="Horizontal"
+                             Grid.Row="2"
+                             Margin="10,0,10,10">
+                    <Button Text="Cancel"
+                            HorizontalOptions="FillAndExpand"
+                            Command="{Binding CancelCmd}"/>
+                    <Button Text="Send"
+                            HorizontalOptions="FillAndExpand"
+                            Command="{Binding SendFeedbackCmd}"/>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

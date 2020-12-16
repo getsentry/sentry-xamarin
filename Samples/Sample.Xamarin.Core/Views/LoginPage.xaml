@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
+             xmlns:viewmodels="clr-namespace:Sample.Xamarin.Core.ViewModels"
+             x:Class="Sample.Xamarin.Core.Views.LoginPage">
+    <ContentPage.BindingContext>
+        <viewmodels:LoginPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xamanimation:TranslateToAnimation
+                x:Key="TranslateBackground"
+                Easing="CubicOut"
+                TranslateY="-1"
+                Delay="800"
+                Duration="1000"/>
+            <xamanimation:FadeToAnimation                
+                x:Key="LogoAppearaing"
+                Easing="SinIn"
+                Delay="1400"
+                Opacity="1"
+                Duration="400"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid
+            RowDefinitions="Auto, *">
+            <Image Source="login_background_top.png"
+                   Grid.Row="0"
+                   Aspect="AspectFill"
+                   HeightRequest="{OnIdiom Default=255, TV=10, Watch=10}"
+                   TranslationY="{OnIdiom Default=-255, TV=-255, Watch=-10}">
+                <Image.Behaviors>
+                    <xamanimation:BeginAnimationBehavior
+                        Animation="{StaticResource TranslateBackground}"/>
+                </Image.Behaviors>
+            </Image>
+            <Image Source="login_background_logo.png"
+                   Grid.Row="0"
+                   Opacity="0">
+                <Image.Behaviors>
+                    <xamanimation:BeginAnimationBehavior                        
+                        Animation="{StaticResource LogoAppearaing}"/>
+                </Image.Behaviors>
+            </Image>
+            <ScrollView Grid.Row="1">
+                <Grid Margin="30"
+                     VerticalOptions="Center"
+                     RowDefinitions="Auto, Auto, Auto, Auto">
+                    <Entry Placeholder="Login"                       
+                           Text="{Binding Login}"
+                           Grid.Row="0"
+                           ReturnType="Next"/>
+                    <Entry Placeholder="Password"
+                           Text="{Binding Password}"
+                           IsPassword="True"
+                           Grid.Row="1"/>
+                    <Button Text="Login"
+                            Margin="0,10,0,0"                        
+                            Command="{Binding LoginCmd}"
+                            Grid.Row="2"/>
+                    <Label Text="Tip: Login and password are 1234"
+                           Grid.Row="3"
+                           Margin="0,0,0,30"/>
+                </Grid>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
 ﻿using Sentry.Integrations;
+using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
@@ -44,7 +45,7 @@ namespace Sentry.Xamarin.Forms.Internals
                 {
                     ["screen"] = SentryXamarinFormsIntegration.CurrentPage,
                     ["state"] = e.State.ToString()
-                }, level: Protocol.BreadcrumbLevel.Info);
+                }, level: BreadcrumbLevel.Info);
         }
     }
 }

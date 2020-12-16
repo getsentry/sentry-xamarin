@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sample.Xamarin.Core.Resources.UnhandledSvg">
+    <ContentView.Content>
+        <!--https://www.svgrepo.com/svg/309848/person-feedback-->
+        <Path IsEnabled="False"                  
+            Fill="{AppThemeBinding Dark=White, Light=Black}"
+            Aspect="Fill"
+            Data="M171.465 68.035L150.628 88.34v62.066l-2.997 1.232c-5.308-21.694-16.464-46.5-31.152-60.77 13.916-8.42 23.28-23.698 23.28-41.116 0-2.927-.257-5.788-.76-8.572L146.737 0l-34.065 6.524c-6.32-3.068-13.408-4.792-20.893-4.792a47.72 47.72 0 0 0-20.894 4.792L36.815 0l7.728 41.182c-.504 2.783-.78 5.645-.78 8.57 0 17.418 9.323 32.697 23.24 41.116-20.735 20.145-34.603 61.294-34.603 85.03 0 30.165 22.755 48.904 59.384 48.904 33.794 0 55.596-15.96 58.797-42.116l30.05-11.77v-69.992l11.777-11.486-20.94-21.404z"/>
+    </ContentView.Content>
+</ContentView>
