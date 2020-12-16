@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sample.Xamarin.Core.Resources.PopupSvg">
   <ContentView.Content>
-    <Path                  
+    <Path IsEnabled="False"                  
             Fill="{AppThemeBinding Dark=White, Light=Black}"
             Aspect="Fill"
             Data="M50.5,0h-6c-0.552,0-1,0.448-1,1h-30c0-0.552-0.448-1-1-1h-5h-5c-0.552,0-1,0.448-1,1v48.506C1.5,51.433,3.07,53,5,53
