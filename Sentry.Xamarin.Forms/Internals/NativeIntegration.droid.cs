@@ -9,22 +9,29 @@ namespace Sentry.Xamarin.Forms.Internals
     internal partial class NativeIntegration : ISdkIntegration
     {
         internal bool Implemented { get; private set; } = true;
+
+        private SentryXamarinOptions _xamarinOptions;
+        private IHub _hub;
+
+        internal NativeIntegration(SentryXamarinOptions options) => _xamarinOptions = options;
+
         public void Register(IHub hub, SentryOptions options)
         {
             try
             {
+                _hub = hub;
                 Platform.ActivityStateChanged += Platform_ActivityStateChanged;
             }
             catch (Exception ex)
             {
                 options.DiagnosticLogger.Log(SentryLevel.Error, "Sentry.Xamarin.Forms failed to attach AtivityStateChanged", ex);
-                Implemented = false;
+                _xamarinOptions.NativeIntegrationEnabled = false;
             }
         }
 
         internal void Unregister()
         {
-            if (Implemented)
+            if (_xamarinOptions.NativeIntegrationEnabled)
             {
                 Platform.ActivityStateChanged -= Platform_ActivityStateChanged;
             }
@@ -32,7 +39,7 @@ namespace Sentry.Xamarin.Forms.Internals
 
         private void Platform_ActivityStateChanged(object sender, ActivityStateChangedEventArgs e)
         {
-            SentrySdk.AddBreadcrumb(null,
+            _hub.AddBreadcrumb(null,
                 "ui.lifecycle",
                 "navigation", data: new Dictionary<string, string>
                 {
