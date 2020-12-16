@@ -27,10 +27,13 @@ jobs:
       - name: Build with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
       - name: Build iOS Sample app
-        run: msbuild Samples/Sentry.Xamarin.Sample.iOS/Sentry.Xamarin.iOS.csproj
+        run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj
         if: matrix.os == 'macos-latest'
       - name: Build Android Sample app
-        run: msbuild Samples/Sentry.Xamarin.Sample.Android/Sentry.Xamarin.Android.csproj
+        run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj
+        if: matrix.os == 'windows-latest'
+      - name: Build UWP Sample app
+        run: msbuild Samples/Sample.Xamarin.uwp/Sample.Xamarin.uwp.csproj
       - name: Artifacts
         uses: actions/upload-artifact@v2
         with:
