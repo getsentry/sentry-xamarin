@@ -340,4 +340,4 @@ ASALocalRun/
 healthchecksdb
 
 #Sample Android Resource Designer.
-/Samples/Sample.Xamarin.Droid/Resource.designer.cs
+/Samples/Sample.Xamarin.Droid/Resources/Resource.designer.cs
