@@ -32,8 +32,13 @@ namespace Sentry.Xamarin.Forms.Internals
                 PlatformVersion = DeviceInfo.VersionString;
                 IsEmulator = DeviceInfo.DeviceType != DeviceType.Physical;
                 Type = DeviceInfo.Idiom.ToString();
-                ScreenDensity = (float)DeviceDisplay.MainDisplayInfo.Density;
-                ScreenResolution = $"{DeviceDisplay.MainDisplayInfo.Height}x{DeviceDisplay.MainDisplayInfo.Width}";
+                try
+                {
+                    ScreenResolution = $"{DeviceDisplay.MainDisplayInfo.Height}x{DeviceDisplay.MainDisplayInfo.Width}";
+                    ScreenDensity = (float)DeviceDisplay.MainDisplayInfo.Density;
+                }
+                //xUnit Throws Exception because no Screen is present.
+                catch { }
             }
         }
 
@@ -51,8 +56,8 @@ namespace Sentry.Xamarin.Forms.Internals
                     @event.Contexts.Device.Model = formsContext.Model;
                     @event.Contexts.OperatingSystem.Name = formsContext.Platform;
                     @event.Contexts.OperatingSystem.Version = formsContext.PlatformVersion;
-                    @event.Contexts.Device.ScreenDensity = formsContext.ScreenDensity;
                     @event.Contexts.Device.ScreenResolution = formsContext.ScreenResolution;
+                    @event.Contexts.Device.ScreenDensity = formsContext.ScreenDensity;
                     if (_ConnectivityStatusAllowed)
                     {
                         @event.Contexts.Device.IsOnline = Connectivity.NetworkAccess == NetworkAccess.Internet;
