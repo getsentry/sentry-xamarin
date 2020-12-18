@@ -4,14 +4,6 @@
 		<TargetFrameworks>netstandard2.0;monoandroid10.0;Xamarinios10;</TargetFrameworks>
 		<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">$(TargetFrameworks);uap10.0.16299;</TargetFrameworks>
 		<NoWarn Condition="$(TargetFramework) == 'netstandard2.0'">$(NoWarn);RS0017</NoWarn>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Authors>Lucas Zimerman</Authors>
-		<Company>Lucas Zimerman</Company>
-		<Description>Enhances the support of Sentry.NET SDK with Xamarin Forms/Android/IOS Apps.</Description>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-<!--		<IncludeSymbols>true</IncludeSymbols> -->
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<_WriteTelemetryProperties>false</_WriteTelemetryProperties>
 	</PropertyGroup>
 	<ItemGroup>		
 		<Compile Remove="Internals\*.netstandard.cs" />
