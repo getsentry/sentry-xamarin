@@ -3,6 +3,9 @@ using Sentry.Xamarin.Forms.Extensions;
 
 namespace Sentry
 {
+    /// <summary>
+    /// Extend SentryOptions by allowing it to manipulate options from Sentry Xamarin Forms.
+    /// </summary>
     public static class SentryOptionsExtensions
     {
         /// <summary>
