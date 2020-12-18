@@ -24,7 +24,7 @@ jobs:
       - run: nuget restore Sentry.Xamarin.sln
       - uses: microsoft/setup-msbuild@v1.0.2
         if: matrix.os == 'windows-latest'
-      - name: Build with MSBuild
+      - name: Build Solution with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
       - name: Build iOS Sample app
         run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj
@@ -33,7 +33,14 @@ jobs:
         run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj
         if: matrix.os == 'windows-latest'
       - name: Build UWP Sample app
-        run: msbuild Samples/Sample.Xamarin.uwp/Sample.Xamarin.uwp.csproj
+        run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64;Configuration=Release
+        if: matrix.os == 'windows-latest'
+      - name: Build UWP Test Project
+        run: msbuild Tests/Sentry.Xamarin.Forms.Tests.UWP/Sentry.Xamarin.Forms.Tests.UWP.csproj /p:Platform=x64;Configuration=Release
+        if: matrix.os == 'windows-latest'
+      - name: Run UWP Test Project
+        run: vstest.console.exe /Platform:x64 Sentry.Xamarin.Forms.Tests.UWP_1.0.0.0_x64_Test\Sentry.Xamarin.Forms.Tests.UWP_1.0.0.0_x64.appx
+        if: matrix.os == 'windows-latest'
       - name: Artifacts
         uses: actions/upload-artifact@v2
         with:
