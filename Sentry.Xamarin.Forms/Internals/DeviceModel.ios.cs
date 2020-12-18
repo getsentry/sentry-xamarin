@@ -56,7 +56,7 @@ namespace Sentry.Xamarin.Forms.Internals
             return "Unknown";
         }
 
-        public string GetModel()
+        internal string GetModel()
         {
             string hardware = FindVersion();
             if (hardware == "i386" || hardware == "x86_64")

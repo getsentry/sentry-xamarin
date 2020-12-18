@@ -6,6 +6,9 @@ using Xamarin.Essentials;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
+    /// <summary>
+    /// An event processor that populates the Event with xamarin specific Tags.
+    /// </summary>
     public partial class XamarinFormsEventProcessor : ISentryEventProcessor
     {
         private Lazy<FormsContext> _formsContext = new Lazy<FormsContext>(() => new FormsContext());
@@ -15,16 +18,16 @@ namespace Sentry.Xamarin.Forms.Internals
 
         private class FormsContext
         {
-            public string Manufacturer { get; }
-            public string Model { get; }
-            public string Platform { get; }
-            public string PlatformVersion { get; }
-            public bool IsEmulator { get; }
-            public string Type { get; }
-            public float ScreenDensity { get; }
-            public string ScreenResolution { get; }
+            internal string Manufacturer { get; }
+            internal string Model { get; }
+            internal string Platform { get; }
+            internal string PlatformVersion { get; }
+            internal bool IsEmulator { get; }
+            internal string Type { get; }
+            internal float ScreenDensity { get; }
+            internal string ScreenResolution { get; }
 
-            public FormsContext()
+            internal FormsContext()
             {
                 Manufacturer = DeviceInfo.Manufacturer.FilterUnknownOrEmpty();
                 Model = DeviceInfo.Model.FilterUnknownOrEmpty();
@@ -37,8 +40,17 @@ namespace Sentry.Xamarin.Forms.Internals
             }
         }
 
+        /// <summary>
+        /// The NativeEventProcessor contructor.
+        /// </summary>
+        /// <param name="options">The Sentry options.</param>
         public XamarinFormsEventProcessor(SentryOptions options) => _options = options;
 
+        /// <summary>
+        /// Applies the Xamarin Tags and Context.
+        /// </summary>
+        /// <param name="event">The event to be applied.</param>
+        /// <returns>The Sentry event.</returns>
         public SentryEvent Process(SentryEvent @event)
         {
             if (_formsContextLoaded)

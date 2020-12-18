@@ -16,6 +16,11 @@ namespace Sentry.Xamarin.Forms.Internals
 
         internal NativeIntegration(SentryXamarinOptions options) => _xamarinOptions = options;
 
+        /// <summary>
+        /// Initialize the iOS specific code.
+        /// </summary>
+        /// <param name="hub">The hub.</param>
+        /// <param name="options">The Sentry options.</param>
         public void Register(IHub hub, SentryOptions options)
         {
             _hub = hub;
