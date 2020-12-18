@@ -33,10 +33,10 @@ jobs:
         run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj
         if: matrix.os == 'windows-latest'
       - name: Build UWP Sample app
-        run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64;Configuration=Release
+        run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64 /p:Configuration=Release
         if: matrix.os == 'windows-latest'
       - name: Build UWP Test Project
-        run: msbuild Tests/Sentry.Xamarin.Forms.Tests.UWP/Sentry.Xamarin.Forms.Tests.UWP.csproj /p:Platform=x64;Configuration=Release
+        run: msbuild Tests/Sentry.Xamarin.Forms.Tests.UWP/Sentry.Xamarin.Forms.Tests.UWP.csproj /p:Platform=x64 /p:Configuration=Release
         if: matrix.os == 'windows-latest'
       - name: Run UWP Test Project
         run: vstest.console.exe /Platform:x64 Sentry.Xamarin.Forms.Tests.UWP_1.0.0.0_x64_Test\Sentry.Xamarin.Forms.Tests.UWP_1.0.0.0_x64.appx
