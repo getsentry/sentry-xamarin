@@ -49,9 +49,57 @@ SentrySdk.Init(o =>
 
 ```
 
+### Android
+On your MainActivity
+```C#
+public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+{
+    protected override void OnCreate(Bundle savedInstanceState)
+    {
+        SentrySdk.Init(o =>
+        {
+            o.Dsn = new Dsn("yourdsn");
+            o.CacheDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            o.AddIntegration(new SentryXamarinFormsIntegration());
+        });
+        ...
+```
+
+### iOS
+On AppDelegate.cs
+```C#
+public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+{
+    public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+    {
+        SentrySdk.Init(o =>
+        {
+            o.Dsn = new Dsn("yourdsn");
+            o.CacheDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            o.AddIntegration(new SentryXamarinFormsIntegration());
+        });
+        ...
+```
+
+### UWP
+Note: It's recommended to not setup the CacheDirectory due to an issue with Sentry SDK
+On App.Xaml.cs
+```C#
+    sealed partial class App : Application
+    {
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        {
+        SentrySdk.Init(o =>
+        {
+            o.Dsn = new Dsn("yourdsn");
+            o.AddIntegration(new SentryXamarinFormsIntegration());
+        });
+        ...        
+```
+
 ## Limitations
 
-There are no line numbers on stack traces in release builds, and, mono symbolication is not yet supported.
+There are no line numbers on stack traces for UWP and in release builds for Android and iOS, furthermore, mono symbolication is not yet supported.
 
 ## Resources
 
