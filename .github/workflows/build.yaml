@@ -40,8 +40,9 @@ jobs:
         if: matrix.os == 'windows-latest'
       - name: Setup VS Test
         uses: darenm/Setup-VSTest@v1
+        if: matrix.os == 'windows-latest'
       - name: Run UWP Test Project
-        run: vstest.console.exe /Platform:x64 Sentry.Xamarin.Forms.Tests.UWP_1.0.0.0_x64_Test\Sentry.Xamarin.Forms.Tests.UWP_1.0.0.0_x64.appx
+        run: vstest.console.exe /Platform:x64 Tests\Sentry.Xamarin.Forms.Tests.UWP\AppPackages\Sentry.Xamarin.Forms.Tests.UWP_1.0.0.0_x64_Test\Sentry.Xamarin.Forms.Tests.UWP_1.0.0.0_x64.appx
         if: matrix.os == 'windows-latest'
       - name: Artifacts
         uses: actions/upload-artifact@v2
