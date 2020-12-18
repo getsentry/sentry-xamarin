@@ -71,7 +71,7 @@ namespace Sentry.Xamarin.Forms
         //Don't lock the main Thread while you wait for the current application to be created.
         Task.Run(async () =>
             {
-                var application = await GetCurrentApplication();
+                var application = await GetCurrentApplication().ConfigureAwait(false);
                 if (application is null)
                 {
                     options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
@@ -95,7 +95,7 @@ namespace Sentry.Xamarin.Forms
 {
     for (int i = 0; i < 10 && Application.Current is null; i++)
     {
-        await Task.Delay(300);
+        await Task.Delay(300).ConfigureAwait(false);
     }
     return Application.Current;
 }
