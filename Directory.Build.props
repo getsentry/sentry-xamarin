@@ -4,8 +4,6 @@
     <Version>1.0.0-alpha.1</Version>
     <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-<!--<AssemblyOriginatorKeyFile>../../.assets/Sentry.snk</AssemblyOriginatorKeyFile>
-    <SignAssembly>true</SignAssembly>-->
     <Deterministic>true</Deterministic>
     <Features>strict</Features>
   </PropertyGroup>

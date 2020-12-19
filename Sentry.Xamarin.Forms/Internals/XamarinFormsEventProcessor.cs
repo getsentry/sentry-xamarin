@@ -3,6 +3,7 @@ using Sentry.Extensibility;
 using Sentry.Protocol;
 using System;
 using Xamarin.Essentials;
+using Sentry.Reflection;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
@@ -15,6 +16,11 @@ namespace Sentry.Xamarin.Forms.Internals
         private SentryOptions _options;
         private volatile bool _formsContextLoaded = true;
         private volatile bool _ConnectivityStatusAllowed = true;
+
+        internal static readonly SdkVersion NameAndVersion
+            = typeof(XamarinFormsEventProcessor).Assembly.GetNameAndVersion();
+
+        internal static readonly string ProtocolPackageName =  "sentry.dotnet.xamarin-forms";
 
         private class FormsContext
         {
@@ -58,6 +64,16 @@ namespace Sentry.Xamarin.Forms.Internals
                 try
                 {
                     var formsContext = _formsContext.Value;
+
+
+                    if (NameAndVersion.Version != null)
+                    {
+                        @event.Sdk.Name = ProtocolPackageName;
+                        @event.Sdk.Version = NameAndVersion.Version;
+
+                        @event.Sdk.AddPackage(ProtocolPackageName, NameAndVersion.Version);
+                    }
+
                     @event.Contexts.Device.Simulator = formsContext.IsEmulator;
                     @event.Contexts.Device.Manufacturer = formsContext.Manufacturer;
                     @event.Contexts.Device.Model = formsContext.Model;

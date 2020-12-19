@@ -41,8 +41,8 @@ namespace Sentry.Xamarin.Forms
             }
             Instance = this;
             _hub = hub;
-            options.AddEventProcessor(new XamarinFormsEventProcessor(options));
 
+            options.AddEventProcessor(new XamarinFormsEventProcessor(options));
 #if !NETSTANDARD
             options.AddEventProcessor(new NativeEventProcessor(options));
 #endif
