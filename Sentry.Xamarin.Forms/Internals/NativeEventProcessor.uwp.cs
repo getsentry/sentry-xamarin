@@ -44,7 +44,8 @@ namespace Sentry.Xamarin.Forms.Internals
 
                 OsArchitecture = Package.Current.Id.Architecture.ToString();
                 var deviceInfo = new EasClientDeviceInformation();
-                OsName = deviceInfo.OperatingSystem;
+                OsName = char.ToUpper(deviceInfo.OperatingSystem[0]) + 
+                    deviceInfo.OperatingSystem.Remove(0,1).ToLower();
                 DeviceFriendlyName = deviceInfo.FriendlyName;
             }
         }

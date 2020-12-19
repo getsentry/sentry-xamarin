@@ -29,17 +29,21 @@ namespace Sentry.Xamarin.Forms.Internals
             options.DiagnosticLogger = new DebugDiagnosticLogger(options.DiagnosticsLevel);
 
             _application = Application.Current;
-            _application.UnhandledException += NativeHandle;
-            _application.EnteredBackground += OnSleep;
-            _application.LeavingBackground += OnResume;
+            if (_application != null)
+            {
+                _application.UnhandledException += NativeHandle;
+                _application.EnteredBackground += OnSleep;
+                _application.LeavingBackground += OnResume;
+            }
         }
         internal void Unregister() 
         {
-            _application.UnhandledException -= NativeHandle;
-            _application.EnteredBackground -= OnSleep;
-            _application.LeavingBackground -= OnResume;
-
-            _hub = null;
+            if (_application != null)
+            {
+                _application.UnhandledException -= NativeHandle;
+                _application.EnteredBackground -= OnSleep;
+                _application.LeavingBackground -= OnResume;
+            }
         }
 
         [HandleProcessCorruptedStateExceptions, SecurityCritical]
@@ -48,6 +52,7 @@ namespace Sentry.Xamarin.Forms.Internals
             //We need to backup the reference, because the Exception reference last for one access.
             //After that, a new  Exception reference is going to be set into e.Exception.
             var exception = e.Exception;
+
             Unregister();
             Handle(exception);
         }
@@ -59,16 +64,16 @@ namespace Sentry.Xamarin.Forms.Internals
             {
                 exception.Data[Mechanism.HandledKey] = false;
                 exception.Data[Mechanism.MechanismKey] = "Application.UnhandledException";
-                SentrySdk.CaptureException(exception);
-                SentrySdk.FlushAsync(TimeSpan.FromSeconds(10)).Wait();
+                _hub.CaptureException(exception);
+                _hub.FlushAsync(TimeSpan.FromSeconds(10)).Wait();
                 (_hub as IDisposable)?.Dispose();
             }
         }
 
         private void OnResume(object sender, LeavingBackgroundEventArgs e)
-            => SentrySdk.AddBreadcrumb("OnResume", "app.lifecycle", "event");
+            => _hub.AddBreadcrumb("OnResume", "app.lifecycle", "event");
 
         private void OnSleep(object sender, EnteredBackgroundEventArgs e)
-            => SentrySdk.AddBreadcrumb("OnSleep", "app.lifecycle", "event");
+            => _hub.AddBreadcrumb("OnSleep", "app.lifecycle", "event");
     }
 }
