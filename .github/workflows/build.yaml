@@ -44,6 +44,6 @@ jobs:
       - name: Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: Sentry.Xamarin.Forms.1.0.0.nupkg
+          name: Sentry.Xamarin.Forms.nupkg
           path: |
-            ${{ github.workspace }}/Sentry.Xamarin.Forms/bin/Release/Sentry.Xamarin.Forms.1.0.0.nupkg
+            ${{ github.workspace }}/Sentry.Xamarin.Forms/bin/Release/Sentry.Xamarin.Forms.*nupkg
