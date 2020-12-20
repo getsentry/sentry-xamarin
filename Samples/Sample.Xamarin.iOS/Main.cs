@@ -2,7 +2,7 @@
 
 namespace Sentry.Xamarin.Sample.iOS
 {
-    public class Application
+    public static class Application
     {
         static void Main(string[] args)
         {

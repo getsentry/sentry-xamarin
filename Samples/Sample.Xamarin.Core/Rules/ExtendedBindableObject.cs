@@ -17,7 +17,7 @@ namespace Sample.Xamarin.Core.Rules
         {
             MemberExpression operand;
             LambdaExpression lambdaExpression = (LambdaExpression)expression;
-            if (lambdaExpression.Body as UnaryExpression != null)
+            if (lambdaExpression.Body is UnaryExpression)
             {
                 UnaryExpression body = (UnaryExpression)lambdaExpression.Body;
                 operand = (MemberExpression)body.Operand;

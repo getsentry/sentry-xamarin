@@ -17,6 +17,11 @@ namespace Sentry.Xamarin.Forms.Internals
 
         internal NativeIntegration(SentryXamarinOptions options) { }
 
+        /// <summary>
+        /// Initialize the UWP specific code.
+        /// </summary>
+        /// <param name="hub">The hub.</param>
+        /// <param name="options">The Sentry options.</param>
         public void Register(IHub hub, SentryOptions options) 
         {
             _hub = hub;

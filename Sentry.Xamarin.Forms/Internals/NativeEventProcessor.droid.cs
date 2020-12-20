@@ -7,18 +7,25 @@ using Sentry.Xamarin.Forms.Extensions;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
+    /// <summary>
+    /// An event processor that populates the Event with Android specific Tags.
+    /// </summary>
     public partial class NativeEventProcessor : ISentryEventProcessor
     {
         private Lazy<AndroidContext> _androidContext = new Lazy<AndroidContext>(() => new AndroidContext());
         private SentryOptions _options;
         private volatile bool _androidContextLoaded = true;
 
+        /// <summary>
+        /// The NativeEventProcessor contructor.
+        /// </summary>
+        /// <param name="options">The Sentry options.</param>
         public NativeEventProcessor(SentryOptions options) => _options = options;
         private class AndroidContext
         {
-            public long? MemorySize { get; }
+            internal long? MemorySize { get; }
 
-            public string CpuModel { get; }
+            internal string CpuModel { get; }
             private long? GetAvaliableMemory()
             {
                 try
@@ -54,7 +61,7 @@ namespace Sentry.Xamarin.Forms.Internals
                 return $"{Build.Board}";
             }
 
-            public long? GetAvaliableRom()
+            internal long? GetAvaliableRom()
             {
                 try
                 {
@@ -65,13 +72,18 @@ namespace Sentry.Xamarin.Forms.Internals
                 return null;
             }
 
-            public AndroidContext()
+            internal AndroidContext()
             {
                 MemorySize = GetAvaliableMemory();
                 CpuModel = GetCpuModel().FilterUnknownOrEmpty();
             }
         }
 
+        /// <summary>
+        /// Applies the Android Tags and Context.
+        /// </summary>
+        /// <param name="event">The event to be applied.</param>
+        /// <returns>The Sentry event.</returns>
         public SentryEvent Process(SentryEvent @event)
         {
             if (_androidContextLoaded)

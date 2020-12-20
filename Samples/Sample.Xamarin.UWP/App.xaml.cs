@@ -10,15 +10,9 @@ namespace Sample.Xamarin.uwp
 {
     sealed partial class App : Application
     {
-        public App()
-        {
-            InitializeComponent();
-            Suspending += OnSuspending;
-        }
-
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            SentryInitializer.Init();
+            SentryInitializer.Init(false);
             Frame rootFrame = Window.Current.Content as Frame;
 
             if (rootFrame == null)

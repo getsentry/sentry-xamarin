@@ -1,0 +1,57 @@
+<Project>
+  <!--Automatic upward search ends when first file found. From here we need to manually import parent props/targets
+        https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build -->
+  <Import Project="..\Directory.Build.props" />
+
+  <PropertyGroup>
+    <!--Generate xml docs for all projects under 'src'-->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- CS1591: Missing XML comment for publicly visible type or member -->
+    <NoWarn Condition="'$(Configuration)' == 'Debug'">$(NoWarn);CS1591</NoWarn>
+
+    <Authors>Sentry Team and Contributors</Authors>
+    <Company>Sentry.io</Company>
+    <Product>Sentry.Xamarin.Forms</Product>
+
+    <PackageTags>Sentry;GetSentry;Xamarin.Forms;Error-Reporting;Crash-Reporting;Exception-Handling</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
+    <RepositoryUrl>https://github.com/getsentry/sentry-dotnet-xamarin</RepositoryUrl>
+
+    <PackageIcon>sentry-nuget.png</PackageIcon>
+    <PackageProjectUrl>https://sentry.io</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <PackageReleaseNotes>Can be found at: https://github.com/getsentry/sentry-dotnet-xamarin/releases</PackageReleaseNotes>
+
+    <!-- Prop required by Microsoft.SourceLink.GitHub -->
+    <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+
+    <Nullable>annotations</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../.assets/sentry-nuget.png" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="ConfigureAwaitChecker.Analyzer" Version="4.0.0" PrivateAssets="All" Condition="'$(Configuration)' != 'Release'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- To add files to the PublicAPI.Unshipped file, use a VS quick action. Once shipped, move to PublicAPI.Shipped.txt -->
+    <None Remove="PublicAPI.Shipped.txt" />
+    <None Remove="PublicAPI.Unshipped.txt"/>
+    <AdditionalFiles Include="PublicAPI.Shipped.txt" />
+    <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
+  </ItemGroup>
+</Project>

@@ -3,14 +3,25 @@ using Sentry.Xamarin.Forms.Extensions;
 
 namespace Sentry
 {
+    /// <summary>
+    /// Extend SentryOptions by allowing it to manipulate options from Sentry Xamarin Forms.
+    /// </summary>
     public static class SentryOptionsExtensions
     {
-        public static void DisableBreadcrumbForXamlWarnings(this SentryOptions options)
+        /// <summary>
+        /// Disables the automatic Xamarin warning crumbs.
+        /// </summary>
+        /// <param name="options">The Sentry options.</param>
+        public static void DisableXamarinWarningsBreadcrumbs(this SentryOptions options)
         {
             SentryXamarinFormsIntegration.Options.Value.XamarinLoggerEnabled = false;
         }
 
-        public static void DisableNativeIntegration(this SentryOptions _)
+        /// <summary>
+        /// Disables the Sentry Xamarin Forms Native integration.
+        /// </summary>
+        /// <param name="options">The Sentry options.</param>
+        public static void DisableNativeIntegration(this SentryOptions options)
         {
             SentryXamarinFormsIntegration.Instance.UnregisterNativeIntegration();
         }

@@ -10,6 +10,9 @@ using Sentry.Xamarin.Forms.Extensions;
 
 namespace Sentry.Xamarin.Forms
 {
+    /// <summary>
+    /// Integration class for Sentry .NET SDK that you must call when initialzing SentrySDK.
+    /// </summary>
     public class SentryXamarinFormsIntegration : ISdkIntegration
     {
         internal static Lazy<SentryXamarinOptions> Options = new Lazy<SentryXamarinOptions>();
@@ -24,6 +27,11 @@ namespace Sentry.Xamarin.Forms
 
         internal NativeIntegration Nativeintegration;
 
+        /// <summary>
+        /// Register the Sentry Xamarin Forms SDK on Sentry.NET SDK
+        /// </summary>
+        /// <param name="hub">the Hub.</param>
+        /// <param name="options">the Sentry options.</param>
         public void Register(IHub hub, SentryOptions options)
         {
             //Only one integration can be active
@@ -33,8 +41,8 @@ namespace Sentry.Xamarin.Forms
             }
             Instance = this;
             _hub = hub;
-            options.AddEventProcessor(new XamarinFormsEventProcessor(options));
 
+            options.AddEventProcessor(new XamarinFormsEventProcessor(options));
 #if !NETSTANDARD
             options.AddEventProcessor(new NativeEventProcessor(options));
 #endif
@@ -68,21 +76,21 @@ namespace Sentry.Xamarin.Forms
                 }
             }
 
-        //Don't lock the main Thread while you wait for the current application to be created.
-        Task.Run(async () =>
-            {
-                var application = await GetCurrentApplication();
-                if (application is null)
+            //Don't lock the main Thread while you wait for the current application to be created.
+            Task.Run(async () =>
                 {
-                    options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
-                }
-                else
-                {
-                    application.PageAppearing += Current_PageAppearing;
-                    application.PageDisappearing += Current_PageDisappearing;
-                    application.RequestedThemeChanged += Current_RequestedThemeChanged;
-                }
-            });
+                    var application = await GetCurrentApplication().ConfigureAwait(false);
+                    if (application is null)
+                    {
+                        options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
+                    }
+                    else
+                    {
+                        application.PageAppearing += Current_PageAppearing;
+                        application.PageDisappearing += Current_PageDisappearing;
+                        application.RequestedThemeChanged += Current_RequestedThemeChanged;
+                    }
+                });
         }
 
         /// <summary>
@@ -92,18 +100,18 @@ namespace Sentry.Xamarin.Forms
         /// </summary>
         /// <returns>Current application.</returns>
         private async Task<Application> GetCurrentApplication()
-{
-    for (int i = 0; i < 10 && Application.Current is null; i++)
-    {
-        await Task.Delay(300);
-    }
-    return Application.Current;
-}
+        {
+            for (int i = 0; i < 10 && Application.Current is null; i++)
+            {
+                await Task.Delay(300).ConfigureAwait(false);
+            }
+            return Application.Current;
+        }
 
-private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
-{
-    _hub.AddBreadcrumb(e.RequestedTheme.ToString(), "AppTheme.Change", level: BreadcrumbLevel.Info);
-}
+        private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
+        {
+            _hub.AddBreadcrumb(e.RequestedTheme.ToString(), "AppTheme.Change", level: BreadcrumbLevel.Info);
+        }
 
         private void Current_PageDisappearing(object sender, Page e)
         {
