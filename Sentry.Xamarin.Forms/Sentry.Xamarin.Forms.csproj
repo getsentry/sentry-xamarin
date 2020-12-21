@@ -27,6 +27,9 @@
 		<None Include="Internals\*.droid.cs" />
 		<None Include="Internals\*.uwp.cs" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Internals\NativeEventProcessor.netstandard.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Sentry" Version="3.0.0-alpha.6" />

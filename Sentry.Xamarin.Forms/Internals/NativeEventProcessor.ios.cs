@@ -1,24 +1,18 @@
 ﻿using Foundation;
-using Sentry;
-using Sentry.Extensibility;
-using Sentry.Protocol;
 using System;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
-    /// <summary>
-    /// An event processor that populates the Event with iOS specific Tags.
-    /// </summary>
-    public partial class NativeEventProcessor : ISentryEventProcessor
+    internal class NativeEventProcessor : INativeEventProcessor
     {
+        public bool Implemented => true;
+
+        public string TargetName => "iOS";
+
         private Lazy<IosContext> _IosContext = new Lazy<IosContext>(() => new IosContext());
         private SentryOptions _options;
         private volatile bool _IosContextLoaded = true;
 
-        /// <summary>
-        /// The NativeEventProcessor contructor.
-        /// </summary>
-        /// <param name="options">The Sentry options.</param>
         public NativeEventProcessor(SentryOptions options) => _options = options;
         private class IosContext
         {
@@ -36,11 +30,6 @@ namespace Sentry.Xamarin.Forms.Internals
             }
         }
 
-        /// <summary>
-        /// Applies the iOS Tags and Context.
-        /// </summary>
-        /// <param name="event">The event to be applied.</param>
-        /// <returns>The Sentry event.</returns>
         public SentryEvent Process(SentryEvent @event)
         {
             if (_IosContextLoaded)

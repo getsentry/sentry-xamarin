@@ -43,9 +43,17 @@ namespace Sentry.Xamarin.Forms
             _hub = hub;
 
             options.AddEventProcessor(new XamarinFormsEventProcessor(options));
-#if !NETSTANDARD
-            options.AddEventProcessor(new NativeEventProcessor(options));
-#endif
+
+            var nativeEventProcessor = new NativeEventProcessor(options);
+            if (nativeEventProcessor.Implemented)
+            {
+                options.AddEventProcessor(nativeEventProcessor);
+            }
+            else
+            {
+                options.DiagnosticLogger.Log(SentryLevel.Info, $"{nativeEventProcessor.TargetName} NativeEventProcessor ignored due to no additional info processed on it.");
+            }
+
             XamarinLogger = new DelegateLogListener((arg1, arg2) =>
             {
                 if (Options.Value.XamarinLoggerEnabled)
