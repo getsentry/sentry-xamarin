@@ -4,6 +4,11 @@
   </a>
   <br />
 </p>
+
+|      Integrations             |    Downloads     |    NuGet Stable     |    NuGet Preview     |
+| ----------------------------- | :-------------------: | :-------------------: | :-------------------: |
+|  **Sentry.Xamarin.Forms**     | [![Downloads](https://img.shields.io/nuget/dt/Sentry.Xamarin.Forms.svg)](https://www.nuget.org/packages/Sentry.Xamarin.Forms) | [![NuGet](https://img.shields.io/nuget/v/Sentry.Xamarin.Forms.svg)](https://www.nuget.org/packages/Sentry.Xamarin.Forms)   |    [![NuGet](https://img.shields.io/nuget/vpre/Sentry.Xamarin.Forms.svg)](https://www.nuget.org/packages/Sentry.Xamarin.Forms)   |
+
  
 Sentry SDK for Xamarin
 ===========
