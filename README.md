@@ -101,6 +101,19 @@ On App.Xaml.cs
         ...        
 ```
 
+## Compatibility
+
+The package requires the following versions or newer:
+
+* Tizen 4.0 (for Tizen)
+* Xamarin.Android 9.0 (for Android)
+* Xamarin.iOS 10.14 (for iOS)
+* Universal Windows Platform 10.0.16299 (for UWP)
+* Xamarin.Forms 4.6.0.726
+* Xamarin.Essentials 1.4.0
+* Sentry 3.0.0
+
+
 ## Limitations
 
 There are no line numbers on stack traces for UWP and in release builds for Android and iOS, furthermore, mono symbolication is not yet supported.

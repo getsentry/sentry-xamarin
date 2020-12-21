@@ -3,8 +3,8 @@
 	<PropertyGroup>
 	    <!--Generate xml docs for all projects under 'src'-->
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-	
-		<TargetFrameworks>netstandard2.0;monoandroid10.0;Xamarinios10;</TargetFrameworks>
+
+		<TargetFrameworks>netstandard2.0;monoandroid9.0;Xamarinios10;</TargetFrameworks>
 		<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">$(TargetFrameworks);uap10.0.16299;</TargetFrameworks>
 		<NoWarn Condition="$(TargetFramework) == 'netstandard2.0'">$(NoWarn);RS0017</NoWarn>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -30,8 +30,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Sentry" Version="3.0.0-alpha.6" />
-		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-		<PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.4.0" />
+		<PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarinios')) ">
