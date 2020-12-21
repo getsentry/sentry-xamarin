@@ -25,7 +25,9 @@ namespace Sentry.Xamarin.Forms
         /// </summary>
         internal static string CurrentPage;
 
+#if NATIVE_PROCESSOR
         internal NativeIntegration Nativeintegration;
+#endif
 
         /// <summary>
         /// Register the Sentry Xamarin Forms SDK on Sentry.NET SDK
@@ -44,15 +46,11 @@ namespace Sentry.Xamarin.Forms
 
             options.AddEventProcessor(new XamarinFormsEventProcessor(options));
 
-            var nativeEventProcessor = new NativeEventProcessor(options);
-            if (nativeEventProcessor.Implemented)
-            {
-                options.AddEventProcessor(nativeEventProcessor);
-            }
-            else
-            {
-                options.DiagnosticLogger.Log(SentryLevel.Info, $"{nativeEventProcessor.TargetName} NativeEventProcessor ignored due to no additional info processed on it.");
-            }
+#if NATIVE_PROCESSOR
+            options.AddEventProcessor(new NativeEventProcessor(options));
+#else
+            options.DiagnosticLogger.Log(SentryLevel.Info, "No NativeEventProcessor found for the given target.");
+#endif
 
             XamarinLogger = new DelegateLogListener((arg1, arg2) =>
             {
@@ -76,12 +74,12 @@ namespace Sentry.Xamarin.Forms
 
             if (Options.Value.NativeIntegrationEnabled)
             {
-                var nativeIntegration = new NativeIntegration(Options.Value);
-                if (nativeIntegration.Implemented)
-                {
-                    nativeIntegration.Register(hub, options);
-                    Nativeintegration = nativeIntegration;
-                }
+#if NATIVE_INTEGRATION
+                Nativeintegration = new NativeIntegration(Options.Value);
+                Nativeintegration.Register(hub, options);
+#else
+                options.DiagnosticLogger.Log(SentryLevel.Info, "No NativeIntegration found for the given target.");
+#endif
             }
 
             //Don't lock the main Thread while you wait for the current application to be created.

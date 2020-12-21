@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Sentry.Extensibility;
+using System;
 using Windows.ApplicationModel;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.System.Profile;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
-    internal  partial class NativeEventProcessor : INativeEventProcessor
+    internal  class NativeEventProcessor : ISentryEventProcessor
     {
-        public bool Implemented => true;
-        public string TargetName => "UWP";
-
         private Lazy<UwpContext> _uwpContext = new Lazy<UwpContext>(() => new UwpContext());
         private volatile bool _uwpContextLoaded = true;
 

@@ -1,14 +1,11 @@
 ﻿using Foundation;
+using Sentry.Extensibility;
 using System;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
-    internal class NativeEventProcessor : INativeEventProcessor
+    internal class NativeEventProcessor : ISentryEventProcessor
     {
-        public bool Implemented => true;
-
-        public string TargetName => "iOS";
-
         private Lazy<IosContext> _IosContext = new Lazy<IosContext>(() => new IosContext());
         private SentryOptions _options;
         private volatile bool _IosContextLoaded = true;

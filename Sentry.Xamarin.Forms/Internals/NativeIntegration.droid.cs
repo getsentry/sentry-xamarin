@@ -6,9 +6,8 @@ using Xamarin.Essentials;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
-    internal partial class NativeIntegration : ISdkIntegration
+    internal class NativeIntegration : ISdkIntegration
     {
-        internal bool Implemented { get; private set; } = true;
 
         private SentryXamarinOptions _xamarinOptions;
         private IHub _hub;

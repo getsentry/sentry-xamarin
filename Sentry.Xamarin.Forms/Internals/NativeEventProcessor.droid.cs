@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using Android.OS;
+using Sentry.Extensibility;
 using Sentry.Xamarin.Forms.Extensions;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
-    internal class NativeEventProcessor : INativeEventProcessor
+    internal class NativeEventProcessor : ISentryEventProcessor
     {
-        public bool Implemented => true;
-        public string TargetName => "Android";
-
         private Lazy<AndroidContext> _androidContext = new Lazy<AndroidContext>(() => new AndroidContext());
         private SentryOptions _options;
         private volatile bool _androidContextLoaded = true;
-
-
 
         /// <summary>
         /// The NativeEventProcessor contructor.
