@@ -47,6 +47,9 @@ jobs:
           name: Package
           path: |
             ${{ github.workspace }}/Sentry.Xamarin.Forms/bin/Release/Sentry.Xamarin.Forms.*.nupkg
+      - name: Artifacts
+        uses: actions/upload-artifact@v2
+        with:
           name: Symbols
           path: |
             ${{ github.workspace }}/Sentry.Xamarin.Forms/bin/Release/Sentry.Xamarin.Forms.*.snupkg
