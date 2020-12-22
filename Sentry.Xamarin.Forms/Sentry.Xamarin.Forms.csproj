@@ -19,15 +19,15 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" $(TargetFramework.StartsWith('Xamarinios')) ">
-		<DefineConstants>$(DefineConstants);NATIVE_PROCESSOR;NATIVE_INTEGRATION</DefineConstants>
+		<DefineConstants>$(DefineConstants);NATIVE_PROCESSOR</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
-		<DefineConstants>$(DefineConstants);NATIVE_PROCESSOR;NATIVE_INTEGRATION</DefineConstants>
+		<DefineConstants>$(DefineConstants);NATIVE_PROCESSOR</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.StartsWith('uap'))">
-		<DefineConstants>$(DefineConstants);NATIVE_PROCESSOR;NATIVE_INTEGRATION</DefineConstants>
+		<DefineConstants>$(DefineConstants);NATIVE_PROCESSOR</DefineConstants>
 	</PropertyGroup>	
 	
 	<ItemGroup>		
