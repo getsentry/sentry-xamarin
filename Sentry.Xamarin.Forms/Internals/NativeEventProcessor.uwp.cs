@@ -6,21 +6,13 @@ using Windows.System.Profile;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
-    /// <summary>
-    /// An event processor that populates the Event with UWP specific Tags.
-    /// </summary>
-    public partial class NativeEventProcessor : ISentryEventProcessor
+    internal  class NativeEventProcessor : ISentryEventProcessor
     {
         private Lazy<UwpContext> _uwpContext = new Lazy<UwpContext>(() => new UwpContext());
         private volatile bool _uwpContextLoaded = true;
 
         private SentryOptions _options;
 
-
-        /// <summary>
-        /// The NativeEventProcessor contructor.
-        /// </summary>
-        /// <param name="options">The Sentry options.</param>
         public NativeEventProcessor(SentryOptions options) => _options = options;
 
         private class UwpContext
@@ -50,11 +42,6 @@ namespace Sentry.Xamarin.Forms.Internals
             }
         }
 
-        /// <summary>
-        /// Applies the UWP Tags and Context.
-        /// </summary>
-        /// <param name="event">The event to be applied.</param>
-        /// <returns>The Sentry event.</returns>
         public SentryEvent Process(SentryEvent @event)
         {
             if (_uwpContextLoaded)

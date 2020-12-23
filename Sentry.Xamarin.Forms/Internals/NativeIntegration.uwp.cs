@@ -9,11 +9,10 @@ using Windows.UI.Xaml;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
-    internal partial class NativeIntegration : ISdkIntegration
+    internal class NativeIntegration : ISdkIntegration
     {
         private IHub _hub;
         private Application _application;
-        internal bool Implemented => true;
 
         internal NativeIntegration(SentryXamarinOptions options) { }
 

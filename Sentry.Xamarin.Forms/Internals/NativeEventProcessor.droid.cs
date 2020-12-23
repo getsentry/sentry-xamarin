@@ -1,16 +1,12 @@
-﻿using Sentry.Extensibility;
-using Sentry.Protocol;
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using Android.OS;
+using Sentry.Extensibility;
 using Sentry.Xamarin.Forms.Extensions;
 
 namespace Sentry.Xamarin.Forms.Internals
 {
-    /// <summary>
-    /// An event processor that populates the Event with Android specific Tags.
-    /// </summary>
-    public partial class NativeEventProcessor : ISentryEventProcessor
+    internal class NativeEventProcessor : ISentryEventProcessor
     {
         private Lazy<AndroidContext> _androidContext = new Lazy<AndroidContext>(() => new AndroidContext());
         private SentryOptions _options;
