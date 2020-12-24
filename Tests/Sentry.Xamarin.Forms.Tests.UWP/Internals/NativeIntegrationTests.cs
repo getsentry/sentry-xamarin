@@ -1,12 +1,6 @@
 ﻿using Moq;
-using Sentry.Protocol;
 using Sentry.Xamarin.Forms.Internals;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Windows.UI.WebUI;
-using Windows.UI.Xaml;
 using Xunit;
 
 namespace Sentry.Xamarin.Forms.Tests.UWP.Internals

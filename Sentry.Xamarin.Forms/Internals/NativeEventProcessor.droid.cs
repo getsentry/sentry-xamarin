@@ -103,7 +103,7 @@ namespace Sentry.Xamarin.Forms.Internals
             }
             else
             {
-                _options.DiagnosticLogger.Log(SentryLevel.Debug, "AndroidEventProcessor disabled due to previous error.");
+                _options.DiagnosticLogger?.Log(SentryLevel.Debug, "AndroidEventProcessor disabled due to previous error.");
             }
             return @event;
         }

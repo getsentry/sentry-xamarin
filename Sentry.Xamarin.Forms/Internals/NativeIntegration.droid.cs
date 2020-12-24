@@ -28,7 +28,7 @@ namespace Sentry.Xamarin.Forms.Internals
             }
             catch (Exception ex)
             {
-                options.DiagnosticLogger.Log(SentryLevel.Error, "Sentry.Xamarin.Forms failed to attach AtivityStateChanged", ex);
+                options.DiagnosticLogger?.Log(SentryLevel.Error, "Sentry.Xamarin.Forms failed to attach AtivityStateChanged", ex);
                 _xamarinOptions.NativeIntegrationEnabled = false;
             }
         }
