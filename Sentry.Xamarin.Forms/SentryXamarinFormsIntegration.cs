@@ -16,7 +16,6 @@ namespace Sentry.Xamarin.Forms
     /// </summary>
     public class SentryXamarinFormsIntegration : ISdkIntegration
     {
-        #region Properties
         internal static Lazy<SentryXamarinOptions> Options = new Lazy<SentryXamarinOptions>();
         internal static SentryXamarinFormsIntegration Instance;
         internal static DelegateLogListener XamarinLogger;
@@ -31,8 +30,6 @@ namespace Sentry.Xamarin.Forms
         internal NativeIntegration Nativeintegration { get; private set; }
 #endif
 
-        #endregion
-        #region Register/Hooks
         /// <summary>
         /// Register the Sentry Xamarin Forms SDK on Sentry.NET SDK
         /// </summary>
@@ -136,9 +133,6 @@ namespace Sentry.Xamarin.Forms
             return Application.Current;
         }
 
-        #endregion
-        #region Events
-
         private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
         {
             _hub.AddBreadcrumb(e.RequestedTheme.ToString(), "AppTheme.Change", level: BreadcrumbLevel.Info);
@@ -191,6 +185,5 @@ namespace Sentry.Xamarin.Forms
             }
             CurrentPage = pageType.Name;
         }
-        #endregion
     }
 }
