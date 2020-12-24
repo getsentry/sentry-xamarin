@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Sentry.Xamarin.Forms.Extensions;
+using Xamarin.Essentials;
 
 namespace Sentry.Xamarin.Forms
 {
@@ -26,7 +27,7 @@ namespace Sentry.Xamarin.Forms
         internal static string CurrentPage;
 
 #if NATIVE_PROCESSOR
-        internal NativeIntegration Nativeintegration;
+        internal NativeIntegration Nativeintegration { get; private set; }
 #endif
 
         /// <summary>
@@ -43,44 +44,10 @@ namespace Sentry.Xamarin.Forms
             }
             Instance = this;
             _hub = hub;
-
-            options.AddEventProcessor(new XamarinFormsEventProcessor(options));
-
-#if NATIVE_PROCESSOR
-            options.AddEventProcessor(new NativeEventProcessor(options));
-#else
-            options.DiagnosticLogger.Log(SentryLevel.Debug, "No NativeEventProcessor found for the given target.");
-#endif
-
-            XamarinLogger = new DelegateLogListener((arg1, arg2) =>
-            {
-                if (Options.Value.XamarinLoggerEnabled)
-                {
-                    _hub.AddBreadcrumb(null,
-                        "xamarin",
-                        "info",
-                        new Dictionary<string, string>
-                        {
-                            ["logger"] = arg1,
-                            ["issue"] = arg2
-                        }, level: BreadcrumbLevel.Warning);
-                }
-            });
-
-            if (Options.Value.XamarinLoggerEnabled)
-            {
-                Log.Listeners.Add(XamarinLogger);
-            }
-
-            if (Options.Value.NativeIntegrationEnabled)
-            {
-#if NATIVE_PROCESSOR
-                Nativeintegration = new NativeIntegration(Options.Value);
-                Nativeintegration.Register(hub, options);
-#else
-                options.DiagnosticLogger.Log(SentryLevel.Debug, "No NativeIntegration found for the given target.");
-#endif
-            }
+            ConfigureSentryOptions(options);
+            RegisterEventProcessors(options);
+            RegisterNativeIntegrations(hub, options, Options.Value);
+            RegisterXamarinLogListener(hub);
 
             //Don't lock the main Thread while you wait for the current application to be created.
             Task.Run(async () =>
@@ -97,6 +64,58 @@ namespace Sentry.Xamarin.Forms
                         application.RequestedThemeChanged += Current_RequestedThemeChanged;
                     }
                 });
+        }
+
+        internal void RegisterEventProcessors(SentryOptions options)
+        {
+            options.AddEventProcessor(new XamarinFormsEventProcessor(options));
+
+#if NATIVE_PROCESSOR
+            options.AddEventProcessor(new NativeEventProcessor(options));
+#else
+            options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeEventProcessor found for the given target.");
+#endif
+        }
+
+        internal void RegisterNativeIntegrations(IHub hub, SentryOptions options, SentryXamarinOptions xamarinOptions)
+        {
+            if (xamarinOptions.NativeIntegrationEnabled)
+            {
+#if NATIVE_PROCESSOR
+                Nativeintegration = new NativeIntegration(xamarinOptions);
+                Nativeintegration.Register(hub, options);
+#else
+                options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeIntegration found for the given target.");
+#endif
+            }
+        }
+
+        internal void RegisterXamarinLogListener(IHub hub)
+        {
+            XamarinLogger = new DelegateLogListener((arg1, arg2) =>
+            {
+                if (Options.Value.XamarinLoggerEnabled)
+                {
+                    hub.AddBreadcrumb(null,
+                        "xamarin",
+                        "info",
+                        new Dictionary<string, string>
+                        {
+                            ["logger"] = arg1,
+                            ["issue"] = arg2
+                        }, level: BreadcrumbLevel.Warning);
+                }
+            });
+
+            if (Options.Value.XamarinLoggerEnabled)
+            {
+                Log.Listeners.Add(XamarinLogger);
+            }
+        }
+
+        internal void ConfigureSentryOptions(SentryOptions options)
+        {
+            options.Release ??= $"{AppInfo.PackageName}@{AppInfo.VersionString}";
         }
 
         /// <summary>
