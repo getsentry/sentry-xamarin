@@ -48,7 +48,6 @@ All you need to do is to initialize Xamarin integration by calling SentryXamarin
 SentryXamarin.Init(options =>
 {
     options.Dsn = "__YOUR__DSN__";
-    o.AddIntegration(new SentryXamarinFormsIntegration());
 });
 
 ```

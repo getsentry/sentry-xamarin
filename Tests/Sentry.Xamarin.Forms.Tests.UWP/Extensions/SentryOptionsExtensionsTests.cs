@@ -14,12 +14,11 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Extensions
         public void ConfigureSentryOptions_ReleaseSetIfNotInformed()
         {
             //Arrange
-            var options = new SentryOptions();
-            var xamarinOptions = new SentryXamarinOptions();
+            var options = new SentryXamarinOptions();
             options.Release = null;
 
             //Act
-            options.ConfigureSentryXamarinOptions(xamarinOptions);
+            options.ConfigureSentryXamarinOptions();
 
             //Assert
             Assert.NotNull(options.Release);
@@ -29,14 +28,13 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Extensions
         public void ConfigureSentryOptions_ReleaseNotSetIfInformed()
         {
             //Arrange
-            var options = new SentryOptions()
+            var options = new SentryXamarinOptions()
             {
                 Release = "myrelease@1.1"
             };
-            var xamarinOptions = new SentryXamarinOptions();
 
             //Act
-            options.ConfigureSentryXamarinOptions(xamarinOptions);
+            options.ConfigureSentryXamarinOptions();
 
             //Assert
             Assert.Equal(options.Release, options.Release);
@@ -45,17 +43,14 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Extensions
         public void ConfigureSentryOptions_DefaultCachePathDisabled_CachePathNotSet()
         {
             //Arrange
-            var options = new SentryOptions()
+            var options = new SentryXamarinOptions()
             {
-                CacheDirectoryPath = null
-            };
-            var xamarinOptions = new SentryXamarinOptions()
-            {
+                CacheDirectoryPath = null,
                 InternalCacheEnabled = false
             };
 
             //Act
-            options.ConfigureSentryXamarinOptions(xamarinOptions);
+            options.ConfigureSentryXamarinOptions();
 
             //Assert
             Assert.Null(options.CacheDirectoryPath);
@@ -65,15 +60,14 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Extensions
         public void ConfigureSentryOptions_DefaultCachePathEnabledAndCacheDirectoryPathNull_CachePathSet()
         {
             //Arrange
-            var options = new SentryOptions()
+            var options = new SentryXamarinOptions()
             {
                 CacheDirectoryPath = null
             };
-            var xamarinOptions = new SentryXamarinOptions();
             var expectedPath = options.DefaultCacheDirectoyPath();
 
             //Act
-            options.ConfigureSentryXamarinOptions(xamarinOptions);
+            options.ConfigureSentryXamarinOptions();
 
             //Assert
             Assert.Equal(expectedPath, options.CacheDirectoryPath);
@@ -85,14 +79,13 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Extensions
         {
             //Arrange
             var expectedPath = "./";
-            var options = new SentryOptions()
+            var options = new SentryXamarinOptions()
             {
                 CacheDirectoryPath = expectedPath,
             };
-            var xamarinOptions = new SentryXamarinOptions();
 
             //Act
-            options.ConfigureSentryXamarinOptions(xamarinOptions);
+            options.ConfigureSentryXamarinOptions();
 
             //Assert
             Assert.Equal(expectedPath, options.CacheDirectoryPath);

@@ -1,6 +1,9 @@
-﻿namespace Sentry.Xamarin.Forms.Internals
+﻿namespace Sentry
 {
-    internal class SentryXamarinOptions
+    /// <summary>
+    /// Sentry Xamarin SDK options.
+    /// </summary>
+    public class SentryXamarinOptions : SentryOptions
     {
         internal bool XamarinLoggerEnabled { get; set; } = true;
         internal bool NativeIntegrationEnabled { get; set; } = true;

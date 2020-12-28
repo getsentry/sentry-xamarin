@@ -19,9 +19,9 @@ namespace Sentry
         /// Initializes the SDK with an optional configuration options callback.
         /// </summary>
         /// <param name="configureOptions">The configure options.</param>
-        public static void Init(Action<SentryOptions> configureOptions)
+        public static void Init(Action<SentryXamarinOptions> configureOptions)
         {
-            var options = new SentryOptions();
+            var options = new SentryXamarinOptions();
             configureOptions?.Invoke(options);
             Init(options);
         }
@@ -30,12 +30,12 @@ namespace Sentry
         /// Initializes the SDK with the specified options instance.
         /// </summary>
         /// <param name="options">The options instance</param>
-        public static void Init(SentryOptions options)
+        public static void Init(SentryXamarinOptions options)
         {
-            Options = new SentryXamarinOptions();           
-            options ??= new SentryOptions();
+            options ??= new SentryXamarinOptions();
+            Options = options;
 
-            options.ConfigureSentryXamarinOptions(Options);
+            options.ConfigureSentryXamarinOptions();
             options.RegisterXamarinEventProcessors();
             options.AddIntegration(new SentryXamarinFormsIntegration(Options));
 

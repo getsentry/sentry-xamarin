@@ -41,15 +41,15 @@ namespace Sentry
         }
 
         internal static SentryXamarinOptions GetSentryXamarinOptions(this SentryOptions options)
-            => SentryXamarin.Options;
+            => options is SentryXamarinOptions xamarinOptions ? xamarinOptions : SentryXamarin.Options;
 
         internal static string DefaultCacheDirectoyPath(this SentryOptions options)
             => _internalCacheDefaultPath.Value;
 
-        internal static void ConfigureSentryXamarinOptions(this SentryOptions options, SentryXamarinOptions xamarinOptions)
+        internal static void ConfigureSentryXamarinOptions(this SentryXamarinOptions options)
         {
             options.Release ??= $"{AppInfo.PackageName}@{AppInfo.VersionString}";
-            if (xamarinOptions.InternalCacheEnabled)
+            if (options.InternalCacheEnabled)
             {
                 options.CacheDirectoryPath ??= options.DefaultCacheDirectoyPath();
             }
