@@ -119,6 +119,7 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\SentryOptionsExtensionsTests.cs" />
     <Compile Include="Internals\FormsEventProcessorTests.cs" />
     <Compile Include="Internals\NativeEventProcessorTests.cs" />
     <Compile Include="Internals\NativeIntegrationTests.cs" />
@@ -180,6 +181,7 @@
       <Name>Sentry.Xamarin.Forms</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

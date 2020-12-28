@@ -1,13 +1,15 @@
-﻿namespace Sentry.Xamarin.Forms.Extensions
+﻿using Sentry.Xamarin.Forms.Internals;
+
+namespace Sentry.Xamarin.Forms.Extensions
 {
     internal static class SentryXamarinFormsIntegrationExtensions
     {
-        internal static void UnregisterNativeIntegration(this SentryXamarinFormsIntegration integration)
+        internal static void UnregisterNativeIntegration(this SentryXamarinFormsIntegration integration, SentryXamarinOptions options)
         {
 #if NATIVE_PROCESSOR
             integration?.Nativeintegration?.Unregister();
 #endif
-            SentryXamarinFormsIntegration.Options.Value.NativeIntegrationEnabled = false;
+            options.NativeIntegrationEnabled = false;
         }
     }
 }
