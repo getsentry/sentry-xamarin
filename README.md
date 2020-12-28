@@ -42,12 +42,12 @@ Additionaly, Android and IOS will include additional information:
 </p>
 
 ## Setup
-All you need to do is to Add the Xamarin integration to SentryOptions and it's recommended to start the Sentry SDK as early as possible, for an example, the start of OnCreate on MainActivity for Android, and , the top of FinishedLaunching on AppDelegate for iOS)
+All you need to do is to initialize Xamarin integration by calling SentryXamarin.Init, and, it's recommended to start Sentry Xamarin SDK as early as possible, for an example, the start of OnCreate on MainActivity for Android, and, the top of FinishedLaunching on AppDelegate for iOS)
 
 ```C#
-SentrySdk.Init(o =>
+SentryXamarin.Init(options =>
 {
-    o.Dsn = new Dsn("yourdsn");
+    options.Dsn = "__YOUR__DSN__";
     o.AddIntegration(new SentryXamarinFormsIntegration());
 });
 
@@ -60,11 +60,9 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompa
 {
     protected override void OnCreate(Bundle savedInstanceState)
     {
-        SentrySdk.Init(o =>
+        SentryXamarin.Init(options =>
         {
-            o.Dsn = new Dsn("yourdsn");
-            o.CacheDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            o.AddIntegration(new SentryXamarinFormsIntegration());
+            options.Dsn = "__YOUR__DSN__";
         });
         ...
 ```
@@ -76,28 +74,24 @@ public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsAppli
 {
     public override bool FinishedLaunching(UIApplication app, NSDictionary options)
     {
-        SentrySdk.Init(o =>
+        SentryXamarin.Init(options =>
         {
-            o.Dsn = new Dsn("yourdsn");
-            o.CacheDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            o.AddIntegration(new SentryXamarinFormsIntegration());
+            options.Dsn = "__YOUR__DSN__";
         });
         ...
 ```
 
 ### UWP
-Note: It's recommended to not setup the CacheDirectory due to an issue with Sentry SDK
 On App.Xaml.cs
 ```C#
     sealed partial class App : Application
     {
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-        SentrySdk.Init(o =>
-        {
-            o.Dsn = new Dsn("yourdsn");
-            o.AddIntegration(new SentryXamarinFormsIntegration());
-        });
+            SentryXamarin.Init(options =>
+            {
+                options.Dsn = "__YOUR__DSN__";
+            });
         ...        
 ```
 
