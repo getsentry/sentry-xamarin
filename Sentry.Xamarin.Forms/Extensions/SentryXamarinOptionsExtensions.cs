@@ -7,9 +7,9 @@ using Xamarin.Essentials;
 namespace Sentry
 {
     /// <summary>
-    /// Extend SentryOptions by allowing it to manipulate options from Sentry Xamarin Forms.
+    /// Extend SentryXamarinOptions by allowing it to manipulate options from Sentry Xamarin Forms.
     /// </summary>
-    public static class SentryOptionsExtensions
+    public static class SentryXamarinOptionsExtensions
     {
         private static Lazy<string> _internalCacheDefaultPath = new Lazy<string>(()=> Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
 
@@ -17,33 +17,30 @@ namespace Sentry
         /// Disables the automatic Xamarin warning crumbs.
         /// </summary>
         /// <param name="options">The Sentry options.</param>
-        public static void DisableXamarinWarningsBreadcrumbs(this SentryOptions options)
+        public static void DisableXamarinWarningsBreadcrumbs(this SentryXamarinOptions options)
         {
-            options.GetSentryXamarinOptions().XamarinLoggerEnabled = false;
+            options.XamarinLoggerEnabled = false;
         }
 
         /// <summary>
         /// Disables the Sentry Xamarin Forms Native integration.
         /// </summary>
         /// <param name="options">The Sentry options.</param>
-        public static void DisableNativeIntegration(this SentryOptions options)
+        public static void DisableNativeIntegration(this SentryXamarinOptions options)
         {
-            SentryXamarinFormsIntegration.Instance.UnregisterNativeIntegration(options.GetSentryXamarinOptions());
+            SentryXamarinFormsIntegration.Instance.UnregisterNativeIntegration(options);
         }
 
         /// <summary>
         /// Disables the cache, must be called before Sentry gets initialized
         /// </summary>
         /// <param name="options">The Sentry options.</param>
-        public static void DisableXamarinFormsCache(this SentryOptions options)
+        public static void DisableXamarinFormsCache(this SentryXamarinOptions options)
         {
-            options.GetSentryXamarinOptions().InternalCacheEnabled = false;
+            options.InternalCacheEnabled = false;
         }
 
-        internal static SentryXamarinOptions GetSentryXamarinOptions(this SentryOptions options)
-            => options is SentryXamarinOptions xamarinOptions ? xamarinOptions : SentryXamarin.Options;
-
-        internal static string DefaultCacheDirectoyPath(this SentryOptions options)
+        internal static string DefaultCacheDirectoyPath(this SentryXamarinOptions options)
             => _internalCacheDefaultPath.Value;
 
         internal static void ConfigureSentryXamarinOptions(this SentryXamarinOptions options)
@@ -55,7 +52,7 @@ namespace Sentry
             }
         }
 
-        internal static void RegisterXamarinEventProcessors(this SentryOptions options)
+        internal static void RegisterXamarinEventProcessors(this SentryXamarinOptions options)
         {
             options.AddEventProcessor(new XamarinFormsEventProcessor(options));
 
@@ -65,6 +62,5 @@ namespace Sentry
             options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeEventProcessor found for the given target.");
 #endif
         }
-
     }
 }

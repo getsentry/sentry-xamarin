@@ -1,14 +1,8 @@
-﻿using Sentry.Xamarin.Forms.Internals;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 
 namespace Sentry.Xamarin.Forms.Tests.UWP.Extensions
 {
-    public class SentryOptionsExtensionsTests
+    public class SentryXamarinOptionsExtensionsTests
     {
         [Fact]
         public void ConfigureSentryOptions_ReleaseSetIfNotInformed()

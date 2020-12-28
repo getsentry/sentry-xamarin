@@ -119,7 +119,7 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\SentryOptionsExtensionsTests.cs" />
+    <Compile Include="Extensions\SentryXamarinOptionsExtensionsTests.cs" />
     <Compile Include="Internals\FormsEventProcessorTests.cs" />
     <Compile Include="Internals\NativeEventProcessorTests.cs" />
     <Compile Include="Internals\NativeIntegrationTests.cs" />

@@ -1,5 +1,4 @@
 ﻿using Sentry.Xamarin.Forms;
-using Sentry.Xamarin.Forms.Internals;
 using System;
 
 namespace Sentry
@@ -13,7 +12,6 @@ namespace Sentry
     /// </remarks>
     public static class SentryXamarin
     {
-        internal static SentryXamarinOptions Options { get; set; }
 
         /// <summary>
         /// Initializes the SDK with an optional configuration options callback.
@@ -33,11 +31,10 @@ namespace Sentry
         public static void Init(SentryXamarinOptions options)
         {
             options ??= new SentryXamarinOptions();
-            Options = options;
 
             options.ConfigureSentryXamarinOptions();
             options.RegisterXamarinEventProcessors();
-            options.AddIntegration(new SentryXamarinFormsIntegration(Options));
+            options.AddIntegration(new SentryXamarinFormsIntegration(options));
 
             SentrySdk.Init(options);
         }
