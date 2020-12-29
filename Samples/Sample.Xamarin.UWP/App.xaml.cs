@@ -12,7 +12,7 @@ namespace Sample.Xamarin.uwp
     {
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            SentryInitializer.Init(false);
+            SentryInitializer.Init();
             Frame rootFrame = Window.Current.Content as Frame;
 
             if (rootFrame == null)

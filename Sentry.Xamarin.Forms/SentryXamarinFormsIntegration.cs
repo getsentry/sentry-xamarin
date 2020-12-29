@@ -3,22 +3,17 @@ using Sentry.Protocol;
 using Xamarin.Forms.Internals;
 using Sentry.Xamarin.Forms.Internals;
 using Xamarin.Forms;
-using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Sentry.Xamarin.Forms.Extensions;
-using Xamarin.Essentials;
 
 namespace Sentry.Xamarin.Forms
 {
-    /// <summary>
-    /// Integration class for Sentry .NET SDK that you must call when initialzing SentrySDK.
-    /// </summary>
-    public class SentryXamarinFormsIntegration : ISdkIntegration
+    internal class SentryXamarinFormsIntegration : ISdkIntegration
     {
-        internal static Lazy<SentryXamarinOptions> Options = new Lazy<SentryXamarinOptions>();
         internal static SentryXamarinFormsIntegration Instance;
-        internal static DelegateLogListener XamarinLogger;
+        private SentryXamarinOptions _options;
+        private DelegateLogListener _xamarinLogger;
         private IHub _hub;
 
         /// <summary>
@@ -29,6 +24,11 @@ namespace Sentry.Xamarin.Forms
 #if NATIVE_PROCESSOR
         internal NativeIntegration Nativeintegration { get; private set; }
 #endif
+
+        internal SentryXamarinFormsIntegration(SentryXamarinOptions options)
+        {
+            _options = options;
+        }
 
         /// <summary>
         /// Register the Sentry Xamarin Forms SDK on Sentry.NET SDK
@@ -44,9 +44,8 @@ namespace Sentry.Xamarin.Forms
             }
             Instance = this;
             _hub = hub;
-            ConfigureSentryOptions(options);
-            RegisterEventProcessors(options);
-            RegisterNativeIntegrations(hub, options, Options.Value);
+
+            RegisterNativeIntegrations(hub, options, _options);
             RegisterXamarinLogListener(hub);
 
             //Don't lock the main Thread while you wait for the current application to be created.
@@ -66,17 +65,6 @@ namespace Sentry.Xamarin.Forms
                 });
         }
 
-        internal void RegisterEventProcessors(SentryOptions options)
-        {
-            options.AddEventProcessor(new XamarinFormsEventProcessor(options));
-
-#if NATIVE_PROCESSOR
-            options.AddEventProcessor(new NativeEventProcessor(options));
-#else
-            options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeEventProcessor found for the given target.");
-#endif
-        }
-
         internal void RegisterNativeIntegrations(IHub hub, SentryOptions options, SentryXamarinOptions xamarinOptions)
         {
             if (xamarinOptions.NativeIntegrationEnabled)
@@ -92,9 +80,9 @@ namespace Sentry.Xamarin.Forms
 
         internal void RegisterXamarinLogListener(IHub hub)
         {
-            XamarinLogger = new DelegateLogListener((arg1, arg2) =>
+            _xamarinLogger = new DelegateLogListener((arg1, arg2) =>
             {
-                if (Options.Value.XamarinLoggerEnabled)
+                if (_options.XamarinLoggerEnabled)
                 {
                     hub.AddBreadcrumb(null,
                         "xamarin",
@@ -107,15 +95,10 @@ namespace Sentry.Xamarin.Forms
                 }
             });
 
-            if (Options.Value.XamarinLoggerEnabled)
+            if (_options.XamarinLoggerEnabled)
             {
-                Log.Listeners.Add(XamarinLogger);
+                Log.Listeners.Add(_xamarinLogger);
             }
-        }
-
-        internal void ConfigureSentryOptions(SentryOptions options)
-        {
-            options.Release ??= $"{AppInfo.PackageName}@{AppInfo.VersionString}";
         }
 
         /// <summary>

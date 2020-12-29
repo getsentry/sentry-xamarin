@@ -1,5 +1,4 @@
-﻿using Sentry.Infrastructure;
-using Sentry.Integrations;
+﻿using Sentry.Integrations;
 using Sentry.Protocol;
 using System;
 using System.Runtime.ExceptionServices;
@@ -24,8 +23,6 @@ namespace Sentry.Xamarin.Forms.Internals
         public void Register(IHub hub, SentryOptions options) 
         {
             _hub = hub;
-
-            options.DiagnosticLogger = new DebugDiagnosticLogger(options.DiagnosticsLevel);
 
             _application = Application.Current;
             if (_application != null)
