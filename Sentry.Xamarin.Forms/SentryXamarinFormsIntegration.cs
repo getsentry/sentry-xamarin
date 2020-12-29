@@ -44,7 +44,7 @@ namespace Sentry.Xamarin.Forms
             }
             Instance = this;
             _hub = hub;
-            
+
             RegisterNativeIntegrations(hub, options, _options);
             RegisterXamarinLogListener(hub);
 
