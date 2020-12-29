@@ -77,12 +77,7 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Internals
             //Act
             try
             {
-
                 integration.Handle(new Exception());
-            }
-            catch (Exception)
-            {
-                throw;
             }
             finally
             {
