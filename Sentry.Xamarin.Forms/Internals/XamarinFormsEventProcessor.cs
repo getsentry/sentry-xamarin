@@ -37,7 +37,7 @@ namespace Sentry.Xamarin.Forms.Internals
             {
                 Manufacturer = DeviceInfo.Manufacturer.FilterUnknownOrEmpty();
                 Model = DeviceInfo.Model.FilterUnknownOrEmpty();
-                Platform = DeviceInfo.Platform.ToString().ToUpper();
+                Platform = DeviceInfo.Platform.ToString();
                 PlatformVersion = DeviceInfo.VersionString;
                 IsEmulator = DeviceInfo.DeviceType != DeviceType.Physical;
                 Type = DeviceInfo.Idiom.ToString();
