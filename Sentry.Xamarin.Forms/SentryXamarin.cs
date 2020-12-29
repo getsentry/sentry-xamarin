@@ -35,6 +35,7 @@ namespace Sentry
             options.ConfigureSentryXamarinOptions();
             options.RegisterXamarinEventProcessors();
             options.AddIntegration(new SentryXamarinFormsIntegration(options));
+            options.RegisterXamarinInAppExclude();
 
             SentrySdk.Init(options);
         }

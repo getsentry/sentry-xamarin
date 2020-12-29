@@ -62,5 +62,20 @@ namespace Sentry
             options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeEventProcessor found for the given target.");
 #endif
         }
+
+        internal static void RegisterXamarinInAppExclude(this SentryXamarinOptions options)
+        {
+            options.AddInAppExclude("Java.");
+            options.AddInAppExclude("ZXing");
+            options.AddInAppExclude("TouchView");
+            options.AddInAppExclude("Rg.Plugins");
+            options.AddInAppExclude("Prism");
+            options.AddInAppExclude("CarouselView.FormsPlugin");
+            options.AddInAppExclude("CardsView");
+            options.AddInAppExclude("MvvmCross.Forms");
+            options.AddInAppExclude("Com.Airbnb.Xamarin.Forms.Lottie");
+            options.AddInAppExclude("Com.OneSignal");
+            options.AddInAppExclude("SQLite-net");
+        }
     }
 }
