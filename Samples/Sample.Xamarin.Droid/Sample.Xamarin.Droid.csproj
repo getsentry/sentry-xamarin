@@ -32,6 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +48,10 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidSupportedAbis>armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
     <MandroidI18n />
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -59,7 +67,7 @@
       <Version>2.0.0.9</Version>
     </PackageReference>
     <PackageReference Include="Sentry">
-      <Version>3.0.0-alpha.9</Version>
+      <Version>3.0.0-alpha.4</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
       <Version>4.3.4</Version>
@@ -97,10 +105,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj">
-      <Project>{6a3a0d77-c494-4122-8bb5-74859563bc86}</Project>
-      <Name>Sentry.Xamarin.Forms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sample.Xamarin.Core\Sample.Xamarin.Core.csproj">
       <Project>{02726caa-72f3-4e3c-b06d-51c77a4b82bd}</Project>
       <Name>Sample.Xamarin.Core</Name>

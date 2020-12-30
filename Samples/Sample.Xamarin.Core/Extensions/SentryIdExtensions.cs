@@ -1,4 +1,5 @@
 ﻿using Sentry;
+using Sentry.Protocol;
 using System;
 //Based on https://github.com/csharpvitamins/CSharpVitamins.ShortGuid
 

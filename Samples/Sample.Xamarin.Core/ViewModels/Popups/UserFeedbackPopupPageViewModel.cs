@@ -101,7 +101,7 @@ namespace Sample.Xamarin.Core.ViewModels.Popups
         {
             if (Validate())
             {
-                SentrySdk.CaptureUserFeedback(_id, Email, Description, Username);
+               // SentrySdk.CaptureUserFeedback(_id, Email, Description, Username);
                 _ = ClosePopup();
             }
         };
