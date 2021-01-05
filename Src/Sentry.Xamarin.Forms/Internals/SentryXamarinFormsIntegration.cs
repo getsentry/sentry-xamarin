@@ -1,31 +1,22 @@
-﻿using Sentry.Integrations;
-using Sentry.Protocol;
-using Xamarin.Forms.Internals;
-using Sentry.Xamarin.Forms.Internals;
-using Xamarin.Forms;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using Sentry.Protocol;
 using Sentry.Xamarin.Forms.Extensions;
+using Sentry.Xamarin.Internals;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
-namespace Sentry.Xamarin.Forms
+namespace Sentry.Xamarin.Forms.Internals
 {
-    internal class SentryXamarinFormsIntegration : ISdkIntegration
+    internal class SentryXamarinFormsIntegration : IPageNavigationTracker
     {
         internal static SentryXamarinFormsIntegration Instance;
         private SentryXamarinOptions _options;
         private DelegateLogListener _xamarinLogger;
         private IHub _hub;
 
-        /// <summary>
-        /// current page name.
-        /// </summary>
-        internal static string CurrentPage;
-
-#if NATIVE_PROCESSOR
-        internal NativeIntegration Nativeintegration { get; private set; }
-#endif
-
-        internal SentryXamarinFormsIntegration(SentryXamarinOptions options)
+        public string CurrentPage { get; private set; }
+        public void RegisterXamarinOptions(SentryXamarinOptions options)
         {
             _options = options;
         }
@@ -45,37 +36,23 @@ namespace Sentry.Xamarin.Forms
             Instance = this;
             _hub = hub;
 
-            RegisterNativeIntegrations(hub, options, _options);
             RegisterXamarinLogListener(hub);
 
             //Don't lock the main Thread while you wait for the current application to be created.
             Task.Run(async () =>
-                {
-                    var application = await GetCurrentApplication().ConfigureAwait(false);
-                    if (application is null)
-                    {
-                        options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
-                    }
-                    else
-                    {
-                        application.PageAppearing += Current_PageAppearing;
-                        application.PageDisappearing += Current_PageDisappearing;
-                        application.RequestedThemeChanged += Current_RequestedThemeChanged;
-                    }
-                });
-        }
-
-        internal void RegisterNativeIntegrations(IHub hub, SentryOptions options, SentryXamarinOptions xamarinOptions)
-        {
-            if (xamarinOptions.NativeIntegrationEnabled)
             {
-#if NATIVE_PROCESSOR
-                Nativeintegration = new NativeIntegration(xamarinOptions);
-                Nativeintegration.Register(hub, options);
-#else
-                options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeIntegration found for the given target.");
-#endif
-            }
+                var application = await GetCurrentApplication().ConfigureAwait(false);
+                if (application is null)
+                {
+                    options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin timeout for tracking Application.Current. Navigation tracking is going to be disabled");
+                }
+                else
+                {
+                    application.PageAppearing += Current_PageAppearing;
+                    application.PageDisappearing += Current_PageDisappearing;
+                    application.RequestedThemeChanged += Current_RequestedThemeChanged;
+                }
+            });
         }
 
         internal void RegisterXamarinLogListener(IHub hub)

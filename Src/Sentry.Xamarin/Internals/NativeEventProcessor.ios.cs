@@ -2,7 +2,7 @@
 using Sentry.Extensibility;
 using System;
 
-namespace Sentry.Xamarin.Forms.Internals
+namespace Sentry.Xamarin.Internals
 {
     internal class NativeEventProcessor : ISentryEventProcessor
     {

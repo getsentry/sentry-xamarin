@@ -1,8 +1,6 @@
-﻿using Sentry.Xamarin.Forms;
-using Sentry.Xamarin.Forms.Extensions;
-using Sentry.Xamarin.Forms.Internals;
-using System;
+﻿using System;
 using Xamarin.Essentials;
+using Sentry.Xamarin.Internals;
 
 namespace Sentry
 {
@@ -28,7 +26,7 @@ namespace Sentry
         /// <param name="options">The Sentry options.</param>
         public static void DisableNativeIntegration(this SentryXamarinOptions options)
         {
-            SentryXamarinFormsIntegration.Instance.UnregisterNativeIntegration(options);
+            options.NativeIntegrationEnabled = false;
         }
 
         /// <summary>
@@ -61,6 +59,26 @@ namespace Sentry
 #else
             options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeEventProcessor found for the given target.");
 #endif
+        }
+
+        internal static void RegisterNativeIntegrations(this SentryXamarinOptions options)
+        {
+            if (options.NativeIntegrationEnabled)
+            {
+#if NATIVE_PROCESSOR
+                var nativeintegration = new NativeIntegration(options);
+                options.AddIntegration(nativeintegration);
+#else
+                options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeIntegration found for the given target.");
+#endif
+            }
+        }
+
+        internal static void AddPageNavigationTrackerIntegration(this SentryXamarinOptions options, IPageNavigationTracker tracker)
+        {
+            tracker.RegisterXamarinOptions(options);
+            options.PageTracker = tracker;
+            options.AddIntegration(tracker);
         }
 
         internal static void RegisterXamarinInAppExclude(this SentryXamarinOptions options)

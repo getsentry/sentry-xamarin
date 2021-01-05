@@ -1,4 +1,4 @@
-﻿namespace Sentry.Xamarin.Forms.Extensions
+﻿namespace Sentry.Xamarin.Extensions
 {
     internal static class StringExtensions
     {

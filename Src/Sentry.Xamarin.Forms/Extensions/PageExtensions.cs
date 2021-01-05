@@ -1,4 +1,4 @@
-﻿using Sentry.Xamarin.Forms.Protocol;
+﻿using Sentry.Xamarin.Protocol;
 using Xamarin.Forms;
 
 namespace Sentry.Xamarin.Forms.Extensions
@@ -8,7 +8,7 @@ namespace Sentry.Xamarin.Forms.Extensions
         internal static PageInfo GetPageType(this Page page)
         {
             var type = page.GetType();
-            if(type?.Name is null)
+            if (type?.Name is null)
             {
                 return new PageInfo()
                 {

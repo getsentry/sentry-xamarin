@@ -1,18 +1,10 @@
-﻿using Sentry.Xamarin.Forms;
+﻿using Sentry.Xamarin.Forms.Internals;
 using System;
 
 namespace Sentry
 {
-    /// <summary>
-    /// Sentry Xamarin SDK entrypoint.
-    /// </summary>
-    /// <remarks>
-    /// This is a facade to the SDK instance that also Initializes Sentry .NET SDK.
-    /// use SentrySdk for additional operations (like capturing exceptions, messages,...).
-    /// </remarks>
-    public static class SentryXamarin
+    public static class SentryXamarinForms
     {
-
         /// <summary>
         /// Initializes the SDK with an optional configuration options callback.
         /// </summary>
@@ -30,14 +22,13 @@ namespace Sentry
         /// <param name="options">The options instance</param>
         public static void Init(SentryXamarinOptions options)
         {
-            options ??= new SentryXamarinOptions();
+            if (options is null)
+            {
+                options = new SentryXamarinOptions();
+            }
 
-            options.ConfigureSentryXamarinOptions();
-            options.RegisterXamarinEventProcessors();
-            options.AddIntegration(new SentryXamarinFormsIntegration(options));
-            options.RegisterXamarinInAppExclude();
-
-            SentrySdk.Init(options);
+            options.AddPageNavigationTrackerIntegration(new SentryXamarinFormsIntegration());
+            SentryXamarin.Init(options);
         }
     }
 }

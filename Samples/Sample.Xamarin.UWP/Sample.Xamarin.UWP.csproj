@@ -165,10 +165,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj">
-      <Project>{6a3a0d77-c494-4122-8bb5-74859563bc86}</Project>
-      <Name>Sentry.Xamarin.Forms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sample.Xamarin.Core\Sample.Xamarin.Core.csproj">
       <Project>{02726caa-72f3-4e3c-b06d-51c77a4b82bd}</Project>
       <Name>Sample.Xamarin.Core</Name>

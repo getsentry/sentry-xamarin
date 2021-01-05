@@ -1,4 +1,6 @@
-﻿namespace Sentry
+﻿using Sentry.Xamarin.Internals;
+
+namespace Sentry
 {
     /// <summary>
     /// Sentry Xamarin SDK options.
@@ -8,5 +10,6 @@
         internal bool XamarinLoggerEnabled { get; set; } = true;
         internal bool NativeIntegrationEnabled { get; set; } = true;
         internal bool InternalCacheEnabled { get; set; } = true;
+        internal IPageNavigationTracker PageTracker { get; set; }
     }
 }

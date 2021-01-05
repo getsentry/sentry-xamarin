@@ -1,4 +1,4 @@
-﻿namespace Sentry.Xamarin.Forms.Internals
+﻿namespace Sentry.Xamarin.Internals
 {
     internal partial class NativeExceptionHandler
     {

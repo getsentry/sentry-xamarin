@@ -1,11 +1,11 @@
-﻿using Sentry.Xamarin.Forms.Extensions;
+﻿using Sentry.Xamarin.Extensions;
 using Sentry.Extensibility;
 using Sentry.Protocol;
 using System;
 using Xamarin.Essentials;
 using Sentry.Reflection;
 
-namespace Sentry.Xamarin.Forms.Internals
+namespace Sentry.Xamarin.Internals
 {
     /// <summary>
     /// An event processor that populates the Event with xamarin specific Tags.
