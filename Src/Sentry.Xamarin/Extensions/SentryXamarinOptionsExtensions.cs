@@ -7,7 +7,7 @@ namespace Sentry
     /// <summary>
     /// Extend SentryXamarinOptions by allowing it to manipulate options from Sentry Xamarin Forms.
     /// </summary>
-    public static class SentryXamarinOptionsExtensions
+    public  static partial class SentryXamarinOptionsExtensions
     {
         private static Lazy<string> _internalCacheDefaultPath = new Lazy<string>(()=> Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
 
