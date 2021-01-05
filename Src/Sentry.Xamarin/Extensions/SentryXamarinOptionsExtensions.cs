@@ -52,7 +52,7 @@ namespace Sentry
 
         internal static void RegisterXamarinEventProcessors(this SentryXamarinOptions options)
         {
-            options.AddEventProcessor(new XamarinFormsEventProcessor(options));
+            options.AddEventProcessor(new XamarinEventProcessor(options));
 
 #if NATIVE_PROCESSOR
             options.AddEventProcessor(new NativeEventProcessor(options));
@@ -61,17 +61,19 @@ namespace Sentry
 #endif
         }
 
-        internal static void RegisterNativeIntegrations(this SentryXamarinOptions options)
+        internal static bool RegisterNativeIntegrations(this SentryXamarinOptions options)
         {
             if (options.NativeIntegrationEnabled)
             {
 #if NATIVE_PROCESSOR
                 var nativeintegration = new NativeIntegration(options);
                 options.AddIntegration(nativeintegration);
+                return true;
 #else
                 options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeIntegration found for the given target.");
 #endif
             }
+            return false;
         }
 
         internal static void AddPageNavigationTrackerIntegration(this SentryXamarinOptions options, IPageNavigationTracker tracker)

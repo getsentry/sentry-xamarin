@@ -3,8 +3,18 @@ using System;
 
 namespace Sentry
 {
+    /// <summary>
+    /// Sentry Xamarin Forms SDK entrypoint.
+    /// </summary>
+    /// <remarks>
+    /// This is a facade to the SDK instance that also Initializes Sentry .NET SDK.
+    /// use SentrySdk for additional operations (like capturing exceptions, messages,...).
+    /// </remarks>
     public static class SentryXamarinForms
     {
+
+        internal static readonly string ProtocolPackageName = "sentry.dotnet.xamarin-forms";
+
         /// <summary>
         /// Initializes the SDK with an optional configuration options callback.
         /// </summary>
@@ -28,6 +38,7 @@ namespace Sentry
             }
 
             options.AddPageNavigationTrackerIntegration(new SentryXamarinFormsIntegration());
+            options.ProtocolPackageName = ProtocolPackageName;
             SentryXamarin.Init(options);
         }
     }

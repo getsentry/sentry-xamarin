@@ -1,4 +1,4 @@
-﻿using Sentry.Xamarin.Forms.Internals;
+﻿using Sentry.Xamarin.Internals;
 using Xunit;
 
 namespace Sentry.Xamarin.Forms.Tests.UWP.Internals

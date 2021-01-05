@@ -1,42 +1,39 @@
-﻿using Sentry.Xamarin.Forms.Internals;
-using Xunit;
+﻿using Xunit;
 
 namespace Sentry.Xamarin.Forms.Tests.UWP
 {
     public class SentryXamarinFormsIntegrationTests
-    {        
+    {
         [Fact]
         public void RegisterNativeIntegrations_NativeIntegrationEnabled_NativeIntegrationRegistered()
         {
             //Arrange
-            var options = new SentryOptions();
-            var xamarinOptions = new SentryXamarinOptions();
-            var integration = new SentryXamarinFormsIntegration(xamarinOptions);
+            var xamarinOptions = new SentryXamarinOptions()
+            {
+                NativeIntegrationEnabled = true
+            };
 
             //Act
-            integration.RegisterNativeIntegrations(default, options, xamarinOptions);
-            integration.Nativeintegration.Unregister();
+            var registered = xamarinOptions.RegisterNativeIntegrations();
 
             //Assert
-            Assert.NotNull(integration.Nativeintegration);
+            Assert.True(registered);
         }
 
         [Fact]
         public void RegisterNativeIntegrations_NativeIntegrationDisabled_NativeIntegrationNotSet()
         {
             //Arrange
-            var options = new SentryOptions();
             var xamarinOptions = new SentryXamarinOptions()
             {
                 NativeIntegrationEnabled = false
             };
-            var integration = new SentryXamarinFormsIntegration(xamarinOptions);
 
             //Act
-            integration.RegisterNativeIntegrations(default, options, xamarinOptions);
+            var registered = xamarinOptions.RegisterNativeIntegrations();
 
             //Assert
-            Assert.Null(integration.Nativeintegration);
+            Assert.False(registered);
         }
     }
 }

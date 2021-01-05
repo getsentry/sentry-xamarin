@@ -1,5 +1,4 @@
-﻿using Sentry.Xamarin;
-using System;
+﻿using System;
 
 namespace Sentry
 {
@@ -12,6 +11,8 @@ namespace Sentry
     /// </remarks>
     public static class SentryXamarin
     {
+
+        internal static readonly string ProtocolPackageName = "sentry.dotnet.xamarin";
 
         /// <summary>
         /// Initializes the SDK with an optional configuration options callback.
@@ -30,16 +31,13 @@ namespace Sentry
         /// <param name="options">The options instance</param>
         public static void Init(SentryXamarinOptions options)
         {
-            if(options is null)
-            {
-                options = new SentryXamarinOptions();
-            }
+            options ??= new SentryXamarinOptions();
 
             options.ConfigureSentryXamarinOptions();
             options.RegisterNativeIntegrations();
             options.RegisterXamarinEventProcessors();
             options.RegisterXamarinInAppExclude();
-
+            options.ProtocolPackageName ??= ProtocolPackageName;
             SentrySdk.Init(options);
         }
     }

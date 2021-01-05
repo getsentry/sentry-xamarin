@@ -1,4 +1,4 @@
-﻿using Sentry.Xamarin.Forms.Internals;
+﻿using Sentry.Xamarin.Internals;
 using Xunit;
 
 namespace Sentry.Xamarin.Forms.Tests.UWP.Internals
@@ -10,7 +10,7 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Internals
         {
 
             //Arrange
-            var eventProcessor = new XamarinFormsEventProcessor(new SentryOptions());
+            var eventProcessor = new XamarinEventProcessor(new SentryXamarinOptions());
             var @event = new SentryEvent();
 
             //Act
@@ -26,7 +26,7 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Internals
         {
 
             //Arrange
-            var eventProcessor = new XamarinFormsEventProcessor(new SentryOptions());
+            var eventProcessor = new XamarinEventProcessor(new SentryXamarinOptions());
             var @event = new SentryEvent();
 
             //Act
@@ -42,7 +42,7 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Internals
         public void Register_ValidEvent_OSNameIsUWP()
         {
             //Arrange
-            var eventProcessor = new XamarinFormsEventProcessor(default);
+            var eventProcessor = new XamarinEventProcessor(default);
 
             //Act
             var @event = eventProcessor.Process(new SentryEvent());
