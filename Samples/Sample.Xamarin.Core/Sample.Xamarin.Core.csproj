@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj" />
+    <ProjectReference Include="..\..\Src\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj" />
   </ItemGroup>
 
   <ItemGroup>

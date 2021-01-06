@@ -4,7 +4,7 @@ using Windows.ApplicationModel;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.System.Profile;
 
-namespace Sentry.Xamarin.Forms.Internals
+namespace Sentry.Xamarin.Internals
 {
     internal  class NativeEventProcessor : ISentryEventProcessor
     {

@@ -1,26 +1,24 @@
-﻿using Sentry.Xamarin.Forms.Extensions;
+﻿using Sentry.Xamarin.Extensions;
 using Sentry.Extensibility;
 using Sentry.Protocol;
 using System;
 using Xamarin.Essentials;
 using Sentry.Reflection;
 
-namespace Sentry.Xamarin.Forms.Internals
+namespace Sentry.Xamarin.Internals
 {
     /// <summary>
     /// An event processor that populates the Event with xamarin specific Tags.
     /// </summary>
-    public partial class XamarinFormsEventProcessor : ISentryEventProcessor
+    public partial class XamarinEventProcessor : ISentryEventProcessor
     {
         private Lazy<FormsContext> _formsContext = new Lazy<FormsContext>(() => new FormsContext());
-        private SentryOptions _options;
+        private SentryXamarinOptions _options;
         private volatile bool _formsContextLoaded = true;
         private volatile bool _ConnectivityStatusAllowed = true;
 
         internal static readonly SdkVersion NameAndVersion
-            = typeof(XamarinFormsEventProcessor).Assembly.GetNameAndVersion();
-
-        internal static readonly string ProtocolPackageName =  "sentry.dotnet.xamarin-forms";
+            = typeof(XamarinEventProcessor).Assembly.GetNameAndVersion();
 
         private class FormsContext
         {
@@ -55,7 +53,7 @@ namespace Sentry.Xamarin.Forms.Internals
         /// The NativeEventProcessor contructor.
         /// </summary>
         /// <param name="options">The Sentry options.</param>
-        public XamarinFormsEventProcessor(SentryOptions options) => _options = options;
+        public XamarinEventProcessor(SentryXamarinOptions options) => _options = options;
 
         /// <summary>
         /// Applies the Xamarin Tags and Context.
@@ -73,10 +71,10 @@ namespace Sentry.Xamarin.Forms.Internals
 
                     if (NameAndVersion.Version != null)
                     {
-                        @event.Sdk.Name = ProtocolPackageName;
+                        @event.Sdk.Name = _options.ProtocolPackageName;
                         @event.Sdk.Version = NameAndVersion.Version;
 
-                        @event.Sdk.AddPackage(ProtocolPackageName, NameAndVersion.Version);
+                        @event.Sdk.AddPackage(_options.ProtocolPackageName, NameAndVersion.Version);
                     }
 
                     @event.Contexts.Device.Simulator = formsContext.IsEmulator;

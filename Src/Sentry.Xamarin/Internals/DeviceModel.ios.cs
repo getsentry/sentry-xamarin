@@ -6,7 +6,7 @@ using ObjCRuntime;
 /* Source: https://github.com/dannycabrera/Get-iOS-Model
 */
 
-namespace Sentry.Xamarin.Forms.Internals
+namespace Sentry.Xamarin.Internals
 {
     [Preserve(AllMembers = true)]
     internal partial class DeviceModel

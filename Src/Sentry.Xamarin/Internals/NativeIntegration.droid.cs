@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
 
-namespace Sentry.Xamarin.Forms.Internals
+namespace Sentry.Xamarin.Internals
 {
     internal class NativeIntegration : ISdkIntegration
     {
@@ -28,7 +28,7 @@ namespace Sentry.Xamarin.Forms.Internals
             }
             catch (Exception ex)
             {
-                options.DiagnosticLogger?.Log(SentryLevel.Error, "Sentry.Xamarin.Forms failed to attach AtivityStateChanged", ex);
+                options.DiagnosticLogger?.Log(SentryLevel.Error, "Sentry.Xamarin failed to attach AtivityStateChanged", ex);
                 _xamarinOptions.NativeIntegrationEnabled = false;
             }
         }
@@ -47,7 +47,7 @@ namespace Sentry.Xamarin.Forms.Internals
                 "ui.lifecycle",
                 "navigation", data: new Dictionary<string, string>
                 {
-                    ["screen"] = SentryXamarinFormsIntegration.CurrentPage,
+                    ["screen"] = _xamarinOptions.PageTracker?.CurrentPage,
                     ["state"] = e.State.ToString()
                 }, level: BreadcrumbLevel.Info);
         }

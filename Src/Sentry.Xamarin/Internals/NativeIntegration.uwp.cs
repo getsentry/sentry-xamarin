@@ -6,7 +6,7 @@ using System.Security;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 
-namespace Sentry.Xamarin.Forms.Internals
+namespace Sentry.Xamarin.Internals
 {
     internal class NativeIntegration : ISdkIntegration
     {

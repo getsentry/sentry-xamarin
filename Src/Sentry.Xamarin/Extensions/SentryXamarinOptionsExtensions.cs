@@ -1,15 +1,13 @@
-﻿using Sentry.Xamarin.Forms;
-using Sentry.Xamarin.Forms.Extensions;
-using Sentry.Xamarin.Forms.Internals;
-using System;
+﻿using System;
 using Xamarin.Essentials;
+using Sentry.Xamarin.Internals;
 
 namespace Sentry
 {
     /// <summary>
     /// Extend SentryXamarinOptions by allowing it to manipulate options from Sentry Xamarin Forms.
     /// </summary>
-    public static class SentryXamarinOptionsExtensions
+    public  static partial class SentryXamarinOptionsExtensions
     {
         private static Lazy<string> _internalCacheDefaultPath = new Lazy<string>(()=> Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
 
@@ -28,7 +26,7 @@ namespace Sentry
         /// <param name="options">The Sentry options.</param>
         public static void DisableNativeIntegration(this SentryXamarinOptions options)
         {
-            SentryXamarinFormsIntegration.Instance.UnregisterNativeIntegration(options);
+            options.NativeIntegrationEnabled = false;
         }
 
         /// <summary>
@@ -54,13 +52,35 @@ namespace Sentry
 
         internal static void RegisterXamarinEventProcessors(this SentryXamarinOptions options)
         {
-            options.AddEventProcessor(new XamarinFormsEventProcessor(options));
+            options.AddEventProcessor(new XamarinEventProcessor(options));
 
 #if NATIVE_PROCESSOR
             options.AddEventProcessor(new NativeEventProcessor(options));
 #else
             options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeEventProcessor found for the given target.");
 #endif
+        }
+
+        internal static bool RegisterNativeIntegrations(this SentryXamarinOptions options)
+        {
+            if (options.NativeIntegrationEnabled)
+            {
+#if NATIVE_PROCESSOR
+                var nativeintegration = new NativeIntegration(options);
+                options.AddIntegration(nativeintegration);
+                return true;
+#else
+                options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeIntegration found for the given target.");
+#endif
+            }
+            return false;
+        }
+
+        internal static void AddPageNavigationTrackerIntegration(this SentryXamarinOptions options, IPageNavigationTracker tracker)
+        {
+            tracker.RegisterXamarinOptions(options);
+            options.PageTracker = tracker;
+            options.AddIntegration(tracker);
         }
 
         internal static void RegisterXamarinInAppExclude(this SentryXamarinOptions options)

@@ -2,9 +2,9 @@
 using System.Text.RegularExpressions;
 using Android.OS;
 using Sentry.Extensibility;
-using Sentry.Xamarin.Forms.Extensions;
+using Sentry.Xamarin.Extensions;
 
-namespace Sentry.Xamarin.Forms.Internals
+namespace Sentry.Xamarin.Internals
 {
     internal class NativeEventProcessor : ISentryEventProcessor
     {

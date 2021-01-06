@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using UIKit;
 
-namespace Sentry.Xamarin.Forms.Internals
+namespace Sentry.Xamarin.Internals
 {
     internal class NativeIntegration : ISdkIntegration
     {
@@ -40,7 +40,7 @@ namespace Sentry.Xamarin.Forms.Internals
                 "ui.lifecycle",
                 "navigation", data: new Dictionary<string, string>
                 {
-                    ["screen"] = SentryXamarinFormsIntegration.CurrentPage,
+                    ["screen"] = _xamarinOptions.PageTracker?.CurrentPage,
                     ["state"] = "background"
                 }, level: BreadcrumbLevel.Info);
         };
@@ -51,7 +51,7 @@ namespace Sentry.Xamarin.Forms.Internals
                 "ui.lifecycle",
                 "navigation", data: new Dictionary<string, string>
                 {
-                    ["screen"] = SentryXamarinFormsIntegration.CurrentPage,
+                    ["screen"] = _xamarinOptions.PageTracker?.CurrentPage,
                     ["state"] = "foreground"
                 }, level: BreadcrumbLevel.Info);
         };

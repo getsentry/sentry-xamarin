@@ -1,5 +1,4 @@
-﻿using Sentry.Xamarin.Forms;
-using System;
+﻿using System;
 
 namespace Sentry
 {
@@ -12,6 +11,8 @@ namespace Sentry
     /// </remarks>
     public static class SentryXamarin
     {
+
+        internal static readonly string ProtocolPackageName = "sentry.dotnet.xamarin";
 
         /// <summary>
         /// Initializes the SDK with an optional configuration options callback.
@@ -33,10 +34,10 @@ namespace Sentry
             options ??= new SentryXamarinOptions();
 
             options.ConfigureSentryXamarinOptions();
+            options.RegisterNativeIntegrations();
             options.RegisterXamarinEventProcessors();
-            options.AddIntegration(new SentryXamarinFormsIntegration(options));
             options.RegisterXamarinInAppExclude();
-
+            options.ProtocolPackageName ??= ProtocolPackageName;
             SentrySdk.Init(options);
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace Sentry.Xamarin.Forms.Protocol
+﻿namespace Sentry.Xamarin.Protocol
 {
     internal class PageInfo
     {

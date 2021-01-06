@@ -1,6 +1,5 @@
-﻿using Moq;
-using Sentry.Protocol;
-using Sentry.Xamarin.Forms.Internals;
+﻿using Sentry.Protocol;
+using Sentry.Xamarin.Internals;
 using System;
 using System.Threading.Tasks;
 using Xunit;

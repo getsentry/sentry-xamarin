@@ -14,12 +14,13 @@ Sentry SDK for Xamarin
 |      Integrations             |    Downloads     |    NuGet Stable     |    NuGet Preview     |
 | ----------------------------- | :-------------------: | :-------------------: | :-------------------: |
 |  **Sentry.Xamarin.Forms**     | [![Downloads](https://img.shields.io/nuget/dt/Sentry.Xamarin.Forms.svg)](https://www.nuget.org/packages/Sentry.Xamarin.Forms) | [![NuGet](https://img.shields.io/nuget/v/Sentry.Xamarin.Forms.svg)](https://www.nuget.org/packages/Sentry.Xamarin.Forms)   |    [![NuGet](https://img.shields.io/nuget/vpre/Sentry.Xamarin.Forms.svg)](https://www.nuget.org/packages/Sentry.Xamarin.Forms)   |
+|  **Sentry.Xamarin**     | [![Downloads](https://img.shields.io/nuget/dt/Sentry.Xamarin.svg)](https://www.nuget.org/packages/Sentry.Xamarin) | [![NuGet](https://img.shields.io/nuget/v/Sentry.Xamarin.svg)](https://www.nuget.org/packages/Sentry.Xamarin)   |    [![NuGet](https://img.shields.io/nuget/vpre/Sentry.Xamarin.svg)](https://www.nuget.org/packages/Sentry.Xamarin)   |
 
 This is a work in progress SDK for Xamarin.
 
 Includes for all Platforms supported by Xamarin Essentials:
-* Automatic Navigation breacrumbs.
-* Xaml warnings as breadcrumbs.
+* Automatic Navigation breacrumbs. (Xamarin.Forms)
+* Xaml warnings as breadcrumbs. (Xamarin.Forms)
 * Simulator flag.
 * Device manufacturer.
 * Device model.
@@ -49,9 +50,12 @@ All you need to do is to initialize Xamarin integration by calling SentryXamarin
 SentryXamarin.Init(options =>
 {
     options.Dsn = "__YOUR__DSN__";
+    options.AddXamarinFormsIntegration();
 });
 
 ```
+
+If your app uses Xamarin.Forms you can also use the package Sentry.Xamarin.Forms and initialize the SDK with additional line `options.AddXamarinFormsIntegration()`.
 
 ### Android
 On your MainActivity
@@ -63,6 +67,7 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompa
         SentryXamarin.Init(options =>
         {
             options.Dsn = "__YOUR__DSN__";
+            options.AddXamarinFormsIntegration();
         });
         ...
 ```
@@ -77,6 +82,7 @@ public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsAppli
         SentryXamarin.Init(options =>
         {
             options.Dsn = "__YOUR__DSN__";
+            options.AddXamarinFormsIntegration();
         });
         ...
 ```
@@ -91,6 +97,7 @@ On App.Xaml.cs
             SentryXamarin.Init(options =>
             {
                 options.Dsn = "__YOUR__DSN__";
+                options.AddXamarinFormsIntegration();
             });
         ...        
 ```
@@ -103,7 +110,7 @@ The package requires the following versions or newer:
 * Xamarin.Android 9.0 (for Android)
 * Xamarin.iOS 10.14 (for iOS)
 * Universal Windows Platform 10.0.16299 (for UWP)
-* Xamarin.Forms 4.6.0.726
+* Xamarin.Forms 4.6.0.726 (for Xamarin.Forms integration)
 * Xamarin.Essentials 1.4.0
 * Sentry 3.0.0
 

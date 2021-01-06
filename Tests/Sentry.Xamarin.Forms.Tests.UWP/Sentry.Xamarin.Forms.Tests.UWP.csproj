@@ -176,12 +176,15 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj">
-      <Project>{6a3a0d77-c494-4122-8bb5-74859563bc86}</Project>
+    <ProjectReference Include="..\..\Src\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj">
+      <Project>{145c0011-638b-4de5-81ba-f1f9f0901037}</Project>
       <Name>Sentry.Xamarin.Forms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Src\Sentry.Xamarin\Sentry.Xamarin.csproj">
+      <Project>{c911dd4b-bcdc-4d76-83d1-dc40379df816}</Project>
+      <Name>Sentry.Xamarin</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
