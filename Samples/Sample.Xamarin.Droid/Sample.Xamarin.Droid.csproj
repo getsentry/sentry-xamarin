@@ -59,7 +59,7 @@
       <Version>2.0.0.9</Version>
     </PackageReference>
     <PackageReference Include="Sentry">
-      <Version>3.0.0-alpha.9</Version>
+      <Version>3.0.0-alpha.10</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
       <Version>4.3.4</Version>
