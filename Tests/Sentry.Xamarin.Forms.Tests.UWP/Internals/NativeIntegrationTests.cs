@@ -51,6 +51,11 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Internals
             public IDisposable PushScope<TState>(TState state) => null;
 
             public void WithScope(Action<Scope> scopeCallback) { }
+
+            public ITransaction StartTransaction(string name, string operation)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         [Fact]

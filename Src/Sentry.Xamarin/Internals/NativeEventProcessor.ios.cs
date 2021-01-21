@@ -1,6 +1,8 @@
 ﻿using Foundation;
 using Sentry.Extensibility;
 using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Sentry.Xamarin.Internals
 {
@@ -8,9 +10,15 @@ namespace Sentry.Xamarin.Internals
     {
         private Lazy<IosContext> _IosContext = new Lazy<IosContext>(() => new IosContext());
         private SentryOptions _options;
+        private NativeStackTraceFactory _nativeStack;
+        private string _regexNativeException = "(.*Name:\\s(?<Name>.*)Reason:\\s(?<Reason>.*))";
         private volatile bool _IosContextLoaded = true;
 
-        public NativeEventProcessor(SentryOptions options) => _options = options;
+        public NativeEventProcessor(SentryOptions options)
+        {
+            _options = options;
+            _nativeStack = new NativeStackTraceFactory(_options);
+        }
         private class IosContext
         {
             internal long? MemorySize { get; }
@@ -36,6 +44,21 @@ namespace Sentry.Xamarin.Internals
                     var IosContext = _IosContext.Value;
                     @event.Contexts.Device.MemorySize = _IosContext.Value.MemorySize;
                     @event.Contexts.Device.StorageSize = _IosContext.Value.GetStorageSize();
+
+                    foreach (var exception in @event.SentryExceptions)
+                    {
+                        if (_nativeStack.IsNativeException(exception.Value))
+                        {
+                            var nativeStackTrace = exception.Value.Split('\n');
+                            var match = Regex.Match(nativeStackTrace[0], _regexNativeException);
+                            if (match.Success)
+                            {
+                                exception.Value = match.Groups["Reason"].Value;
+                                exception.Type = match.Groups["Name"].Value;
+                                exception.Stacktrace = _nativeStack.CreateNativeStackTrace(exception.Stacktrace, nativeStackTrace.Skip(1));
+                            }
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
