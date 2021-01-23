@@ -2,6 +2,8 @@
 using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 namespace Sentry.Xamarin.Internals
@@ -10,9 +12,9 @@ namespace Sentry.Xamarin.Internals
     {
         private static string _nativeRegexFormat => "(?<id>\\d+)\\s+(?<method>[a-zA-Z\\.-_?]+)\\s+(?<offset>0x[0-9a-fA-F]+)\\s+(?<function>.+?(?=\\s\\+))\\s+\\+\\s+(?<line>\\d+)";
         //"(?<id>\d+)\s+(?<method>[a-zA-Z\.-?]+)\s+(?<offset>0x[0-9a-fA-F]+)\s+(?<function>.+?(?=\s\+))\s+\+\s+(?<line>\d+)"
-        private readonly SentryOptions _options;
+        private readonly SentryXamarinOptions _options;
 
-        public NativeStackTraceFactory(SentryOptions options) : base(options) => _options = options;
+        public NativeStackTraceFactory(SentryXamarinOptions options) : base(options) => _options = options;
         /// <summary>
         /// Creates a <see cref="SentryStackTrace" /> from the optional <see cref="Exception" />.
         /// </summary>
@@ -32,8 +34,6 @@ namespace Sentry.Xamarin.Internals
                 return base.Create(exception);
             }
             return base.Create(exception);
-//            var callbackStackTrace = base.Create(exception);
-//            return CreateNativeStackTrace(callbackStackTrace, exception);
         }
 
         internal bool IsNativeException(string exceptionValue)
@@ -42,22 +42,23 @@ namespace Sentry.Xamarin.Internals
         internal SentryStackTrace CreateNativeStackTrace(SentryStackTrace managedStackTrace, IEnumerable<string> nativeStackTrace)
         {
             var nativeFramesList = new List<SentryStackFrame>();
-            foreach(var nativeFrame in nativeStackTrace)
+            for (int i = nativeStackTrace.Count() - 1; i >= 0; i--)
             {
-                var match = Regex.Match(nativeFrame, _nativeRegexFormat);
+                var match = Regex.Match(nativeStackTrace.ElementAt(i), _nativeRegexFormat);
                 if (match.Success)
                 {
+                    var method = match.Groups["method"].Value;
                     nativeFramesList.Add(new SentryStackFrame()
                     {
                         Platform = "native",
                         Function = match.Groups["function"].Value,
-                        Package = match.Groups["method"].Value,
-                        InstructionAddress = match.Groups["offset"].Value
+                        Package = method,
+                        InstructionAddress = match.Groups["offset"].Value,
+                        InApp = method == _options.ProjectName
                     });
                 }
             }
-            nativeFramesList.AddRange(managedStackTrace.Frames);
-            managedStackTrace.Frames = nativeFramesList;
+            managedStackTrace.Frames = managedStackTrace.Frames.Concat(nativeFramesList).ToList();
             return managedStackTrace;
         }
     }
