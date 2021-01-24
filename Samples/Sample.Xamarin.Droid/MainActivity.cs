@@ -1,14 +1,12 @@
-﻿
-using Android;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Xamarin.Forms;
 using Xamarin.Essentials;
-using Sample.Xamarin.Core.Helpers;
 using Sample.Xamarin.Core;
 using Color = Android.Graphics.Color;
 using Android.Content.PM;
+using Sentry;
 
 namespace Sample.Xamarin.Droid
 {
@@ -17,7 +15,14 @@ namespace Sample.Xamarin.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            SentryInitializer.Init();
+            SentryXamarin.Init(options =>
+            {
+                options.Dsn = "https://5a193123a9b841bc8d8e42531e7242a1@o447951.ingest.sentry.io/5560112";
+                options.AddXamarinFormsIntegration();
+#if DEBUG
+                options.Debug = true;
+#endif
+            });
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

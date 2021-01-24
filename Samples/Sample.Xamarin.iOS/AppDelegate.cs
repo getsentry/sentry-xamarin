@@ -1,8 +1,9 @@
 ﻿using Foundation;
 using Sample.Xamarin.Core;
+using Sentry;
 using UIKit;
 
-namespace Sentry.Xamarin.Sample.iOS
+namespace Sample.Xamarin.iOS
 {
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
@@ -17,14 +18,10 @@ namespace Sentry.Xamarin.Sample.iOS
                 options.Debug = true;
 #endif
             });
-            //SentryInitializer.Init();
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.SetFlags("Shapes_Experimental");
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
-            var dict = new NSMutableDictionary();
-            dict.LowlevelSetObject(System.IntPtr.Zero, System.IntPtr.Zero);
 
             return base.FinishedLaunching(app, options);
         }

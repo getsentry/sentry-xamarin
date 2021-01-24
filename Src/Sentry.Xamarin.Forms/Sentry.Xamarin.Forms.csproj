@@ -5,7 +5,7 @@
 		<!--Generate xml docs for all projects under 'src'-->
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-		<TargetFrameworks>Xamarinios10;netstandard2.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;</TargetFrameworks>
 		<NoWarn Condition="$(TargetFramework) == 'netstandard2.0'">$(NoWarn);RS0017</NoWarn>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 

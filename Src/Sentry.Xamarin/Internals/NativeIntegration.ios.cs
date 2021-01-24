@@ -18,7 +18,7 @@ namespace Sentry.Xamarin.Internals
         internal NativeIntegration(SentryXamarinOptions options)
         {
             _xamarinOptions = options;
-            _xamarinOptions.ProjectName = Assembly.GetEntryAssembly().GetName().Name; 
+            _xamarinOptions.ProjectName = Assembly.GetEntryAssembly().GetName().Name;
         }
         /// <summary>
         /// Initialize the iOS specific code.
@@ -33,6 +33,14 @@ namespace Sentry.Xamarin.Internals
             _observerTokens.Add(NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.WillEnterForegroundNotification, AppEnteredForeground));
             _observerTokens.Add(NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidReceiveMemoryWarningNotification, MemoryWarning));
             options.AddExceptionProcessor(new NativeExceptionProcessor(_xamarinOptions));
+            RegisterInAppExclude();
+        }
+
+        private void RegisterInAppExclude()
+        {
+            _xamarinOptions.AddInAppExclude("UIKit.");
+            _xamarinOptions.AddInAppExclude("Foundation.NS");
+            _xamarinOptions.AddInAppExclude("ObjCRuntime");
         }
         internal void Unregister()
         {
