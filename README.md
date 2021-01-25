@@ -1,11 +1,6 @@
 <p align="center">
   <a href="https://sentry.io" target="_blank" align="center">
-    <picture>
-    <source
-      srcset="https://sentry-brand.storage.googleapis.com/sentry-logo-dark.png"
-      media="(prefers-color-scheme: dark)">
-        <img src="https://sentry-brand.storage.googleapis.com/sentry-logo-white.png" alt= "Sentry.io" width="280">
-    </picture>
+      <img src=".github/sentry-logo.png" alt= "Sentry.io" width="280">
   </a>
   <br />
 </p>
