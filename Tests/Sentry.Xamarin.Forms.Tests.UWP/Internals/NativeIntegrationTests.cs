@@ -1,6 +1,7 @@
 ﻿using Sentry.Protocol;
 using Sentry.Xamarin.Internals;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -53,9 +54,14 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Internals
             public void WithScope(Action<Scope> scopeCallback) { }
 
             public ITransaction StartTransaction(string name, string operation)
-            {
-                throw new NotImplementedException();
-            }
+                => null;
+
+            public ITransaction StartTransaction(ITransactionContext context, IReadOnlyDictionary<string, object> customSamplingContext)
+                => null;
+
+            public SentryTraceHeader GetTraceHeader() => null;
+
+            public void CaptureTransaction(ITransaction transaction) { }
         }
 
         [Fact]

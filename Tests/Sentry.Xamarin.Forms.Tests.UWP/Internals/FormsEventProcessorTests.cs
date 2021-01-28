@@ -42,7 +42,7 @@ namespace Sentry.Xamarin.Forms.Tests.UWP.Internals
         public void Register_ValidEvent_OSNameIsUWP()
         {
             //Arrange
-            var eventProcessor = new XamarinEventProcessor(default);
+            var eventProcessor = new XamarinEventProcessor(new SentryXamarinOptions());
 
             //Act
             var @event = eventProcessor.Process(new SentryEvent());
