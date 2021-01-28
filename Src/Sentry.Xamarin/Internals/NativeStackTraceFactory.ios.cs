@@ -2,6 +2,7 @@
 using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -19,18 +20,18 @@ namespace Sentry.Xamarin.Internals
         internal bool IsNativeException(string exceptionValue)
             => exceptionValue.StartsWith("Objective-C exception");
 
-        internal SentryStackTrace CreateNativeStackTrace(SentryStackTrace managedStackTrace, IEnumerable<string> nativeStackTrace)
+        internal SentryStackTrace CreateNativeStackTrace(SentryStackTrace managedStackTrace, string[] nativeStackTrace)
         {
-            var nativeFramesList = new List<SentryStackFrame>();
-            for (int i = nativeStackTrace.Count() - 1; i >= 0; i--)
+            var nativeFramesList = new Collection<SentryStackFrame>(managedStackTrace.Frames);
+            for (int i = nativeStackTrace.Length - 1; i >= 0; i--)
             {
-                var match = Regex.Match(nativeStackTrace.ElementAt(i), _nativeRegexFormat);
+                var match = Regex.Match(nativeStackTrace[i], _nativeRegexFormat);
                 if (match.Success)
                 {
                     var method = match.Groups["method"].Value;
-                    nativeFramesList.Add(new SentryStackFrame()
+                    nativeFramesList.Add(new SentryStackFrame
                     {
-                        Platform = "cocoa",
+                        Platform = "native",
                         Function = match.Groups["function"].Value,
                         Package = method,
                         InstructionAddress = match.Groups["offset"].Value,
@@ -38,7 +39,7 @@ namespace Sentry.Xamarin.Internals
                     });
                 }
             }
-            managedStackTrace.Frames = managedStackTrace.Frames.Concat(nativeFramesList).ToList();
+            managedStackTrace.Frames = nativeFramesList;
             return managedStackTrace;
         }
     }

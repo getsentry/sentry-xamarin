@@ -29,11 +29,7 @@ namespace Sample.Xamarin.Core.ViewModels
             BrokenViewCmd = new Command(GotoBrokenView);
             FeedbackCmd = new Command(ShowFeedback);
             NativeCrashCmd = new Command(NativeCrash);
-            try
-            {
-                _nativeCrashService = DependencyService.Get<INativeCrash>();
-            }
-            finally { }
+            _nativeCrashService = DependencyService.Get<INativeCrash>();
         }
 
         private Action GotoDisco => () =>
