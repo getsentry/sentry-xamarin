@@ -20,16 +20,15 @@ namespace Sentry.Xamarin.Internals
         internal bool IsNativeException(string exceptionValue)
             => exceptionValue.StartsWith("Objective-C exception");
 
-        internal SentryStackTrace CreateNativeStackTrace(SentryStackTrace managedStackTrace, string[] nativeStackTrace)
+        internal SentryStackTrace CreateNativeStackTrace(SentryStackTrace managedStackTrace, IList<string> nativeStackTrace)
         {
-            var nativeFramesList = new Collection<SentryStackFrame>(managedStackTrace.Frames);
-            for (int i = nativeStackTrace.Length - 1; i >= 0; i--)
+            for (int i = nativeStackTrace.Count - 1; i >= 0; i--)
             {
                 var match = Regex.Match(nativeStackTrace[i], _nativeRegexFormat);
                 if (match.Success)
                 {
                     var method = match.Groups["method"].Value;
-                    nativeFramesList.Add(new SentryStackFrame
+                    managedStackTrace.Frames.Add(new SentryStackFrame
                     {
                         Platform = "native",
                         Function = match.Groups["function"].Value,
@@ -39,7 +38,6 @@ namespace Sentry.Xamarin.Internals
                     });
                 }
             }
-            managedStackTrace.Frames = nativeFramesList;
             return managedStackTrace;
         }
     }
