@@ -12,5 +12,6 @@ namespace Sentry
         internal bool InternalCacheEnabled { get; set; } = true;
         internal IPageNavigationTracker PageTracker { get; set; }
         internal string ProtocolPackageName { get; set; }
+        internal string ProjectName { get; set; }
     }
 }

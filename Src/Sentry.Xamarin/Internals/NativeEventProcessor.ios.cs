@@ -1,21 +1,23 @@
 ﻿using Foundation;
 using Sentry.Extensibility;
 using System;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace Sentry.Xamarin.Internals
 {
     internal class NativeEventProcessor : ISentryEventProcessor
     {
         private Lazy<IosContext> _IosContext = new Lazy<IosContext>(() => new IosContext());
-        private SentryOptions _options;
+        private SentryXamarinOptions _options;
         private volatile bool _IosContextLoaded = true;
 
-        public NativeEventProcessor(SentryOptions options) => _options = options;
+        public NativeEventProcessor(SentryXamarinOptions options) => _options = options;
         private class IosContext
         {
             internal long? MemorySize { get; }
             internal string Device { get; }
-
             internal long GetStorageSize()
                 => (long)NSFileManager.DefaultManager.GetFileSystemAttributes(Environment.GetFolderPath(Environment.SpecialFolder.Personal)).FreeSize;
 

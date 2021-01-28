@@ -23,7 +23,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{F9D3811B-662
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sentry.Xamarin", "Src\Sentry.Xamarin\Sentry.Xamarin.csproj", "{C911DD4B-BCDC-4D76-83D1-DC40379DF816}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentry.Xamarin.Forms", "Src\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj", "{145C0011-638B-4DE5-81BA-F1F9F0901037}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sentry.Xamarin.Forms", "Src\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj", "{145C0011-638B-4DE5-81BA-F1F9F0901037}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".root", ".root", "{A2B3AFD4-AB38-4C2A-9BC2-7B7BD509FA6B}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

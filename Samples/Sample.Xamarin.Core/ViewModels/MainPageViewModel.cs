@@ -1,5 +1,4 @@
-﻿using Sentry.Protocol;
-using Sample.Xamarin.Core.Interfaces;
+﻿using Sample.Xamarin.Core.Interfaces;
 using Sample.Xamarin.Core.Services;
 using Sample.Xamarin.Core.ViewModels.Popups;
 using Sample.Xamarin.Core.Views;
@@ -13,13 +12,14 @@ namespace Sample.Xamarin.Core.ViewModels
 {
     public class MainPageViewModel : NavigationService
     {
+        private readonly INativeCrash _nativeCrashService;
         public Command FeedbackCmd {get;}
         public Command HandledCmd { get; }
         public Command UnhandledCmd { get; }
         public Command DiscoCmd { get; }
         public Command PopupCmd { get; }
         public Command BrokenViewCmd { get; }
-
+        public Command NativeCrashCmd { get; }
         public MainPageViewModel()
         {
             DiscoCmd = new Command(GotoDisco);
@@ -28,6 +28,8 @@ namespace Sample.Xamarin.Core.ViewModels
             UnhandledCmd = new Command(Unhandle);
             BrokenViewCmd = new Command(GotoBrokenView);
             FeedbackCmd = new Command(ShowFeedback);
+            NativeCrashCmd = new Command(NativeCrash);
+            _nativeCrashService = DependencyService.Get<INativeCrash>();
         }
 
         private Action GotoDisco => () =>
@@ -76,6 +78,12 @@ namespace Sample.Xamarin.Core.ViewModels
         {
             var authService = new AuthService();
             authService.DoLogin("admin", "1234");
+        };
+
+        private Action NativeCrash => () =>
+        {
+            _nativeCrashService?.BrokenNativeCallback();
+            DisplayAlert("Whoops", "A native crash sample wasn't implemented for this platform, mind opening a pull request? :)", "Yes");
         };
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Foundation;
+using ObjCRuntime;
 using Sentry.Integrations;
 using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UIKit;
 
 namespace Sentry.Xamarin.Internals
@@ -13,8 +15,11 @@ namespace Sentry.Xamarin.Internals
         private SentryXamarinOptions _xamarinOptions;
         private IHub _hub;
 
-        internal NativeIntegration(SentryXamarinOptions options) => _xamarinOptions = options;
-
+        internal NativeIntegration(SentryXamarinOptions options)
+        {
+            _xamarinOptions = options;
+            _xamarinOptions.ProjectName = Assembly.GetEntryAssembly().GetName().Name;
+        }
         /// <summary>
         /// Initialize the iOS specific code.
         /// </summary>
@@ -27,6 +32,15 @@ namespace Sentry.Xamarin.Internals
             _observerTokens.Add(NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidEnterBackgroundNotification, AppEnteredBackground));
             _observerTokens.Add(NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.WillEnterForegroundNotification, AppEnteredForeground));
             _observerTokens.Add(NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidReceiveMemoryWarningNotification, MemoryWarning));
+            options.AddExceptionProcessor(new NativeExceptionProcessor(_xamarinOptions));
+            RegisterInAppExclude();
+        }
+
+        private void RegisterInAppExclude()
+        {
+            _xamarinOptions.AddInAppExclude("UIKit.");
+            _xamarinOptions.AddInAppExclude("Foundation.NS");
+            _xamarinOptions.AddInAppExclude("ObjCRuntime");
         }
         internal void Unregister()
         {

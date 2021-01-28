@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="Directory.Build.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -165,6 +166,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj">
+      <Project>{145c0011-638b-4de5-81ba-f1f9f0901037}</Project>
+      <Name>Sentry.Xamarin.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Sentry.Xamarin\Sentry.Xamarin.csproj">
+      <Project>{c911dd4b-bcdc-4d76-83d1-dc40379df816}</Project>
+      <Name>Sentry.Xamarin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample.Xamarin.Core\Sample.Xamarin.Core.csproj">
       <Project>{02726caa-72f3-4e3c-b06d-51c77a4b82bd}</Project>
       <Name>Sample.Xamarin.Core</Name>

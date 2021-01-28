@@ -30,7 +30,7 @@
 		<DefineConstants>$(DefineConstants);NATIVE_PROCESSOR</DefineConstants>
 	</PropertyGroup>	
 	
-	<ItemGroup>		
+	<ItemGroup>	
 		<Compile Remove="Internals\*.netstandard.cs" />
 		<Compile Remove="Internals\*.ios.cs" />
 		<Compile Remove="Internals\*.droid.cs" />

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Directory.Build.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -9,9 +10,9 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ContribSentry.Sample.iOS</RootNamespace>
+    <RootNamespace>Sample.Xamarin.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>ContribSentry.Sample.iOS</AssemblyName>
+    <AssemblyName>Sample.Xamarin.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <ProvisioningType>automatic</ProvisioningType>
@@ -62,7 +63,11 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Dependencies\NativeCrash.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -126,14 +131,19 @@
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>2.0.0.9</Version>
     </PackageReference>
-    <PackageReference Include="Sentry">
-      <Version>3.0.0-alpha.10</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj">
+      <Project>{145c0011-638b-4de5-81ba-f1f9f0901037}</Project>
+      <Name>Sentry.Xamarin.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\Sentry.Xamarin\Sentry.Xamarin.csproj">
+      <Project>{c911dd4b-bcdc-4d76-83d1-dc40379df816}</Project>
+      <Name>Sentry.Xamarin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample.Xamarin.Core\Sample.Xamarin.Core.csproj">
       <Project>{02726caa-72f3-4e3c-b06d-51c77a4b82bd}</Project>
       <Name>Sample.Xamarin.Core</Name>
@@ -148,4 +158,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\login_background_top.png" />
   </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties TriggeredFromHotReload="False" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
