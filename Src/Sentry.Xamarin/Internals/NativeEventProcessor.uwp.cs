@@ -1,8 +1,8 @@
 ﻿using Sentry.Extensibility;
 using System;
-using Windows.ApplicationModel;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.System.Profile;
+using UwpPackage = Windows.ApplicationModel.Package;
 
 namespace Sentry.Xamarin.Internals
 {
@@ -34,7 +34,7 @@ namespace Sentry.Xamarin.Internals
                 var revision = (version & 0x000000000000FFFFL);
                 OsVersion = $"{major}.{minor}.{build}.{revision}";
 
-                OsArchitecture = Package.Current.Id.Architecture.ToString();
+                OsArchitecture = UwpPackage.Current.Id.Architecture.ToString();
                 var deviceInfo = new EasClientDeviceInformation();
                 OsName = char.ToUpper(deviceInfo.OperatingSystem[0]) + 
                     deviceInfo.OperatingSystem.Remove(0,1).ToLower();

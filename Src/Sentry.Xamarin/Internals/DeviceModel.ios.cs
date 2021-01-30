@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Foundation;
-using ObjCRuntime;
+using iOSConstants = ObjCRuntime.Constants;
 /* Credits: dannycabrera
 /* Source: https://github.com/dannycabrera/Get-iOS-Model
 */
@@ -13,7 +13,7 @@ namespace Sentry.Xamarin.Internals
     {
         private const string _hardwareProperty = "hw.machine";
 
-        [DllImport(Constants.SystemLibrary)]
+        [DllImport(iOSConstants.SystemLibrary)]
         private extern static int sysctlbyname([MarshalAs(UnmanagedType.LPStr)] string property,
                                         IntPtr output,
                                         IntPtr oldLen,
