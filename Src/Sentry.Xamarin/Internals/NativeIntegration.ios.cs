@@ -1,5 +1,4 @@
 ﻿using Foundation;
-using ObjCRuntime;
 using Sentry.Integrations;
 using Sentry.Protocol;
 using System;

@@ -5,6 +5,7 @@ using System.Runtime.ExceptionServices;
 using System.Security;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
+using UwpUnhandledExceptionEventArgs = Windows.UI.Xaml.UnhandledExceptionEventArgs;
 
 namespace Sentry.Xamarin.Internals
 {
@@ -43,7 +44,7 @@ namespace Sentry.Xamarin.Internals
         }
 
         [HandleProcessCorruptedStateExceptions, SecurityCritical]
-        internal void NativeHandle(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        internal void NativeHandle(object sender, UwpUnhandledExceptionEventArgs e)
         {
             //We need to backup the reference, because the Exception reference last for one access.
             //After that, a new  Exception reference is going to be set into e.Exception.
