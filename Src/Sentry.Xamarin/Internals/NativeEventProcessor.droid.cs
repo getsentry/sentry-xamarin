@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Android.App;
+using Android.Content;
 using Android.OS;
 using Sentry.Extensibility;
 using Sentry.Xamarin.Extensions;
@@ -20,21 +22,9 @@ namespace Sentry.Xamarin.Internals
         private class AndroidContext
         {
             internal long? MemorySize { get; }
-
+            internal long? FreeMemory => _memoryManager?.AvailMem;
             internal string CpuModel { get; }
-            private long? GetAvaliableMemory()
-            {
-                try
-                {
-                    var reader = new Java.IO.RandomAccessFile("/proc/meminfo", "r");
-                    var memory = reader.ReadLine();
-                    reader.Close();
-                    memory = Regex.Match(memory, @"\d+").Value;
-                    return long.Parse(memory) * 1024; //convert KB to Bytes
-                }
-                catch { }
-                return null;
-            }
+            private ActivityManager.MemoryInfo _memoryManager { get; }
 
             private string GetCpuModel()
             {
@@ -70,8 +60,14 @@ namespace Sentry.Xamarin.Internals
 
             internal AndroidContext()
             {
-                MemorySize = GetAvaliableMemory();
                 CpuModel = GetCpuModel().FilterUnknownOrEmpty();
+                var activityManager = (ActivityManager)global::Xamarin.Essentials.Platform.AppContext.GetSystemService(Context.ActivityService);
+                if (activityManager != null)
+                {
+                    _memoryManager = new ActivityManager.MemoryInfo();
+                    activityManager.GetMemoryInfo(_memoryManager);
+                    MemorySize = _memoryManager.TotalMem;
+                }
             }
         }
 
@@ -88,6 +84,7 @@ namespace Sentry.Xamarin.Internals
                 {
                     var androidContext = _androidContext.Value;
                     @event.Contexts.Device.MemorySize = _androidContext.Value.MemorySize;
+                    @event.Contexts.Device.FreeMemory = _androidContext.Value.FreeMemory;
                     @event.Contexts.Device.StorageSize = _androidContext.Value.GetAvaliableRom();
                     if(_androidContext.Value.CpuModel != null)
                     {
