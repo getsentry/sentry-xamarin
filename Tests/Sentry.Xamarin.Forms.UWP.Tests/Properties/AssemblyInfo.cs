@@ -1,16 +1,15 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Sentry.Xamarin.Forms.Tests.UWP")]
+[assembly: AssemblyTitle("Sentry.Xamarin.Forms.UWP.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Sentry.Xamarin.Forms.Tests.UWP")]
+[assembly: AssemblyProduct("Sentry.Xamarin.Forms.UWP.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyMetadata("TargetPlatform","UAP")]
+[assembly: AssemblyMetadata("TargetPlatform", "UAP")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]

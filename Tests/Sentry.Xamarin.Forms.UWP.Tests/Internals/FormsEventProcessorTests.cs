@@ -1,7 +1,7 @@
 ﻿using Sentry.Xamarin.Internals;
 using Xunit;
 
-namespace Sentry.Xamarin.Forms.Tests.UWP.Internals
+namespace Sentry.Xamarin.Forms.UWP.Tests.Internals
 {
     public class FormsEventProcessorTests
     {

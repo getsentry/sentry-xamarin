@@ -36,7 +36,7 @@ jobs:
         run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64 /p:Configuration=Release
         if: matrix.os == 'windows-latest'
       - name: Build UWP Test Project
-        run: msbuild Tests/Sentry.Xamarin.Forms.Tests.UWP/Sentry.Xamarin.Forms.Tests.UWP.csproj /p:Platform=x64 /p:Configuration=Release
+        run: msbuild Tests/Sentry.Xamarin.Forms.UWP.Tests/Sentry.Xamarin.Forms.UWP.Tests.csproj /p:Platform=x64 /p:Configuration=Release
         if: matrix.os == 'windows-latest'
       - name: Setup VS Test
         uses: darenm/Setup-VSTest@v1

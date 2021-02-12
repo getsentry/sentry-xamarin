@@ -1,6 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Sentry.Xamarin.Forms")]
-[assembly: InternalsVisibleTo("Sentry.Xamarin.Forms.Tests.UWP")]
+[assembly: InternalsVisibleTo("Sentry.Xamarin.Forms.UWP.Tests")]
 
 [assembly: CLSCompliant(true)]
