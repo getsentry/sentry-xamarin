@@ -1,0 +1,88 @@
+# Changelog
+
+## 1.0.1
+
+A minor update to avoid breaking changes with the latest version of Sentry .NET SDK
+
+* Update Sentry .NET SDK. (#45)
+
+## 1.0.0
+
+This is the first GA release containing the following features:
+
+General improvements
+
+* Automatic Navigation breadcrumbs. (Forms)
+* Automatic Xamarin Forms warnings as breadcrumbs.
+* Unhandled Exception for Android/iOS/UWP
+* Release version for Android/iOS/UWP.
+* Additional InAppExclude list for Xamarin.
+* iOS Exceptions including native and managed StackTrace.
+
+Device information
+
+* Manufacturer.
+* Model.
+* Connectivity status.
+* Operational system name and version.
+* Screen information (Pixel density and resolution).
+* Free Internal memory (Android/iOS).
+* Total RAM (Android/iOS).
+* CPU model (Android).
+* Simulator flag.
+F
+or more information on how to use the SDK, check the documentation at https://docs.sentry.io/platforms/dotnet/guides/xamarin/.
+
+
+## 1.0.0-alpha.4
+
+* detach Xamarin.Forms dependency from the SDK. (#38 ) @lucas-zimerman 
+
+If you plan to use Xamarin only you'll need the Sentry.Xamarin package. Additionally, you'll also need the Sentry.Xamarin.Forms if you are using Xamarin Forms.
+
+Furthermore, for activating the Sentry.Xamarin.Forms you'll need to add the Xamarin Forms Integration inside of SentryXamarinOptions.
+
+```csharp
+        SentryXamarin.Init(options =>
+        {
+            options.Dsn = "__YOUR__DSN__";
+            options.AddXamarinFormsIntegration();
+        });
+```
+
+## 1.0.0-alpha.3
+
+* fixed os.name format.
+* Sentry.NET SDK requirement increased.
+* Add InAppExclude list for Xamarin.
+* Initializer refactored.
+
+## 1.0.0-alpha.2
+
+This is the first alpha containing the following features:
+
+* Decreased package requirements.
+* Added Release version for Android/iOS/UWP.
+
+## 1.0.0-alpha.1
+
+This is the first alpha containing the following features:
+
+* Automatic Navigation breadcrumbs.
+* Automatic Xamarin warnings as breadcrumbs.
+* Unhandled Exception for Android/iOS/UWP
+* Simulator flag.
+* Device manufacturer.
+* Device model.
+* Operational system name and version.
+* Screen information (Pixel density and resolution).
+* Connectivity status.
+* Free Internal memory (Android/iOS).
+* Total RAM (Android/iOS).
+* CPU model (Android).
+
+Also available via NuGet:
+
+[Sentry](https://www.nuget.org/packages/Sentry/)
+[Sentry.Xamarin](https://www.nuget.org/packages/Sentry.Xamarin)
+[Sentry.Xamarin.Forms](https://www.nuget.org/packages/Sentry.Xamarin.Forms)
