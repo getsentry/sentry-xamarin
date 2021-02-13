@@ -1,12 +1,22 @@
 # Changelog
 
+## Unreleased
+
+### Changes
+
+* Add available RAM parameter (Android). (#46) @lucas-zimerman
+
 ## 1.0.1
+
+### Changes
 
 A minor update to avoid breaking changes with the latest version of Sentry .NET SDK
 
 * Update Sentry .NET SDK. (#45)
 
 ## 1.0.0
+
+### Changes
 
 This is the first GA release containing the following features:
 
@@ -36,6 +46,8 @@ or more information on how to use the SDK, check the documentation at https://do
 
 ## 1.0.0-alpha.4
 
+### Changes
+
 * detach Xamarin.Forms dependency from the SDK. (#38 ) @lucas-zimerman 
 
 If you plan to use Xamarin only you'll need the Sentry.Xamarin package. Additionally, you'll also need the Sentry.Xamarin.Forms if you are using Xamarin Forms.
@@ -52,6 +64,8 @@ Furthermore, for activating the Sentry.Xamarin.Forms you'll need to add the Xama
 
 ## 1.0.0-alpha.3
 
+### Changes
+
 * fixed os.name format.
 * Sentry.NET SDK requirement increased.
 * Add InAppExclude list for Xamarin.
@@ -59,12 +73,16 @@ Furthermore, for activating the Sentry.Xamarin.Forms you'll need to add the Xama
 
 ## 1.0.0-alpha.2
 
+### Changes
+
 This is the first alpha containing the following features:
 
 * Decreased package requirements.
 * Added Release version for Android/iOS/UWP.
 
 ## 1.0.0-alpha.1
+
+### Changes
 
 This is the first alpha containing the following features:
 
