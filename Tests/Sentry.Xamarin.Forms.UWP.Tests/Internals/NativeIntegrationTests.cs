@@ -1,11 +1,10 @@
-﻿using Sentry.Protocol;
-using Sentry.Xamarin.Internals;
+﻿using Sentry.Xamarin.Internals;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Sentry.Xamarin.Forms.Tests.UWP.Internals
+namespace Sentry.Xamarin.Forms.UWP.Tests.Internals
 {
     public class NativeIntegrationTests
     {
