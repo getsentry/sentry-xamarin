@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Sentry.Xamarin.Forms.Tests.UWP
+namespace Sentry.Xamarin.Forms.UWP.Tests
 {
     public class SentryXamarinFormsIntegrationTests
     {

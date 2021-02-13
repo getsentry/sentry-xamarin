@@ -7,8 +7,8 @@
     <ProjectGuid>{ED348898-C55D-4473-A5A7-F54F54D51965}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sentry.Xamarin.Forms.Tests.UWP</RootNamespace>
-    <AssemblyName>Sentry.Xamarin.Forms.Tests.UWP</AssemblyName>
+    <RootNamespace>Sentry.Xamarin.Forms.UWP.Tests</RootNamespace>
+    <AssemblyName>Sentry.Xamarin.Forms.UWP.Tests</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
