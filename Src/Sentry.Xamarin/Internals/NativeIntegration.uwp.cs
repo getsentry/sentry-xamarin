@@ -14,7 +14,12 @@ namespace Sentry.Xamarin.Internals
         private IHub _hub;
         private Application _application;
 
-        internal NativeIntegration(SentryXamarinOptions options) { }
+        internal NativeIntegration(SentryXamarinOptions options) 
+        {
+            //Ben Demystifier doesn't support .NET Native so we have to force it to Original.
+            //See: https://github.com/benaadams/Ben.Demystifier/issues/51#issuecomment-777311071
+            options.StackTraceMode = StackTraceMode.Original;
+        }
 
         /// <summary>
         /// Initialize the UWP specific code.

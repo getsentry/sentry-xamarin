@@ -4,6 +4,7 @@
 
 ### Changes
 
+* Fix exceptions not being registered on UWP projects. (#47) @lucas-zimerman
 * Add available RAM parameter (Android). (#46) @lucas-zimerman
 
 ## 1.0.1
