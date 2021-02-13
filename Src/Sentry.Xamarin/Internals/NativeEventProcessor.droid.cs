@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Text.RegularExpressions;
+using Android.App;
+using Android.Content;
 using Android.OS;
 using Sentry.Extensibility;
 using Sentry.Xamarin.Extensions;
@@ -20,22 +21,7 @@ namespace Sentry.Xamarin.Internals
         private class AndroidContext
         {
             internal long? MemorySize { get; }
-
             internal string CpuModel { get; }
-            private long? GetAvaliableMemory()
-            {
-                try
-                {
-                    var reader = new Java.IO.RandomAccessFile("/proc/meminfo", "r");
-                    var memory = reader.ReadLine();
-                    reader.Close();
-                    memory = Regex.Match(memory, @"\d+").Value;
-                    return long.Parse(memory) * 1024; //convert KB to Bytes
-                }
-                catch { }
-                return null;
-            }
-
             private string GetCpuModel()
             {
                 var modelKey = "Hardware";
@@ -68,10 +54,29 @@ namespace Sentry.Xamarin.Internals
                 return null;
             }
 
+            internal long? GetFreeMemory()
+                => GetMemoryInfo()?.AvailMem;
+
+            internal ActivityManager.MemoryInfo GetMemoryInfo()
+            {
+                var activityManager = (ActivityManager)global::Xamarin.Essentials.Platform.AppContext.GetSystemService(Context.ActivityService);
+                if (activityManager != null)
+                {
+                    var memoryManager = new ActivityManager.MemoryInfo();
+                    activityManager.GetMemoryInfo(memoryManager);
+                    return memoryManager;
+                }
+                return null;
+            }
+
             internal AndroidContext()
             {
-                MemorySize = GetAvaliableMemory();
                 CpuModel = GetCpuModel().FilterUnknownOrEmpty();
+                var activityManager = (ActivityManager)global::Xamarin.Essentials.Platform.AppContext.GetSystemService(Context.ActivityService);
+                if (activityManager != null)
+                {
+                    MemorySize = GetMemoryInfo()?.TotalMem;
+                }
             }
         }
 
@@ -88,8 +93,9 @@ namespace Sentry.Xamarin.Internals
                 {
                     var androidContext = _androidContext.Value;
                     @event.Contexts.Device.MemorySize = _androidContext.Value.MemorySize;
+                    @event.Contexts.Device.FreeMemory = _androidContext.Value.GetFreeMemory();
                     @event.Contexts.Device.StorageSize = _androidContext.Value.GetAvaliableRom();
-                    if(_androidContext.Value.CpuModel != null)
+                    if (_androidContext.Value.CpuModel != null)
                     {
                         @event.SetTag("cpu.model", _androidContext.Value.CpuModel);
                     }
