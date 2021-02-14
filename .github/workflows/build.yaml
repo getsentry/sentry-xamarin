@@ -44,12 +44,6 @@ jobs:
       - name: Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: Package
+          name: ${{ github.sha }}
           path: |
             ${{ github.workspace }}/src/**/Release/*.nupkg
-      - name: Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: Symbols
-          path: |
-            ${{ github.workspace }}/src/**/Release/*.snupkg
