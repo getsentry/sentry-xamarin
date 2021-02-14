@@ -1,5 +1,5 @@
 <Project Sdk="MSBuild.Sdk.Extras/2.0.41">
-	<Import Project="Directory.Build.props" />
+	<Import Project="../Directory.Build.props" />
 	
 	<PropertyGroup>
 		<!--Generate xml docs for all projects under 'src'-->
@@ -9,6 +9,7 @@
 		<NoWarn Condition="$(TargetFramework) == 'netstandard2.0'">$(NoWarn);RS0017</NoWarn>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
+		<Product>Sentry.Xamarin.Forms</Product>
 		<PackageId>Sentry.Xamarin.Forms</PackageId>
 		<AssemblyName>Sentry.Xamarin.Forms</AssemblyName>
 		<RootNamespace>Sentry</RootNamespace>

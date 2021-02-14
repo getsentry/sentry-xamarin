@@ -1,7 +1,7 @@
 <Project>
   <!--Automatic upward search ends when first file found. From here we need to manually import parent props/targets
         https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build -->
-  <Import Project="..\..\Directory.Build.props" />
+  <Import Project="..\Directory.Build.props" />
 
   <PropertyGroup>
     <!--Generate xml docs for all projects under 'src'-->
@@ -12,30 +12,39 @@
 
     <Authors>Sentry Team and Contributors</Authors>
     <Company>Sentry.io</Company>
-    <Product>Sentry.Xamarin.Forms</Product>
+    <Product>Sentry.Xamarin.</Product>
 
     <PackageTags>Sentry;GetSentry;Xamarin;Xamarin.Android;Xamarin.iOS;Xamarin.Forms;Error-Reporting;Crash-Reporting;Exception-Handling</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
-    <RepositoryUrl>https://github.com/getsentry/sentry-dotnet-xamarin</RepositoryUrl>
+    <RepositoryUrl>https://github.com/getsentry/sentry-xamarin</RepositoryUrl>
 
     <PackageIcon>sentry-nuget.png</PackageIcon>
     <PackageProjectUrl>https://sentry.io</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
-    <PackageReleaseNotes>Can be found at: https://github.com/getsentry/sentry-dotnet-xamarin/releases</PackageReleaseNotes>
+    <PackageReleaseNotes>Can be found at: https://github.com/getsentry/sentry-xamarin/releases</PackageReleaseNotes>
 
     <!-- Prop required by Microsoft.SourceLink.GitHub -->
     <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
-    <IncludeSymbols>true</IncludeSymbols>
+    <!-- Embed PDB inside the assembly -->
+    <DebugType>embedded</DebugType>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 
     <Nullable>annotations</Nullable>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <ChangelogFile>$(SolutionDir)/CHANGELOG.md</ChangelogFile>
+    <AppendToReleaseNotesProperty>
+      <![CDATA[-->
+      See full changelog at https://github.com/getsentry/sentry-xamarin/blob/main/CHANGELOG.md]]>
+    </AppendToReleaseNotesProperty>
+    <VersionRegex>^## (.+)</VersionRegex>
   </PropertyGroup>
 
   <ItemGroup>
@@ -43,6 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="SIL.ReleaseTasks" Version="2.2.0" PrivateAssets="All"/>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="ConfigureAwaitChecker.Analyzer" Version="4.0.0" PrivateAssets="All" Condition="'$(Configuration)' != 'Release'" />
   </ItemGroup>
