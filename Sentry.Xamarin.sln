@@ -27,6 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sentry.Xamarin.Forms", "Src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".root", ".root", "{A2B3AFD4-AB38-4C2A-9BC2-7B7BD509FA6B}"
 	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject

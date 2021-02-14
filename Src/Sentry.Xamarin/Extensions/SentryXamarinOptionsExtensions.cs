@@ -5,7 +5,7 @@ using Sentry.Xamarin.Internals;
 namespace Sentry
 {
     /// <summary>
-    /// Extend SentryXamarinOptions by allowing it to manipulate options from Sentry Xamarin Forms.
+    /// Extend SentryXamarinOptions by allowing it to manipulate options from Sentry Xamarin.
     /// </summary>
     public  static partial class SentryXamarinOptionsExtensions
     {
@@ -21,7 +21,7 @@ namespace Sentry
         }
 
         /// <summary>
-        /// Disables the Sentry Xamarin Forms Native integration.
+        /// Disables the Sentry Xamarin Native integration.
         /// </summary>
         /// <param name="options">The Sentry options.</param>
         public static void DisableNativeIntegration(this SentryXamarinOptions options)
@@ -33,7 +33,7 @@ namespace Sentry
         /// Disables the cache, must be called before Sentry gets initialized
         /// </summary>
         /// <param name="options">The Sentry options.</param>
-        public static void DisableXamarinFormsCache(this SentryXamarinOptions options)
+        public static void DisableOfflineCaching(this SentryXamarinOptions options)
         {
             options.InternalCacheEnabled = false;
         }

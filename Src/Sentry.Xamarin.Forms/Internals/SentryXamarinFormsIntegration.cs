@@ -1,5 +1,4 @@
-﻿using Sentry.Protocol;
-using Sentry.Xamarin.Forms.Extensions;
+﻿using Sentry.Xamarin.Forms.Extensions;
 using Sentry.Xamarin.Internals;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -36,15 +35,15 @@ namespace Sentry.Xamarin.Forms.Internals
             Instance = this;
             _hub = hub;
 
-            RegisterXamarinLogListener(hub);
+            RegisterXamarinFormsLogListener(hub);
 
-            //Don't lock the main Thread while you wait for the current application to be created.
+            //Don't lock the main Thread while waiting for the current application to be created.
             Task.Run(async () =>
             {
                 var application = await GetCurrentApplication().ConfigureAwait(false);
                 if (application is null)
                 {
-                    options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin timeout for tracking Application.Current. Navigation tracking is going to be disabled");
+                    options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
                 }
                 else
                 {
@@ -55,7 +54,7 @@ namespace Sentry.Xamarin.Forms.Internals
             });
         }
 
-        internal void RegisterXamarinLogListener(IHub hub)
+        internal void RegisterXamarinFormsLogListener(IHub hub)
         {
             _xamarinLogger = new DelegateLogListener((arg1, arg2) =>
             {
@@ -140,7 +139,7 @@ namespace Sentry.Xamarin.Forms.Internals
                     _hub.AddBreadcrumb(null,
                         "navigation",
                         "navigation",
-                        new Dictionary<string, string>() { { "from", $"/{CurrentPage}" }, { "to", $"/{pageType.Name}" } });
+                        new Dictionary<string, string> { { "from", $"/{CurrentPage}" }, { "to", $"/{pageType.Name}" } });
                 }
             }
             CurrentPage = pageType.Name;
