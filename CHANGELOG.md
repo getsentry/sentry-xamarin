@@ -4,7 +4,7 @@
 
 ### Changes
 
-* Renamed DisableOfflineCaching to DisableOfflineCaching. (#50) @lucas-zimerman
+* Renamed DisableXamarinFormsCache to DisableOfflineCaching. (#50) @lucas-zimerman
 * Update Sentry.NET SDK to 3.0.6. (#50) @lucas-zimerman
 * Add available RAM parameter (Android). (#46) @lucas-zimerman
 
