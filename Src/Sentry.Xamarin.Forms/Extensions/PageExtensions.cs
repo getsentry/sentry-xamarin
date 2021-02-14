@@ -1,4 +1,4 @@
-﻿using Sentry.Xamarin.Protocol;
+﻿using Sentry.Internals;
 using Xamarin.Forms;
 
 namespace Sentry.Xamarin.Forms.Extensions
