@@ -12,7 +12,7 @@
 
     <Authors>Sentry Team and Contributors</Authors>
     <Company>Sentry.io</Company>
-    <Product>Sentry.Xamarin.</Product>
+    <Product>Sentry.Xamarin</Product>
 
     <PackageTags>Sentry;GetSentry;Xamarin;Xamarin.Android;Xamarin.iOS;Xamarin.Forms;Error-Reporting;Crash-Reporting;Exception-Handling</PackageTags>
     <RepositoryType>git</RepositoryType>

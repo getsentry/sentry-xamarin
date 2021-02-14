@@ -61,6 +61,9 @@ namespace Sentry.Xamarin.Forms.UWP.Tests.Internals
             public SentryTraceHeader GetTraceHeader() => null;
 
             public void CaptureTransaction(ITransaction transaction) { }
+
+            public ISpan GetSpan()
+                => null;
         }
 
         [Fact]

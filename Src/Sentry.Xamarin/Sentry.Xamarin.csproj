@@ -1,5 +1,4 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.41">
-  <Import Project="../Directory.Build.props" />
 	<PropertyGroup>
 	    <!--Generate xml docs for all projects under 'src'-->
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
