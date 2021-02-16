@@ -6,7 +6,7 @@ using iOSConstants = ObjCRuntime.Constants;
 /* Source: https://github.com/dannycabrera/Get-iOS-Model
 */
 
-namespace Sentry.Xamarin.Internals
+namespace Sentry.Xamarin.Internals.SentryDeviceInfo
 {
     [Preserve(AllMembers = true)]
     internal partial class DeviceModel

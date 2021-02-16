@@ -1,9 +1,7 @@
 ﻿using Foundation;
 using Sentry.Extensibility;
+using Sentry.Xamarin.Internals.SentryDeviceInfo;
 using System;
-using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
 
 namespace Sentry.Xamarin.Internals
 {

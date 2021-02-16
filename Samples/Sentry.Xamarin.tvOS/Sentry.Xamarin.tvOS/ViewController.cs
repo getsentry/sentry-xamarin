@@ -14,8 +14,6 @@ namespace Sentry.Xamarin.tvOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            SentrySdk.CaptureMessage("Hello From tvOS");
-            // Perform any additional setup after loading the view, typically from a nib.
         }
 
         public override void DidReceiveMemoryWarning()
@@ -27,8 +25,7 @@ namespace Sentry.Xamarin.tvOS
         partial void Message_Click(UIButton sender)
         {
             SentrySdk.CaptureMessage("Hello tvOS");
-            UIAlertAction.Create("Hello tvOS", UIAlertActionStyle.Default, null);
-
+            AlertViewController.PresentOKAlert("Hi", "Hello tvOS", this);
         }
 
         partial void Handled_Exception_Click(UIButton sender)
@@ -41,7 +38,7 @@ namespace Sentry.Xamarin.tvOS
             catch (Exception ex)
             {
                 SentrySdk.CaptureException(ex);
-                UIAlertAction.Create("A handled exception happened", UIAlertActionStyle.Default, null);
+                AlertViewController.PresentOKAlert("Error", "A handled exception happened", this);
             }
         }
 

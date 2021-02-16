@@ -1,6 +1,5 @@
 ﻿using Foundation;
 using Sentry.Integrations;
-using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Reflection;

@@ -4,7 +4,7 @@
 	    <!--Generate xml docs for all projects under 'src'-->
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-		<TargetFrameworks>netstandard2.0;monoandroid9.0;Xamarinios10;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;monoandroid9.0;Xamarinios10;Xamarintvos10</TargetFrameworks>
 		<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">$(TargetFrameworks);uap10.0.16299;</TargetFrameworks>
 		<NoWarn Condition="$(TargetFramework) == 'netstandard2.0'">$(NoWarn);RS0017</NoWarn>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -22,6 +22,11 @@
 		<DefineConstants>$(DefineConstants);NATIVE_PROCESSOR</DefineConstants>
 	</PropertyGroup>
 
+	<PropertyGroup Condition=" $(TargetFramework.StartsWith('Xamarintvos')) ">
+		<DefineConstants>$(DefineConstants);NATIVE_PROCESSOR</DefineConstants>
+	</PropertyGroup>
+
+
 	<PropertyGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
 		<DefineConstants>$(DefineConstants);NATIVE_PROCESSOR</DefineConstants>
 	</PropertyGroup>
@@ -32,14 +37,22 @@
 	
 	<ItemGroup>	
 		<Compile Remove="Internals\*.netstandard.cs" />
-		<Compile Remove="Internals\*.ios.cs" />
+		<Compile Remove="Internals\**\*.ios.cs" />
+		<Compile Remove="Internals\**\*.ios.tvos.cs" />
+		<Compile Remove="Internals\**\*.ios.shared.cs" />
 		<Compile Remove="Internals\*.droid.cs" />
 		<Compile Remove="Internals\*.uwp.cs" />
 
 		<None Include="Internals\*.netstandard.cs" />
-		<None Include="Internals\*.ios.cs" />
+		<None Include="Internals\**\*.ios.cs" />
+		<None Include="Internals\**\*.tvos.cs" />
+		<None Include="Internals\**\*.ios.shared.cs" />
 		<None Include="Internals\*.droid.cs" />
 		<None Include="Internals\*.uwp.cs" />
+	</ItemGroup>	
+	
+	<ItemGroup>
+	  <Compile Remove="Internals\SentryDeviceInfo\DeviceModel.tvos.cs" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -47,8 +60,15 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarinios')) ">
-		<Compile Include="Internals\*.ios.cs" />
+		<Compile Include="Internals\**\*.ios.cs" />
+		<Compile Include="Internals\**\*.ios.shared.cs" />
 	</ItemGroup>
+
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarintvos')) ">
+		<Compile Include="Internals\**\*.tvos.cs" />
+		<Compile Include="Internals\**\*.ios.shared.cs" />
+	</ItemGroup>
+
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
 		<Compile Include="Internals\*.droid.cs" />

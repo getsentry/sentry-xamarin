@@ -1,6 +1,5 @@
 ﻿using Sentry.Xamarin.Extensions;
 using Sentry.Extensibility;
-using Sentry.Protocol;
 using System;
 using Xamarin.Essentials;
 using Sentry.Reflection;
@@ -28,7 +27,7 @@ namespace Sentry.Xamarin.Internals
             internal string PlatformVersion { get; }
             internal bool IsEmulator { get; }
             internal string Type { get; }
-            internal float ScreenDensity { get; }
+            internal float? ScreenDensity { get; }
             internal string ScreenResolution { get; }
 
             internal FormsContext()
