@@ -1,4 +1,6 @@
 ﻿using System;
+using Foundation;
+using Sentry.Xamarin.tvOS.Services;
 using UIKit;
 
 namespace Sentry.Xamarin.tvOS
@@ -20,6 +22,44 @@ namespace Sentry.Xamarin.tvOS
         {
             base.DidReceiveMemoryWarning();
             // Release any cached data, images, etc that aren't in use.
+        }
+
+        partial void Message_Click(UIButton sender)
+        {
+            SentrySdk.CaptureMessage("Hello tvOS");
+            UIAlertAction.Create("Hello tvOS", UIAlertActionStyle.Default, null);
+
+        }
+
+        partial void Handled_Exception_Click(UIButton sender)
+        {
+            try
+            {
+                var authService = new AuthService();
+                authService.DoLogin("admin", "1234");
+            }
+            catch (Exception ex)
+            {
+                SentrySdk.CaptureException(ex);
+                UIAlertAction.Create("A handled exception happened", UIAlertActionStyle.Default, null);
+            }
+        }
+
+        partial void Crash_Click(UIButton sender)
+        {
+            var authService = new AuthService();
+            authService.DoLogin("admin", "1234");
+        }
+
+        partial void Native_Crash_Click(UIButton sender)
+        {
+            DoSomeObjectiveCCode();
+        }
+
+        private void DoSomeObjectiveCCode()
+        {
+            var dict = new NSMutableDictionary();
+            dict.LowlevelSetObject(System.IntPtr.Zero, System.IntPtr.Zero);
         }
     }
 }

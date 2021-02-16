@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using Sentry;
 using UIKit;
 
 namespace Sentry.Xamarin.tvOS
