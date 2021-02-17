@@ -1,4 +1,4 @@
-<Project Sdk="MSBuild.Sdk.Extras/2.0.41">
+<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
 	<Import Project="Directory.Build.props" />
 	
 	<PropertyGroup>
@@ -21,7 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Sentry.Xamarin\Sentry.Xamarin.csproj" />
 	<PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
-	<PackageReference Remove="Sentry"/>
+	<PackageReference Remove="Sentry" />
   </ItemGroup>
 	
   <ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
