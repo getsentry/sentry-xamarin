@@ -1,4 +1,5 @@
-﻿using Sentry.Integrations;
+﻿using Android.Runtime;
+using Sentry.Integrations;
 using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace Sentry.Xamarin.Internals
             {
                 _hub = hub;
                 Platform.ActivityStateChanged += Platform_ActivityStateChanged;
+                AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
             }
             catch (Exception ex)
             {
@@ -50,6 +52,17 @@ namespace Sentry.Xamarin.Internals
                     ["screen"] = _xamarinOptions.PageTracker?.CurrentPage,
                     ["state"] = e.State.ToString()
                 }, level: BreadcrumbLevel.Info);
+        }
+        private void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
+        {
+            e.Exception.Data[Mechanism.HandledKey] = e.Handled;
+            e.Exception.Data[Mechanism.MechanismKey] = "UnhandledExceptionRaiser";
+            SentrySdk.CaptureException(e.Exception);
+            if (!e.Handled)
+            {
+                SentrySdk.Close();
+            }
+
         }
     }
 }
