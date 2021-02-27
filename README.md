@@ -16,7 +16,7 @@ Sentry SDK for Xamarin
 |  **Sentry.Xamarin.Forms**     | [![Downloads](https://img.shields.io/nuget/dt/Sentry.Xamarin.Forms.svg)](https://www.nuget.org/packages/Sentry.Xamarin.Forms) | [![NuGet](https://img.shields.io/nuget/v/Sentry.Xamarin.Forms.svg)](https://www.nuget.org/packages/Sentry.Xamarin.Forms)   |    [![NuGet](https://img.shields.io/nuget/vpre/Sentry.Xamarin.Forms.svg)](https://www.nuget.org/packages/Sentry.Xamarin.Forms)   |
 |  **Sentry.Xamarin**     | [![Downloads](https://img.shields.io/nuget/dt/Sentry.Xamarin.svg)](https://www.nuget.org/packages/Sentry.Xamarin) | [![NuGet](https://img.shields.io/nuget/v/Sentry.Xamarin.svg)](https://www.nuget.org/packages/Sentry.Xamarin)   |    [![NuGet](https://img.shields.io/nuget/vpre/Sentry.Xamarin.svg)](https://www.nuget.org/packages/Sentry.Xamarin)   |
 
-This is a work in progress SDK for Xamarin.
+Sentry.Xamarin is the tool to go for Xamarin that enriches your errors with valuable data, like breadcrumbs, tags, issue grouping and more!.
 
 Includes for all Platforms supported by Xamarin Essentials:
 * Automatic Navigation breacrumbs. (Xamarin.Forms)
