@@ -19,6 +19,7 @@ namespace Sample.Xamarin.Droid.Dependencies
         public void BrokenNativeCallback()
         {
             var oven = new Oven();
+            //Cook is a JAVA opcode that executes an external C function that will crash the app.
             oven.Cook();
         }
     }
