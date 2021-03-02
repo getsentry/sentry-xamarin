@@ -342,23 +342,3 @@ healthchecksdb
 #Sample Android Resource Designer.
 /Samples/Sample.Xamarin.Droid/Resources/Resource.designer.cs
 /Tests/Sentry.Xamarin.Forms.Tests.UWP/Sentry.Xamarin.Forms.Tests.UWP.GeneratedMSBuildEditorConfig.editorconfig
-
-
-# com.sentry.ovenlibrary Sample
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/*.iml
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/.gradle
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/local.properties
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/.idea/caches
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/.idea/libraries
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/.idea/modules.xml
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/.idea/workspace.xml
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/.idea/navEditor.xml
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/.idea/assetWizardSettings.xml
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/.DS_Store
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/build
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/captures
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/.externalNativeBuild
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/.cxx
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/local.properties
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/gradle/wrapper
-/Samples/Forms/com.sentry.ovenlibrary/AndroidProject/OvenLibrary/.cxx
