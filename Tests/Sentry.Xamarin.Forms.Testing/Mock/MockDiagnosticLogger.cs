@@ -15,7 +15,7 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
 
         public void Log(SentryLevel logLevel, string message, Exception exception = null, params object[] args)
         {
-            _logs.Add(new (logLevel, message, exception, args));
+            _logs.Add((logLevel, message, exception, args));
         }
 
         public int Count() => _logs.Count;

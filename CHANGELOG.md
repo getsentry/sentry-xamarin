@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changes
+
+* Fix Null reference on SentryXamarinFormsIntegration.Register. (#58) @lucas-zimerman
+
 ## 1.0.2
 
 ### Changes
