@@ -13,5 +13,7 @@ namespace Sentry
         internal IPageNavigationTracker PageTracker { get; set; }
         internal string ProtocolPackageName { get; set; }
         internal string ProjectName { get; set; }
+        internal int GetCurrentApplicationDelay { get; set; } = 500;
+        internal int GetCurrentApplicationMaxRetries { get; set; } = 15;
     }
 }
