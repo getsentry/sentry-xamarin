@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changes
+
+* Add android unhandled exception and native crash sample. (#56) @lucas-zimerman
+
 ## 1.0.2
 
 ### Changes
