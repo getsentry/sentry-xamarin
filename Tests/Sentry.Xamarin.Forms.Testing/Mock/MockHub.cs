@@ -57,5 +57,7 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
 
         public ISpan GetSpan()
             => null;
+
+        public void BindException(Exception exception, ISpan span) { }
     }
 }
