@@ -43,7 +43,7 @@ namespace Sentry.Xamarin.Forms.Internals
                 var application = await GetCurrentApplication().ConfigureAwait(false);
                 if (application is null)
                 {
-                    options.DiagnosticLogger.Log(SentryLevel.Warning, "Sentry.Xamarin.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
+                    options.DiagnosticLogger?.Log(SentryLevel.Warning, "Sentry.Xamarin.Forms timeout for tracking Application.Current. Navigation tracking is going to be disabled");
                 }
                 else
                 {
@@ -80,14 +80,14 @@ namespace Sentry.Xamarin.Forms.Internals
         /// <summary>
         /// Gets the current Application.
         /// If SentrySDK was initialized from the Native project (Android/IOS) the Application might not have been created in time.
-        /// So we wait for max 5 seconds to see check if it was created or not
+        /// So we wait for max 7 seconds to see check if it was created or not
         /// </summary>
         /// <returns>Current application.</returns>
         private async Task<Application> GetCurrentApplication()
         {
-            for (int i = 0; i < 10 && Application.Current is null; i++)
+            for (int i = 0; i < _options.GetCurrentApplicationMaxRetries && Application.Current is null; i++)
             {
-                await Task.Delay(300).ConfigureAwait(false);
+                await Task.Delay(_options.GetCurrentApplicationDelay).ConfigureAwait(false);
             }
             return Application.Current;
         }

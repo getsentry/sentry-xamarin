@@ -2,7 +2,7 @@
 
 namespace Sentry.Xamarin.Forms.UWP.Tests
 {
-    public class SentryXamarinFormsIntegrationTests
+    public class SentryXamarinIntegrationTests
     {
         [Fact]
         public void RegisterNativeIntegrations_NativeIntegrationEnabled_NativeIntegrationRegistered()
