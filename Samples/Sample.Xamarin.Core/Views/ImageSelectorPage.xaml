@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Sample.Xamarin.Core.ViewModels"
+             x:Class="Sample.Xamarin.Core.Views.ImageSelectorPage"
+             Title="Image Selector">
+    <ContentPage.BindingContext>
+        <viewmodels:ImageSelectorPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <ActivityIndicator 
+                                HeightRequest="50"
+                                WidthRequest="50"
+                                IsVisible="True"
+                                IsRunning="True"/>
+
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Parallel threads:"/>
+                        <Span Text="{Binding SelectedMaxThreads}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Slider Maximum="{Binding MaxThreads}"
+                    Minimum="{Binding MinThreads}"
+                    Value="{Binding SelectedMaxThreads}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

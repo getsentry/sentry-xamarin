@@ -20,6 +20,7 @@ namespace Sample.Xamarin.Core.ViewModels
         public Command PopupCmd { get; }
         public Command BrokenViewCmd { get; }
         public Command NativeCrashCmd { get; }
+        public Command ImageSelectorCmd { get; }
         public MainPageViewModel()
         {
             DiscoCmd = new Command(GotoDisco);
@@ -29,6 +30,8 @@ namespace Sample.Xamarin.Core.ViewModels
             BrokenViewCmd = new Command(GotoBrokenView);
             FeedbackCmd = new Command(ShowFeedback);
             NativeCrashCmd = new Command(NativeCrash);
+            ImageSelectorCmd = new Command(ImageSelector);
+
             _nativeCrashService = DependencyService.Get<INativeCrash>();
         }
 
@@ -84,6 +87,11 @@ namespace Sample.Xamarin.Core.ViewModels
         {
             _nativeCrashService?.BrokenNativeCallback();
             DisplayAlert("Whoops", "A native crash sample wasn't implemented for this platform, mind opening a pull request? :)", "Yes");
+        };
+
+        private Action ImageSelector => () =>
+        {
+            NavigateTo(new ImageSelectorPage());
         };
     }
 }

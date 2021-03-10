@@ -138,6 +138,21 @@
                                HorizontalOptions="Center"/>
                     </StackLayout>
                 </Frame>
+                <Frame BorderColor="#A8A2A2" 
+                       Margin="5"
+                       CornerRadius="8" 
+                       HeightRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}"
+                       WidthRequest="{OnIdiom Phone=150, Desktop=200, Tablet=200, Watch=100, TV=100, Default=150}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ImageSelectorCmd}"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <resources:UnhandledSvg HeightRequest="120" WidthRequest="120"/>
+                        <Label Text="Image Selector"
+                               FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
             </FlexLayout>
         </ScrollView>
     </StackLayout>
