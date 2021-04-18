@@ -1,4 +1,5 @@
 ﻿using Android.Runtime;
+using Sentry.Extensions;
 using Sentry.Integrations;
 using Sentry.Protocol;
 using System;
@@ -45,7 +46,8 @@ namespace Sentry.Xamarin.Internals
 
         private void Platform_ActivityStateChanged(object sender, ActivityStateChangedEventArgs e)
         {
-            _hub.AddBreadcrumb(null,
+            _hub.AddInternalBreadcrumb(_xamarinOptions,
+                null,
                 "ui.lifecycle",
                 "navigation", data: new Dictionary<string, string>
                 {

@@ -1,4 +1,5 @@
-﻿using Sentry.Integrations;
+﻿using Sentry.Extensions;
+using Sentry.Integrations;
 using Sentry.Protocol;
 using System;
 using System.Runtime.ExceptionServices;
@@ -13,8 +14,9 @@ namespace Sentry.Xamarin.Internals
     {
         private IHub _hub;
         private Application _application;
+        private SentryXamarinOptions _options { get; }
 
-        internal NativeIntegration(SentryXamarinOptions options) { }
+        internal NativeIntegration(SentryXamarinOptions options) => _options = options;
 
         /// <summary>
         /// Initialize the UWP specific code.
@@ -68,9 +70,9 @@ namespace Sentry.Xamarin.Internals
         }
 
         private void OnResume(object sender, LeavingBackgroundEventArgs e)
-            => _hub.AddBreadcrumb("OnResume", "app.lifecycle", "event");
+            => _hub.AddInternalBreadcrumb(_options, "OnResume", "app.lifecycle", "event");
 
         private void OnSleep(object sender, EnteredBackgroundEventArgs e)
-            => _hub.AddBreadcrumb("OnSleep", "app.lifecycle", "event");
+            => _hub.AddInternalBreadcrumb(_options, "OnSleep", "app.lifecycle", "event");
     }
 }

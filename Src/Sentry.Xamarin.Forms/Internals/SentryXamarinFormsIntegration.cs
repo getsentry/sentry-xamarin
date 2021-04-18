@@ -1,4 +1,5 @@
-﻿using Sentry.Xamarin.Forms.Extensions;
+﻿using Sentry.Extensions;
+using Sentry.Xamarin.Forms.Extensions;
 using Sentry.Xamarin.Internals;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -60,7 +61,8 @@ namespace Sentry.Xamarin.Forms.Internals
             {
                 if (_options.XamarinLoggerEnabled)
                 {
-                    hub.AddBreadcrumb(null,
+                    hub.AddInternalBreadcrumb(_options,
+                        null,
                         "xamarin",
                         "info",
                         new Dictionary<string, string>
