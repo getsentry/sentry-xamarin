@@ -6,8 +6,8 @@ on:
     branches:
       - main
       - release/*
-  pull_request:
 
+  pull_request:
 jobs:
   build:
     name: ${{ matrix.os }}
@@ -20,36 +20,33 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: nuget/setup-nuget@v1
       - uses: actions/setup-dotnet@v1.7.2
-            
+        with:
+              dotnet-version: '5.0.100'
       - uses: nuget/setup-nuget@v1
       - run: nuget restore Sentry.Xamarin.sln
-         - uses: microsoft/setup-msbuild@v1.0.2
-           if: matrix.os == 'windows-latest'
+      - uses: microsoft/setup-msbuild@v1.0.2
+        if: matrix.os == 'windows-latest'
       - name: Build Solution with MSBuild
-           run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
+        run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
       - name: Build iOS Sample app
-           run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj
-           if: matrix.os == 'macos-latest'
+        run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj
+        if: matrix.os == 'macos-latest'
       - name: Build Android Sample app
-           run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj
-           if: matrix.os == 'windows-latest'
+        run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj
+        if: matrix.os == 'windows-latest'
       - name: Build UWP Sample app
-           run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64 /p:Configuration=Release
-           if: matrix.os == 'windows-latest'
+        run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64 /p:Configuration=Release
+        if: matrix.os == 'windows-latest'
       - name: Build UWP Test Project
-           run: msbuild Tests/Sentry.Xamarin.Forms.UWP.Tests/Sentry.Xamarin.Forms.UWP.Tests.csproj /p:Platform=x64 /p:Configuration=Release
-           if: matrix.os == 'windows-latest'
+        run: msbuild Tests/Sentry.Xamarin.Forms.UWP.Tests/Sentry.Xamarin.Forms.UWP.Tests.csproj /p:Platform=x64 /p:Configuration=Release
+        if: matrix.os == 'windows-latest'
       - name: Setup VS Test
-           uses: darenm/Setup-VSTest@v1
-           if: matrix.os == 'windows-latest'
-      - name: Setup .NET Tests
-           run: dotnet test Test/Sentry.Xamarin.Tests/Sentry.Xamarin.Tests.csproj --no-restore --verbosity normal
-
+        uses: darenm/Setup-VSTest@v1
+        if: matrix.os == 'windows-latest'
       - name: Artifacts
-           uses: actions/upload-artifact@v2
-           with:
-             name: ${{ github.sha }}
-             path: |
-               ${{ github.workspace }}/src/**/Release/*.nupkg
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.sha }}
+          path: |
+            ${{ github.workspace }}/src/**/Release/*.nupkg
