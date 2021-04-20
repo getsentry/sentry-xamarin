@@ -62,8 +62,8 @@ jobs:
       - name: Setup VS Test
            uses: darenm/Setup-VSTest@v1
            if: matrix.os == 'windows-latest'
-       - name: Setup .NET Tests
-            run: dotnet test Test/Sentry.Xamarin.Tests/Sentry.Xamarin.Tests.csproj --no-restore --verbosity normal
+      - name: Setup NET Tests
+           run: dotnet test Test/Sentry.Xamarin.Tests/Sentry.Xamarin.Tests.csproj --no-restore --verbosity normal
 
       - name: Artifacts
            uses: actions/upload-artifact@v2
