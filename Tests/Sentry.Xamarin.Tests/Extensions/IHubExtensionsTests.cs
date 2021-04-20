@@ -11,7 +11,7 @@ namespace Sentry.Xamarin.Tests.Extensions
     public class IHubExtensionsTests
     {
         public IHub Sut { get; set; } = Substitute.For<IHub>();
-        public Scope Scope { get; set; } = new (Substitute.For<SentryOptions>());
+        public Scope Scope { get; set; } = new Scope(null);
 
         public IHubExtensionsTests()
         {
