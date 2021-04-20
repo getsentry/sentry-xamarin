@@ -6,8 +6,8 @@ on:
     branches:
       - main
       - release/*
-
   pull_request:
+
 jobs:
   build:
     name: ${{ matrix.os }}
@@ -19,28 +19,12 @@ jobs:
         os: [windows-latest, macos-latest]
 
     steps:
-      - name: Checkout
-          uses: actions/checkout@v2.3.3
-          with:
-             submodules: recursive
-             fetch-depth: 2 # default is 1 and codecov needs > 1
-      
-      - name: Setup .NET SDK (v2.1)
-          uses: actions/setup-dotnet@v1.7.2
-          with:
-            dotnet-version: '2.1.809'
-
-      - name: Setup .NET SDK (v3.1)
-          uses: actions/setup-dotnet@v1.7.2
-          with:
-            dotnet-version: '3.1.401'
-
-      - name: Setup .NET SDK (v5.0)
-          uses: actions/setup-dotnet@v1.7.2
+      - uses: actions/checkout@v2
+      - uses: nuget/setup-nuget@v1
+      - uses: actions/setup-dotnet@v1.7.2
           with:
             dotnet-version: '5.0.100'
-
-      
+            
       - uses: nuget/setup-nuget@v1
       - run: nuget restore Sentry.Xamarin.sln
          - uses: microsoft/setup-msbuild@v1.0.2
@@ -62,7 +46,7 @@ jobs:
       - name: Setup VS Test
            uses: darenm/Setup-VSTest@v1
            if: matrix.os == 'windows-latest'
-      - name: Setup NET Tests
+      - name: Setup .NET Tests
            run: dotnet test Test/Sentry.Xamarin.Tests/Sentry.Xamarin.Tests.csproj --no-restore --verbosity normal
 
       - name: Artifacts
