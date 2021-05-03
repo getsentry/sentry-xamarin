@@ -4,6 +4,7 @@
 
 ### Changes
 
+* Add build number to release. @lucas-zimerman
 * Update Sentry.NET SDK to 3.3.0 (#63) @lucas-zimerman
 
 ## 1.0.3

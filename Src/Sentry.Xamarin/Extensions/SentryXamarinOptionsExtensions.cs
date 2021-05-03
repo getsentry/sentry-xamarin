@@ -38,12 +38,12 @@ namespace Sentry
             options.InternalCacheEnabled = false;
         }
 
-        internal static string DefaultCacheDirectoyPath(this SentryXamarinOptions options)
+        internal static string DefaultCacheDirectoyPath(this SentryXamarinOptions _)
             => _internalCacheDefaultPath.Value;
 
         internal static void ConfigureSentryXamarinOptions(this SentryXamarinOptions options)
         {
-            options.Release ??= $"{AppInfo.PackageName}@{AppInfo.VersionString}";
+            options.Release ??= $"{AppInfo.PackageName}@{AppInfo.VersionString}+{AppInfo.BuildString}";
             if (options.InternalCacheEnabled)
             {
                 options.CacheDirectoryPath ??= options.DefaultCacheDirectoyPath();
