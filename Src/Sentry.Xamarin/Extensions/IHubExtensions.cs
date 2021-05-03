@@ -20,13 +20,14 @@ namespace Sentry.Extensions
         /// <param name="level">Breadcrumb level.</param>
         internal static void AddInternalBreadcrumb(this IHub hub, SentryXamarinOptions options, string message, string? category = null, string? type = null, Dictionary<string, string>? data = null, BreadcrumbLevel level = BreadcrumbLevel.Info)
         {
+            var previousBreadcrumb = options.LastInternalBreadcrumb;
             //Filter duplicated internal breadcrumbs
-            if (options.LastInternalBreadcrumb != null &&
-                options.LastInternalBreadcrumb.Message == message &&
-                options.LastInternalBreadcrumb.Category == category &&
-                options.LastInternalBreadcrumb.Type == type &&
-                !options.LastInternalBreadcrumb.Data.Except(data).Any() &&
-                DateTimeOffset.UtcNow.Subtract(options.LastInternalBreadcrumb.Timestamp).TotalSeconds < 2)
+            if (previousBreadcrumb != null &&
+                previousBreadcrumb.Message == message &&
+                previousBreadcrumb.Category == category &&
+                previousBreadcrumb.Type == type &&
+                !previousBreadcrumb.Data.Except(data).Any() &&
+                DateTimeOffset.UtcNow.Subtract(previousBreadcrumb.Timestamp).TotalSeconds < options.InternalBreadcrumbDuplicationTimeSpan)
             {
                 //Skip
                 options.DiagnosticLogger?.Log(SentryLevel.Debug, DuplicatedBreadcrumbDropped);

@@ -15,6 +15,11 @@ namespace Sentry
         internal string ProjectName { get; set; }
         internal int GetCurrentApplicationDelay { get; set; } = 500;
         internal int GetCurrentApplicationMaxRetries { get; set; } = 15;
+
+        /// <summary>
+        /// Define the range of time that duplicated internal breadcrumbs will be ignored.
+        /// </summary>
+        public int InternalBreadcrumbDuplicationTimeSpan { get; set; } = 2;
         internal Breadcrumb LastInternalBreadcrumb {get;set;}
     }
 }
