@@ -7,7 +7,6 @@
 	<remove-node path="/api/package[@name='io.sentry.exception']/class[@name='InvalidSentryTraceHeaderException']" />
 	<remove-node path="/api/package[@name='io.sentry.exception']/class[@name='SentryEnvelopeException']" />
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='SentryEnvelopeHeaderAdapter']" />
-
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='SentryEnvelopeItemHeaderAdapter']" />
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='SessionAdapter']" />
 	<!--Fields-->

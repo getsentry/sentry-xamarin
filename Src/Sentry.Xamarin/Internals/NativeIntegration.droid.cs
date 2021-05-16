@@ -1,4 +1,5 @@
 ﻿using Android.Runtime;
+using Sentry.Extensions;
 using Sentry.Integrations;
 using Sentry.Protocol;
 using System;
@@ -9,7 +10,6 @@ namespace Sentry.Xamarin.Internals
 {
     internal class NativeIntegration : ISdkIntegration
     {
-
         private SentryXamarinOptions _xamarinOptions;
         private IHub _hub;
 
@@ -27,28 +27,7 @@ namespace Sentry.Xamarin.Internals
                 _hub = hub;
                 Platform.ActivityStateChanged += Platform_ActivityStateChanged;
                 AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
-                var nativeOptions = new IO.Sentry.SentryOptions()
-                {
-                    Environment = options.Environment,
-                    Release = options.Release,
-                    Dsn = options.Dsn,
-                    CacheDirPath = options.CacheDirectoryPath,
-                };
-                nativeOptions.SetDebug(Java.Lang.Boolean.True);
-                var androidOptions = new IO.Sentry.Android.Core.SentryAndroidOptions()
-                {
-                    Environment = options.Environment,
-                    Release = options.Release,
-                    Dsn = options.Dsn,
-                    CacheDirPath = options.CacheDirectoryPath,
-                    AnrReportInDebug = true,
-                };
-                androidOptions.SetDebug(Java.Lang.Boolean.True);
-                var context = Platform.AppContext;
-                IO.Sentry.Sentry.Init(nativeOptions);
-                IO.Sentry.Android.Core.SentryAndroid.Init(context);
-                IO.Sentry.Android.Ndk.SentryNdk.Init(androidOptions);
-                IO.Sentry.Sentry.CaptureMessage("Hello World from Native SDK");
+                JavaSdkInit(options);
             }
             catch (Exception ex)
             {
@@ -62,7 +41,17 @@ namespace Sentry.Xamarin.Internals
             if (_xamarinOptions.NativeIntegrationEnabled)
             {
                 Platform.ActivityStateChanged -= Platform_ActivityStateChanged;
+                IO.Sentry.Sentry.Close();
+                IO.Sentry.Android.Ndk.SentryNdk.Close();
             }
+        }
+
+        private void JavaSdkInit(SentryOptions options)
+        {
+            IO.Sentry.Sentry.Init(options.ToSentryJavaOptions());
+            IO.Sentry.Android.Core.SentryAndroid.Init(Platform.AppContext);
+            IO.Sentry.Android.Ndk.SentryNdk.Init(options.ToSentryAndroidOptions());
+            IO.Sentry.Sentry.CaptureMessage("Hello World from Native SDK");
         }
 
         private void Platform_ActivityStateChanged(object sender, ActivityStateChangedEventArgs e)
