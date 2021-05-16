@@ -1,17 +1,16 @@
-<Project Sdk="MSBuild.Sdk.Extras/2.0.41">
-
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.41">
 	<PropertyGroup>
 		<!--Generate xml docs for all projects under 'src'-->
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-		<TargetFrameworks>netstandard2.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;monoandroid9.0;</TargetFrameworks>
 		<NoWarn Condition="$(TargetFramework) == 'netstandard2.0'">$(NoWarn);RS0017</NoWarn>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
 		<Product>Sentry.Xamarin.Forms</Product>
 		<PackageId>Sentry.Xamarin.Forms</PackageId>
 		<AssemblyName>Sentry.Xamarin.Forms</AssemblyName>
-		<RootNamespace>Sentry</RootNamespace>
+		<RootNamespace>Sentry.Xamarin.Forms</RootNamespace>
 		<Description>Official Sentry SDK for Xamarin Forms - Open-source error tracking that helps developers monitor and fix crashes in real time.</Description>
 
 		<_WriteTelemetryProperties>false</_WriteTelemetryProperties>
@@ -21,10 +20,19 @@
   <ItemGroup>
     <ProjectReference Include="..\Sentry.Xamarin\Sentry.Xamarin.csproj" />
 	<PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
-	<PackageReference Remove="Sentry"/>
+	<PackageReference Remove="Sentry" />
   </ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Internals\PageTracing\*.droid.cs" />
+		<None Include="Internals\PageTracing\*.droid.cs" />
+	</ItemGroup>
 	
-  <ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
+		<Compile Include="Internals\PageTracing\*.droid.cs" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
     <Compile Include="Internals\*.uwp.cs" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.9" />
   </ItemGroup>
