@@ -5,5 +5,24 @@
   
   This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
-  -->
+		// Metadata.xml XPath method reference: path="/api/package[@name='io.sentry']/class[@name='Breadcrumb']/method[@name='clone' and count(parameter)=0]"
+
+-->
+	<remove-node path="/api/package[@name='io.sentry']/class[@name='Breadcrumb']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry']/class[@name='Hub']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry.protocol']/class[@name='App']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry.protocol']/class[@name='User']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry']/class[@name='HubAdapter']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry']/class[@name='NoOpHub']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry.protocol']/class[@name='Browser']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry.protocol']/class[@name='Contexts']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry.protocol']/class[@name='Device']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry.protocol']/class[@name='Gpu']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry.protocol']/class[@name='OperatingSystem']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry.protocol']/class[@name='Request']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry.protocol']/class[@name='SentryRuntime']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry']/class[@name='Scope']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry']/class[@name='Session']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry']/class[@name='SpanContext']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry']/interface[@name='IHub']/method[@name='clone' and count(parameter)=0]" />
 </metadata>
