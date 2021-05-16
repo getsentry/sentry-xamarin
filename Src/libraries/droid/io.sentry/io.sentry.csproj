@@ -38,11 +38,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="GoogleGson">
+      <Version>2.8.5</Version>
+    </PackageReference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-	<InputJar Include="Jars\sentry-5.0.0-beta.3.jar" />
-	<PackageReference Remove="Sentry"/>
+    <EmbeddedJar Include="Jars\sentry-5.0.0-beta.3.jar" />
+    <PackageReference Remove="Sentry" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

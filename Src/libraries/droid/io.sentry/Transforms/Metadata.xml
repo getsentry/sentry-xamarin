@@ -1,14 +1,11 @@
 ﻿<metadata>
-  <!--
-  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
-  
-  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
-		// Metadata.xml XPath method reference: path="/api/package[@name='io.sentry']/class[@name='Breadcrumb']/method[@name='clone' and count(parameter)=0]"
-		// Metadata.xml XPath field reference: path="/api/package[@name='io.sentry']/class[@name='SentryTraceHeader']/field[@name='SENTRY_TRACE_HEADER']"
-
--->
+	
+	<!-- Classes-->
+	<remove-node path="/api/package[@name='io.sentry.exception']/class[@name='ExceptionMechanismException']" />
+	<remove-node path="/api/package[@name='io.sentry.exception']/class[@name='InvalidSentryTraceHeaderException']" />
+	<remove-node path="/api/package[@name='io.sentry.exception']/class[@name='InvalidSentryTraceHeaderException']" />
+	<remove-node path="/api/package[@name='io.sentry.exception']/class[@name='SentryEnvelopeException']" />	
+	<!--Fields-->
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='Breadcrumb']/method[@name='clone' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='Hub']/method[@name='clone' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='io.sentry.protocol']/class[@name='App']/method[@name='clone' and count(parameter)=0]" />
@@ -25,6 +22,7 @@
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='Scope']/method[@name='clone' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='Session']/method[@name='clone' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='SpanContext']/method[@name='clone' and count(parameter)=0]" />
-	<remove-node path="/api/package[@name='io.sentry']/interface[@name='IHub']/method[@name='clone' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='SentryTraceHeader']/field[@name='SENTRY_TRACE_HEADER']" />
+	<!--Interface-->
+	<remove-node path="/api/package[@name='io.sentry']/interface[@name='IHub']/method[@name='clone' and count(parameter)=0]" />
 </metadata>
