@@ -4,7 +4,6 @@ using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
-using IO.Sentry;
 
 namespace Sentry.Xamarin.Internals
 {
@@ -31,9 +30,11 @@ namespace Sentry.Xamarin.Internals
                 var nativeOptions = new IO.Sentry.SentryOptions()
                 {
                     Dsn = options.Dsn,
-                    CacheDirPath = options.CacheDirectoryPath
+                    CacheDirPath = options.CacheDirectoryPath,
                 };
+//                nativeOptions.AddIntegration(new IO.Sentry.Android.Core.AnrIntegration(global::Xamarin.Essentials.Platform.AppContext));
                 IO.Sentry.Sentry.Init(nativeOptions);
+                IO.Sentry.Sentry.CaptureMessage("Hello World from Native SDK");
             }
             catch (Exception ex)
             {

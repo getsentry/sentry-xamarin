@@ -42,7 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "droid", "droid", "{1B47EB9C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "io.sentry", "Src\libraries\droid\io.sentry\io.sentry.csproj", "{5CFA5829-4854-4085-B836-69A8DB0A0C10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "io.sentry.sentry-android-core", "Src\libraries\droid\io.sentry.sentry-android\io.sentry.sentry-android-core.csproj", "{E550F170-C130-47D4-978B-926914CC7C59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "io.sentry.android.core", "Src\libraries\droid\io.sentry.sentry-android\io.sentry.android.core.csproj", "{E550F170-C130-47D4-978B-926914CC7C59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
