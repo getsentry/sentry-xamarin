@@ -34,13 +34,16 @@ namespace Sentry.Xamarin.Internals
                     Dsn = options.Dsn,
                     CacheDirPath = options.CacheDirectoryPath,
                 };
+                nativeOptions.SetDebug(Java.Lang.Boolean.True);
                 var androidOptions = new IO.Sentry.Android.Core.SentryAndroidOptions()
                 {
                     Environment = options.Environment,
                     Release = options.Release,
                     Dsn = options.Dsn,
                     CacheDirPath = options.CacheDirectoryPath,
+                    AnrReportInDebug = true,
                 };
+                androidOptions.SetDebug(Java.Lang.Boolean.True);
                 var context = Platform.AppContext;
                 IO.Sentry.Sentry.Init(nativeOptions);
                 IO.Sentry.Android.Core.SentryAndroid.Init(context);
