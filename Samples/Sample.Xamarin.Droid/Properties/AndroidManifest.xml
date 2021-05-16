@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.Sample.Xamarin.Droid" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
-	<application android:label="Sample.Xamarin.Droid" android:theme="@style/MainTheme"></application>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<meta-data android:name="io.sentry.dsn" android:value="https://5a193123a9b841bc8d8e42531e7242a1@o447951.ingest.sentry.io/5560112" />
+	<application android:label="Sample.Xamarin.Droid" android:theme="@style/MainTheme">
+	   <meta-data android:name="io.sentry.auto-init" android:value="false" />
+	   <meta-data android:name="io.sentry.dsn" android:value="https://5a193123a9b841bc8d8e42531e7242a1@o447951.ingest.sentry.io/5560112" />
+	</application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />    
 </manifest>
