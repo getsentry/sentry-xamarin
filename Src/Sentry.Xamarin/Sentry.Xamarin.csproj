@@ -3,7 +3,7 @@
 	    <!--Generate xml docs for all projects under 'src'-->
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-		<TargetFrameworks>netstandard2.0;monoandroid9.0;Xamarinios10;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;monoandroid11.0;Xamarinios10;</TargetFrameworks>
 		<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">$(TargetFrameworks);uap10.0.16299;</TargetFrameworks>
 		<NoWarn Condition="$(TargetFramework) == 'netstandard2.0'">$(NoWarn);RS0017</NoWarn>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -51,6 +51,8 @@
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
 		<Compile Include="Internals\*.droid.cs" />
+		<ProjectReference Include="..\libraries\droid\io.sentry.sentry-android\io.sentry.sentry-android.csproj" />
+		<ProjectReference Include="..\libraries\droid\io.sentry\io.sentry.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">

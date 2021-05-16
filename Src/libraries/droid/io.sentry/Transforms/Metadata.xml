@@ -6,6 +6,7 @@
   This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
 		// Metadata.xml XPath method reference: path="/api/package[@name='io.sentry']/class[@name='Breadcrumb']/method[@name='clone' and count(parameter)=0]"
+		// Metadata.xml XPath field reference: path="/api/package[@name='io.sentry']/class[@name='SentryTraceHeader']/field[@name='SENTRY_TRACE_HEADER']"
 
 -->
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='Breadcrumb']/method[@name='clone' and count(parameter)=0]" />
@@ -25,4 +26,5 @@
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='Session']/method[@name='clone' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='io.sentry']/class[@name='SpanContext']/method[@name='clone' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='io.sentry']/interface[@name='IHub']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='io.sentry']/class[@name='SentryTraceHeader']/field[@name='SENTRY_TRACE_HEADER']" />
 </metadata>

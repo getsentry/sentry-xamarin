@@ -4,6 +4,7 @@ using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
+using IO.Sentry;
 
 namespace Sentry.Xamarin.Internals
 {
@@ -27,6 +28,12 @@ namespace Sentry.Xamarin.Internals
                 _hub = hub;
                 Platform.ActivityStateChanged += Platform_ActivityStateChanged;
                 AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
+                var nativeOptions = new IO.Sentry.SentryOptions()
+                {
+                    Dsn = options.Dsn,
+                    CacheDirPath = options.CacheDirectoryPath,
+                };
+                IO.Sentry.Sentry.Init(nativeOptions);
             }
             catch (Exception ex)
             {
