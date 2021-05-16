@@ -29,11 +29,22 @@ namespace Sentry.Xamarin.Internals
                 AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
                 var nativeOptions = new IO.Sentry.SentryOptions()
                 {
+                    Environment = options.Environment,
+                    Release = options.Release,
                     Dsn = options.Dsn,
                     CacheDirPath = options.CacheDirectoryPath,
                 };
-//                nativeOptions.AddIntegration(new IO.Sentry.Android.Core.AnrIntegration(global::Xamarin.Essentials.Platform.AppContext));
+                var androidOptions = new IO.Sentry.Android.Core.SentryAndroidOptions()
+                {
+                    Environment = options.Environment,
+                    Release = options.Release,
+                    Dsn = options.Dsn,
+                    CacheDirPath = options.CacheDirectoryPath,
+                };
+                var context = Platform.AppContext;
                 IO.Sentry.Sentry.Init(nativeOptions);
+                IO.Sentry.Android.Core.SentryAndroid.Init(context);
+                IO.Sentry.Android.Ndk.SentryNdk.Init(androidOptions);
                 IO.Sentry.Sentry.CaptureMessage("Hello World from Native SDK");
             }
             catch (Exception ex)
