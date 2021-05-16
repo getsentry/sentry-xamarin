@@ -41,14 +41,14 @@
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-	<PackageReference Remove="Sentry"/>
+    <PackageReference Remove="Sentry" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />
-    <None Include="Jars\sentry-android-5.0.0-beta.3.aar" />
+    <LibraryProjectZip Include="Jars\sentry-android-core-5.0.0-beta.3.aar" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />

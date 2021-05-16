@@ -31,7 +31,7 @@ namespace Sentry.Xamarin.Internals
                 var nativeOptions = new IO.Sentry.SentryOptions()
                 {
                     Dsn = options.Dsn,
-                    CacheDirPath = options.CacheDirectoryPath,
+                    CacheDirPath = options.CacheDirectoryPath
                 };
                 IO.Sentry.Sentry.Init(nativeOptions);
             }

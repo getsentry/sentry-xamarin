@@ -44,7 +44,6 @@
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <EmbeddedJar Include="Jars\sentry-5.0.0-beta.3.jar" />
     <PackageReference Remove="Sentry" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +56,9 @@
     <TransformFile Include="Transforms\Metadata.xml" />
     <TransformFile Include="Transforms\EnumFields.xml" />
     <TransformFile Include="Transforms\EnumMethods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedJar Include="Jars\sentry-5.0.0-beta.3.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

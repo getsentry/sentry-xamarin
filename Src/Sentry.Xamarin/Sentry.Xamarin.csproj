@@ -51,8 +51,8 @@
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
 		<Compile Include="Internals\*.droid.cs" />
-		<ProjectReference Include="..\libraries\droid\io.sentry.sentry-android\io.sentry.sentry-android.csproj" />
 		<ProjectReference Include="..\libraries\droid\io.sentry\io.sentry.csproj" />
+		<ProjectReference Include="..\libraries\droid\io.sentry.sentry-android\io.sentry.sentry-android.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
