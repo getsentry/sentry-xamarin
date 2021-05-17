@@ -41,8 +41,8 @@
 		<None Include="Internals\*.droid.cs" />
 		<None Include="Internals\*.uwp.cs" />
 		<None Include="Extensions\*.droid.cs" />
-	</ItemGroup>
-	
+	</ItemGroup>	
+		
 	<ItemGroup>
 		<PackageReference Include="Xamarin.Essentials" Version="1.4.0" />
 	</ItemGroup>

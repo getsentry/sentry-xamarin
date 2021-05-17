@@ -1,6 +1,7 @@
 ﻿using Android.Runtime;
 using Sentry.Extensions;
 using Sentry.Integrations;
+using Sentry.Internals;
 using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
@@ -48,10 +49,16 @@ namespace Sentry.Xamarin.Internals
 
         private void JavaSdkInit(SentryOptions options)
         {
-            IO.Sentry.Sentry.Init(options.ToSentryJavaOptions());
-            IO.Sentry.Android.Core.SentryAndroid.Init(Platform.AppContext);
-            IO.Sentry.Android.Ndk.SentryNdk.Init(options.ToSentryAndroidOptions());
-            IO.Sentry.Sentry.CaptureMessage("Hello World from Native SDK");
+            try
+            {
+                IO.Sentry.Android.Core.SentryAndroid.Init(Android.App.Application.Context, new RunnableOptions<IO.Sentry.Android.Core.SentryAndroidOptions>(
+                    (response) => options.ApplyToSentryAndroidOptions(response)));
+                ));
+                IO.Sentry.Android.Ndk.SentryNdk.Init(options.ToSentryAndroidOptions());
+            }catch(Exception ex)
+            {
+                _ = ex;
+            }
         }
 
         private void Platform_ActivityStateChanged(object sender, ActivityStateChangedEventArgs e)

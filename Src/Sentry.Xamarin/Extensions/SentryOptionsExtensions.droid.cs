@@ -2,20 +2,18 @@
 {
     internal static class SentryOptionsExtensions
     {
-        public static IO.Sentry.SentryOptions ToSentryJavaOptions(this SentryOptions options)
+        public static void ApplyToSentryAndroidOptions(this SentryOptions options, IO.Sentry.Android.Core.SentryAndroidOptions javaOptions)
         {
-            var nativeOptions = new IO.Sentry.SentryOptions()
-            {
-                Environment = options.Environment,
-                Release = options.Release,
-                Dsn = options.Dsn,
-                CacheDirPath = options.CacheDirectoryPath,
-                SendDefaultPii = options.SendDefaultPii
-            };
-            nativeOptions.SetDebug(Java.Lang.Boolean.ValueOf(options.Debug));
-            return nativeOptions;
+            javaOptions.Environment = options.Environment;
+            javaOptions.Release = options.Release;
+            javaOptions.Dsn = options.Dsn;
+            javaOptions.DiagnosticLevel = IO.Sentry.SentryLevel.Debug;
+            javaOptions.CacheDirPath = options.CacheDirectoryPath;
+            javaOptions.SendDefaultPii = options.SendDefaultPii;
+            javaOptions.AnrReportInDebug = options.Debug;
+            javaOptions.SetDebug(Java.Lang.Boolean.ValueOf(options.Debug));
         }
-
+        
         public static IO.Sentry.Android.Core.SentryAndroidOptions ToSentryAndroidOptions(this SentryOptions options)
         {
             var androidOptions = new IO.Sentry.Android.Core.SentryAndroidOptions()
@@ -23,6 +21,7 @@
                 Environment = options.Environment,
                 Release = options.Release,
                 Dsn = options.Dsn,
+                DiagnosticLevel = IO.Sentry.SentryLevel.Debug,
                 CacheDirPath = options.CacheDirectoryPath,
                 AnrReportInDebug = options.Debug
             };
