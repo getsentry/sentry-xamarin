@@ -1,7 +1,8 @@
 ﻿namespace Sentry.Extensions
 {
     internal static class SentryOptionsExtensions
-    {        public static IO.Sentry.SentryOptions ToSentryJavaOptions(this SentryOptions options)
+    {
+        public static IO.Sentry.SentryOptions ToSentryJavaOptions(this SentryOptions options)
         {
             var nativeOptions = new IO.Sentry.SentryOptions()
             {
@@ -14,6 +15,7 @@
             nativeOptions.SetDebug(Java.Lang.Boolean.ValueOf(options.Debug));
             return nativeOptions;
         }
+
         public static IO.Sentry.Android.Core.SentryAndroidOptions ToSentryAndroidOptions(this SentryOptions options)
         {
             var androidOptions = new IO.Sentry.Android.Core.SentryAndroidOptions()
