@@ -15,7 +15,6 @@ using Android.App;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: MetaData("io.sentry.auto-init", Value = "false")]
-//[assembly: MetaData("io.sentry.dsn", Value = "")]
 
 [assembly: AssemblyVersion("5.0.0.3")]
 [assembly: AssemblyFileVersion("5.0.0.3")]

@@ -1,4 +1,5 @@
 ﻿using Android.Runtime;
+using IO.Sentry.Android.Core;
 using Sentry.Extensions;
 using Sentry.Integrations;
 using Sentry.Internals;
@@ -51,13 +52,13 @@ namespace Sentry.Xamarin.Internals
         {
             try
             {
-                IO.Sentry.Android.Core.SentryAndroid.Init(Android.App.Application.Context, new RunnableOptions<IO.Sentry.Android.Core.SentryAndroidOptions>(
-                    (response) => options.ApplyToSentryAndroidOptions(response)));
-                ));
-                IO.Sentry.Android.Ndk.SentryNdk.Init(options.ToSentryAndroidOptions());
-            }catch(Exception ex)
+                SentryAndroid.Init(Android.App.Application.Context, 
+                    new Runnable<SentryAndroidOptions>((response) =>
+                        options.ApplyToSentryAndroidOptions(response)));
+            }
+            catch(Exception ex)
             {
-                _ = ex;
+                options.DiagnosticLogger?.Log(SentryLevel.Error, "Failed to load Native Sdk", ex);
             }
         }
 
