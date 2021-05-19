@@ -92,16 +92,16 @@ public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsAppli
 ### UWP
 On App.Xaml.cs
 ```C#
-    sealed partial class App : Application
+sealed partial class App : Application
+{
+    protected override void OnLaunched(LaunchActivatedEventArgs e)
     {
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        SentryXamarin.Init(options =>
         {
-            SentryXamarin.Init(options =>
-            {
-                options.Dsn = "__YOUR__DSN__";
-                options.AddXamarinFormsIntegration();
-            });
-        ...        
+            options.Dsn = "__YOUR__DSN__";
+            options.AddXamarinFormsIntegration();
+        });
+    ...        
 ```
 
 ## Compatibility
