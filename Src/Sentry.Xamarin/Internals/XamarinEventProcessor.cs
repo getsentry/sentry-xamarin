@@ -22,7 +22,7 @@ namespace Sentry.Xamarin.Internals
 
         private class FormsContext
         {
-            internal string Manufacturer { get; }
+            internal string Brand { get; }
             internal string Model { get; }
             internal string Platform { get; }
             internal string PlatformVersion { get; }
@@ -33,7 +33,7 @@ namespace Sentry.Xamarin.Internals
 
             internal FormsContext()
             {
-                Manufacturer = DeviceInfo.Manufacturer.FilterUnknownOrEmpty();
+                Brand = DeviceInfo.Manufacturer.FilterUnknownOrEmpty();
                 Model = DeviceInfo.Model.FilterUnknownOrEmpty();
                 Platform = DeviceInfo.Platform.ToString();
                 PlatformVersion = DeviceInfo.VersionString;
@@ -78,7 +78,7 @@ namespace Sentry.Xamarin.Internals
                     }
 
                     @event.Contexts.Device.Simulator = formsContext.IsEmulator;
-                    @event.Contexts.Device.Manufacturer = formsContext.Manufacturer;
+                    @event.Contexts.Device.Brand = formsContext.Brand;
                     @event.Contexts.Device.Model = formsContext.Model;
                     @event.Contexts.OperatingSystem.Name = formsContext.Platform;
                     @event.Contexts.OperatingSystem.Version = formsContext.PlatformVersion;
