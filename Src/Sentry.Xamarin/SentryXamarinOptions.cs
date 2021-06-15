@@ -16,6 +16,9 @@ namespace Sentry
         internal int GetCurrentApplicationDelay { get; set; } = 500;
         internal int GetCurrentApplicationMaxRetries { get; set; } = 15;
 
+        /// <summary>
+        /// The Sentry Xamarin Options.
+        /// </summary>
         public SentryXamarinOptions()
         {
             IsEnvironmentUser = false;
