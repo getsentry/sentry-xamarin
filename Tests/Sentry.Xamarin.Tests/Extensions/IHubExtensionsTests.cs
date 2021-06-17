@@ -17,7 +17,6 @@ namespace Sentry.Xamarin.Tests.Extensions
         {
             Sut.When(h => h.ConfigureScope(Arg.Any<Action<Scope>>()))
                 .Do(c => c.Arg<Action<Scope>>()(Scope));
-
         }
 
         [Fact]
