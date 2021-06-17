@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="85754c12-7e17-411f-97b2-5a2b0bd0b488"
+    Name="com.companyname.Sample.Xamarin.UWP"
     Publisher="CN=lucas"
-    Version="1.0.0.0" />
+    Version="1.2.3.0" />
 
   <mp:PhoneIdentity PhoneProductId="85754c12-7e17-411f-97b2-5a2b0bd0b488" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Sample.Xamarin.uwp</DisplayName>
-    <PublisherDisplayName>lucas</PublisherDisplayName>
+    <PublisherDisplayName>sentry</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
