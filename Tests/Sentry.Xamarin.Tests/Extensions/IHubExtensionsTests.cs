@@ -148,7 +148,5 @@ namespace Sentry.Xamarin.Tests.Extensions
             logger.DidNotReceive().Log(Arg.Any<SentryLevel>(), Arg.Is<string>(IHubExtensions.DuplicatedBreadcrumbDropped), Arg.Any<Exception>(), Arg.Any<object[]>());
             Assert.NotEqual(breadcrumb, options.LastInternalBreadcrumb);
         }
-
-
     }
 }
