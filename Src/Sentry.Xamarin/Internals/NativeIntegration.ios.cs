@@ -1,6 +1,6 @@
 ﻿using Foundation;
+using Sentry.Extensions;
 using Sentry.Integrations;
-using Sentry.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -49,7 +49,8 @@ namespace Sentry.Xamarin.Internals
 
         internal Action<NSNotification> AppEnteredBackground => (_) =>
         {
-            _hub.AddBreadcrumb(null,
+            _hub.AddInternalBreadcrumb(_xamarinOptions, 
+                null,
                 "ui.lifecycle",
                 "navigation", data: new Dictionary<string, string>
                 {
@@ -60,7 +61,8 @@ namespace Sentry.Xamarin.Internals
 
         internal Action<NSNotification> AppEnteredForeground => (_) =>
         {
-            _hub.AddBreadcrumb(null,
+            _hub.AddInternalBreadcrumb(_xamarinOptions, 
+                null,
                 "ui.lifecycle",
                 "navigation", data: new Dictionary<string, string>
                 {
@@ -71,7 +73,8 @@ namespace Sentry.Xamarin.Internals
 
         internal Action<NSNotification> MemoryWarning => (_) =>
         {
-            _hub.AddBreadcrumb("low memory",
+            _hub.AddInternalBreadcrumb(_xamarinOptions, 
+                "low memory",
                 "xamarin",
                 "info",
                 level: BreadcrumbLevel.Warning);

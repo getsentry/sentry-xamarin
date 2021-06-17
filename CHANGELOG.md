@@ -4,6 +4,7 @@
 
 ### Changes
 
+* Add filter to device breadcrumbs.(#66) @lucas-zimerman
 * IsEnvironmentUser is not set to false by default (#73) @lucas-zimerman
 * Changed the data from Device.Manufacturer Device.Brand (#70) @lucas-zimerman
 * Update Sentry.NET SDK to 3.5.0 (#73) @lucas-zimerman
