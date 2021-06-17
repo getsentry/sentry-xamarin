@@ -43,9 +43,7 @@ namespace Sentry
 
         internal static void ConfigureSentryXamarinOptions(this SentryXamarinOptions options)
         {
-            options.Release ??= DeviceInfo.Platform != DevicePlatform.UWP ?
-                $"{AppInfo.PackageName}@{AppInfo.VersionString}+{AppInfo.BuildString}" :
-                $"{AppInfo.PackageName}@{AppInfo.VersionString}";
+            options.Release ??= $"{AppInfo.PackageName}@{AppInfo.VersionString}+{AppInfo.BuildString}";
             if (options.InternalCacheEnabled)
             {
                 options.CacheDirectoryPath ??= options.DefaultCacheDirectoyPath();
