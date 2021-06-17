@@ -1,12 +1,14 @@
 # Changelog
 
-## Unchanged
+## Unreleased
 
 ### Changes
 
 * IsEnvironmentUser is not set to false by default (#73) @lucas-zimerman
 * Changed the data from Device.Manufacturer Device.Brand (#70) @lucas-zimerman
-* Update Sentry.NET SDK to 3.3.0 (#63) @lucas-zimerman
+* Update Sentry.NET SDK to 3.5.0 (#73) @lucas-zimerman
+  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/main/CHANGELOG.md#350)
+  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.0.6...3.5.0)
 
 ## 1.0.3
 
