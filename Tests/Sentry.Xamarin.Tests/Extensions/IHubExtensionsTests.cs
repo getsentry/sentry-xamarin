@@ -21,7 +21,7 @@ namespace Sentry.Xamarin.Tests.Extensions
         }
 
         [Fact]
-        public void AddInternalBreadcrumb_LastBreadCrumbNull_LastBreadcrumbSet()
+        public void AddInternalBreadcrumb_LastBreadcrumbNull_LastBreadcrumbSet()
         {
             //Assert
             const string expectedMessage = "message";
