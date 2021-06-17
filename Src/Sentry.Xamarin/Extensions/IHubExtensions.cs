@@ -18,7 +18,14 @@ namespace Sentry.Extensions
         /// <param name="type">Breadcrumb type.</param>
         /// <param name="data">Additional data.</param>
         /// <param name="level">Breadcrumb level.</param>
-        internal static void AddInternalBreadcrumb(this IHub hub, SentryXamarinOptions options, string message, string? category = null, string? type = null, Dictionary<string, string>? data = null, BreadcrumbLevel level = BreadcrumbLevel.Info)
+        internal static void AddInternalBreadcrumb(
+            this IHub hub,
+            SentryXamarinOptions options,
+            string message,
+            string? category = null,
+            string? type = null,
+            Dictionary<string, string>? data = null,
+            BreadcrumbLevel level = BreadcrumbLevel.Info)
         {
             var previousBreadcrumb = options.LastInternalBreadcrumb;
             //Filter duplicated internal breadcrumbs
