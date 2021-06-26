@@ -63,4 +63,15 @@
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
 		<Compile Include="Internals\*.netstandard.cs" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Internals\Session\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Internals\Session\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Internals\Session\IDeviceActiveLogger.cs">
+	    <SubType></SubType>
+	  </Compile>
+	</ItemGroup>
 </Project>

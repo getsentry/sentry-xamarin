@@ -57,6 +57,7 @@ namespace Sentry.Xamarin.Internals
                     ["screen"] = _xamarinOptions.PageTracker?.CurrentPage,
                     ["state"] = "background"
                 }, level: BreadcrumbLevel.Info);
+            _xamarinOptions.SessionLogger?.StatePaused();
         };
 
         internal Action<NSNotification> AppEnteredForeground => (_) =>
@@ -69,6 +70,7 @@ namespace Sentry.Xamarin.Internals
                     ["screen"] = _xamarinOptions.PageTracker?.CurrentPage,
                     ["state"] = "foreground"
                 }, level: BreadcrumbLevel.Info);
+            _xamarinOptions.SessionLogger?.StateResumed();
         };
 
         internal Action<NSNotification> MemoryWarning => (_) =>

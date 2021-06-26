@@ -69,10 +69,16 @@ namespace Sentry.Xamarin.Internals
             }
         }
 
-        private void OnResume(object sender, LeavingBackgroundEventArgs e)
-            => _hub.AddInternalBreadcrumb(_options, "OnResume", "app.lifecycle", "event");
-
         private void OnSleep(object sender, EnteredBackgroundEventArgs e)
-            => _hub.AddInternalBreadcrumb(_options, "OnSleep", "app.lifecycle", "event");
+        {
+            _hub.AddInternalBreadcrumb(_options, "OnSleep", "app.lifecycle", "event");
+            _xamarinOptions.SessionLogger?.StatePaused();
+        }
+
+        private void OnResume(object sender, LeavingBackgroundEventArgs e)
+        {
+            _hub.AddInternalBreadcrumb(_options, "OnResume", "app.lifecycle", "event");
+            _xamarinOptions.SessionLogger?.StateResumed();
+        }
     }
 }

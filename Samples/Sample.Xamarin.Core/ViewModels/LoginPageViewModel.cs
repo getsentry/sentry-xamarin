@@ -25,9 +25,9 @@ namespace Sample.Xamarin.Core.ViewModels
         {
             SentrySdk.AddBreadcrumb("Login", "ui.click", level: BreadcrumbLevel.Info);
             var authenticate = _authService.Authenticate(Login, Password);
-            if (authenticate.Item1)
-                
+            if (authenticate.Item1)                
             {
+                SentrySdk.StartSession();
                 ReplacePage(new NavigationPage(new MainPage())
                 {
                     BarBackgroundColor = Color.FromRgb(46, 14, 51)
