@@ -21,7 +21,7 @@ namespace Sentry
         /// Redirects session callbacks to SentrySdk based on
         /// device's app status.
         /// </summary>
-        internal DeviceActiveLogger SessionLogger { get; set; }
+        internal IDeviceActiveLogger SessionLogger { get; set; }
         /// <summary>
         /// Define the range of time that duplicated internal breadcrumbs will be ignored.
         /// </summary>
@@ -34,7 +34,7 @@ namespace Sentry
         public SentryXamarinOptions()
         {
             IsEnvironmentUser = false;
-            SessionLogger = new DeviceActiveLogger();            
+            AutoSessionTracking = true;
         }
     }
 }

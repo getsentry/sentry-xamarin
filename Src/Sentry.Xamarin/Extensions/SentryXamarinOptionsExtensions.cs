@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Essentials;
 using Sentry.Xamarin.Internals;
+using Sentry.Internals.Session;
 
 namespace Sentry
 {
@@ -71,6 +72,18 @@ namespace Sentry
                 return true;
 #else
                 options.DiagnosticLogger?.Log(SentryLevel.Debug, "No NativeIntegration found for the given target.");
+#endif
+            }
+            return false;
+        }
+
+        internal static bool RegisterNativeActivityStatus(this SentryXamarinOptions options)
+        {
+            if (options.AutoSessionTracking)
+            {
+#if NATIVE_PROCESSOR
+                options.SessionLogger = new DeviceActiveLogger();
+                return true;
 #endif
             }
             return false;

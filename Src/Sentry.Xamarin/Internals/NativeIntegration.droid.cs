@@ -60,7 +60,7 @@ namespace Sentry.Xamarin.Internals
             }
             else if (e.State == ActivityState.Resumed)
             {
-                _xamarinOptions.SessionLogger.StateResumed();
+                _xamarinOptions.SessionLogger?.StateResumed();
             }
         }
         private void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
