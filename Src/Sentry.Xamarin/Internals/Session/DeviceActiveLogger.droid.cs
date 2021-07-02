@@ -22,7 +22,6 @@
         /// <inheritdoc cref="IHub.ResumeSession"/>
         public void StateResumed()
         {
-
             // When the app is launched, the Resumed state is triggered.
             // We don't want to register a Resume session when the app initiates.
             if (!FirstResumed)
