@@ -79,13 +79,13 @@ namespace Sentry
 
         internal static bool RegisterNativeActivityStatus(this SentryXamarinOptions options)
         {
+#if NATIVE_PROCESSOR
             if (options.AutoSessionTracking)
             {
-#if NATIVE_PROCESSOR
                 options.SessionLogger = new DeviceActiveLogger();
                 return true;
-#endif
             }
+#endif
             return false;
         }
 
