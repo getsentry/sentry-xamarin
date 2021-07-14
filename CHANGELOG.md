@@ -5,9 +5,9 @@
 ### Changes
 
 * Add Session support to Android, iOS, UWP (#75) @lucas-zimerman
-* Update Sentry.NET SDK to 3.6.1 (#75) @lucas-zimerman
-  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/main/CHANGELOG.md#360)
-  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.5.0...3.6.1)
+* Update Sentry.NET SDK to 3.8.0 (#75) @lucas-zimerman
+  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/main/CHANGELOG.md#3)
+  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.5.0...3.8.0)
 
 ## 1.1.0
 
