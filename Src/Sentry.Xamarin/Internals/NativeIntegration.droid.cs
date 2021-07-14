@@ -54,6 +54,14 @@ namespace Sentry.Xamarin.Internals
                     ["screen"] = _xamarinOptions.PageTracker?.CurrentPage,
                     ["state"] = e.State.ToString()
                 }, level: BreadcrumbLevel.Info);
+            if (e.State == ActivityState.Paused)
+            {
+                _xamarinOptions.SessionLogger?.StatePaused();
+            }
+            else if (e.State == ActivityState.Resumed)
+            {
+                _xamarinOptions.SessionLogger?.StateResumed();
+            }
         }
         private void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
         {

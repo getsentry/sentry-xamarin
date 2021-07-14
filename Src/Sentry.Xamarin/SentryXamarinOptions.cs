@@ -1,4 +1,5 @@
-﻿using Sentry.Xamarin.Internals;
+﻿using Sentry.Internals.Session;
+using Sentry.Xamarin.Internals;
 
 namespace Sentry
 {
@@ -15,6 +16,12 @@ namespace Sentry
         internal string ProjectName { get; set; }
         internal int GetCurrentApplicationDelay { get; set; } = 500;
         internal int GetCurrentApplicationMaxRetries { get; set; } = 15;
+
+        /// <summary>
+        /// Redirects session callbacks to SentrySdk based on
+        /// device's app status.
+        /// </summary>
+        internal IDeviceActiveLogger SessionLogger { get; set; }
         /// <summary>
         /// Define the range of time that duplicated internal breadcrumbs will be ignored.
         /// </summary>
@@ -27,6 +34,7 @@ namespace Sentry
         public SentryXamarinOptions()
         {
             IsEnvironmentUser = false;
+            AutoSessionTracking = true;
         }
     }
 }

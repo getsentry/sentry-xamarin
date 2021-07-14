@@ -34,6 +34,7 @@ namespace Sentry
             options ??= new SentryXamarinOptions();
 
             options.ConfigureSentryXamarinOptions();
+            options.RegisterNativeActivityStatus();
             options.RegisterNativeIntegrations();
             options.RegisterXamarinEventProcessors();
             options.RegisterXamarinInAppExclude();

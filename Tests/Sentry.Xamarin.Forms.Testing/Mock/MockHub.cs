@@ -59,5 +59,15 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
             => null;
 
         public void BindException(Exception exception, ISpan span) { }
+
+        public void StartSession() { }
+
+        public void PauseSession() { }
+
+        public void ResumeSession() { }
+
+        public void EndSession(SessionEndStatus status = SessionEndStatus.Exited) { }
+
+        public void CaptureSession(SessionUpdate sessionUpdate) { }
     }
 }
