@@ -39,7 +39,7 @@
 		<None Include="Internals\**\*.ios.cs" />
 		<None Include="Internals\**\*.droid.cs" />
 		<None Include="Internals\**\*.uwp.cs" />
-	</ItemGroup>
+	</ItemGroup>	
 	
 	<ItemGroup>
 		<PackageReference Include="Xamarin.Essentials" Version="1.4.0" />

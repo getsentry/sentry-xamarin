@@ -8,6 +8,17 @@ namespace Sentry
     /// </summary>
     public class SentryXamarinOptions : SentryOptions
     {
+        /// <summary>
+        /// Attaches screenshots from the app to events automatically whenever possible.
+        /// </summary>
+        public bool AttachScreenshots { get; set; }
+
+        /// <summary>
+        /// Define the range of time that duplicated internal breadcrumbs will be ignored.
+        /// </summary>
+        public int InternalBreadcrumbDuplicationTimeSpan { get; set; } = 2;
+
+
         internal bool XamarinLoggerEnabled { get; set; } = true;
         internal bool NativeIntegrationEnabled { get; set; } = true;
         internal bool InternalCacheEnabled { get; set; } = true;
@@ -22,10 +33,7 @@ namespace Sentry
         /// device's app status.
         /// </summary>
         internal IDeviceActiveLogger SessionLogger { get; set; }
-        /// <summary>
-        /// Define the range of time that duplicated internal breadcrumbs will be ignored.
-        /// </summary>
-        public int InternalBreadcrumbDuplicationTimeSpan { get; set; } = 2;
+
         internal Breadcrumb LastInternalBreadcrumb {get;set;}
 
         /// <summary>
