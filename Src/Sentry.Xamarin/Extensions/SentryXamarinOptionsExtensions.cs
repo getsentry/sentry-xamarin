@@ -65,7 +65,7 @@ namespace Sentry
 
         internal static void RegisterScreenshotEventProcessor(this SentryXamarinOptions options)
         {
-#if NATIVE_PROCESSOR && MONOANDROID9_0
+#if MONOANDROID9_0 || XAMARINIOS10 || UAP10_0_16299
             if (options.AttachScreenshots)
             {
                 options.AddEventProcessor(new ScreenshotEventProcessor(options));

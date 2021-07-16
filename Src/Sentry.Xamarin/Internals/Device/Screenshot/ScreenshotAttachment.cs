@@ -1,9 +1,11 @@
-﻿namespace Sentry.Internals.Device.Screenshot
+﻿using System.IO;
+
+namespace Sentry.Internals.Device.Screenshot
 {
     internal class ScreenshotAttachment : Attachment
     {
-        public ScreenshotAttachment(byte[] image)
-    : this(
+        public ScreenshotAttachment(Stream image)
+        : this(
         AttachmentType.Default,
         new ScreenshotAttachmentContent(image),
         "screenshot",
@@ -20,5 +22,4 @@
         {
         }
     }
-
 }

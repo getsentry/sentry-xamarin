@@ -11,7 +11,13 @@ namespace Sentry
         /// <summary>
         /// Attaches screenshots from the app to events automatically whenever possible.
         /// </summary>
+        /// <remarks>
+        /// Pii information might be exposed by activating this feature.
+        /// </remarks>
         public bool AttachScreenshots { get; set; }
+
+        //TODO: Maybe an option to choose between png and jpeg where jpeg is the default?
+        //public SentryScreenshotQuality ScreenshotQuality { get; set; }
 
         /// <summary>
         /// Define the range of time that duplicated internal breadcrumbs will be ignored.

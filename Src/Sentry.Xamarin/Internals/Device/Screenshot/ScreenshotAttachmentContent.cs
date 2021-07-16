@@ -1,23 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace Sentry.Internals.Device.Screenshot
 {
     internal class ScreenshotAttachmentContent : IAttachmentContent
     {
-        private MemoryStream _stream { get; }
+        private byte[] _data { get; }
 
-        public ScreenshotAttachmentContent(byte[] image) => _stream = new MemoryStream(image);
-
-        public Stream GetStream()
+        /// <summary>
+        /// The content ctor
+        /// </summary>
+        /// <param name="stream">A Ready once stream containing the image data.</param>
+        public ScreenshotAttachmentContent(Stream stream)
         {
-            var stream = new MemoryStream();
-            _stream.CopyTo(stream);
-            _stream.Seek(0, SeekOrigin.Begin);
-            stream.Seek(0, SeekOrigin.Begin);
-            return stream;
+            _data = new byte[stream.Length];
+            stream.Read(_data, 0, _data.Length);
         }
+        /// <summary>
+        /// Get a stream from the attachment data.
+        /// </summary>
+        /// <returns>A Memory stream containing the data.</returns>
+        public Stream GetStream()
+            => new MemoryStream(_data);
     }
 }
