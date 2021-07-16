@@ -7,15 +7,22 @@ namespace Sentry.Internals.Device.Screenshot
 {
     internal class ScreenshotEventProcessor : ISentryEventProcessor
     {
+        private SentryXamarinOptions _options { get; }
+
+        public ScreenshotEventProcessor(SentryXamarinOptions options) => _options = options;
+
         public SentryEvent? Process(SentryEvent @event)
         {
             try
             {
-                var stream = Capture();
-                if (stream != null)
+                if (_options.SessionLogger?.IsBackground() == false)
                 {
-                    SentrySdk.ConfigureScope(s => s.AddAttachment(new ScreenshotAttachment(stream)));
-                    //@event.Contexts["Sentry::Screenshot"] = new ScreenshotAttachment(stream);
+                    var stream = Capture();
+                    if (stream != null)
+                    {
+                        SentrySdk.ConfigureScope(s => s.AddAttachment(new ScreenshotAttachment(stream)));
+                        //@event.Contexts["Sentry::Screenshot"] = new ScreenshotAttachment(stream);
+                    }
                 }
             }
             catch (Exception ex)
@@ -25,9 +32,6 @@ namespace Sentry.Internals.Device.Screenshot
             return @event;
         }
 
-        private SentryXamarinOptions _options { get; }
-
-        public ScreenshotEventProcessor(SentryXamarinOptions options) => _options = options;
 
         internal Stream Capture()
         {
