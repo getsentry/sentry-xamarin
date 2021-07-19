@@ -7,6 +7,7 @@ namespace Sentry.Internals.Device.Screenshot
 {
     internal class ScreenshotEventProcessor : ISentryEventProcessor
     {
+        private ScreenshotAttachmentContent? _screenshot { get; set; }
         private SentryXamarinOptions _options { get; }
 
         public ScreenshotEventProcessor(SentryXamarinOptions options) => _options = options;
@@ -20,8 +21,19 @@ namespace Sentry.Internals.Device.Screenshot
                     var stream = Capture();
                     if (stream != null)
                     {
-                        SentrySdk.ConfigureScope(s => s.AddAttachment(new ScreenshotAttachment(stream)));
-                        //@event.Contexts["Sentry::Screenshot"] = new ScreenshotAttachment(stream);
+                        /* Create a new attachment if no screenshot attachment was fond.
+                         * If there's an attachment content but it wasnt read during the last event processing
+                         * Assume it was cleared and create a new one.
+                         */
+                        if(_screenshot?.GetWasRead() != true)
+                        {
+                            _screenshot = new ScreenshotAttachmentContent(stream);
+                            SentrySdk.ConfigureScope(s => s.AddAttachment(new ScreenshotAttachment(_screenshot)));
+                        }
+                        else 
+                        {
+                            _screenshot.SetNewData(stream);
+                        }
                     }
                 }
             }
@@ -31,7 +43,6 @@ namespace Sentry.Internals.Device.Screenshot
             }
             return @event;
         }
-
 
         internal Stream Capture()
         {

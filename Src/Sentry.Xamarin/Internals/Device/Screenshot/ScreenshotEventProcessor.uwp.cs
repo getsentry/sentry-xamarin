@@ -14,6 +14,7 @@ namespace Sentry.Internals.Device.Screenshot
 {
     internal class ScreenshotEventProcessor : ISentryEventProcessor
     {
+        private ScreenshotAttachmentContent? _screenshot { get; set; }
         private SentryXamarinOptions _options { get; }
 
         public ScreenshotEventProcessor(SentryXamarinOptions options) => _options = options;
@@ -27,8 +28,15 @@ namespace Sentry.Internals.Device.Screenshot
 
                     if (Capture() is { } stream)
                     {
-                        //@event.Contexts["Sentry::Screenshot"] = new ScreenshotAttachment(stream);
-                        SentrySdk.ConfigureScope(s => s.AddAttachment(new ScreenshotAttachment(stream)));
+                        if (_screenshot == null)
+                        {
+                            _screenshot = new ScreenshotAttachmentContent(stream);
+                            SentrySdk.ConfigureScope(s => s.AddAttachment(new ScreenshotAttachment(_screenshot)));
+                        }
+                        else
+                        {
+                            _screenshot.SetNewData(stream);
+                        }
                     }
                 }
             }

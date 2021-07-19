@@ -49,6 +49,7 @@ namespace Sentry
         {
             IsEnvironmentUser = false;
             AutoSessionTracking = true;
+            IsGlobalModeEnabled = true;
         }
     }
 }
