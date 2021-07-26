@@ -19,7 +19,7 @@ namespace Sentry.Internals.Device.Screenshot
                 if (_options.SessionLogger?.IsBackground() == false)
                 {
                     var stream = Capture();
-                    if (stream is not null)
+                    if (stream != null)
                     {
                         /* Create a new attachment if no screenshot attachment was found.
                          * If there's an attachment content but it wasnt read during the last event processing
