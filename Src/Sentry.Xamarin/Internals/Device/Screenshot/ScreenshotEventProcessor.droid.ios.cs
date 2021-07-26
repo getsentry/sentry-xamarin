@@ -19,13 +19,13 @@ namespace Sentry.Internals.Device.Screenshot
                 if (_options.SessionLogger?.IsBackground() == false)
                 {
                     var stream = Capture();
-                    if (stream != null)
+                    if (stream is not null)
                     {
-                        /* Create a new attachment if no screenshot attachment was fond.
+                        /* Create a new attachment if no screenshot attachment was found.
                          * If there's an attachment content but it wasnt read during the last event processing
                          * Assume it was cleared and create a new one.
                          */
-                        if(_screenshot?.GetWasRead() != true)
+                        if (_screenshot?.ResetWasRead() != true)
                         {
                             _screenshot = new ScreenshotAttachmentContent(stream);
                             SentrySdk.ConfigureScope(s => s.AddAttachment(new ScreenshotAttachment(_screenshot)));
@@ -44,7 +44,7 @@ namespace Sentry.Internals.Device.Screenshot
             return @event;
         }
 
-        internal Stream Capture()
+        private Stream Capture()
         {
             var screenStream = global::Xamarin.Essentials.Screenshot.CaptureAsync().ConfigureAwait(false).GetAwaiter().GetResult();
             return screenStream.OpenReadAsync(ScreenshotFormat.Jpeg).ConfigureAwait(false).GetAwaiter().GetResult();

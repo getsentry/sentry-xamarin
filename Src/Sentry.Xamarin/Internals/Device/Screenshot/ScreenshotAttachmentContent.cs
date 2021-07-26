@@ -24,11 +24,11 @@ namespace Sentry.Internals.Device.Screenshot
         }
 
         /// <summary>
-        /// Inform is the contenet was previously read.
+        /// Inform is the content was previously read.
         /// By calling this function you will reset the read state to false and return the current state.
         /// </summary>
         /// <returns>true if the content was read.</returns>
-        public bool GetWasRead()
+        public bool ResetWasRead()
         {
             var read = _wasRead;
             _wasRead = false;
