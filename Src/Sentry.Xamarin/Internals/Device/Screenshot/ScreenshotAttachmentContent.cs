@@ -6,7 +6,7 @@ namespace Sentry.Internals.Device.Screenshot
     {
         private byte[] _data { get; set; }
 
-        private bool _wasRead{ get; set; }
+        private bool _wasRead { get; set; }
 
         /// <summary>
         /// The content ctor
