@@ -15,7 +15,6 @@
         /// <returns>True if the app is on background, otherwise false</returns>
         public bool IsBackground() => IsPaused;
 
-
         /// <inheritdoc cref="IHub.PauseSession"/>
         public void StatePaused()
         {

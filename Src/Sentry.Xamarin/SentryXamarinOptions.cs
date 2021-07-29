@@ -16,14 +16,10 @@ namespace Sentry
         /// </remarks>
         public bool AttachScreenshots { get; set; }
 
-        //TODO: Maybe an option to choose between png and jpeg where jpeg is the default?
-        //public SentryScreenshotQuality ScreenshotQuality { get; set; }
-
         /// <summary>
         /// Define the range of time that duplicated internal breadcrumbs will be ignored.
         /// </summary>
         public int InternalBreadcrumbDuplicationTimeSpan { get; set; } = 2;
-
 
         internal bool XamarinLoggerEnabled { get; set; } = true;
         internal bool NativeIntegrationEnabled { get; set; } = true;
