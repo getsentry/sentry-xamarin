@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+* Add Screenshots automatically. ([#76](https://github.com/getsentry/sentry-xamarin/pull/76))
+ 
+### Changes
+
+
+
 ## 1.2.0
 
 ### Changes
