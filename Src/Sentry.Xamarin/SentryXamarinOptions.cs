@@ -9,7 +9,7 @@ namespace Sentry
     public class SentryXamarinOptions : SentryOptions
     {
         /// <summary>
-        /// Automatically attaches a screen shot of the app at the time of the event capture.
+        /// Automatically attaches a screenshot of the app at the time of the event capture.
         /// </summary>
         /// <remarks>
         /// Be aware PII might be included by activating this feature.
