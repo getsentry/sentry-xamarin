@@ -1,53 +1,67 @@
 ﻿using Sentry.Extensibility;
-using Xamarin.Essentials;
 using System.IO;
 using System;
 
 namespace Sentry.Internals.Device.Screenshot
 {
-    internal class ScreenshotEventProcessor : ISentryEventProcessor
+    internal class ScreenshotEventProcessor : ISentryEventProcessor, IAttachmentContent
     {
-        private ScreenshotAttachmentContent? _screenshot { get; set; }
         private SentryXamarinOptions _options { get; }
+        private bool _attachmentWasRead { get; set; }
+
+        /// <summary>
+        /// Used to flag if the screenshot to be captured should be skipped or not.
+        /// </summary>
+        private bool _skipScreenshotCapture { get; set; }
 
         public ScreenshotEventProcessor(SentryXamarinOptions options) => _options = options;
 
         public SentryEvent? Process(SentryEvent @event)
         {
-            try
+            // Small logic to re-attach the screenshot attachment in case of user clearing the attachments.
+            if (_attachmentWasRead is false)
             {
-                if (_options.SessionLogger?.IsBackground() == false)
-                {
-                    var stream = Capture();
-                    if (stream != null)
-                    {
-                        /* Create a new attachment if no screenshot attachment was found.
-                         * If there's an attachment content but it wasnt read during the last event processing
-                         * Assume it was cleared and create a new one.
-                         */
-                        if (_screenshot?.ResetWasRead() != true)
-                        {
-                            _screenshot = new ScreenshotAttachmentContent(stream);
-                            SentrySdk.ConfigureScope(s => s.AddAttachment(new ScreenshotAttachment(_screenshot)));
-                        }
-                        else 
-                        {
-                            _screenshot.SetNewData(stream);
-                        }
-                    }
-                }
+                SentrySdk.ConfigureScope(s => s.AddAttachment(new ScreenshotAttachment(this)));
             }
-            catch (Exception ex)
+
+            if (@event.Level < SentryLevel.Error)
             {
-                _options.DiagnosticLogger?.LogError("Failed to capture a screenshot", ex);
+                _skipScreenshotCapture = true;
             }
+            _attachmentWasRead = false;
             return @event;
         }
 
         private Stream Capture()
         {
-            var screenStream = global::Xamarin.Essentials.Screenshot.CaptureAsync().ConfigureAwait(false).GetAwaiter().GetResult();
-            return screenStream.OpenReadAsync(ScreenshotFormat.Jpeg).ConfigureAwait(false).GetAwaiter().GetResult();
+            var screenStream = SentryScreenshot.CaptureAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+            return screenStream.OpenReadAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public Stream GetStream()
+        {
+            _attachmentWasRead = true;
+            try
+            {
+                if (_options.SessionLogger.IsBackground() is false && _skipScreenshotCapture is false)
+                {
+                    return Capture();
+                }
+
+                if (_skipScreenshotCapture is false)
+                {
+                    _options.DiagnosticLogger?.LogWarning("Skipping screenshot because app is in background.");
+                }
+                else
+                {
+                    _skipScreenshotCapture = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _options.DiagnosticLogger?.LogError("Failed to capture a screenshot.", ex);
+            }
+            return new MemoryStream();
         }
     }
 }
