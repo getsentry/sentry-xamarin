@@ -2,7 +2,7 @@
 {
     internal class DeviceActiveLogger : IDeviceActiveLogger
     {
-        private bool _isPaused { get; set; } = true;
+        private bool _isPaused { get; set; }
 
         /// <summary>
         /// Informs if the device is on background.
