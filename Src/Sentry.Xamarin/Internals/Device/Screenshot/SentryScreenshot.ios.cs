@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using UIKit;
 
-
 namespace Sentry.Internals.Device.Screenshot
 {
     internal static class SentryScreenshot
@@ -32,5 +31,4 @@ namespace Sentry.Internals.Device.Screenshot
             return Task.FromResult(data.AsStream());
         }
     }
-
 }
