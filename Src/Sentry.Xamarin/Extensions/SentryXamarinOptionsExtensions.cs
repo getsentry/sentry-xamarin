@@ -68,7 +68,8 @@ namespace Sentry
 #if NATIVE_PROCESSOR && !UAP10_0_16299
             if (options.AttachScreenshots)
             {
-                options.AddEventProcessor(new ScreenshotEventProcessor(options));
+                SentrySdk.ConfigureScope(s => 
+                    s.AddAttachment(new ScreenshotAttachment(new ScreenshotAttachmentContent(options))));
             }
 #endif
         }
