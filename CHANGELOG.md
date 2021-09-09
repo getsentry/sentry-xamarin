@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Features
+
+* Add Screenshot support (#76) (#80)
+* Update Sentry.NET SDK to 3.9.1
+  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.9.1/CHANGELOG.md)
+  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.8.2...3.9.1)
+
 ## 1.2.0
 
 ### Changes
