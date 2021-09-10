@@ -1,11 +1,8 @@
-﻿using System;
-using System.IO;
-
-namespace Sentry.Internals.Device.Screenshot
+﻿namespace Sentry.Internals.Device.Screenshot
 {
     internal class ScreenshotAttachment : Attachment
     {
-        public ScreenshotAttachment(ScreenshotAttachmentContent content)
+        public ScreenshotAttachment(IAttachmentContent content)
         : this(
         AttachmentType.Default,
         content,
