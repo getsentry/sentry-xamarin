@@ -5,6 +5,7 @@
 ### Fixes
 
 - screenshot extension ([#81](https://github.com/getsentry/sentry-xamarin/pull/81))
+- allow setting release to null to rely on the dotnet SDK release detection ([#84](https://github.com/getsentry/sentry-xamarin/pull/84))
 
 ## 1.3.0
 
