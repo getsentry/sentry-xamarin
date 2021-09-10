@@ -4,7 +4,7 @@
 
 ### Fixes
 
-* Add jpg extension to screenshot (#81)
+- screenshot extension ([#81](https://github.com/getsentry/sentry-xamarin/pull/81))
 
 ## 1.3.0
 
