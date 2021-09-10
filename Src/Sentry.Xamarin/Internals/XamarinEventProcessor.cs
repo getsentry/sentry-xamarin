@@ -91,19 +91,19 @@ namespace Sentry.Xamarin.Internals
                 }
                 catch(PermissionException pe)
                 {
-                    _options.DiagnosticLogger?.Log(SentryLevel.Error, "Failed to capture ConnectivityStatus FormsEventProcessor into event.", pe);
+                    _options.DiagnosticLogger?.Log(SentryLevel.Error, "Failed to detect ConnectivityStatus XamarinEventProcessor into event.", pe);
                     _ConnectivityStatusAllowed = false;
                 }
                 catch (Exception ex)
                 {
-                    _options.DiagnosticLogger?.Log(SentryLevel.Error, "Failed to add FormsEventProcessor into event.", ex);
+                    _options.DiagnosticLogger?.Log(SentryLevel.Error, "Failed to add XamarinEventProcessor into event.", ex);
                     //In case of any failure, this process function will be disabled to avoid throwing exceptions for future events.
                     _formsContextLoaded = false;
                 }
             }
             else
             {
-                _options.DiagnosticLogger?.Log(SentryLevel.Debug, "FormsEventProcessor disabled due to previous error.");
+                _options.DiagnosticLogger?.Log(SentryLevel.Debug, "XamarinEventProcessor disabled due to previous error.");
             }
             return @event;
         }

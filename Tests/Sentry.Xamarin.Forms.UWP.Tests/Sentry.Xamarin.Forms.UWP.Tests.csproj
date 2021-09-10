@@ -120,7 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\SentryXamarinOptionsExtensionsTests.cs" />
-    <Compile Include="Internals\FormsEventProcessorTests.cs" />
+    <Compile Include="Internals\XamarinEventProcessorTests.cs" />
     <Compile Include="Internals\NativeEventProcessorTests.cs" />
     <Compile Include="Internals\NativeIntegrationTests.cs" />
     <Compile Include="Internals\SentryXamarinFormsIntegrationTests.cs" />

@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Sentry.Xamarin.Forms.UWP.Tests.Internals
 {
-    public class FormsEventProcessorTests
+    public class XamarinEventProcessorTests
     {
         [Fact]
         public void Register_ValidEvent_EventWithOperationalSystemInfo()
