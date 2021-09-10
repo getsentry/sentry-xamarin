@@ -5,6 +5,7 @@
 ### Fixes
 
 - screenshot extension ([#81](https://github.com/getsentry/sentry-xamarin/pull/81))
+- set options defaults before user callback ([#83](https://github.com/getsentry/sentry-xamarin/pull/83))
 
 ## 1.3.0
 
