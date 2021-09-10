@@ -21,6 +21,16 @@ namespace Sentry
         public static void Init(Action<SentryXamarinOptions> configureOptions)
         {
             var options = new SentryXamarinOptions();
+
+            options.ConfigureSentryXamarinOptions();
+            options.RegisterNativeActivityStatus();
+            options.RegisterNativeIntegrations();
+            options.RegisterXamarinEventProcessors();
+            options.RegisterXamarinInAppExclude();
+            options.ProtocolPackageName ??= ProtocolPackageName;
+
+            options.RegisterScreenshotEventProcessor();
+
             configureOptions?.Invoke(options);
             Init(options);
         }
@@ -32,16 +42,7 @@ namespace Sentry
         public static void Init(SentryXamarinOptions options)
         {
             options ??= new SentryXamarinOptions();
-
-            options.ConfigureSentryXamarinOptions();
-            options.RegisterNativeActivityStatus();
-            options.RegisterNativeIntegrations();
-            options.RegisterXamarinEventProcessors();
-            options.RegisterXamarinInAppExclude();
-            options.ProtocolPackageName ??= ProtocolPackageName;
             SentrySdk.Init(options);
-
-            options.RegisterScreenshotEventProcessor();
         }
     }
 }
