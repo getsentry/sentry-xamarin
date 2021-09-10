@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Fixes
+
+* Add jpg extension to screenshot (#81)
+
 ## 1.3.0
 
 ### Features

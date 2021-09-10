@@ -6,7 +6,7 @@
         : this(
         AttachmentType.Default,
         content,
-        "screenshot",
+        "screenshot.jpg",
         "image/jpeg")
         {
         }
