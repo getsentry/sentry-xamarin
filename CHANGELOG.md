@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Fixes
+
+- screenshot extension ([#81](https://github.com/getsentry/sentry-xamarin/pull/81))
+
 ## 1.3.0
 
 ### Features
