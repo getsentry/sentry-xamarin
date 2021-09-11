@@ -58,7 +58,7 @@ namespace Sentry.Xamarin.Forms.UWP.Tests.Extensions
             {
                 CacheDirectoryPath = null
             };
-            var expectedPath = options.DefaultCacheDirectoyPath();
+            var expectedPath = options.DefaultCacheDirectoryPath();
 
             //Act
             options.ConfigureSentryXamarinOptions();

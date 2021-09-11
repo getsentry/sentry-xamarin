@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Essentials;
 
 namespace Sentry
 {
@@ -21,7 +22,18 @@ namespace Sentry
         public static void Init(Action<SentryXamarinOptions> configureOptions)
         {
             var options = new SentryXamarinOptions();
+            // Set the release now but give the user a chance to reset it (i.e: to null to rely on the built-in format)
+            options.Release = $"{AppInfo.PackageName}@{AppInfo.VersionString}+{AppInfo.BuildString}";
+
             configureOptions?.Invoke(options);
+
+            options.ConfigureSentryXamarinOptions();
+            options.RegisterNativeActivityStatus();
+            options.RegisterNativeIntegrations();
+            options.RegisterXamarinEventProcessors();
+            options.RegisterXamarinInAppExclude();
+            options.ProtocolPackageName ??= ProtocolPackageName;
+
             Init(options);
         }
 
@@ -31,14 +43,6 @@ namespace Sentry
         /// <param name="options">The options instance</param>
         public static void Init(SentryXamarinOptions options)
         {
-            options ??= new SentryXamarinOptions();
-
-            options.ConfigureSentryXamarinOptions();
-            options.RegisterNativeActivityStatus();
-            options.RegisterNativeIntegrations();
-            options.RegisterXamarinEventProcessors();
-            options.RegisterXamarinInAppExclude();
-            options.ProtocolPackageName ??= ProtocolPackageName;
             SentrySdk.Init(options);
 
             options.RegisterScreenshotEventProcessor();
