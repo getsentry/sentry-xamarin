@@ -4,7 +4,7 @@
 
 ### Fixes
 
-- Fix null data on breadcrumb ([#90](https://github.com/getsentry/sentry-xamarin/pull/90))
+- Ignore null data on Internal breadcrumbs ([#90](https://github.com/getsentry/sentry-xamarin/pull/90))
 
 ## 1.3.1
 
