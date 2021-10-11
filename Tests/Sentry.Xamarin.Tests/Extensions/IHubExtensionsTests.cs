@@ -144,7 +144,6 @@ namespace Sentry.Xamarin.Tests.Extensions
             Assert.NotEqual(breadcrumb, options.LastInternalBreadcrumb);
         }
 
-
         [Fact]
         public async Task AddInternalBreadcrumb_DuplicatedIs2SecondsAhead_BreadcrumbAdded()
         {
