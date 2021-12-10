@@ -34,8 +34,8 @@ namespace Sentry.Xamarin.Forms.UWP.Tests.Internals
 
             //Assert
             Assert.NotNull(@event.Contexts.Device.Simulator);
-            Assert.NotNull(@event.Contexts.Device.Manufacturer);
             Assert.NotNull(@event.Contexts.Device.Model);
+            Assert.NotNull(@event.Contexts.Device.Brand);
         }
 
         [Fact]

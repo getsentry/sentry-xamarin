@@ -33,7 +33,7 @@ namespace Sentry.Extensions
                 previousBreadcrumb.Message == message &&
                 previousBreadcrumb.Category == category &&
                 previousBreadcrumb.Type == type &&
-                !previousBreadcrumb.Data.Except(data).Any() &&
+                previousBreadcrumb.Data?.Except(data).Any() is false &&
                 DateTimeOffset.UtcNow.Subtract(previousBreadcrumb.Timestamp).TotalSeconds < options.InternalBreadcrumbDuplicationTimeSpan)
             {
                 //Skip

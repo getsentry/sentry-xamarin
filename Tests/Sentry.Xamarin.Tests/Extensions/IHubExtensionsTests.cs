@@ -123,6 +123,29 @@ namespace Sentry.Xamarin.Tests.Extensions
         }
 
         [Fact]
+        public void AddInternalBreadcrumb_NewBreadcrumbWithNullData_BreadcrumbAdded()
+        {
+            //Assert
+            const string message = "message";
+            const string type = "type";
+            var logger = Substitute.For<IDiagnosticLogger>();
+            var breadcrumb = new Breadcrumb(message, type);
+            var options = new SentryXamarinOptions
+            {
+                Debug = true,
+                DiagnosticLogger = logger,
+                LastInternalBreadcrumb = breadcrumb
+            };
+
+            //Act
+            Sut.AddInternalBreadcrumb(options, message, null, type);
+
+            //Assert
+            logger.DidNotReceive().Log(Arg.Any<SentryLevel>(), Arg.Is(IHubExtensions.DuplicatedBreadcrumbDropped), Arg.Any<Exception>(), Arg.Any<object[]>());
+            Assert.NotEqual(breadcrumb, options.LastInternalBreadcrumb);
+        }
+
+        [Fact]
         public async Task AddInternalBreadcrumb_DuplicatedIs2SecondsAhead_BreadcrumbAdded()
         {
             //Assert

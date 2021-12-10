@@ -5,20 +5,6 @@ namespace Sentry.Xamarin.Forms.UWP.Tests.Extensions
     public class SentryXamarinOptionsExtensionsTests
     {
         [Fact]
-        public void ConfigureSentryOptions_ReleaseSetIfNotInformed()
-        {
-            //Arrange
-            var options = new SentryXamarinOptions();
-            options.Release = null;
-
-            //Act
-            options.ConfigureSentryXamarinOptions();
-
-            //Assert
-            Assert.NotNull(options.Release);
-        }
-
-        [Fact]
         public void ConfigureSentryOptions_ReleaseNotSetIfInformed()
         {
             //Arrange
