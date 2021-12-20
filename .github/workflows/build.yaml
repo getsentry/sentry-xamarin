@@ -23,6 +23,7 @@ jobs:
       - uses: actions/setup-dotnet@v1.7.2
         with:
               dotnet-version: '5.0.100'
+      - uses: nuget/setup-nuget@v1
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release /t:restore
       - uses: microsoft/setup-msbuild@v1.0.2
         if: matrix.os == 'windows-latest'
