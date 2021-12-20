@@ -24,9 +24,9 @@ jobs:
         with:
               dotnet-version: '5.0.100'
       - uses: nuget/setup-nuget@v1
-      - run: dotnet msbuild Sentry.Xamarin.sln /restore
       - uses: microsoft/setup-msbuild@v1.0.2
         if: matrix.os == 'windows-latest'
+      - run: msbuild Sentry.Xamarin.sln /restore
       - name: Build Solution with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
       - name: Build iOS Sample app
