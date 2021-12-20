@@ -30,10 +30,10 @@ jobs:
       - name: Build Solution with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
       - name: Build iOS Sample app
-        run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj
+        run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release
         if: matrix.os == 'macos-latest'
       - name: Build Android Sample app
-        run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj
+        run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj -p:Configuration=Release
         if: matrix.os == 'windows-latest'
       - name: Build UWP Sample app
         run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64 /p:Configuration=Release
