@@ -29,6 +29,9 @@ jobs:
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
       - name: Build Solution with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
+      - name: Restore iOS Sample app NuGet
+        run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release -t:restore
+        if: matrix.os == 'macos-latest'
       - name: Build iOS Sample app
         run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release
         if: matrix.os == 'macos-latest'
