@@ -1,6 +1,4 @@
-﻿
-
-using Foundation;
+﻿using Foundation;
 using Sample.Xamarin.Core.Interfaces;
 using Sample.Xamarin.iOS.Dependencies;
 using Xamarin.Forms;
