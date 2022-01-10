@@ -20,11 +20,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v1.7.2
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '5.0.100'
       - uses: nuget/setup-nuget@v1
-      - uses: microsoft/setup-msbuild@v1.1
+      - uses: microsoft/setup-msbuild@v1.0.2
         if: matrix.os == 'windows-latest'
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
       - name: Build Solution with MSBuild
