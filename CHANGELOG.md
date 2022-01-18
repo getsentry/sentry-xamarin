@@ -9,6 +9,14 @@
   - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.12.1/CHANGELOG.md)
   - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.9.2...3.12.1)
 
+## 1.3.2
+
+### Various fixes & improvements
+
+- changelog for dotnet sdk bump (9a06a0b7) by @bruno-garcia
+- bump dotnet sdk 3.12.1 (#93) by @bruno-garcia
+- Fix null data on breadcrumb. (#90) by @lucas-zimerman
+
 ## 1.3.1
 
 ### Fixes
