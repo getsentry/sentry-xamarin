@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-latest]
+        os: [windows-2019, macos-latest]
 
     steps:
       - uses: actions/checkout@v2
@@ -24,7 +24,7 @@ jobs:
         with:
           dotnet-version: '5.0.100'
       - uses: microsoft/setup-msbuild@v1.0.2
-        if: matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-2019'
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
       - name: Build Solution with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
@@ -36,16 +36,16 @@ jobs:
         if: matrix.os == 'macos-latest'
       - name: Build Android Sample app
         run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj -p:Configuration=Release
-        if: matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-2019'
       - name: Build UWP Sample app
         run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64 /p:Configuration=Release
-        if: matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-2019'
       - name: Build UWP Test Project
         run: msbuild Tests/Sentry.Xamarin.Forms.UWP.Tests/Sentry.Xamarin.Forms.UWP.Tests.csproj /p:Platform=x64 /p:Configuration=Release
-        if: matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-2019'
       - name: Setup VS Test
         uses: darenm/Setup-VSTest@v1
-        if: matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-2019'
       - name: Artifacts
         uses: actions/upload-artifact@v2
         with:
