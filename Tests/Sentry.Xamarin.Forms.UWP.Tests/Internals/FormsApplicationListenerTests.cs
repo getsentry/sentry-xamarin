@@ -1,21 +1,19 @@
 ﻿using Sentry.Xamarin.Forms.Internals;
 using Sentry.Xamarin.Forms.Testing.Mock;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xunit;
 
 namespace Sentry.Xamarin.Forms.UWP.Tests.Internals
 {
-    public class SentryXamarinFormsIntegrationTests
+    public class FormsApplicationListenerTests
     {
         [Fact]
-        public async Task Register_FormsNotInitialized_IgnoreIntegration()
+        // Test
+        public async Task Register_FormsNotInitialized_HooksNotInvoked()
         {
             //Assert
-            var integration = new SentryXamarinFormsIntegration();
             var mockDiagnostic = new MockDiagnosticLogger(SentryLevel.Debug);
             var options = new SentryXamarinOptions()
             {
@@ -24,12 +22,14 @@ namespace Sentry.Xamarin.Forms.UWP.Tests.Internals
                 GetCurrentApplicationDelay = 1,
                 GetCurrentApplicationMaxRetries = 1
             };
+            var integration = new FormsApplicationListener(options);
             var mockHub = new MockHub();
-            integration.RegisterXamarinOptions(options);
+            Action<Application> badListener = (_) => throw null;
+            integration.AddListener(badListener);
 
             //Act
-            integration.Register(mockHub, options);
-            SentryXamarinFormsIntegration.Instance = null;
+            integration.Invoke();
+
             await Task.Delay(options.GetCurrentApplicationDelay + 100);
 
             //Assert
@@ -40,29 +40,24 @@ namespace Sentry.Xamarin.Forms.UWP.Tests.Internals
         public async Task Register_FormsNotInitializedAndWithoutLogger_IgnoreIntegration()
         {
             //Assert
-            var integration = new SentryXamarinFormsIntegration();
             var options = new SentryXamarinOptions()
             {
                 GetCurrentApplicationDelay = 1,
                 GetCurrentApplicationMaxRetries = 1
             };
-            integration.RegisterXamarinOptions(options);
+            var integration = new FormsApplicationListener(options);
             var mockHub = new MockHub();
+            Action<Application> badListener = (_) => throw null;
+            integration.AddListener(badListener);
 
             //Act
-            try
-            {
+            integration.Invoke();
 
-                integration.Register(mockHub, options);
-                SentryXamarinFormsIntegration.Instance = null;
-                await Task.Delay(options.GetCurrentApplicationDelay + 15);
-            }
-            catch(Exception)
-            {
-                throw;
-            }
+            await Task.Delay(options.GetCurrentApplicationDelay + 100);
 
             //Assert
+
         }
+
     }
 }
