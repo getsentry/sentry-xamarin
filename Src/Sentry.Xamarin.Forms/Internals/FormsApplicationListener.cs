@@ -45,7 +45,6 @@ namespace Sentry.Xamarin.Forms.Internals
                 _listeners.Clear();
             });
 
-
         /// <summary>
         /// Get the current Application.
         /// If SentrySDK was initialized from the Native project (Android/IOS) the Application might not have been created in time.
@@ -60,6 +59,5 @@ namespace Sentry.Xamarin.Forms.Internals
             }
             return Application.Current;
         }
-
     }
 }

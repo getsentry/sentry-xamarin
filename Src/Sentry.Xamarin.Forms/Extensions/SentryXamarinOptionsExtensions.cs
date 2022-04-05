@@ -42,7 +42,6 @@ namespace Sentry
         {
             options.PageTracker?.Unregister();
             options.PageTracker = DisabledNavigationPage.Instance;
-
         }
     }
 }
