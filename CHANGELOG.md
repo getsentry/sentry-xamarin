@@ -2,6 +2,10 @@
 
 ### Unreleased
 
+### Features
+
+- Add option extension: RemoveNavigationPageIntegration ([#108](https://github.com/getsentry/sentry-xamarin/pull/108))
+
 ### Fixes
 
 - Ignore null data on Internal breadcrumbs ([#90](https://github.com/getsentry/sentry-xamarin/pull/90))

@@ -100,11 +100,16 @@ namespace Sentry
             return false;
         }
 
+        /// <summary>
+        /// Unregister the previous navigation tracker and adds the registers the new Navigation Tracker to SentryXamarinOptions.
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="tracker">The IPageNavigationTracker.</param>
         internal static void AddPageNavigationTrackerIntegration(this SentryXamarinOptions options, IPageNavigationTracker tracker)
         {
-            tracker.RegisterXamarinOptions(options);
-            options.PageTracker = tracker;
             options.AddIntegration(tracker);
+            options.PageTracker?.Unregister();
+            options.PageTracker = tracker;
         }
 
         internal static void RegisterXamarinInAppExclude(this SentryXamarinOptions options)
