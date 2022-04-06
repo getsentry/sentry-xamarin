@@ -40,7 +40,8 @@ namespace Sentry
         /// <param name="options">The Sentry Xamarion Options.</param>
         public static void RemoveNavigationPageIntegration(this SentryXamarinOptions options)
         {
-            options.PageTracker?.Unregister();
+            var oldTracker = options.PageTracker;
+            oldTracker?.Unregister();
             options.PageTracker = DisabledNavigationPage.Instance;
         }
     }

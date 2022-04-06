@@ -7,9 +7,9 @@ namespace Sentry.Xamarin.Forms.Internals
 {
     internal class FormsApplicationListener
     {
-        private List<Action<Application>> _listeners { get; } = new List<Action<Application>>();
+        private readonly List<Action<Application>> _listeners = new List<Action<Application>>();
 
-        private SentryXamarinOptions _options { get; }
+        private readonly SentryXamarinOptions _options;
 
         /// <summary>
         /// Class that returns the current application to any listener once available.
@@ -42,7 +42,6 @@ namespace Sentry.Xamarin.Forms.Internals
                 {
                     hook.Invoke(application);
                 }
-                _listeners.Clear();
             });
 
         /// <summary>

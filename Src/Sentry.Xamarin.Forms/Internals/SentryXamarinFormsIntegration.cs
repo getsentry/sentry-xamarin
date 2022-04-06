@@ -9,9 +9,11 @@ namespace Sentry.Xamarin.Forms.Internals
     internal class SentryXamarinFormsIntegration : ISdkIntegration
     {
         internal static SentryXamarinFormsIntegration Instance { get; set; }
-        private SentryXamarinOptions _options { get; }
-        private DelegateLogListener _xamarinLogger { get; set; }
-        private IHub _hub { get; set; }
+
+        private readonly SentryXamarinOptions _options;
+
+        private DelegateLogListener _xamarinLogger;
+        private IHub _hub;
 
         public SentryXamarinFormsIntegration(SentryXamarinOptions options) => _options = options;
 
