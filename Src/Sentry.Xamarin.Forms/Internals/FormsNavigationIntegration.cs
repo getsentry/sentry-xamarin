@@ -1,7 +1,6 @@
 ﻿using Sentry.Xamarin.Forms.Extensions;
 using Sentry.Xamarin.Internals;
 using System.Collections.Generic;
-using System.Threading;
 using Xamarin.Forms;
 
 namespace Sentry.Xamarin.Forms.Internals
@@ -11,7 +10,7 @@ namespace Sentry.Xamarin.Forms.Internals
         public string CurrentPage { get; private set; }
 
         private IHub _hub;
-        private volatile int _disabled;
+        private volatile bool _disabled;
 
         /// <summary>
         /// Registers the Page appearing and disappearing event to the given application..
@@ -19,7 +18,7 @@ namespace Sentry.Xamarin.Forms.Internals
         /// <param name="application">The Xamarin Application.</param>
         internal void ApplySentryNavigationEvents(Application application)
         {
-            if (_disabled is 0)
+            if (!_disabled)
             {
                 application.PageAppearing += Current_PageAppearing;
                 application.PageDisappearing += Current_PageDisappearing;
@@ -33,9 +32,9 @@ namespace Sentry.Xamarin.Forms.Internals
         /// </summary>
         public void Unregister()
         {
-            var disabled = Interlocked.Exchange(ref _disabled, 1);
-            if (disabled is 0)
+            if (!_disabled)
             {
+                _disabled = true;
                 if (Application.Current is not null)
                 {
                     Application.Current.PageAppearing -= Current_PageAppearing;
