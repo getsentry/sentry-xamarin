@@ -9,9 +9,9 @@
 ### Fixes
 
 - Ignore null data on Internal breadcrumbs ([#90](https://github.com/getsentry/sentry-xamarin/pull/90))
-- Update Sentry.NET SDK to 3.12.1 ([#93](https://github.com/getsentry/sentry-xamarin/pull/93))
-  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.12.1/CHANGELOG.md)
-  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.9.2...3.12.1)
+- Update Sentry.NET SDK to 3.16.0 ([#110](https://github.com/getsentry/sentry-xamarin/pull/110))
+  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.16.0/CHANGELOG.md)
+  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.9.2...3.16.0)
 
 ## 1.3.2
 

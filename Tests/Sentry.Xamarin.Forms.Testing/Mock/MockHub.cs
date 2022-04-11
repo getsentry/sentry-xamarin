@@ -21,6 +21,12 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
             return evt.EventId;
         }
 
+        public SentryId CaptureEvent(SentryEvent evt, Action<Scope> configureScope)
+        {
+            CaptureEventCount++;
+            return evt.EventId;
+        }
+
         public void CaptureTransaction(Transaction transaction) { }
 
         public void CaptureUserFeedback(UserFeedback userFeedback) { }
