@@ -8,6 +8,7 @@
 
 ### Fixes
 
+- Fix 0 byte screenshot being sent to Sentry ([#111](https://github.com/getsentry/sentry-xamarin/pull/111))
 - Ignore null data on Internal breadcrumbs ([#90](https://github.com/getsentry/sentry-xamarin/pull/90))
 - Update Sentry.NET SDK to 3.16.0 ([#110](https://github.com/getsentry/sentry-xamarin/pull/110))
   - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.16.0/CHANGELOG.md)

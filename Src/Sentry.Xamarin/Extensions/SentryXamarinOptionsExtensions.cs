@@ -68,7 +68,7 @@ namespace Sentry
             if (options.AttachScreenshots)
             {
                 SentrySdk.ConfigureScope(s => 
-                    s.AddAttachment(new ScreenshotAttachment(new ScreenshotAttachmentContent(options))));
+                    s.AddAttachment(new ScreenshotAttachment(new ScreenshotAttachmentContent())));
             }
 #endif
         }
