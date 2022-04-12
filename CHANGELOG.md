@@ -14,6 +14,15 @@
   - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.16.0/CHANGELOG.md)
   - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.9.2...3.16.0)
 
+## 1.4.0
+
+### Various fixes & improvements
+
+- Fix 0 byte screenshot being sent to Sentry (#111) by @lucas-zimerman
+- Update to .NET SDK 1.16.0 (#110) by @lucas-zimerman
+- Refactor page navigation (#108) by @lucas-zimerman
+- Create add-platform-label.yml (9b6cc7bd) by @bruno-garcia
+
 ## 1.3.2
 
 ### Various fixes & improvements
