@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-  <TargetFramework>netcoreapp3.1</TargetFramework>
+  <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <!-- https://github.com/tonerdo/coverlet/issues/33#issuecomment-382748414 -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>

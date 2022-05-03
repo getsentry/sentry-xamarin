@@ -1,8 +1,18 @@
 ﻿using System;
-using Xamarin.Essentials;
 using Sentry.Xamarin.Internals;
+
+#if NETSTANDARD2_0
+using System.Text.RegularExpressions;
+#endif
+
+#if NATIVE_PROCESSOR
 using Sentry.Internals.Session;
+using System.Text.RegularExpressions;
+#endif
+
+#if NATIVE_PROCESSOR && !UAP10_0_16299
 using Sentry.Internals.Device.Screenshot;
+#endif
 
 namespace Sentry
 {
@@ -49,7 +59,19 @@ namespace Sentry
             {
                 options.CacheDirectoryPath ??= options.DefaultCacheDirectoryPath();
             }
+
+#if __ANDROID__
+            options.AdjustSaasDsn();
+#endif
         }
+
+        // Internal for testing.
+        internal static void AdjustSaasDsn(this SentryXamarinOptions options)
+            // Mono for Android uses an outdated certificate that doesn't work with the default SaaS DSN.
+            // Instead of users altering their DSN on their code to use an alternative DSN
+            // We'll alter their DSN to the alternative one that works with Xamarin Android.
+            // More information: https://github.com/xamarin/xamarin-android/issues/6351
+            => options.Dsn = options.Dsn is not null ? Regex.Replace(options.Dsn, "@.*.ingest.sentry", "@sentry") : null;
 
         internal static void RegisterXamarinEventProcessors(this SentryXamarinOptions options)
         {
