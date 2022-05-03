@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Fixes
+
+- adjust DSN for Android ([#114](https://github.com/getsentry/sentry-xamarin/pull/114))
+
 ## 1.4.0
 
 ### Features
