@@ -71,7 +71,7 @@ namespace Sentry
             // Instead of users altering their DSN on their code to use an alternative DSN
             // We'll alter their DSN to the alternative one that works with Xamarin Android.
             // More information: https://github.com/xamarin/xamarin-android/issues/6351
-            => options.Dsn = options.Dsn is not null ? Regex.Replace(options.Dsn, "@.*.ingest.sentry", "@sentry") : null;
+            => options.Dsn = options.Dsn is not null ? Regex.Replace(options.Dsn, "@o\\d+\\.ingest\\.sentry", "@sentry") : null;
 
         internal static void RegisterXamarinEventProcessors(this SentryXamarinOptions options)
         {
