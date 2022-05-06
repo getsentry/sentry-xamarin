@@ -49,8 +49,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../../.assets/sentry-nuget.png" Pack="true" PackagePath=""/>
-    <None Include="../../README.md" Pack="true" PackagePath=""/>
+    <None Include="$(MSBuildThisFileDirectory)../.assets/sentry-nuget.png" Pack="true" PackagePath=""/>
+    <None Include="$(MSBuildThisFileDirectory)../README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>
