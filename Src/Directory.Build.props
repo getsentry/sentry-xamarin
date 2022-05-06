@@ -22,6 +22,7 @@
     <PackageIcon>sentry-nuget.png</PackageIcon>
     <PackageProjectUrl>https://sentry.io</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <PackageReleaseNotes>Can be found at: https://github.com/getsentry/sentry-xamarin/releases</PackageReleaseNotes>
 
