@@ -1,14 +1,6 @@
-<p align="center">
-  <a href="https://sentry.io/?utm_source=github&utm_medium=logo" target="_blank">
-    <picture>
-      <source srcset="https://sentry-brand.storage.googleapis.com/sentry-logo-white.png" media="(prefers-color-scheme: dark)" />
-      <source srcset="https://sentry-brand.storage.googleapis.com/sentry-logo-black.png" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" />
-      <img src="https://sentry-brand.storage.googleapis.com/sentry-logo-black.png" alt="Sentry" width="280">
-    </picture>
-  </a>
-</p>
+[![Sentry](https://sentry-brand.storage.googleapis.com/sentry-wordmark-dark-280x84.png)](https://sentry.io/?utm_source=github&utm_medium=logo)
 
-_Bad software is everywhere, and we're tired of it. Sentry is on a mission to help developers write better software faster, so we can get back to enjoying technology. If you want to join us [<kbd>**Check out our open positions**</kbd>](https://sentry.io/careers/)_
+_Bad software is everywhere, and we're tired of it. Sentry is on a mission to help developers write better software faster, so we can get back to enjoying technology. If you want to join us, [**check out our open positions**](https://sentry.io/careers/)._
  
 Sentry SDK for Xamarin
 ===========
@@ -37,16 +29,12 @@ Additionaly, Android and IOS will include additional information:
 * Free Internal memory (Android/iOS).
 * Total RAM (Android/iOS).
 * CPU model (Android).
-<p align="center">
-  <b>BEFORE</b>
-  
-  <img src=".github/before_01.png"/>
-</p>
-<p align="center">
-  <b>AFTER</b>
-  
-  <img src=".github/after_01.png"/>
-</p>
+
+### BEFORE
+![Screenshot of Sentry before applying Sentry.Xamarin](https://github.com/getsentry/sentry-xamarin/raw/main/.github/before_01.png)
+
+### AFTER
+![Screenshot of Sentry after applying Sentry.Xamarin](https://github.com/getsentry/sentry-xamarin/raw/main/.github/after_01.png)
 
 ## Setup
 All you need to do is to initialize Xamarin integration by calling SentryXamarin.Init, and, it's recommended to start Sentry Xamarin SDK as early as possible, for an example, the start of OnCreate on MainActivity for Android, and, the top of FinishedLaunching on AppDelegate for iOS)
