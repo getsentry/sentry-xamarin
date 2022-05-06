@@ -23,6 +23,8 @@
     <PackageProjectUrl>https://sentry.io</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    
+    <None Include="$(MSBuildThisFileDirectory)../README.md" Pack="true" PackagePath=""/>
 
     <PackageReleaseNotes>Can be found at: https://github.com/getsentry/sentry-xamarin/releases</PackageReleaseNotes>
 
