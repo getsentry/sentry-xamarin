@@ -16,38 +16,35 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2019, macos-latest]
+        os: [windows-2019, macos-latest] # Stay on 2019 for Windows SDK Version 10.0.16299.0
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-dotnet@v1.7.2
-        with:
-          dotnet-version: '5.0.100'
-      - uses: microsoft/setup-msbuild@v1.0.2
-        if: matrix.os == 'windows-2019'
+      - uses: actions/checkout@v3
+      - uses: microsoft/setup-msbuild@v1.1
+        if: startsWith(matrix.os, 'windows')
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
       - name: Build Solution with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
       - name: Restore iOS Sample app NuGet
         run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release -t:restore
-        if: matrix.os == 'macos-latest'
+        if: startsWith(matrix.os, 'macos')
       - name: Build iOS Sample app
         run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release
-        if: matrix.os == 'macos-latest'
+        if: startsWith(matrix.os, 'macos')
       - name: Build Android Sample app
         run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj -p:Configuration=Release
-        if: matrix.os == 'windows-2019'
+        if: startsWith(matrix.os, 'windows')
       - name: Build UWP Sample app
         run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64 /p:Configuration=Release
-        if: matrix.os == 'windows-2019'
+        if: startsWith(matrix.os, 'windows')
       - name: Build UWP Test Project
         run: msbuild Tests/Sentry.Xamarin.Forms.UWP.Tests/Sentry.Xamarin.Forms.UWP.Tests.csproj /p:Platform=x64 /p:Configuration=Release
-        if: matrix.os == 'windows-2019'
+        if: startsWith(matrix.os, 'windows')
       - name: Setup VS Test
         uses: darenm/Setup-VSTest@v1
-        if: matrix.os == 'windows-2019'
+        if: startsWith(matrix.os, 'windows')
       - name: Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ github.sha }}
           path: |
