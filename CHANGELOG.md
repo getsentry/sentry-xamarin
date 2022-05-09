@@ -5,7 +5,7 @@
 ### Fixes
 
 - Adjust DSN for Android by dropping oProj.ingest from the URL. This works around the LetsEncrypt root certificate issue by hitting a different endpoint that doesn't use LetsEncrypt. ([#114](https://github.com/getsentry/sentry-xamarin/pull/114))
-- Update Sentry.NET SDK to 3.17.1 ([#?](https://github.com/getsentry/sentry-xamarin/pull/?))
+- Update Sentry.NET SDK to 3.17.1 ([#119](https://github.com/getsentry/sentry-xamarin/pull/119))
   - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.17.1/CHANGELOG.md)
   - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.16.0...3.17.1)
 
