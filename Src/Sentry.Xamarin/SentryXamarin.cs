@@ -21,6 +21,12 @@ namespace Sentry
         /// <param name="configureOptions">The configure options.</param>
         public static void Init(Action<SentryXamarinOptions> configureOptions)
         {
+            if (SentrySdk.IsEnabled)
+            {
+                Console.Error.WriteLine("SentryXamarin.Init was called again. It should only be called once. Any change to options will be ignored.");
+                return;
+            }
+
             var options = new SentryXamarinOptions();
             // Set the release now but give the user a chance to reset it (i.e: to null to rely on the built-in format)
             options.Release = $"{AppInfo.PackageName}@{AppInfo.VersionString}+{AppInfo.BuildString}";
