@@ -51,7 +51,9 @@ namespace Sentry
         /// <param name="options">The options instance</param>
         public static void Init(SentryXamarinOptions options)
         {
-            if (SentrySdk.IsEnabled)
+                if (options.Debug) {
+                    Console.Error.WriteLine("SentryXamarin.Init was called again. It should only be called once. Any change to options will be ignored.");
+                }
             {
                 Console.Error.WriteLine("SentryXamarin.Init was called again. It should only be called once. Any change to options will be ignored.");
                 return;
