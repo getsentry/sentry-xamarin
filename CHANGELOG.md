@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Fixes
+
+- Avoid repeat initialization ([#130](https://github.com/getsentry/sentry-xamarin/pull/130))
+
 ## 1.4.4
 
 ### Fixes
