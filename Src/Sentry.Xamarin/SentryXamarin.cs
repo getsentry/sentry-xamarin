@@ -23,7 +23,9 @@ namespace Sentry
         {
             if (SentrySdk.IsEnabled)
             {
-                Console.Error.WriteLine("SentryXamarin.Init was called again. It should only be called once. Any change to options will be ignored.");
+                if (configureOptions.Debug) {
+                    Console.Error.WriteLine("SentryXamarin.Init was called again. It should only be called once. Any change to options will be ignored.");
+                }
                 return;
             }
 
