@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Fixes
+
+  - Update Sentry.NET SDK to 3.26.2 ([#133](https://github.com/getsentry/sentry-xamarin/pull/133))
+  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.26.2/CHANGELOG.md)
+  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.23.1...3.26.2)
+  
 ## 1.4.5
 
 ### Fixes
