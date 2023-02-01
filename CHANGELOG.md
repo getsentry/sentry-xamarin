@@ -4,7 +4,7 @@
 
 ### Features
 
-  - Update Sentry.NET SDK to 3.27.0, which supports line numbers for Android ([#135](https://github.com/getsentry/sentry-xamarin/pull/133))
+  - Update Sentry.NET SDK to 3.27.0, which supports line numbers for Android ([#135](https://github.com/getsentry/sentry-xamarin/pull/135))
     - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.27.0/CHANGELOG.md)
     - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.26.2...3.27.0)
 
