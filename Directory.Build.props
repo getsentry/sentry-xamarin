@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <Version>1.4.6</Version>
+    <Version>1.5.0</Version>
     <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Deterministic>true</Deterministic>
