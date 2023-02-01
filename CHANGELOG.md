@@ -1,12 +1,20 @@
 # Changelog
 
+## 1.5.0
+
+### Features
+
+  - Update Sentry.NET SDK to 3.27.0, which supports line numbers for Android ([#135](https://github.com/getsentry/sentry-xamarin/pull/133))
+    - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.27.0/CHANGELOG.md)
+    - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.26.2...3.27.0)
+
 ## 1.4.6
 
 ### Fixes
 
   - Update Sentry.NET SDK to 3.26.2 ([#133](https://github.com/getsentry/sentry-xamarin/pull/133))
-  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.26.2/CHANGELOG.md)
-  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.23.1...3.26.2)
+    - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.26.2/CHANGELOG.md)
+    - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.23.1...3.26.2)
 
 ## 1.4.5
 
@@ -19,24 +27,24 @@
 ### Fixes
 
   - Update Sentry.NET SDK to 3.23.1 ([#128](https://github.com/getsentry/sentry-xamarin/pull/128))
-  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.23.1/CHANGELOG.md)
-  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.22.0...3.23.1)
+    - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.23.1/CHANGELOG.md)
+    - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.22.0...3.23.1)
 
 ## 1.4.3
 
 ### Fixes
 
   - Update Sentry.NET SDK to 3.22.0 ([#127](https://github.com/getsentry/sentry-xamarin/pull/127))
-  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.22.0/CHANGELOG.md)
-  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.20.1...3.22.0)
+    - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.22.0/CHANGELOG.md)
+   - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.20.1...3.22.0)
 
 ## 1.4.2
 
 ### Fixes
 
   - Update Sentry.NET SDK to 3.20.1 ([#125](https://github.com/getsentry/sentry-xamarin/pull/125))
-  - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.20.1/CHANGELOG.md)
-  - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.17.1...3.20.1)
+    - [changelog](https://github.com/getsentry/sentry-dotnet/blob/3.20.1/CHANGELOG.md)
+    - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.17.1...3.20.1)
 
 ## 1.4.1
 
