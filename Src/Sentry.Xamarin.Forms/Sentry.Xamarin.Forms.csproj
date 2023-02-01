@@ -21,7 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Sentry.Xamarin\Sentry.Xamarin.csproj" />
 	<PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
-	<PackageReference Remove="Sentry" />
   </ItemGroup>
 	
   <ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">

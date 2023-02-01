@@ -107,11 +107,6 @@ The package requires the following versions or newer:
 * Xamarin.Essentials 1.4.0
 * Sentry 3.0.0
 
-
-## Limitations
-
-There are no line numbers on stack traces for UWP and in release builds for Android and iOS, furthermore, mono symbolication is not yet supported.
-
 ## Resources
 
 * [![Documentation](https://img.shields.io/badge/documentation-sentry.io-green.svg)](https://docs.sentry.io/platforms/dotnet/)

@@ -1,6 +1,11 @@
 ﻿using Sentry.Internals.Session;
 using Sentry.Xamarin.Internals;
 
+#if __ANDROID__
+using System;
+using Sentry.Android.AssemblyReader;
+#endif
+
 namespace Sentry
 {
     /// <summary>
@@ -46,6 +51,12 @@ namespace Sentry
             IsEnvironmentUser = false;
             AutoSessionTracking = true;
             IsGlobalModeEnabled = true;
+
+#if __ANDROID__
+            var reader = new Lazy<IAndroidAssemblyReader?>(() =>
+                SentryAndroidHelpers.GetAndroidAssemblyReader(DiagnosticLogger));
+            AssemblyReader = name => reader.Value?.TryReadAssembly(name);
+#endif
         }
     }
 }
