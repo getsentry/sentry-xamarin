@@ -45,18 +45,6 @@
 		<None Include="Internals\**\*.mac*.cs" />
 		<None Include="Internals\**\*.droid*.cs" />
 		<None Include="Internals\**\*.uwp*.cs" />
-		<Compile Update="Internals\NativeIntegration.mac.cs">
-		  <SubType>Code</SubType>
-		</Compile>
-		<Compile Update="Internals\NativeEventProcessor.mac.cs">
-		  <SubType>Code</SubType>
-		</Compile>
-		<Compile Update="Internals\NativeExceptionProcessor.mac.cs">
-		  <SubType>Code</SubType>
-		</Compile>
-		<Compile Update="Internals\NativeExceptionProcessor.mac.cs">
-		  <SubType>Code</SubType>
-		</Compile>
 	</ItemGroup>	
 
 	<ItemGroup>
