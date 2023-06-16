@@ -22,7 +22,7 @@ jobs:
       - uses: microsoft/setup-msbuild@v1.1
         if: startsWith(matrix.os, 'windows')
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
-      - if: startsWith(matrix.os, 'windows')
+        if: startsWith(matrix.os, 'windows')
       - name: Install Windows 10 SDK
         uses: fbactions/setup-winsdk@v1
         with:
