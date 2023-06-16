@@ -22,7 +22,7 @@ jobs:
       - uses: microsoft/setup-msbuild@v1.1
         if: startsWith(matrix.os, 'windows')
       - name: Install Windows 10 SDK
-      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.11
+        uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.11
         with:
             sdk-version: 16299
         if: startsWith(matrix.os, 'windows')
