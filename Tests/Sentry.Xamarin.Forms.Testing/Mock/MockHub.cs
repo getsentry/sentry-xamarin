@@ -75,5 +75,9 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
         public void EndSession(SessionEndStatus status = SessionEndStatus.Exited) { }
 
         public void CaptureSession(SessionUpdate sessionUpdate) { }
+
+        public SentryId CaptureEvent(SentryEvent evt, Hint hint, Scope scope = null) => SentryId.Empty;
+
+        public void CaptureTransaction(Transaction transaction, Hint hint) { }
     }
 }
