@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2019, macos-latest] # Stay on 2019 for Windows SDK Version 10.0.16299.0
+        os: [windows-latest, macos-latest] # Stay on 2019 for Windows SDK Version 10.0.16299.0
 
     steps:
       - uses: actions/checkout@v3
