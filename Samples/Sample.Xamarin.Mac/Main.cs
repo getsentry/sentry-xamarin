@@ -1,12 +1,13 @@
 using AppKit;
 
-namespace Sample.Xamarin.Mac;
-
-static class MainClass
+namespace Sample.Xamarin.Mac
 {
-    static void Main (string [] args)
+    static class MainClass
     {
-        NSApplication.Init ();
-        NSApplication.Main (args);
+        static void Main (string [] args)
+        {
+            NSApplication.Init ();
+            NSApplication.Main (args);
+        }
     }
 }

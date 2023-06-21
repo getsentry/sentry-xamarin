@@ -4,69 +4,70 @@ using AppKit;
 using CoreGraphics;
 using Sentry;
 
-namespace Sample.Xamarin.Mac;
-
-public class SampleView : NSView
+namespace Sample.Xamarin.Mac
 {
-    private readonly List<NSView> _views = new List<NSView>();
-
-    public SampleView()
+    public class SampleView : NSView
     {
-        InitializeButtons();
-    }
+        private readonly List<NSView> _views = new List<NSView>();
 
-    public override bool IsFlipped => true;
-
-    public override void Layout()
-    {
-        var bounds = Bounds;
-
-        if (bounds.IsEmpty) return;
-
-        var y = 40;
-        foreach (var view in _views)
+        public SampleView()
         {
-            view.Frame = new CGRect(10, y, 300, 28);
-            y += 38;
+            InitializeButtons();
         }
-    }
 
-    private void InitializeButtons()
-    {
-        AddButton("Throw managed exception (uncaught)", ThrowManagedExceptionUncaught);
-        AddButton("Throw managed exception (caught)", ThrowManagedExceptionCaught);
-        Layout();
-    }
+        public override bool IsFlipped => true;
 
-    private void ThrowManagedExceptionUncaught()
-    {
-        throw new Exception("Managed exception");
-    }
+        public override void Layout()
+        {
+            var bounds = Bounds;
+
+            if (bounds.IsEmpty) return;
+
+            var y = 40;
+            foreach (var view in _views)
+            {
+                view.Frame = new CGRect(10, y, 300, 28);
+                y += 38;
+            }
+        }
+
+        private void InitializeButtons()
+        {
+            AddButton("Throw managed exception (uncaught)", ThrowManagedExceptionUncaught);
+            AddButton("Throw managed exception (caught)", ThrowManagedExceptionCaught);
+            Layout();
+        }
+
+        private void ThrowManagedExceptionUncaught()
+        {
+            throw new Exception("Managed exception");
+        }
     
-    private void ThrowManagedExceptionCaught()
-    {
-        try
+        private void ThrowManagedExceptionCaught()
         {
-            throw new Exception("Managed exception (caught)");
+            try
+            {
+                throw new Exception("Managed exception (caught)");
+            }
+            catch (Exception e)
+            {
+                SentrySdk.CaptureException(e);
+            }
         }
-        catch (Exception e)
-        {
-            SentrySdk.CaptureException(e);
-        }
-    }
   
-    private void AddButton(string title, Action action)
-    {
-        var button = new NSButton();
-        button.BezelStyle = NSBezelStyle.Rounded;
-        button.SetButtonType(NSButtonType.MomentaryPushIn);
-        button.Title = title;
-        button.Activated += (_, _) =>
+        private void AddButton(string title, Action action)
         {
-            action.Invoke();
-        };
+            var button = new NSButton();
+            button.BezelStyle = NSBezelStyle.Rounded;
+            button.SetButtonType(NSButtonType.MomentaryPushIn);
+            button.Title = title;
+            button.Activated += (_, _) =>
+            {
+                action.Invoke();
+            };
       
-        _views.Add(button);
-        AddSubview(button);
+            _views.Add(button);
+            AddSubview(button);
+        }
     }
 }

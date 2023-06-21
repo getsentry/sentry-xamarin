@@ -1,14 +1,15 @@
 using AppKit;
 
-namespace Sample.Xamarin.Mac;
-
-public class SampleViewController : NSViewController
+namespace Sample.Xamarin.Mac
 {
-    private SampleView _view;
-    
-    public override void LoadView()
+    public class SampleViewController : NSViewController
     {
-        _view = new SampleView();
-        base.View = _view;
+        private SampleView _view;
+    
+        public override void LoadView()
+        {
+            _view = new SampleView();
+            base.View = _view;
+        }
     }
 }
