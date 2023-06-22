@@ -16,12 +16,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-latest] # Stay on 2019 for Windows SDK Version 10.0.16299.0
+        os: [windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v3
       - uses: microsoft/setup-msbuild@v1.1
         if: startsWith(matrix.os, 'windows')
-      - name: Install Windows 10 SDK
+      - name: Install Windows SDK Version 10.0.16299.0
         uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.11
         with:
             sdk-version: 16299
