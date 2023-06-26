@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Dependencies
+
+- Sentry .NET 3.33.1 ([#139](https://github.com/getsentry/sentry-xamarin/pull/139))
+
 ## 1.5.1
 
 ### Fixes

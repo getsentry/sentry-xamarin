@@ -21,8 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Src\Sentry.Xamarin.Forms\Sentry.Xamarin.Forms.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
+	<ItemGroup>
     <Compile Update="CustomControls\EditorValidation.xaml.cs">
       <DependentUpon>EditorValidation.xaml</DependentUpon>
     </Compile>
