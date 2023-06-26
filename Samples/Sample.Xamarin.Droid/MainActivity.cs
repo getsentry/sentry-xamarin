@@ -7,6 +7,7 @@ using Sample.Xamarin.Core;
 using Color = Android.Graphics.Color;
 using Android.Content.PM;
 using Sentry;
+using AndroidX.Activity;
 
 namespace Sample.Xamarin.Droid
 {
@@ -44,6 +45,7 @@ namespace Sample.Xamarin.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        [System.Obsolete]
         public override void OnBackPressed()
         {
             if (!Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))

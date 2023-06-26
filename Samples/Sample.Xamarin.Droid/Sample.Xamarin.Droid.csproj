@@ -17,7 +17,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
@@ -49,6 +49,19 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
+	<!-- Configure Sentry org and project -->
+	<!-- for more information: https://docs.sentry.io/platforms/dotnet/guides/xamarin/configuration/msbuild-->
+	<SentryOrg>sentry-sdks</SentryOrg>
+	<SentryProject>sentry-xamarin</SentryProject>
+	<!--
+        Each of the below features are opt-in.
+        Enable the features you wish to use.
+    -->
+	<!-- Sends symbols to Sentry, enabling symbolication of stack traces. -->
+	<SentryUploadSymbols>true</SentryUploadSymbols>
+	<!-- Sends sources to Sentry, enabling display of source context. -->
+	<SentryUploadSources>true</SentryUploadSources>
+    <SentryCLIUploadOptions>--wait</SentryCLIUploadOptions>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />

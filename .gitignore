@@ -343,3 +343,6 @@ healthchecksdb
 #Sample Android Resource Designer.
 /Samples/Sample.Xamarin.Droid/Resources/Resource.designer.cs
 /Tests/Sentry.Xamarin.Forms.Tests.UWP/Sentry.Xamarin.Forms.Tests.UWP.GeneratedMSBuildEditorConfig.editorconfig
+
+#Do not include tokens to external sources.
+*.sentryclirc

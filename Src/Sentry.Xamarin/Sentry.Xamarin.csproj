@@ -48,7 +48,7 @@
 	</ItemGroup>	
 
 	<ItemGroup>
-		<PackageReference Include="Sentry" Version="3.27.1" />
+		<PackageReference Include="Sentry" Version="3.33.1" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
 	</ItemGroup>
 
