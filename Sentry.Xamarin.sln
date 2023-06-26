@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.sentry.ovenlibrary", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentry.Xamarin.Forms.UWP.Tests", "Tests\Sentry.Xamarin.Forms.UWP.Tests\Sentry.Xamarin.Forms.UWP.Tests.csproj", "{ED348898-C55D-4473-A5A7-F54F54D51965}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Xamarin.Mac", "Samples\Sample.Xamarin.Mac\Sample.Xamarin.Mac.csproj", "{1204E055-1BA8-4803-B98C-36C2CE608A54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -350,6 +352,21 @@ Global
 		{ED348898-C55D-4473-A5A7-F54F54D51965}.Release|x86.ActiveCfg = Release|x86
 		{ED348898-C55D-4473-A5A7-F54F54D51965}.Release|x86.Build.0 = Release|x86
 		{ED348898-C55D-4473-A5A7-F54F54D51965}.Release|x86.Deploy.0 = Release|x86
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Release|ARM.ActiveCfg = Release|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Release|x64.ActiveCfg = Release|Any CPU
+		{1204E055-1BA8-4803-B98C-36C2CE608A54}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -365,6 +382,7 @@ Global
 		{73EA9FB3-ECD7-4FA6-90C4-7A2C3A3AFC17} = {BAE2F4F8-5FBA-4AE1-97E2-D0A9CA68E41F}
 		{41A5D0E6-4DEA-44FF-A357-B76090DD733E} = {BAE2F4F8-5FBA-4AE1-97E2-D0A9CA68E41F}
 		{ED348898-C55D-4473-A5A7-F54F54D51965} = {0B602080-E0D6-4076-A709-4BE80FFAEAD8}
+		{1204E055-1BA8-4803-B98C-36C2CE608A54} = {BAE2F4F8-5FBA-4AE1-97E2-D0A9CA68E41F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26920035-EEB4-4947-A69E-154EE35A0E67}
