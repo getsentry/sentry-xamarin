@@ -26,5 +26,7 @@
 	<string>Main</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.14</string>
 </dict>
 </plist>
