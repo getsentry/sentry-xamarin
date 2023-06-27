@@ -22,7 +22,7 @@ jobs:
       - uses: microsoft/setup-msbuild@v1.1
         if: startsWith(matrix.os, 'windows')
         # By default, the latest Windows machine doesn't come with the 16299 SDK installed,
-        # which is requited for building the UWP platform.
+        # which is required for building the UWP platform.
       - name: Install Windows SDK Version 10.0.16299.0
         run:
             pwsh ./scripts/install-win-sdk.ps1 16299
