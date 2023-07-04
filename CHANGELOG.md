@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Features
+
+- Added `Xamarin.Mac` support ([#138](https://github.com/getsentry/sentry-xamarin/pull/138))
+
 ## 1.5.2
 
 ### Dependencies
