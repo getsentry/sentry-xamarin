@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.0.41" DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="MSBuild.Sdk.Extras/2.1.2" ToolsVersion="4.0" DefaultTargets="Build">
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <ProjectGuid>{1204E055-1BA8-4803-B98C-36C2CE608A54}</ProjectGuid>
-        <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{9A19103F-16F7-4668-BE54-9A1E7A4F7556}</ProjectTypeGuids>
         <OutputType>Exe</OutputType>
         <RootNamespace>Sample.Xamarin.Mac</RootNamespace>
         <AssemblyName>Sample.Xamarin.Mac</AssemblyName>
         <TargetFramework>xamarinmac20</TargetFramework>
         <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+        <BuildWithMSBuildOnMono>false</BuildWithMSBuildOnMono>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
         <OutputPath>bin\Debug</OutputPath>
-        <DefineConstants>DEBUG;</DefineConstants>
+        <DefineConstants>DEBUG;XAMARIN_MAC;XAMARINMAC20;</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
-        <EnableCodeSigning>false</EnableCodeSigning>
+        <EnableCodeSigning>False</EnableCodeSigning>
         <CodesigningKey>Mac Developer</CodesigningKey>
         <CreatePackage>false</CreatePackage>
         <EnablePackageSigning>false</EnablePackageSigning>
@@ -31,12 +32,13 @@
         <XamMacArch>x86_64</XamMacArch>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
         <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
         <OutputPath>bin\Release</OutputPath>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
-        <EnableCodeSigning>false</EnableCodeSigning>
+        <EnableCodeSigning>False</EnableCodeSigning>
         <CreatePackage>true</CreatePackage>
         <EnablePackageSigning>false</EnablePackageSigning>
         <IncludeMonoRuntime>true</IncludeMonoRuntime>
@@ -44,6 +46,7 @@
         <UseRefCounting>true</UseRefCounting>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
         <LinkMode>SdkOnly</LinkMode>
+        <HttpClientHandler>HttpClientHandler</HttpClientHandler>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System" />
@@ -73,8 +76,6 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\Src\Sentry.Xamarin\Sentry.Xamarin.csproj">
-        <Project>{c911dd4b-bcdc-4d76-83d1-dc40379df816}</Project>
-        <Name>Sentry.Xamarin</Name>
       </ProjectReference>
     </ItemGroup>
 </Project>

@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="Directory.Build.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -126,7 +125,7 @@
       <Name>Sentry.Xamarin</Name>
     </ProjectReference>
     <ProjectReference Include="..\Forms\com.sentry.ovenlibrary\com.sentry.ovenlibrary.csproj">
-      <Project>{41a5d0e6-4dea-44ff-a357-b76090dd733e}</Project>
+      <Project>{4DA5AECE-3A16-45AE-9C6D-45B262236175}</Project>
       <Name>com.sentry.ovenlibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sample.Xamarin.Core\Sample.Xamarin.Core.csproj">
