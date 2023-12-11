@@ -20,6 +20,7 @@ namespace Sample.Xamarin.uwp
                 options.Debug = true;
                 options.DiagnosticLogger = new TraceDiagnosticLogger(SentryLevel.Debug);
                 options.AttachScreenshots = true;
+                options.SendDefaultPii = true;
             });
             Frame rootFrame = Window.Current.Content as Frame;
 

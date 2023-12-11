@@ -33,7 +33,7 @@ namespace Sentry.Xamarin.Internals
                         Platform = "native",
                         Function = match.Groups["function"].Value,
                         Package = method,
-                        InstructionAddress = match.Groups["offset"].Value,
+                        InstructionAddress = long.Parse(match.Groups["offset"].Value),
                         InApp = method == _options.ProjectName
                     });
                 }

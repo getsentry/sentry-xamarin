@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF913F02-DF84-4B94-B67D-E8103999A914}</ProjectGuid>
+    <ProjectGuid>{2C7E3F2E-4A4F-4E9E-9619-8464BCF326DB}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
     <OutputType>Library</OutputType>
@@ -33,6 +33,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,18 +53,18 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
-	<!-- Configure Sentry org and project -->
-	<!-- for more information: https://docs.sentry.io/platforms/dotnet/guides/xamarin/configuration/msbuild-->
-	<SentryOrg>sentry-sdks</SentryOrg>
-	<SentryProject>sentry-xamarin</SentryProject>
-	<!--
+    <!-- Configure Sentry org and project -->
+    <!-- for more information: https://docs.sentry.io/platforms/dotnet/guides/xamarin/configuration/msbuild-->
+    <SentryOrg>sentry-sdks</SentryOrg>
+    <SentryProject>sentry-xamarin</SentryProject>
+    <!--
         Each of the below features are opt-in.
         Enable the features you wish to use.
     -->
-	<!-- Sends symbols to Sentry, enabling symbolication of stack traces. -->
-	<SentryUploadSymbols>true</SentryUploadSymbols>
-	<!-- Sends sources to Sentry, enabling display of source context. -->
-	<SentryUploadSources>true</SentryUploadSources>
+    <!-- Sends symbols to Sentry, enabling symbolication of stack traces. -->
+    <SentryUploadSymbols>true</SentryUploadSymbols>
+    <!-- Sends sources to Sentry, enabling display of source context. -->
+    <SentryUploadSources>true</SentryUploadSources>
     <SentryCLIUploadOptions>--wait</SentryCLIUploadOptions>
   </PropertyGroup>
   <ItemGroup>
