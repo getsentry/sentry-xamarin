@@ -33,7 +33,6 @@ jobs:
         with:
           distribution: 'microsoft'
           java-version: '11'
-        
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
       - name: Build Solution with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
