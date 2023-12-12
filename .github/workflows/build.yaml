@@ -27,6 +27,12 @@ jobs:
         run:
             pwsh ./scripts/install-win-sdk.ps1 16299
         if: startsWith(matrix.os, 'windows')
+      - name: Setup Java SDK
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'microsoft'
+          java-version: '11'
+        if: startsWith(matrix.os, 'windows')
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
       - name: Build Solution with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release

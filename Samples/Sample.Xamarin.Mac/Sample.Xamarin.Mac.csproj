@@ -75,7 +75,8 @@
         <InterfaceDefinition Include="Main.storyboard" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\..\Src\Sentry.Xamarin\Sentry.Xamarin.csproj">
+		<Reference Include="netstandard" />
+		<ProjectReference Include="..\..\Src\Sentry.Xamarin\Sentry.Xamarin.csproj">
       </ProjectReference>
     </ItemGroup>
 </Project>
