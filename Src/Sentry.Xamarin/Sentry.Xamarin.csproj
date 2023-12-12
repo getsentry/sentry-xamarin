@@ -68,13 +68,11 @@
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
 		<Compile Include="Internals\**\*.droid*.cs" />
 		<PackageReference Include="Sentry.Android.AssemblyReader" Version="4.0.0-beta.4" NoWarn="NU5104" />
-		<PackageReference Include="System.Reflection.Metadata" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
 		<Compile Include="Internals\**\*.uwp*.cs" />
 		<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.9" />
-		<PackageReference Include="System.Reflection.Metadata" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
