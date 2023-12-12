@@ -26,9 +26,9 @@ jobs:
       - name: Install Windows SDK Version 10.0.16299.0
         run:
             pwsh ./scripts/install-win-sdk.ps1 16299
-        if: startsWith(matrix.os, 'windows')
       - name: Setup Java SDK
-      - uses: actions/setup-java@v4
+        if: startsWith(matrix.os, 'windows')
+        uses: actions/setup-java@v4
         with:
           distribution: 'microsoft'
           java-version: '11'
