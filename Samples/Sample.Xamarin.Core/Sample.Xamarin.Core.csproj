@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-    <!-- Fixes error CSC: error CS0006 Metadata file could not be found for the VS4MAC when doing a release build. -->
+    <!-- Fixes error CSC: error CS0006 Metadata file could not be found for the VS4MAC when doing a release build on the project Sample.Xamarin.iOS. -->
     <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
   </PropertyGroup>
 

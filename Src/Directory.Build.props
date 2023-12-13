@@ -7,9 +7,13 @@
     <!--Generate xml docs for all projects under 'src'-->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
+    <!-- TODO: Remove when Sentry is out of beta. -->
+    <NoWarn>$(NoWarn);NU5104</NoWarn>
+
     <!-- CS1591: Missing XML comment for publicly visible type or member -->
     <NoWarn Condition="'$(Configuration)' == 'Debug'">$(NoWarn);CS1591</NoWarn>
 
+    <Version>1.5.2</Version>
     <Authors>Sentry Team and Contributors</Authors>
     <Company>Sentry.io</Company>
     <Product>Sentry.Xamarin</Product>
