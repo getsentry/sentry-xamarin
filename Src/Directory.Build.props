@@ -13,7 +13,6 @@
     <!-- CS1591: Missing XML comment for publicly visible type or member -->
     <NoWarn Condition="'$(Configuration)' == 'Debug'">$(NoWarn);CS1591</NoWarn>
 
-    <Version>1.5.2</Version>
     <Authors>Sentry Team and Contributors</Authors>
     <Company>Sentry.io</Company>
     <Product>Sentry.Xamarin</Product>
@@ -59,8 +58,7 @@
 
   <ItemGroup>
     <PackageReference Include="SIL.ReleaseTasks" Version="2.5.0" PrivateAssets="All"/>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="ConfigureAwaitChecker.Analyzer" Version="5.0.0.1" PrivateAssets="All" Condition="'$(Configuration)' != 'Release'"/>
-	<PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="ConfigureAwaitChecker.Analyzer" Version="4.0.0" PrivateAssets="All" Condition="'$(Configuration)' != 'Release'"/>
   </ItemGroup>
 </Project>
