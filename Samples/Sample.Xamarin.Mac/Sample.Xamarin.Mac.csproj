@@ -10,7 +10,7 @@
         <AssemblyName>Sample.Xamarin.Mac</AssemblyName>
         <TargetFramework>xamarinmac20</TargetFramework>
         <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
-        <BuildWithMSBuildOnMono>false</BuildWithMSBuildOnMono>
+        <BuildWithMSBuildOnMono>true</BuildWithMSBuildOnMono>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugSymbols>true</DebugSymbols>
@@ -77,6 +77,6 @@
     <ItemGroup>
 		<Reference Include="netstandard" />
 		<ProjectReference Include="..\..\Src\Sentry.Xamarin\Sentry.Xamarin.csproj">
-      </ProjectReference>
+		</ProjectReference>
     </ItemGroup>
 </Project>
