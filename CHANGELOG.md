@@ -6,6 +6,20 @@
 
 - Added `Xamarin.Mac` support ([#138](https://github.com/getsentry/sentry-xamarin/pull/138))
 
+### Fixes
+
+  - Some iOS Native crashes are now properly captured. ([#145](https://github.com/getsentry/sentry-xamarin/pull/145))
+
+### Dependencies
+
+  - Update Sentry.NET SDK to 4.0.0-beta.4 ([#145](https://github.com/getsentry/sentry-xamarin/pull/145))
+    - [changelog](https://github.com/getsentry/sentry-dotnet/blob/4.0.0-beta.4/CHANGELOG.md)
+    - [diff](https://github.com/getsentry/sentry-dotnet/compare/3.33.1...4.0.0-beta.41)
+
+### API breaking Changes
+
+  For a complete list of break changes, please visit the Sentry .NET [changelog](https://raw.githubusercontent.com/getsentry/sentry-dotnet/4.0.0-beta.4/CHANGELOG.md).
+
 ## 1.5.2
 
 ### Dependencies

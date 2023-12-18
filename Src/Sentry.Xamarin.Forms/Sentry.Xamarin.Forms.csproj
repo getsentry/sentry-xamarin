@@ -1,4 +1,4 @@
-<Project Sdk="MSBuild.Sdk.Extras/2.0.41">
+<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
 
 	<PropertyGroup>
 		<!--Generate xml docs for all projects under 'src'-->

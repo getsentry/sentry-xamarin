@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{41A5D0E6-4DEA-44FF-A357-B76090DD733E}</ProjectGuid>
+    <ProjectGuid>{4DA5AECE-3A16-45AE-9C6D-45B262236175}</ProjectGuid>
     <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{77efb91c-a7e9-4b0e-a7c5-31eeec3c6d46}</TemplateGuid>
     <OutputType>Library</OutputType>
@@ -14,7 +14,6 @@
     <AssemblyName>com.sentry.ovenlibrary</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <Deterministic>True</Deterministic>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>

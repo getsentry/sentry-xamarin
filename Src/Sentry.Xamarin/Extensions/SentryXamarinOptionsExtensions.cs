@@ -1,7 +1,7 @@
 ﻿using System;
 using Sentry.Xamarin.Internals;
 
-#if NETSTANDARD2_0
+#if NETSTANDARD
 using System.Text.RegularExpressions;
 #endif
 
