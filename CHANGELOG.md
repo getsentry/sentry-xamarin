@@ -110,6 +110,10 @@ If you have compilation errors you can find the affected types or overloads miss
   });
   ```
 
+### Android breaking Changes
+
+- Android minimum support increased to API 30  ([#2697](https://github.com/getsentry/sentry-dotnet/pull/2697))
+
 ### Features
 
 - Added `Xamarin.Mac` support ([#138](https://github.com/getsentry/sentry-xamarin/pull/138))
