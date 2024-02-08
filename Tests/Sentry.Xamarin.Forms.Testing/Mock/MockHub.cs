@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Sentry.Protocol.Envelopes;
 
 namespace Sentry.Xamarin.Forms.Testing.Mock
 {
@@ -13,6 +14,8 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
 
         public bool IsEnabled => true;
 
+        public IMetricAggregator Metrics => throw new NotImplementedException();
+
         public void BindClient(ISentryClient client) { }
 
         public SentryId CaptureEvent(SentryEvent evt, Action<Scope> configureScope)
@@ -21,7 +24,7 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
             return evt.EventId;
         }
 
-        public void CaptureTransaction(Transaction transaction) { }
+        public void CaptureTransaction(SentryTransaction transaction) { }
 
         public void CaptureUserFeedback(UserFeedback userFeedback) { }
 
@@ -29,7 +32,7 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
 
         public Task ConfigureScopeAsync(Func<Scope, Task> configureScope) => null;
 
-        public Transaction CreateTransaction(string name, string operation) => null;
+        public SentryTransaction CreateTransaction(string name, string operation) => null;
 
         public Task FlushAsync(TimeSpan timeout)
         {
@@ -68,9 +71,9 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
 
         public void CaptureSession(SessionUpdate sessionUpdate) { }
 
-        public SentryId CaptureEvent(SentryEvent evt, Hint hint, Scope scope = null) => SentryId.Empty;
+        public SentryId CaptureEvent(SentryEvent evt, SentryHint hint, Scope scope = null) => SentryId.Empty;
 
-        public void CaptureTransaction(Transaction transaction, Hint hint) { }
+        public void CaptureTransaction(SentryTransaction transaction, SentryHint hint) { }
 
         public BaggageHeader GetBaggage() => null;
 
@@ -78,18 +81,20 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
 
         public TransactionContext ContinueTrace(SentryTraceHeader traceHeader, BaggageHeader baggageHeader, string name = null, string operation = null) => null;
 
-        public SentryId CaptureEvent(SentryEvent evt, Hint hint, Action<Scope> configureScope)
+        public SentryId CaptureEvent(SentryEvent evt, SentryHint hint, Action<Scope> configureScope)
         {
             CaptureEventCount++;
             return evt.EventId;
         }
 
-        public SentryId CaptureEvent(SentryEvent evt, Scope scope = null, Hint hint = null)
+        public SentryId CaptureEvent(SentryEvent evt, Scope scope = null, SentryHint hint = null)
         {
             CaptureEventCount++;
             return evt.EventId;
         }
 
-        public void CaptureTransaction(Transaction transaction, Scope scope, Hint hint) { }
+        public void CaptureTransaction(SentryTransaction transaction, Scope scope, SentryHint hint) { }
+
+        public bool CaptureEnvelope(Envelope envelope) => true;
     }
 }

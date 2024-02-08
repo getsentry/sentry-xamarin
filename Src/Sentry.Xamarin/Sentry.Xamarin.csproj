@@ -49,7 +49,7 @@
 	</ItemGroup>	
 
 	<ItemGroup>
-		<PackageReference Include="Sentry" Version="4.0.0-beta.5" />
+		<PackageReference Include="Sentry" Version="4.0.3" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
 	</ItemGroup>
 
@@ -67,7 +67,7 @@
 	
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
 		<Compile Include="Internals\**\*.droid*.cs" />
-		<PackageReference Include="Sentry.Android.AssemblyReader" Version="4.0.0-beta.5" />
+		<PackageReference Include="Sentry.Android.AssemblyReader" Version="4.0.3" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
