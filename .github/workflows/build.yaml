@@ -31,13 +31,15 @@ jobs:
         if: startsWith(matrix.os, 'windows')
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: '11'
+          distribution: 'microsoft'
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@07976c6290703d34c16d382cb36445f98bb43b1f # v3.2.0
-
+        with:
+          packages: 'platforms;android-30'
+          
       - name: Build Solution with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
       - name: Restore iOS Sample app NuGet
