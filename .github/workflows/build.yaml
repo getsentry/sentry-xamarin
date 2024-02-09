@@ -18,7 +18,7 @@ jobs:
       matrix:
         os: [windows-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: microsoft/setup-msbuild@v1.1
         if: startsWith(matrix.os, 'windows')
         # By default, the latest Windows machine doesn't come with the 16299 SDK installed,
@@ -28,12 +28,19 @@ jobs:
             pwsh ./scripts/install-win-sdk.ps1 16299
         if: startsWith(matrix.os, 'windows')
       - name: Setup Java SDK
-        if: startsWith(matrix.os, 'windows')
+
         uses: actions/setup-java@v4
         with:
-          distribution: 'microsoft'
-          java-version: '11'
+          distribution: 'temurin'
+          java-version: '17'
+          
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@07976c6290703d34c16d382cb36445f98bb43b1f # v3.2.0
+        with:
+          packages: 'platforms;android-30'
+
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
+          
       - name: Build Solution with MSBuild
         run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
       - name: Restore iOS Sample app NuGet

@@ -100,12 +100,12 @@ sealed partial class App : Application
 The package requires the following versions or newer:
 
 * Tizen 4.0 (for Tizen)
-* Xamarin.Android 9.0 (for Android)
+* Xamarin.Android 11.0 (for Android)
 * Xamarin.iOS 10.14 (for iOS)
 * Universal Windows Platform 10.0.16299 (for UWP)
 * Xamarin.Forms 4.6.0.726 (for Xamarin.Forms integration)
 * Xamarin.Essentials 1.4.0
-* Sentry 3.0.0
+* Sentry 4.0.3
 
 ## Resources
 
