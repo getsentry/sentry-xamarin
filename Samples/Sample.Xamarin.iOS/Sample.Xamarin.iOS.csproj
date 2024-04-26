@@ -29,19 +29,19 @@
     <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
-	<!-- Configure Sentry org and project -->
-	<!-- for more information: https://docs.sentry.io/platforms/dotnet/guides/xamarin/configuration/msbuild-->
-	<SentryOrg>sentry-sdks</SentryOrg>
-	<SentryProject>sentry-xamarin</SentryProject>
-	<!--
+    <!-- Configure Sentry org and project -->
+    <!-- for more information: https://docs.sentry.io/platforms/dotnet/guides/xamarin/configuration/msbuild-->
+    <SentryOrg>sentry-sdks</SentryOrg>
+    <SentryProject>sentry-xamarin</SentryProject>
+    <!--
       Each of the below features are opt-in.
       Enable the features you wish to use.
     -->
-	<!-- Sends symbols to Sentry, enabling symbolication of stack traces. -->
-	<SentryUploadSymbols>true</SentryUploadSymbols>
-	<!-- Sends sources to Sentry, enabling display of source context. -->
-	<SentryUploadSources>true</SentryUploadSources>
-	<SentryCLIUploadOptions>--wait</SentryCLIUploadOptions>
+    <!-- Sends symbols to Sentry, enabling symbolication of stack traces. -->
+    <SentryUploadSymbols>true</SentryUploadSymbols>
+    <!-- Sends sources to Sentry, enabling display of source context. -->
+    <SentryUploadSources>true</SentryUploadSources>
+    <SentryCLIUploadOptions>--wait</SentryCLIUploadOptions>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
@@ -49,8 +49,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
-	<!-- Configure Sentry org and project -->
-	<!-- for more information: https://docs.sentry.io/platforms/dotnet/guides/xamarin/configuration/msbuild-->
+    <!-- Configure Sentry org and project -->
+    <!-- for more information: https://docs.sentry.io/platforms/dotnet/guides/xamarin/configuration/msbuild-->
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -76,9 +76,9 @@
       Each of the below features are opt-in.
       Enable the features you wish to use.
     -->
-	  <!-- Sends symbols to Sentry, enabling symbolication of stack traces. -->
-	  <SentryUploadSymbols>true</SentryUploadSymbols>
-	  <!-- Sends sources to Sentry, enabling display of source context. -->
+    <!-- Sends symbols to Sentry, enabling symbolication of stack traces. -->
+    <SentryUploadSymbols>true</SentryUploadSymbols>
+    <!-- Sends sources to Sentry, enabling display of source context. -->
     <SentryUploadSources>true</SentryUploadSources>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
@@ -88,8 +88,8 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-	<!-- Configure Sentry org and project -->
-	<!-- for more information: https://docs.sentry.io/platforms/dotnet/guides/xamarin/configuration/msbuild-->
+    <!-- Configure Sentry org and project -->
+    <!-- for more information: https://docs.sentry.io/platforms/dotnet/guides/xamarin/configuration/msbuild-->
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -101,6 +101,9 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="PrivacyInfo.xcprivacy">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

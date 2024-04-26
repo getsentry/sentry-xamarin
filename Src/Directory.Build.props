@@ -2,6 +2,7 @@
   <!--Automatic upward search ends when first file found. From here we need to manually import parent props/targets
         https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build -->
   <Import Project="..\Directory.Build.props" />
+  <Import Project="..\Src\Sentry.Xamarin\buildTransitive\Sentry.Xamarin.targets" />
 
   <PropertyGroup>
     <!--Generate xml docs for all projects under 'src'-->

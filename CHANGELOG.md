@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.0
 
 ### Sentry Self-hosted Compatibility
 
@@ -9,7 +9,6 @@ This SDK version is compatible with a self-hosted version of Sentry `22.12.0` or
 
 ### Significant change in behavior
 
-- Transaction names for ASP.NET Core are now consistently named `HTTP-VERB /path` (e.g. `GET /home`). Previously, the leading forward slash was missing for some endpoints. ([#2808](https://github.com/getsentry/sentry-dotnet/pull/2808))
 - Setting `SentryOptions.Dsn` to `null` now throws `ArgumentNullException` during initialization. ([#2655](https://github.com/getsentry/sentry-dotnet/pull/2655))
 - Enable `CaptureFailedRequests` by default ([#2688](https://github.com/getsentry/sentry-dotnet/pull/2688))
 - Added `Sentry` namespace to global usings when `ImplicitUsings` is enabled ([#3043](https://github.com/getsentry/sentry-dotnet/pull/3043))
@@ -112,7 +111,7 @@ If you have compilation errors you can find the affected types or overloads miss
 
 ### Android breaking Changes
 
-- Android minimum support increased to API 30  ([#2697](https://github.com/getsentry/sentry-dotnet/pull/2697))
+- Android minimum support increased to API 30 by requiring Mono.Android 11.0 instead of Mono.Android 9.0.   ([#2697](https://github.com/getsentry/sentry-dotnet/pull/2697))
 
 ### Features
 
@@ -129,7 +128,6 @@ https://github.com/getsentry/sentry-dotnet/issues/2316) ([#2800](https://github.
 
 ### Fixes
 
-- Native integration logging on macOS ([#3079](https://github.com/getsentry/sentry-dotnet/pull/3079))
 - The scope transaction is now correctly set for Otel transactions ([#3072](https://github.com/getsentry/sentry-dotnet/pull/3072))
 - Fixed an issue with tag values in metrics not being properly serialized ([#3065](https://github.com/getsentry/sentry-dotnet/pull/3065))
 - Moved the binding to MAUI events for breadcrumb creation from `WillFinishLaunching` to `FinishedLaunching`. This delays the initial instantiation of `app`. ([#3057](https://github.com/getsentry/sentry-dotnet/pull/3057))
@@ -141,9 +139,7 @@ https://github.com/getsentry/sentry-dotnet/issues/2316) ([#2800](https://github.
   - Added `CreateElementEventsBreadcrumbs` to the SentryMauiOptions to allow users to opt-in automatic breadcrumb creation for `BindingContextChanged`, `ChildAdded`, `ChildRemoved`, and `ParentChanged` on `Element`.
   - Reduced amount of automatic breadcrumbs by limiting the number of bindings created in `VisualElement`, `Window`, `Shell`, `Page`, and `Button`.
 - Fixed Sentry SDK has not been initialized when using ASP.NET Core, Serilog, and OpenTelemetry ([#2911](https://github.com/getsentry/sentry-dotnet/pull/2911))
-- Android native symbol upload ([#2876](https://github.com/getsentry/sentry-dotnet/pull/2876))
 - `Sentry.Serilog` no longer throws if a disabled DSN is provided when initializing Sentry via the Serilog integration ([#2883](https://github.com/getsentry/sentry-dotnet/pull/2883))
-- Don't add WinUI exception integration on mobile platforms ([#2821](https://github.com/getsentry/sentry-dotnet/pull/2821))
 - `Transactions` are now getting enriched by the client instead of the hub ([#2838](https://github.com/getsentry/sentry-dotnet/pull/2838))
 - Fixed an issue when using the SDK together with OpenTelemetry `1.5.0` and newer where the SDK would create transactions for itself. The fix is backward compatible. ([#3001](https://github.com/getsentry/sentry-dotnet/pull/3001))
 
