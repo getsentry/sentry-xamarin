@@ -1,5 +1,42 @@
 # Changelog
 
+## Unreleased
+
+### Fixes
+
+- Validate PrivacyInfo.xcprivacy and warn users of required missing privacy parameters ([#151](https://github.com/getsentry/sentry-xamarin/pull/151))
+
+  Due to a requirement by apple, all Projects will require a ([Privacy Manifest file](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files)). Sentry will automatically patch your project with the required fields by Sentry if no privacy manifest file is provided. Otherwise, it will validate your privacy manifest file for the required fields by Sentry and warn you during the build time if the required keys are present or not when building an iOS project.
+  Below you can find a snippet of the minimum required privacy manifest required by Sentry Xamarin:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSPrivacyAccessedAPITypes</key>
+    <array>
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>C617.1</string>
+            </array>
+        </dict>
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategorySystemBootTime</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>35F9.1</string>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>
+```
+
+ 
 ## 2.0.0
 
 ### Sentry Self-hosted Compatibility
