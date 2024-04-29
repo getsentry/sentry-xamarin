@@ -38,6 +38,19 @@ jobs:
         uses: android-actions/setup-android@07976c6290703d34c16d382cb36445f98bb43b1f # v3.2.0
         with:
           packages: 'platforms;android-30'
+      - name: Setup Xamarin iOS SDK
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          brew install --cask xamarin-android
+      - name: Setup Xamarin iOS SDK
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          brew install --cask xamarin-android
+      - name: Setup Xamarin UWP SDK
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          brew install --cask xamarin-uwp
+
 
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
           
