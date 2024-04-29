@@ -25,7 +25,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>NSPrivacyAccessedAPIType2</key>
+				<key>NSPrivacyAccessedAPIType</key>
 				<string>NSPrivacyAccessedAPICategorySystemBootTime</string>
 				<key>NSPrivacyAccessedAPITypeReasons</key>
 				<array>
