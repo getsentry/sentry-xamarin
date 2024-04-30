@@ -1,16 +1,14 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup>
-        <!-- Exclude the UWP projects from the build -->
-        <AllProjectsButUWP Include="**\*.csproj" Exclude="**\*.UWP.csproj"/>
-        <OSName Condition="'$(OS)' == 'Windows_NT'">Windows</OSName>
-        <OSName Condition="'$(OS)' != 'Windows_NT'">Linux</OSName>
-    </ItemGroup>
+    <Target Name="BuildSentrySDK">
+        <MSBuild Projects="Sentry.Xamarin.csproj" />
+        <MSBuild Projects="Sentry.Xamarin.Forms.csproj" />
+    </Target>
 
-
-    <Target Name="SkipUWPOnMacOS">
-        <Message Text="$(OSName) Current OS" Importance="High" />
-        <Message Text="%(AllProjectsButUWP) Was selected for building" Importance="High" />
-        <MSBuild Projects="%(AllProjectsButUWP)" Targets="Build"/>
-        <Error Text="test"/>
+    <Target Name="BuildSamples">
+        <MSBuild Projects="Sample.Xamarin.Core.csproj" />
+        <MSBuild Projects="Sample.Xamarin.UWP.csproj" Condition="'$(OS)' != 'Windows_NT'" Platform="x64"/>
+        <MSBuild Projects="Sample.Xamarin.Mac.csproj"/>
+        <MSBuild Projects="com.sentry.ovenlibrary.csproj" />
+        <MSBuild Projects="Sample.Xamarin.Droid.csproj" />
     </Target>
 </Project>

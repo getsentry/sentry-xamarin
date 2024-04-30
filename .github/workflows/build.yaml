@@ -54,21 +54,14 @@ jobs:
 
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
           
-      - name: Build Solution with MSBuild
-        run: msbuild Sentry.Xamarin.sln -p:Configuration=Release /t:SkipUWPOnMacOS
+      - name: Build SDK
+        run: msbuild -p:Configuration=Release /t:BuildSentrySDK
       - name: Restore iOS Sample app NuGet
         run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release -t:restore
         if: startsWith(matrix.os, 'macos')
-      - name: Build iOS Sample app
-        run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release
-        if: startsWith(matrix.os, 'macos')
-      - name: Build Android Sample app
-        run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj -p:Configuration=Release
-        if: startsWith(matrix.os, 'windows')
-      - name: Build UWP Sample app
-        run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64 /p:Configuration=Release
-        if: startsWith(matrix.os, 'windows')
-      - name: Build UWP Test Project
+      - name: Build Samples
+        run: msbuild -p:Configuration=Release /t:BuildSamples
+      - name: Build Test Project
         run: msbuild Tests/Sentry.Xamarin.Forms.UWP.Tests/Sentry.Xamarin.Forms.UWP.Tests.csproj /p:Platform=x64 /p:Configuration=Release
         if: startsWith(matrix.os, 'windows')
       - name: Setup VS Test
