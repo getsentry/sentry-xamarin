@@ -1,0 +1,15 @@
+{
+  "solution": {
+    "path": "Sentry.Xamarin.sln",
+    "projects": [
+        "Src\\Sentry.Xamarin\\Sentry.Xamarin.csproj",
+        "Src\\Sentry.Xamarin.Forms\\Sentry.Xamarin.Forms.csproj",
+        "Samples\\Sample.Xamarin.Core\\Sample.Xamarin.Core.csproj",
+        "Samples\\Sample.Xamarin.Mac\\Sample.Xamarin.Mac.csproj",
+        "Samples\\Forms\\com.sentry.ovenlibrary\\com.sentry.ovenlibrary.csproj",
+        "Samples\\Sample.Xamarin.Droid\\Sample.Xamarin.Droid.csproj",
+        "Tests\\Sentry.Xamarin.Forms.Testing\\Sentry.Xamarin.Forms.Testing.csproj",
+        "Tests\\Sentry.Xamarin.Tests\\Sentry.Xamarin.Tests.csproj"
+    ]
+  }
+}
