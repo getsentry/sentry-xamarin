@@ -41,7 +41,7 @@ jobs:
       - name: Setup Xamarin iOS SDK
         if: startsWith(matrix.os, 'macos')
         run: |
-          brew install --cask xamarin-android
+          brew install --cask xamarin-ios
       - name: Setup Xamarin iOS SDK
         if: startsWith(matrix.os, 'macos')
         run: |
