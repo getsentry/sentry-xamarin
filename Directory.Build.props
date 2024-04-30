@@ -8,9 +8,6 @@
     <Features>strict</Features>
   </PropertyGroup>
 
-  <!-- Onlyt used for the root build-->
-  <Import Project="scripts\Skip.UWP.MacOs.props"/>
-
   <ItemGroup>
     <PackageReference Include="Roslynator.Analyzers" Version="3.0.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />

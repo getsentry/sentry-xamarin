@@ -53,17 +53,9 @@ jobs:
           packages: 'platforms;android-30'
 
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
-          
-      - name: Build SDK
-        run: msbuild -p:Configuration=Release /t:BuildSentrySDK
-      - name: Restore iOS Sample app NuGet
-        run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release -t:restore
-        if: startsWith(matrix.os, 'macos')
-      - name: Build Samples
-        run: msbuild -p:Configuration=Release /t:BuildSamples
-      - name: Build Test Project
-        run: msbuild Tests/Sentry.Xamarin.Forms.UWP.Tests/Sentry.Xamarin.Forms.UWP.Tests.csproj /p:Platform=x64 /p:Configuration=Release
-        if: startsWith(matrix.os, 'windows')
+      - name: Build SDK, Sample and Tests
+        run: msbuild Sentry.Xamarin-CI-Build-${{ runner.os }}.slnf  -p:Configuration=Release
+        
       - name: Setup VS Test
         uses: darenm/Setup-VSTest@v1
         if: startsWith(matrix.os, 'windows')
