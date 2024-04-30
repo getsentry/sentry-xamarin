@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <!-- Onlyt used for the root build-->
-  <Import Project="scripts\Skip.UWP.MacOs.props" Condition="'$(MSBuildProjectDirectory)' == '$(MSBuildThisFileDirectory)'"/>
+  <Import Project="scripts\Skip.UWP.MacOs.props"/>
 
   <ItemGroup>
     <PackageReference Include="Roslynator.Analyzers" Version="3.0.0" PrivateAssets="All" />
