@@ -42,9 +42,12 @@ jobs:
       - name: Setup Xamarin MacOS SDK
         if: startsWith(matrix.os, 'macos')
         run: brew install --cask xamarin-mac
-      - name: Setup Xamarin iOS SDK
+      - name: Setup Xamarin Android SDK
         if: startsWith(matrix.os, 'macos')
         run: brew install --cask xamarin-android
+      - name: Setup Xamarin iOS SDK
+        if: startsWith(matrix.os, 'macos')
+        run: brew install --cask xamarin-ios
 
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
       - name: Build Solution with MSBuild
