@@ -9,8 +9,7 @@
         "Samples\\Forms\\com.sentry.ovenlibrary\\com.sentry.ovenlibrary.csproj",
         "Samples\\Sample.Xamarin.Droid\\Sample.Xamarin.Droid.csproj",
         "Tests\\Sentry.Xamarin.Forms.Testing\\Sentry.Xamarin.Forms.Testing.csproj",
-        "Tests\\Sentry.Xamarin.Tests\\Sentry.Xamarin.Tests.csproj",
-        "Tests\\Sentry.Xamarin.Forms.UWP.Tests\\Sentry.Xamarin.Forms.UWP.Tests.csproj"
+        "Tests\\Sentry.Xamarin.Tests\\Sentry.Xamarin.Tests.csproj"
     ]
   }
 }
