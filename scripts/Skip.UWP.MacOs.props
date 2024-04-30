@@ -1,14 +1,14 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Target Name="BuildSentrySDK">
-        <MSBuild Projects="Sentry.Xamarin.csproj" />
-        <MSBuild Projects="Sentry.Xamarin.Forms.csproj" />
+        <MSBuild Projects="Src\Sentry.Xamarin\Sentry.Xamarin.csproj" />
+        <MSBuild Projects="Src\Sentry.Xamarin.FormsSentry.Xamarin.Forms.csproj" />
     </Target>
 
     <Target Name="BuildSamples">
-        <MSBuild Projects="Sample.Xamarin.Core.csproj" />
-        <MSBuild Projects="Sample.Xamarin.UWP.csproj" Condition="'$(OS)' == 'Windows_NT'" Platform="x64"/>
-        <MSBuild Projects="Sample.Xamarin.Mac.csproj"/>
-        <MSBuild Projects="com.sentry.ovenlibrary.csproj" />
-        <MSBuild Projects="Sample.Xamarin.Droid.csproj" />
+        <MSBuild Projects="Samples\Sample.Xamarin.Core\Sample.Xamarin.Core.csproj" />
+        <MSBuild Projects="Samples\Sample.Xamarin.UWP\Sample.Xamarin.UWP.csproj" Condition="'$(OS)' == 'Windows_NT'" Platform="x64"/>
+        <MSBuild Projects="Samples\Sample.Xamarin.Mac\Sample.Xamarin.Mac.csproj"/>
+        <MSBuild Projects="Samples\Forms\com.sentry.ovenlibrary\com.sentry.ovenlibrary.csproj" />
+        <MSBuild Projects="Samples\Sample.Xamarin.Droid\Sample.Xamarin.Droid.csproj" />
     </Target>
 </Project>
