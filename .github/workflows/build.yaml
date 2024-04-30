@@ -53,7 +53,7 @@ jobs:
             echo WINDOWS
           else
             echo MAC
-            msbuild Sentry.Xamarin.sln -p:Configuration=Release -p:SkipProjects=Sample.Xamarin.UWP.csproj;Sentry.Xamarin.Forms.UWP.Tests.csproj
+            msbuild Sentry.Xamarin.sln -p:Configuration=Release -p:SkipProjects=Sample.Xamarin.UWP.csproj;Tests/Sentry.Xamarin.Forms.UWP.Tests/Sentry.Xamarin.Forms.UWP.Tests.csproj
           fi
 
       - name: Restore iOS Sample app NuGet
