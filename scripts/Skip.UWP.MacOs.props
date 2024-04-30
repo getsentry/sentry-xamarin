@@ -1,0 +1,16 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup>
+        <!-- Exclude the UWP projects from the build -->
+        <AllProjectsButUWP Include="**\*.csproj" Exclude="**\*.UWP.csproj"/>
+        <OSName Condition="'$(OS)' == 'Windows_NT'">Windows</OSName>
+        <OSName Condition="'$(OS)' != 'Windows_NT'">Linux</OSName>
+    </ItemGroup>
+
+
+    <Target Name="SkipUWPOnMacOS">
+        <Message Text="$(OSName) Current OS" Importance="High" />
+        <Message Text="%(AllProjectsButUWP) Was selected for building" Importance="High" />
+        <MSBuild Projects="%(AllProjectsButUWP)" Targets="Build"/>
+        <Error Text="test"/>
+    </Target>
+</Project>
