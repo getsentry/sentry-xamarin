@@ -27,6 +27,10 @@ jobs:
         run:
             pwsh ./scripts/install-win-sdk.ps1 16299
         if: startsWith(matrix.os, 'windows')
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+
       - name: Setup Java SDK
 
         uses: actions/setup-java@v4
@@ -44,8 +48,12 @@ jobs:
       - name: Setup Xamarin iOS SDK
         if: startsWith(matrix.os, 'macos')
         run: brew install --cask xamarin-android
+      - name: Setup Xamarin Mac SDK
+        run: |
+          echo "Installing Xamarin.Mac SDK"
+          dotnet workload install Xamarin.Mac
+
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
-          
       - name: Build Solution with MSBuild
         run: |
           if [ "${{ matrix.os }}" == "windows-latest" ]; then
