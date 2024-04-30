@@ -45,10 +45,6 @@ jobs:
       - name: Setup Xamarin iOS SDK
         if: startsWith(matrix.os, 'macos')
         run: brew install --cask xamarin-android
-      - name: Setup Xamarin Mac SDK
-        run: |
-          echo "Installing Xamarin.Mac SDK"
-          dotnet workload install Xamarin.Mac
 
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
       - name: Build Solution with MSBuild
