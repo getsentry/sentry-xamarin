@@ -27,8 +27,19 @@ jobs:
         run:
             pwsh ./scripts/install-win-sdk.ps1 16299
         if: startsWith(matrix.os, 'windows')
-      - name: Setup Java SDK
 
+      # Setup Xamarin SDK that got removed on the latest MacOS VM
+      - name: Setup Xamarin MacOS SDK
+        if: startsWith(matrix.os, 'macos')
+        run: brew install --cask xamarin-mac
+      - name: Setup Xamarin Android SDK
+        if: startsWith(matrix.os, 'macos')
+        run: brew install --cask xamarin-android
+      - name: Setup Xamarin iOS SDK
+        if: startsWith(matrix.os, 'macos')
+        run: brew install --cask xamarin-ios
+
+      - name: Setup Java SDK
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
