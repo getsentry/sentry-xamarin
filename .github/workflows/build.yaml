@@ -40,20 +40,20 @@ jobs:
           packages: 'platforms;android-30'
       - name: Setup Xamarin MacOS SDK
         if: startsWith(matrix.os, 'macos')
-        run: |
-          brew install --cask xamarin-mac
+        run: brew install --cask xamarin-ios
       - name: Setup Xamarin iOS SDK
         if: startsWith(matrix.os, 'macos')
-        run: |
-          brew install --cask xamarin-ios
-      - name: Setup Xamarin iOS SDK
-        if: startsWith(matrix.os, 'macos')
-        run: |
-          brew install --cask xamarin-android
+        run: brew install --cask xamarin-android
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
           
       - name: Build Solution with MSBuild
-        run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
+        run: |
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            msbuild Sentry.Xamarin.sln -p:Configuration=Release
+          else
+            msbuild Sentry.Xamarin.sln -p:Configuration=Release -p:SkipProjects=Sample.Xamarin.UWP.cspro;Sentry.Xamarin.Forms.UWP.Tests.csproj
+          fi
+
       - name: Restore iOS Sample app NuGet
         run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release -t:restore
         if: startsWith(matrix.os, 'macos')
