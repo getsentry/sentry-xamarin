@@ -6,7 +6,7 @@
 
     <Target Name="BuildSamples">
         <MSBuild Projects="Sample.Xamarin.Core.csproj" />
-        <MSBuild Projects="Sample.Xamarin.UWP.csproj" Condition="'$(OS)' != 'Windows_NT'" Platform="x64"/>
+        <MSBuild Projects="Sample.Xamarin.UWP.csproj" Condition="'$(OS)' == 'Windows_NT'" Platform="x64"/>
         <MSBuild Projects="Sample.Xamarin.Mac.csproj"/>
         <MSBuild Projects="com.sentry.ovenlibrary.csproj" />
         <MSBuild Projects="Sample.Xamarin.Droid.csproj" />
