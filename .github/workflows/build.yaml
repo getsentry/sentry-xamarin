@@ -46,12 +46,6 @@ jobs:
         if: startsWith(matrix.os, 'macos')
         run: |
           brew install --cask xamarin-android
-      - name: Setup Xamarin UWP SDK
-        if: startsWith(matrix.os, 'macos')
-        run: |
-          brew install --cask xamarin-uwp
-
-
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
           
       - name: Build Solution with MSBuild
