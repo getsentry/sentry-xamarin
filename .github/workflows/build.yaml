@@ -31,7 +31,9 @@ jobs:
       # Setup Xamarin SDK that got removed on the latest MacOS VM
       - name: Setup Xamarin MacOS SDK
         if: startsWith(matrix.os, 'macos')
-        run: brew install --cask xamarin-mac
+        run: |
+          brew tap homebrew/cask-versions
+          brew install --cask xamarin-mac
       - name: Setup Xamarin Android SDK
         if: startsWith(matrix.os, 'macos')
         run: brew install --cask xamarin-android
