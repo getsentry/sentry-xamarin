@@ -96,5 +96,7 @@ namespace Sentry.Xamarin.Forms.Testing.Mock
         public void CaptureTransaction(SentryTransaction transaction, Scope scope, SentryHint hint) { }
 
         public bool CaptureEnvelope(Envelope envelope) => true;
+
+        public SentryId CaptureCheckIn(string monitorSlug, CheckInStatus status, SentryId? sentryId = null, TimeSpan? duration = null, Scope scope = null) => SentryId.Empty;
     }
 }

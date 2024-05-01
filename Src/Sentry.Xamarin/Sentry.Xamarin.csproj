@@ -46,13 +46,13 @@
 		<None Include="Internals\**\*.mac*.cs" />
 		<None Include="Internals\**\*.droid*.cs" />
 		<None Include="Internals\**\*.uwp*.cs" />
-		<None Include="Privacy\SentryPrivacyInfo.xcprivacy" Pack="true" PackagePath="Privacy\SentryPrivacyInfo.xcprivacy"/>
+		<None Include="Privacy\SentryPrivacyInfo.xcprivacy" Pack="true" PackagePath="Privacy\SentryPrivacyInfo.xcprivacy" />
 		<None Include="buildTransitive\Sentry.Xamarin.targets" Pack="true" PackagePath="buildTransitive\Sentry.Xamarin.targets" />
 		<None Include="buildTransitive\Sentry.Xamarin.targets" Pack="true" PackagePath="build\Sentry.Xamarin.targets" />
 	</ItemGroup>	
 
 	<ItemGroup>
-		<PackageReference Include="Sentry" Version="4.0.3" />
+		<PackageReference Include="Sentry" Version="4.5.0" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
 	</ItemGroup>
 
@@ -70,7 +70,7 @@
 	
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
 		<Compile Include="Internals\**\*.droid*.cs" />
-		<PackageReference Include="Sentry.Android.AssemblyReader" Version="4.0.3" />
+		<PackageReference Include="Sentry.Android.AssemblyReader" Version="4.5.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
