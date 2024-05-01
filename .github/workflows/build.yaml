@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-latest]
+        os: [windows-latest, macos-13]
     steps:
       - uses: actions/checkout@v4
       - uses: microsoft/setup-msbuild@v1.1
@@ -27,8 +27,21 @@ jobs:
         run:
             pwsh ./scripts/install-win-sdk.ps1 16299
         if: startsWith(matrix.os, 'windows')
-      - name: Setup Java SDK
 
+      # Setup Xamarin SDK that got removed on the latest MacOS VM
+      - name: Setup Xamarin MacOS SDK
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          brew tap homebrew/cask-versions
+          brew install --cask xamarin-mac
+      - name: Setup Xamarin Android SDK
+        if: startsWith(matrix.os, 'macos')
+        run: brew install --cask xamarin-android
+      - name: Setup Xamarin iOS SDK
+        if: startsWith(matrix.os, 'macos')
+        run: brew install --cask xamarin-ios
+
+      - name: Setup Java SDK
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -40,24 +53,9 @@ jobs:
           packages: 'platforms;android-30'
 
       - run: msbuild Sentry.Xamarin.sln -p:Configuration=Release -t:restore
-          
-      - name: Build Solution with MSBuild
-        run: msbuild Sentry.Xamarin.sln -p:Configuration=Release
-      - name: Restore iOS Sample app NuGet
-        run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release -t:restore
-        if: startsWith(matrix.os, 'macos')
-      - name: Build iOS Sample app
-        run: msbuild Samples/Sample.Xamarin.iOS/Sample.Xamarin.iOS.csproj -p:Configuration=Release
-        if: startsWith(matrix.os, 'macos')
-      - name: Build Android Sample app
-        run: msbuild Samples/Sample.Xamarin.Droid/Sample.Xamarin.Droid.csproj -p:Configuration=Release
-        if: startsWith(matrix.os, 'windows')
-      - name: Build UWP Sample app
-        run: msbuild Samples/Sample.Xamarin.UWP/Sample.Xamarin.UWP.csproj /p:Platform=x64 /p:Configuration=Release
-        if: startsWith(matrix.os, 'windows')
-      - name: Build UWP Test Project
-        run: msbuild Tests/Sentry.Xamarin.Forms.UWP.Tests/Sentry.Xamarin.Forms.UWP.Tests.csproj /p:Platform=x64 /p:Configuration=Release
-        if: startsWith(matrix.os, 'windows')
+      - name: Build SDK, Sample and Tests
+        run: msbuild Sentry.Xamarin-CI-Build-${{ runner.os }}.slnf  -p:Configuration=Release
+        
       - name: Setup VS Test
         uses: darenm/Setup-VSTest@v1
         if: startsWith(matrix.os, 'windows')
