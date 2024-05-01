@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0"
+	xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="FindUserPrivacyInfo" BeforeTargets="PrepareForBuild" Condition="'$(Platform)' == 'iPhone' Or '$(Platform)' == 'iOS' or $(Platform) == 'iPhoneSimulator'">
+		<PropertyGroup>
+			<PrivacyInfoFileName>PrivacyInfo.xcprivacy</PrivacyInfoFileName>
+			<SentryTargetEnabled>true</SentryTargetEnabled>
+		</PropertyGroup>
+		<ItemGroup>
+			<ProjectPrivacyInfoList Include="@(BundleResource)" Condition="'%(Filename)%(Extension)' == '$(PrivacyInfoFileName)'"/>
+		</ItemGroup>
+		<PropertyGroup>
+			<UserPrivacyInfoFullPath>@(ProjectPrivacyInfoList->'%(FullPath)')</UserPrivacyInfoFullPath>
+		</PropertyGroup>
+	</Target>
+
+	<Target Name="ValidateUserPrivacyInfo"
+			DependsOnTargets="FindUserPrivacyInfo" AfterTargets="FindUserPrivacyInfo"
+			Condition="'$(UserPrivacyInfoFullPath)' != '' And '$(SentryTargetEnabled)' == 'true'">
+		<PropertyGroup>
+			<HasFileTimestampPrivacyKey>false</HasFileTimestampPrivacyKey>
+			<HasSystemBootTimePrivacyKey>false</HasSystemBootTimePrivacyKey>
+			<!-- Regex patterns for privacy keys -->
+			<APITypeRegex>
+				<![CDATA[\s*<\s*key\s*>\s*NSPrivacyAccessedAPIType\s*<\/\s*key\s*>]]>
+			</APITypeRegex>
+			<FileTimestampRegex>
+				<![CDATA[\s*<\s*string\s*>\s*NSPrivacyAccessedAPICategoryFileTimestamp<\/\s*string\s*>]]>
+			</FileTimestampRegex>
+			<BootTimeRegex>
+				<![CDATA[\s*<\s*string\s*>\s*NSPrivacyAccessedAPICategorySystemBootTime<\/\s*string\s*>]]>
+			</BootTimeRegex>
+			<ReasonRegex>
+				<![CDATA[\s*<\s*key\s*>\s*NSPrivacyAccessedAPITypeReasons\s*<\/\s*key\s*>\s*<\s*array\s*>\s*<\s*string\s*>([^<]+)<\/\s*string\s*>\s*<\/\s*array\s*>\s*]]>
+			</ReasonRegex>
+		</PropertyGroup>
+		<XmlPeek XmlInputPath="$(UserPrivacyInfoFullPath)" Query="/plist/dict/key[.='NSPrivacyAccessedAPITypes']/following-sibling::array[1]/dict">
+			<Output TaskParameter="Result" ItemName="ArrayItems" />
+		</XmlPeek>
+		<XmlPeek XmlInputPath="$(UserPrivacyInfoFullPath)" Query="/plist/dict">
+			<Output TaskParameter="Result" ItemName="ArrayItems2" />
+		</XmlPeek>
+		<PropertyGroup>
+			<HasFileTimestampPrivacyKey Condition="$([System.Text.RegularExpressions.Regex]::IsMatch(%(ArrayItems.Identity), `$(APITypeRegex)$(FileTimestampRegex)$(ReasonRegex)`))">true</HasFileTimestampPrivacyKey>
+			<HasSystemBootTimePrivacyKey Condition="$([System.Text.RegularExpressions.Regex]::IsMatch(%(ArrayItems.Identity), `$(APITypeRegex)$(BootTimeRegex)$(ReasonRegex)`))">true</HasSystemBootTimePrivacyKey>
+			<MoreinformationMissingField>
+				For more information, visit: https://developer.apple.com/documentation/bundleresources/privacy_manifest_files
+				Or https://docs.sentry.io/platforms/dotnet/guides/xamarin/data-management/apple-privacy-manifest/
+			</MoreinformationMissingField>
+		</PropertyGroup>
+		<Warning Text="Your $(PrivacyInfoFileName) file is missing the key NSPrivacyAccessedAPITypes or is invalid.$(MoreinformationMissingField)" Condition="'@(ArrayItems)' == ''"/>
+		<Warning Text="Your $(PrivacyInfoFileName) file is missing the key NSPrivacyAccessedAPICategoryFileTimestamp inside of NSPrivacyAccessedAPITypes.$(MoreinformationMissingField)" Condition="'$(HasFileTimestampPrivacyKey)' == 'false' And '@(ArrayItems)' != ''"/>
+		<Warning Text="Your $(PrivacyInfoFileName) file is missing the key NSPrivacyAccessedAPICategorySystemBootTime inside of NSPrivacyAccessedAPITypes.$(MoreinformationMissingField)" Condition="'$(HasSystemBootTimePrivacyKey)' == 'false' And '@(ArrayItems)' != ''"/>
+	</Target>
+
+	<Target Name="AddSentryPrivacyInfo"
+			DependsOnTargets="FindUserPrivacyInfo" AfterTargets="FindUserPrivacyInfo"
+			Condition="'$(UserPrivacyInfoFullPath)' == '' And '$(SentryTargetEnabled)' == 'true'">
+		<Message Text="Applying Sentry PrivacyInfo to the project output"/>
+		<PropertyGroup>
+			<SentryPrivacyFilePath Condition="'$(TargetsFolderPath)' == ''">$(MSBuildThisFileDirectory)../Privacy/SentryPrivacyInfo.xcprivacy</SentryPrivacyFilePath>
+		</PropertyGroup>
+		<ItemGroup>
+			<Content Include="$(SentryPrivacyFilePath)">
+				<Link>$(PrivacyInfoFileName)</Link>
+				<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			</Content>
+		</ItemGroup>
+	</Target>
+</Project>

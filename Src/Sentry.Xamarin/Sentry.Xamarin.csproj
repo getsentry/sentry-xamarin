@@ -46,6 +46,9 @@
 		<None Include="Internals\**\*.mac*.cs" />
 		<None Include="Internals\**\*.droid*.cs" />
 		<None Include="Internals\**\*.uwp*.cs" />
+		<None Include="Privacy\SentryPrivacyInfo.xcprivacy" Pack="true" PackagePath="Privacy\SentryPrivacyInfo.xcprivacy"/>
+		<None Include="buildTransitive\Sentry.Xamarin.targets" Pack="true" PackagePath="buildTransitive\Sentry.Xamarin.targets" />
+		<None Include="buildTransitive\Sentry.Xamarin.targets" Pack="true" PackagePath="build\Sentry.Xamarin.targets" />
 	</ItemGroup>	
 
 	<ItemGroup>
