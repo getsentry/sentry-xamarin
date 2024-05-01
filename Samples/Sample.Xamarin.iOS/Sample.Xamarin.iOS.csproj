@@ -41,7 +41,8 @@
     <SentryUploadSymbols>true</SentryUploadSymbols>
     <!-- Sends sources to Sentry, enabling display of source context. -->
     <SentryUploadSources>true</SentryUploadSources>
-    <SentryCLIUploadOptions>--wait --allow_failure</SentryCLIUploadOptions>
+    <SentryCLIUploadOptions>--wait</SentryCLIUploadOptions>
+    <UseSentryCLI>false</UseSentryCLI>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
@@ -80,6 +81,8 @@
     <SentryUploadSymbols>true</SentryUploadSymbols>
     <!-- Sends sources to Sentry, enabling display of source context. -->
     <SentryUploadSources>true</SentryUploadSources>
+    <SentryCLIUploadOptions>--wait</SentryCLIUploadOptions>
+    <UseSentryCLI>false</UseSentryCLI>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
