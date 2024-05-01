@@ -75,6 +75,10 @@
 </plist>
 ```
 
+### Dependencies
+
+- Bump Sentry.NET 4.5.0 ([#154](https://github.com/getsentry/sentry-xamarin/pull/154))
+
 ## 2.0.0
 
 ### Sentry Self-hosted Compatibility

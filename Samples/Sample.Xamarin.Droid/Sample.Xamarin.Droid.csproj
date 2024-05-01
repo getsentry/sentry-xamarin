@@ -61,6 +61,7 @@
     <!-- Sends sources to Sentry, enabling display of source context. -->
     <SentryUploadSources>true</SentryUploadSources>
     <SentryCLIUploadOptions>--wait</SentryCLIUploadOptions>
+    <UseSentryCLI>false</UseSentryCLI>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
