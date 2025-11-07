@@ -5,6 +5,10 @@ _Bad software is everywhere, and we're tired of it. Sentry is on a mission to he
 Sentry SDK for Xamarin
 ===========
 
+# Xamarin went [out of support in May 2024](https://dotnet.microsoft.com/en-us/platform/support/policy/xamarin). This code base is no longer maintained by Sentry. All our efforts are now on .NET Mobile (through native bindings) and .NET MAUI on [getsentry/sentry-dotnet](https://github.com/getsentry/sentry-dotnet)
+
+===========
+
 [![build](https://github.com/getsentry/sentry-dotnet-xamarin/workflows/build/badge.svg?branch=main)](https://github.com/getsentry/sentry-dotnet-xamarin/actions?query=branch%3Amain)
 [![Discord Chat](https://img.shields.io/discord/621778831602221064?logo=discord&logoColor=ffffff&color=7389D8)](https://discord.gg/PXa5Apfe7K)  
 
